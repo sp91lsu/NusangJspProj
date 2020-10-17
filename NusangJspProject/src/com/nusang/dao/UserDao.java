@@ -36,11 +36,12 @@ public class UserDao {
 		return list;
 	}
 	
-	public User findByUUid(int uuid) {
+	public User findByUUid(int methoduuid) {
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("uuid", uuid);
+		map.put("queryuuid", methoduuid);
 		User user = session.selectOne("findByUUid",map);
+		
 		session.close();
 		return user;
 	}

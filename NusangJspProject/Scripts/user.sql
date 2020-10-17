@@ -49,9 +49,10 @@ BEGIN
 	FROM dual;
 END;
 
-/
 
 
+INSERT INTO NUSER VALUES (SEQ_NUSER_UUID.nextval,'sp91lsu','이성웅','123456','ROLE_USER');
 
+DESC NUSER;
 
 

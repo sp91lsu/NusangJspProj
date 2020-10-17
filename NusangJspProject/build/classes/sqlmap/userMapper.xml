@@ -20,7 +20,9 @@
         FROM
             NUSER
         WHERE 
-        UUID = #{uuid}
+        UUID = #{queryuuid}
     </select>
+    
+    <delete id=""></delete>
 </mapper>
 

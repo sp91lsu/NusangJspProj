@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
+import com.nusang.action.user.UserSelectAll;
 import com.nusang.dao.UserDao;
 import com.nusang.dto.User;
 
@@ -26,12 +28,7 @@ public class UserController extends HttpServlet {
 
 		System.out.println("user");
 
-		List<User> userList = UserDao.getInstance().selectAll();
-		User user = UserDao.getInstance().findByUUid(2);
-
-		System.out.println("list : " + userList);
-		System.out.println("user : " + user);
-
+		Action action = null;
 		ActionForward actionForward = null;
 
 		String requestURI = request.getRequestURI();
@@ -41,8 +38,13 @@ public class UserController extends HttpServlet {
 
 		try {
 			switch (requestPage) {
-			case "login.do":
-
+			case "selectAll":
+				action = new UserSelectAll();
+				actionForward = action.execute(request, response);
+				// UserDao : selectAll함수를 통해서 userList객체를 attribute에 저장 
+				//actionForward : list.jsp
+				
+				
 				break;
 			}
 		} catch (Exception e) {
