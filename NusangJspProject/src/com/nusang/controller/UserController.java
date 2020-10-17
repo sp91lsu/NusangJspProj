@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.nusang.action.ActionForward;
-import com.nusang.controller.asist.UrlExtraction;
+import com.nusang.controller.asist.ConAsist;
 import com.nusang.dao.UserDao;
 import com.nusang.dto.User;
 
@@ -26,8 +26,8 @@ public class UserController extends HttpServlet {
 			throws ServletException, IOException {
 
 		ActionForward actionForward = null;
-		String requestPage = UrlExtraction.getRequestString(request);
-
+		String requestPage = ConAsist.getRequestName(request);
+			
 		try {
 			switch (requestPage) {
 			case "login.do":
