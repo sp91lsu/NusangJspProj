@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.nusang.action.ActionForward;
+import com.nusang.controller.asist.UrlExtraction;
 import com.nusang.dao.UserDao;
 import com.nusang.dto.User;
 
@@ -24,20 +25,8 @@ public class UserController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		System.out.println("user");
-
-		List<User> userList = UserDao.getInstance().selectAll();
-		User user = UserDao.getInstance().findByUUid(2);
-
-		System.out.println("list : " + userList);
-		System.out.println("user : " + user);
-
 		ActionForward actionForward = null;
-
-		String requestURI = request.getRequestURI();
-		int lstindex = requestURI.lastIndexOf("/") + 1;
-
-		String requestPage = requestURI.substring(lstindex);
+		String requestPage = UrlExtraction.getRequestString(request);
 
 		try {
 			switch (requestPage) {
