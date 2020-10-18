@@ -17,7 +17,7 @@ import org.json.simple.JSONObject;
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
 import com.nusang.action.assistance.EContentType;
-import com.nusang.action.assistance.JHttpClient;
+import com.nusang.action.assistance.MyHttpPost;
 import com.nusang.action.assistance.JsonFinder;
 import com.nusang.controller.assistance.ConAsist;
 
@@ -71,7 +71,7 @@ public class PaymentController extends HttpServlet {
 			tokenBody.put("imp_secret",
 					"Qg0L7Sv9zZnhgYl2id0SY4s9dM460CdRTdC167aG6yYnwkpPxpHvuaEHWINXl1Offqgmxr2EZ11wlqlS");
 
-			JHttpClient client = new JHttpClient("https://api.iamport.kr/users/getToken", EContentType.JSON);
+			MyHttpPost client = new MyHttpPost("https://api.iamport.kr/users/getToken", EContentType.JSON);
 
 			client.setBody(tokenBody);
 			res = client.request();
@@ -91,7 +91,7 @@ public class PaymentController extends HttpServlet {
 			System.out.println("resString = " + accessToken);
 
 			header2.put("Authorization", "Bearer " + accessToken);
-			client = new JHttpClient("https://api.iamport.kr/payments/cancel", EContentType.JSON);
+			client = new MyHttpPost("https://api.iamport.kr/payments/cancel", EContentType.JSON);
 
 			client.setHeader(header2);
 			client.setBody(jsonObjet);

@@ -13,8 +13,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
 import com.nusang.action.assistance.EContentType;
-import com.nusang.action.assistance.JHttpClient;
+import com.nusang.action.assistance.MyHttpPost;
 import com.nusang.action.assistance.KakaoAuthToken;
+import com.nusang.action.assistance.MyHttpGet;
 import com.nusang.controller.assistance.ConAsist;
 
 public class LoginAction implements Action {
@@ -34,28 +35,37 @@ public class LoginAction implements Action {
 	}
 
 	private void kakaoLogin(HttpServletRequest request) throws JsonMappingException, JsonProcessingException {
-		
-		//토큰 발급받을 수 있는 코드
+
+		// 토큰 발급받을 수 있는 코드
 		String code = request.getParameter("code");
 		System.out.println(code);
 
-		JHttpClient client = new JHttpClient("https://kauth.kakao.com/oauth/token", EContentType.FORM);
+		MyHttpPost httpPost = new MyHttpPost("https://kauth.kakao.com/oauth/token", EContentType.FORM);
 
-		JSONObject bodyObject = new JSONObject();
-		bodyObject.put("grant_type", "authorization_code");
-		bodyObject.put("client_id", "7ac03576a3ef2b30b8b6545b6b0daf1c");
-		bodyObject.put("redirect_uri", "http://localhost:8787/user/kakaologin");
-		bodyObject.put("code", code);
-		client.setBody(bodyObject);
+		JSONObject postJson = new JSONObject();
+		postJson.put("grant_type", "authorization_code");
+		postJson.put("client_id", "7ac03576a3ef2b30b8b6545b6b0daf1c");
+		postJson.put("redirect_uri", "http://localhost:8787/user/kakaologin");
+		postJson.put("code", code);
+		httpPost.setBody(postJson);
 
-		JSONObject resObject = client.request();
+		JSONObject resObject = httpPost.request();
 
 		ObjectMapper om = new ObjectMapper();
-		System.out.println();
 		KakaoAuthToken oAuthToken = om.readValue(resObject.toJSONString(), KakaoAuthToken.class);
 		System.out.println("mapper accessToken : " + oAuthToken.getAccess_token());
-		//토큰 받기 완료 
-		
+		// 토큰 받기 완료
+
+		// 사용자 정보 요청 token은 헤더에 담아서 보내야함
+		MyHttpGet httpGet = new MyHttpGet("https://kapi.kakao.com/v2/user/me", EContentType.FORM);
+
+		JSONObject getJson = new JSONObject();
+		getJson.put("Authorization", "Bearer " + oAuthToken.getAccess_token());
+		httpGet.setHeader(getJson);
+
+		resObject = httpGet.request();
+
+		System.out.println("사용자 정보 : " + resObject.toJSONString());
 	}
 
 }
