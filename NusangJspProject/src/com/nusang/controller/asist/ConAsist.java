@@ -34,7 +34,7 @@ public class ConAsist {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("body : " + jsonObject.toString());
+		System.out.println("getJSON : " + jsonObject.toString());
 
 		return jsonObject;
 	}

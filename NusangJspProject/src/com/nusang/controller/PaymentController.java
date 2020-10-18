@@ -1,6 +1,8 @@
 package com.nusang.controller;
 
 import java.io.IOException;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,13 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.json.JSONParser;
+import org.apache.tomcat.util.json.ParseException;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.nusang.action.Action;
+import com.nusang.action.ActionForward;
+import com.nusang.action.asist.JHttpClient;
 import com.nusang.controller.asist.ConAsist;
 
-/**
- * Servlet implementation class PaymentController
- */
 @WebServlet("/payment/*")
 public class PaymentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -27,29 +31,84 @@ public class PaymentController extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-
-
 	// imp_uid는 아임포트 주문번호, merchant_uid는 가맹점 주문번호, 그리고 status는 결제 결과
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		System.out.println("payment callback");
+		ActionForward actionForward = null;
+		JSONObject jsonObjet = null;
+		JSONObject res = null;
+		Action action = null;
 
 		switch (ConAsist.getRequestName(request)) {
 		case "webhook":
-			JSONObject jsonObjet = ConAsist.getJSON(request);
-			
-			//결제관리
+			jsonObjet = ConAsist.getJSON(request);
+
+			// 결제관리
 			paymentProcess(jsonObjet.get("status").toString());
 
 			break;
 
+		// 환불
+		case "refund":
+
+//			"merchant_uid" : "mid_mermer", // 주문번호
+//			"cancel_request_amount" : 100, // 환불금액
+//			"reason" : "테스트 결제 환불", // 환불사유
+			jsonObjet = ConAsist.getJSON(request);
+			// {"imp_uid":"imp_670663832422","merchant_uid":"mid_123","status":"paid"}
+			////////////////////////////////////////////// 토큰발행
+			System.out.println();
+			System.out.println();
+			System.out.println();
+			System.out.println("토큰 발행 ");
+		
+			JSONObject body1 = new JSONObject();
+			body1.put("imp_key", "0642725073895705");
+			body1.put("imp_secret",
+					"Qg0L7Sv9zZnhgYl2id0SY4s9dM460CdRTdC167aG6yYnwkpPxpHvuaEHWINXl1Offqgmxr2EZ11wlqlS");
+
+			JHttpClient client = new JHttpClient();
+
+			client.setBody(body1);
+			res = client.request("https://api.iamport.kr/users/getToken");
+
+			////////////////////////////////////////////// 토큰발행
+
+			////////////////////////////////// 토큰 가지고 아임포트에 환불요청
+			System.out.println();
+			System.out.println();
+			System.out.println();
+			System.out.println("환불요청");
+			JSONObject header2 = new JSONObject();
+			Map<String, Object> resMap = (Map<String, Object>) res.get("response");
+
+			System.out.println("resString = " + resMap.get("access_token"));
+
+			header2.put("Authorization", "Bearer " + resMap.get("access_token"));
+			JSONObject body = new JSONObject();
+			client = new JHttpClient();
+
+			client.setHeader(header2);
+			client.setBody(jsonObjet);
+			res = client.request("https://api.iamport.kr/payments/cancel");
+			
+			////////////////////////////////// 토큰 가지고 아임포트에 환불요청
+			break;
+
 		}
 
-		System.out.println(request.getParameter("json"));
-		String requstName = ConAsist.getRequestName(request);
-
+		if (actionForward != null) {
+			if (actionForward.isRedirect()) {
+				response.sendRedirect(actionForward.getNextPath());
+			} else {
+				request.getRequestDispatcher(actionForward.getNextPath()).forward(request, response);
+			}
+		} else {
+			response.setContentType("application/x-json; charset=UTF-8");
+			response.getWriter().print(res);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -58,7 +117,6 @@ public class PaymentController extends HttpServlet {
 		doGet(request, response);
 	}
 
-	
 //	결제가 승인되었을 때(모든 결제 수단) - (status : paid)
 //	가상계좌가 발급되었을 때 - (status : ready)
 //	가상계좌에 결제 금액이 입금되었을 때 - (status : paid)
@@ -83,3 +141,12 @@ public class PaymentController extends HttpServlet {
 	}
 
 }
+
+//환불을 위한 엑세스토큰 발급받기 
+//url: "https://api.iamport.kr/users/getToken",
+//method: "post", // POST method
+//headers: { "Content-Type": "application/json" }, // "Content-Type": "application/json"
+//data: {
+//  imp_key: "imp_apikey", // REST API키
+//  imp_secret: "ekKoeW8RyKuT0zgaZsUtXXTLQ4AhPFW3ZGseDA6bkA5lamv9OqDMnxyeB9wqOsuO9W3Mx9YSJ4dTqJ3f" // REST API Secret
+//}
