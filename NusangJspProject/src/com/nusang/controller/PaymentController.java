@@ -16,8 +16,10 @@ import org.json.simple.JSONObject;
 
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
-import com.nusang.action.asist.JHttpClient;
-import com.nusang.controller.asist.ConAsist;
+import com.nusang.action.assistance.EContentType;
+import com.nusang.action.assistance.JHttpClient;
+import com.nusang.action.assistance.JsonFinder;
+import com.nusang.controller.assistance.ConAsist;
 
 @WebServlet("/payment/*")
 public class PaymentController extends HttpServlet {
@@ -63,16 +65,16 @@ public class PaymentController extends HttpServlet {
 			System.out.println();
 			System.out.println();
 			System.out.println("토큰 발행 ");
-		
-			JSONObject body1 = new JSONObject();
-			body1.put("imp_key", "0642725073895705");
-			body1.put("imp_secret",
+
+			JSONObject tokenBody = new JSONObject();
+			tokenBody.put("imp_key", "0642725073895705");
+			tokenBody.put("imp_secret",
 					"Qg0L7Sv9zZnhgYl2id0SY4s9dM460CdRTdC167aG6yYnwkpPxpHvuaEHWINXl1Offqgmxr2EZ11wlqlS");
 
-			JHttpClient client = new JHttpClient();
+			JHttpClient client = new JHttpClient("https://api.iamport.kr/users/getToken", EContentType.JSON);
 
-			client.setBody(body1);
-			res = client.request("https://api.iamport.kr/users/getToken");
+			client.setBody(tokenBody);
+			res = client.request();
 
 			////////////////////////////////////////////// 토큰발행
 
@@ -82,18 +84,19 @@ public class PaymentController extends HttpServlet {
 			System.out.println();
 			System.out.println("환불요청");
 			JSONObject header2 = new JSONObject();
-			Map<String, Object> resMap = (Map<String, Object>) res.get("response");
 
-			System.out.println("resString = " + resMap.get("access_token"));
+			JsonFinder jf = new JsonFinder(res);
+			String accessToken = (String) jf.getFist("response").get("access_token");
 
-			header2.put("Authorization", "Bearer " + resMap.get("access_token"));
-			JSONObject body = new JSONObject();
-			client = new JHttpClient();
+			System.out.println("resString = " + accessToken);
+
+			header2.put("Authorization", "Bearer " + accessToken);
+			client = new JHttpClient("https://api.iamport.kr/payments/cancel", EContentType.JSON);
 
 			client.setHeader(header2);
 			client.setBody(jsonObjet);
-			res = client.request("https://api.iamport.kr/payments/cancel");
-			
+			res = client.request();
+
 			////////////////////////////////// 토큰 가지고 아임포트에 환불요청
 			break;
 

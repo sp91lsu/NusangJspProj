@@ -23,6 +23,6 @@
 
 </html>
 <button id="cancelPay">환불하기</button>
-<script src="../js/importTest.js"></script>
+<script src="importTest.js"></script>
 
 

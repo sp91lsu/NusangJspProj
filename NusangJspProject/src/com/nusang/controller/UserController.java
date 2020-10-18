@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
-import com.nusang.controller.asist.ConAsist;
+import com.nusang.action.account.LoginAction;
+import com.nusang.controller.assistance.ConAsist;
 import com.nusang.dao.UserDao;
 import com.nusang.dto.User;
 
@@ -25,12 +27,20 @@ public class UserController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		Action action = null;
 		ActionForward actionForward = null;
 		String requestPage = ConAsist.getRequestName(request);
-			
+
 		try {
 			switch (requestPage) {
 			case "login.do":
+
+				break;
+			case "kakaologin":
+
+				action = new LoginAction();
+				action.execute(request, response);
+			
 
 				break;
 			}

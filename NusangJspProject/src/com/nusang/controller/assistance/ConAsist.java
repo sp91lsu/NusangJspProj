@@ -1,4 +1,4 @@
-package com.nusang.controller.asist;
+package com.nusang.controller.assistance;
 
 import java.io.BufferedReader;
 import java.io.IOException;
