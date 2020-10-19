@@ -36,6 +36,7 @@ public class MyHttpGet {
 		try {
 
 			headerCheck();
+		
 			HttpResponse javaResponse = client.execute(getRequest);
 
 			// Response 출력
@@ -67,15 +68,17 @@ public class MyHttpGet {
 
 	private void headerCheck() throws UnsupportedEncodingException {
 
-		getRequest.setHeader("Content-Type", cType.getText());
+		getRequest.addHeader("Content-Type", cType.getText());
 		if (header != null) {
 			System.out.println("header :" + header.toJSONString());
 
 			Object[] headArr = header.keySet().toArray();
 			for (int i = 0; i < headArr.length; i++) {
 				String key = headArr[i].toString();
-				getRequest.setHeader(key, header.get(key).toString());
+				getRequest.addHeader(key, header.get(key).toString());
 			}
+			
+			System.out.println("헤더요청 : " + getRequest.getURI());
 		}
 	}
 

@@ -20,6 +20,7 @@ import org.apache.tomcat.util.json.JSONParser;
 import org.json.simple.JSONObject;
 
 import lombok.Data;
+
 @Data
 public class MyHttpPost {
 
@@ -29,7 +30,7 @@ public class MyHttpPost {
 	private JSONObject body = null;
 	private JSONObject res = null;
 
-	private EContentType cType = EContentType.JSON;
+	private EContentType cType = null;
 
 	public MyHttpPost(String url, EContentType cType) {
 		client = HttpClientBuilder.create().build(); // HttpClient 생성
@@ -94,7 +95,6 @@ public class MyHttpPost {
 			if (cType == EContentType.JSON) {
 				StringEntity sn = new StringEntity(body.toJSONString());
 				System.out.println("body : " + body.toJSONString());
-				System.out.println(body.toString());
 				sn.setContentType(cType.getText());
 				postRequest.setEntity(sn); // json 메시지 입력
 				System.out.println("entity : " + postRequest.getEntity());

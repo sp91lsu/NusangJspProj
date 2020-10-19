@@ -14,6 +14,7 @@ import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
 import com.nusang.action.assistance.EContentType;
 import com.nusang.action.assistance.MyHttpPost;
+import com.nusang.action.assistance.NaverAuthToken;
 import com.nusang.action.assistance.KakaoAuthToken;
 import com.nusang.action.assistance.MyHttpGet;
 import com.nusang.controller.assistance.ConAsist;
@@ -28,6 +29,9 @@ public class LoginAction implements Action {
 		switch (ConAsist.getRequestName(request)) {
 		case "kakaologin":
 			kakaoLogin(request);
+			break;
+		case "naverlogin":
+			naverLogin(request);
 			break;
 		}
 
@@ -66,6 +70,43 @@ public class LoginAction implements Action {
 		resObject = httpGet.request();
 
 		System.out.println("사용자 정보 : " + resObject.toJSONString());
+	}
+
+	private void naverLogin(HttpServletRequest request) throws JsonMappingException, JsonProcessingException {
+
+		String code = request.getParameter("code");
+		String state = request.getParameter("state");
+		System.out.println("naverCode : " + code);
+
+		MyHttpPost httpPost = new MyHttpPost("https://nid.naver.com/oauth2.0/token", EContentType.FORM);
+
+		JSONObject postJson = new JSONObject();
+		postJson.put("grant_type", "authorization_code");
+		postJson.put("client_id", "h3YOPfhFkTcn5ls8RX3g");
+		postJson.put("client_secret", "csg5mhfpih");
+		postJson.put("code", code);
+		postJson.put("state", state);
+		httpPost.setBody(postJson);
+
+		JSONObject resObject = httpPost.request();
+
+		ObjectMapper om = new ObjectMapper();
+		NaverAuthToken oAuthToken = om.readValue(resObject.toJSONString(), NaverAuthToken.class);
+		System.out.println("mapper accessToken : " + oAuthToken.getAccess_token());
+
+		// 토큰 받기 완료
+
+		// 사용자 정보 요청 token은 헤더에 담아서 보내야함
+		MyHttpGet httpGet = new MyHttpGet("https://openapi.naver.com/v1/nid/me", EContentType.FORM);
+
+		JSONObject getJson = new JSONObject();
+		getJson.put("Authorization", "Bearer " + oAuthToken.getAccess_token());
+		httpGet.setHeader(getJson);
+
+		resObject = httpGet.request();
+
+		System.out.println("사용자 정보 : " + resObject.toJSONString());
+
 	}
 
 }
