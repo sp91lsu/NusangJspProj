@@ -1,10 +1,8 @@
 package com.nusang.action.account;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -32,15 +30,15 @@ public class LoginAction implements Action {
 			break;
 		}
 
-		User entity = UserDao.getInstance().findByUsername(user.getUsername());
-		
-		if(entity == null) {
+		User entity = UserDao.getInstance().findBy("username", user.getUsername());
+
+		if (entity == null) {
 			System.out.println("회원가입을 아직 하지 않아서 자동 회원가입진행");
-			UserDao.getInstance().insert(user);
-		}else {
+			UserDao.getInstance().insertUser(user);
+		} else {
 			System.out.println("우리 회원이시군요!");
 		}
-		
+
 		System.out.println("로그인 처리");
 		HttpSession session = request.getSession();
 		session.setAttribute("user", user);
