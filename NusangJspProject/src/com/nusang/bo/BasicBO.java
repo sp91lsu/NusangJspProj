@@ -8,6 +8,7 @@ import com.nusang.dto.User;
 
 import lombok.Data;
 
+//소셜 api사용을 위해 만듦
 @Data
 public abstract class BasicBO {
 	MyHttpPost httpPost;

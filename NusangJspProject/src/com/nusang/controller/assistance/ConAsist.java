@@ -11,6 +11,7 @@ import org.apache.tomcat.util.json.JSONParser;
 import org.apache.tomcat.util.json.ParseException;
 import org.json.simple.JSONObject;
 
+//controller를 도와주는 클래스
 public class ConAsist {
 
 	// 요청 마지막 경로
