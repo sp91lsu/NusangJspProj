@@ -14,22 +14,13 @@
     </select>
      
      
-     <select id="findByUUid"  resultType="com.nusang.dto.User">
+       <select id="findBy"  resultType="com.nusang.dto.User">
         SELECT
             *
         FROM
             NUSER
         WHERE 
-        UUID = #{uuid}
-    </select>
-    
-       <select id="findByUsername"  resultType="com.nusang.dto.User">
-        SELECT
-            *
-        FROM
-            NUSER
-        WHERE 
-        USERNAME = #{username}
+        ${search} = #{keyword}
     </select>
     
      <insert id="insertUser"  > 

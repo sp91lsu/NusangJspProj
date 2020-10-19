@@ -35,11 +35,14 @@ public class UserDao {
 		return list;
 	}
 
+	//where 바로 뒤에 검색하고자 하는 검색어는 ${}, 키워드는 #{}
+	//예 : select * from 테이블 where ${search} = #{keyword}
 	public User findByUUid(int uuid) {
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("uuid", uuid);
-		User user = session.selectOne("findByUUid", map);
+		map.put("search", "uuid");
+		map.put("keyword", uuid);
+		User user = session.selectOne("findBy", map);
 		session.close();
 		return user;
 	}
@@ -47,8 +50,9 @@ public class UserDao {
 	public User findByUsername(String username) {
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("username", username);
-		User user = session.selectOne("findByUsername", map);
+		map.put("search", "username");
+		map.put("keyword", username);
+		User user = session.selectOne("findBy", map);
 		session.close();
 		return user;
 	}
