@@ -36,15 +36,11 @@ public class UserController extends HttpServlet {
 			case "login.do":
 
 				break;
+			case "login":
 			case "kakaologin":
-				action = new LoginAction();
-				action.execute(request, response);
-				break;
 			case "naverlogin":
 				action = new LoginAction();
-				
 				action.execute(request, response);
-				
 				break;
 			}
 		} catch (Exception e) {

@@ -1,5 +1,7 @@
 package com.nusang.bo;
 
+import java.util.Map;
+
 import org.json.simple.JSONObject;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -10,6 +12,8 @@ import com.nusang.action.assistance.KakaoAuthToken;
 import com.nusang.action.assistance.MyHttpGet;
 import com.nusang.action.assistance.MyHttpPost;
 import com.nusang.action.assistance.NaverAuthToken;
+import com.nusang.data.NData;
+import com.nusang.dto.User;
 
 public class NaverBO extends BasicBO {
 
@@ -64,7 +68,7 @@ public class NaverBO extends BasicBO {
 	}
 
 	@Override
-	public JSONObject reqUserInfo() {
+	public User reqUserInfo() {
 		// 사용자 정보 요청 token은 헤더에 담아서 보내야함
 		MyHttpGet httpGet = new MyHttpGet(reqUserInfoURL, EContentType.FORM);
 
@@ -75,8 +79,12 @@ public class NaverBO extends BasicBO {
 		JSONObject resObject = httpGet.request();
 
 		System.out.println("사용자 정보 : " + resObject.toJSONString());
+		Map<String, String> userMap = (Map<String, String>) resObject.get("response");
 
-		return resObject;
+		String userId = userMap.get("email") + "_" + userMap.get("id");
+		String name = userMap.get("name");
+		User user = User.builder().userid(userId).username(name).password(NData.security).role("ROLE_USER").build();
+		return user;
 	}
 
 }

@@ -9,6 +9,7 @@ import com.nusang.action.assistance.EContentType;
 import com.nusang.action.assistance.KakaoAuthToken;
 import com.nusang.action.assistance.MyHttpGet;
 import com.nusang.action.assistance.MyHttpPost;
+import com.nusang.dto.User;
 
 public class KakaoBO extends BasicBO {
 
@@ -58,7 +59,7 @@ public class KakaoBO extends BasicBO {
 	}
 
 	@Override
-	public JSONObject reqUserInfo() {
+	public User reqUserInfo() {
 		// 사용자 정보 요청 token은 헤더에 담아서 보내야함
 		MyHttpGet httpGet = new MyHttpGet(reqUserInfoURL, EContentType.FORM);
 
@@ -69,7 +70,7 @@ public class KakaoBO extends BasicBO {
 		JSONObject resObject = httpGet.request();
 
 		System.out.println("사용자 정보 : " + resObject.toJSONString());
-		return resObject;
+		return null;
 	}
 
 }

@@ -4,6 +4,7 @@ import org.json.simple.JSONObject;
 
 import com.nusang.action.assistance.MyHttpGet;
 import com.nusang.action.assistance.MyHttpPost;
+import com.nusang.dto.User;
 
 import lombok.Data;
 
@@ -19,5 +20,5 @@ public abstract class BasicBO {
 	String code = null;
 
 	public abstract void reqAuthToken(String... code);
-	public abstract JSONObject reqUserInfo();
+	public abstract User reqUserInfo();
 }

@@ -22,5 +22,19 @@
         WHERE 
         UUID = #{uuid}
     </select>
+    
+       <select id="findByUsername"  resultType="com.nusang.dto.User">
+        SELECT
+            *
+        FROM
+            NUSER
+        WHERE 
+        USERNAME = #{username}
+    </select>
+    
+     <insert id="insertUser"  > 
+        INSERT INTO NUSER (uuid,userid,username,password,role)
+         VALUES (#{uuid}, #{userid}, #{username}, #{password}, #{role}) 
+    </insert>
 </mapper>
 
