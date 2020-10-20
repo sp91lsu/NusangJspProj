@@ -7,8 +7,6 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import com.nusang.dto.User;
-
 import sqlmap.SqlSessionManager;
 
 public class BasicDao<T> {
@@ -37,6 +35,16 @@ public class BasicDao<T> {
 		map.put("search", search);
 		map.put("keyword", keyword);
 		T object = session.selectOne(namespace + "findBy", map);
+		session.close();
+		return object;
+	}
+
+	public List<T> findByList(String search, String keyword) {
+		SqlSession session = sqlSessionFactory.openSession();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("search", search);
+		map.put("keyword", keyword);
+		List<T> object = session.selectList(namespace + "findBy", map);
 		session.close();
 		return object;
 	}

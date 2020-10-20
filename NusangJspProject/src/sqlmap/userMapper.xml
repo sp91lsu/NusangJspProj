@@ -23,7 +23,7 @@
         ${search} = #{keyword}
     </select>
     
-     <insert id="insertUser"  > 
+     <insert id="insert"  > 
         INSERT INTO NUSER (uuid,userid,username,password,role)
          VALUES (#{uuid}, #{userid}, #{username}, #{password}, #{role}) 
     </insert>

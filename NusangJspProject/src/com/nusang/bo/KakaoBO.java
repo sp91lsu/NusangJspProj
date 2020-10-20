@@ -1,14 +1,18 @@
 package com.nusang.bo;
 
+import java.util.Map;
+
 import org.json.simple.JSONObject;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nusang.action.assistance.EContentType;
+import com.nusang.action.assistance.JsonFinder;
 import com.nusang.action.assistance.KakaoAuthToken;
 import com.nusang.action.assistance.MyHttpGet;
 import com.nusang.action.assistance.MyHttpPost;
+import com.nusang.data.NData;
 import com.nusang.dto.User;
 
 public class KakaoBO extends BasicBO {
@@ -32,11 +36,13 @@ public class KakaoBO extends BasicBO {
 	private KakaoAuthToken oAuthToken = null;
 
 	@Override
-	public void reqAuthToken(String... code) {
+	public void reqAuthToken(String... arr) {
 		// 토큰 발급받을 수 있는 코드
-		this.code = code[0];
-		MyHttpPost httpPost = new MyHttpPost(reqTokenURL, EContentType.FORM);
 
+		this.code = arr[0];
+		MyHttpPost httpPost = new MyHttpPost(reqTokenURL, EContentType.FORM);
+		System.out.println("code : " + code);
+		System.out.println("Client_ID : " + Client_ID);
 		JSONObject postJson = new JSONObject();
 		postJson.put("grant_type", "authorization_code");
 		postJson.put("client_id", Client_ID);
@@ -70,7 +76,18 @@ public class KakaoBO extends BasicBO {
 		JSONObject resObject = httpGet.request();
 
 		System.out.println("사용자 정보 : " + resObject.toJSONString());
-		return null;
+		Object id = resObject.get("id");
+		System.out.println(id);
+		JsonFinder finder = new JsonFinder(resObject);
+		finder.getFirst("kakao_account");
+		String userId = finder.getString("email");
+		System.out.println("userid : " + userId);
+		Map<String, String> profile = (Map<String, String>) finder.findGet("profile");
+
+		userId += "_" + id;
+		String name = profile.get("nickname");
+		User user = User.builder().userid(userId).username(name).password(NData.security).role("ROLE_USER").build();
+		return user;
 	}
 
 }

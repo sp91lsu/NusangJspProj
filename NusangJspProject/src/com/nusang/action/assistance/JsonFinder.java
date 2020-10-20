@@ -13,12 +13,16 @@ public class JsonFinder {
 		this.jo = jo;
 	}
 
-	public Map<String, Object> get(String key) {
+	public Object findGet(String key) {
 		child = (Map<String, Object>) child.get(key);
 		return child;
 	}
 
-	public Map<String, Object> getFist(String key) {
+	public String getString(String key) {
+		return (String) child.get(key);
+	}
+
+	public Map<String, Object> getFirst(String key) {
 		child = (Map<String, Object>) jo.get(key);
 		return child;
 	}

@@ -23,7 +23,7 @@ public class LoginAction implements Action {
 		User user = null;
 		switch (ConAsist.getRequestName(request)) {
 		case "kakaologin":
-			// userJson = kakaoLogin(request);
+			user = kakaoLogin(request);
 			break;
 		case "naverlogin":
 			user = naverLogin(request);
@@ -49,7 +49,6 @@ public class LoginAction implements Action {
 
 		// 토큰 발급받을 수 있는 코드
 		String code = request.getParameter("code");
-		System.out.println(code);
 		KakaoBO.getInstance().reqAuthToken(code);
 		return KakaoBO.getInstance().reqUserInfo();
 	}
@@ -59,7 +58,6 @@ public class LoginAction implements Action {
 		String code = request.getParameter("code");
 		String state = request.getParameter("state");
 		System.out.println("naverCode : " + code);
-
 		NaverBO.getInstance().reqAuthToken(code, state);
 		return NaverBO.getInstance().reqUserInfo();
 

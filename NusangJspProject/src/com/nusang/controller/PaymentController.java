@@ -86,7 +86,7 @@ public class PaymentController extends HttpServlet {
 			JSONObject header2 = new JSONObject();
 
 			JsonFinder jf = new JsonFinder(res);
-			String accessToken = (String) jf.getFist("response").get("access_token");
+			String accessToken = (String) jf.getFirst("response").get("access_token");
 
 			System.out.println("resString = " + accessToken);
 
