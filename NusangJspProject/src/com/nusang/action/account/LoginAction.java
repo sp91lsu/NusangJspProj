@@ -30,6 +30,7 @@ public class LoginAction implements Action {
 			break;
 		}
 		
+		user.setRole("ROLE_USER");
 		User entity = UserDao.getInstance().findBy("USERID", user.getUserid());
 
 		if (entity == null) {
