@@ -80,13 +80,13 @@ public class KakaoBO extends BasicBO {
 		System.out.println(id);
 		JsonFinder finder = new JsonFinder(resObject);
 		finder.getFirst("kakao_account");
-		String userId = finder.getString("email");
-		System.out.println("userid : " + userId);
+		String email = finder.getString("email");
+		System.out.println("email : " + email);
 		Map<String, String> profile = (Map<String, String>) finder.findGet("profile");
 
-		userId += "_" + id;
+		String userId = "kakao_" + id;
 		String name = profile.get("nickname");
-		User user = User.builder().userid(userId).username(name).password(NData.security).role("ROLE_USER").build();
+		User user = User.builder().userid(userId).username(name).password(NData.security).logintype("KAKAO").build();
 		return user;
 	}
 

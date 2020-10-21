@@ -83,7 +83,7 @@ public class NaverBO extends BasicBO {
 
 		String userId = userMap.get("email") + "_" + userMap.get("id");
 		String name = userMap.get("name");
-		User user = User.builder().userid(userId).username(name).password(NData.security).role("ROLE_USER").build();
+		User user = User.builder().userid(userId).username(name).password(NData.security).logintype("NAVER").build();
 		return user;
 	}
 

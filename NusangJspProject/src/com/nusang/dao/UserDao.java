@@ -29,11 +29,13 @@ public class UserDao extends BasicDao<User> {
 	public int insertUser(User user) {
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("uuid", user.getUuid());
+		map.put("userid", user.getUserid());
 		map.put("password", user.getPassword());
 		map.put("userid", user.getUserid());
 		map.put("username", user.getUsername());
 		map.put("role", user.getRole());
+		map.put("logintype", user.getLogintype());
+		map.put("location", user.getLocation());
 		// uuid,userid,username,password,role
 		return insert(session, map);
 

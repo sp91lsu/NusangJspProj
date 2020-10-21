@@ -12,4 +12,8 @@ public class User {
 	private String username;
 	private String password;
 	private String role;
+	private String logintype;
+	private String email;
+	private String location;
+	private String regdate;
 }

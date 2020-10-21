@@ -24,8 +24,8 @@
     </select>
     
      <insert id="insert"  > 
-        INSERT INTO NUSER (uuid,userid,username,password,role)
-         VALUES (#{uuid}, #{userid}, #{username}, #{password}, #{role}) 
+        INSERT INTO NUSER (userid,username,password,role,logintype,email,location)
+         VALUES (#{userid}, #{username}, #{password}, #{role},#{logintype},#{email},#{location}) 
     </insert>
 </mapper>
 

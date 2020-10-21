@@ -30,7 +30,7 @@ public class LoginAction implements Action {
 			break;
 		}
 
-		User entity = UserDao.getInstance().findBy("username", user.getUsername());
+		User entity = UserDao.getInstance().findBy("USERID", user.getUserid());
 
 		if (entity == null) {
 			System.out.println("회원가입을 아직 하지 않아서 자동 회원가입진행");
