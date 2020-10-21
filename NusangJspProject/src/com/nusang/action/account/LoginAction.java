@@ -29,7 +29,7 @@ public class LoginAction implements Action {
 			user = naverLogin(request);
 			break;
 		}
-
+		
 		User entity = UserDao.getInstance().findBy("USERID", user.getUserid());
 
 		if (entity == null) {

@@ -1,0 +1,9 @@
+//TRIGGER 생성시 ORACLE server session terminated by fatal error
+
+해결 - Oracle SQL Developer 의 도구 -> 환경설정
+
+에 들어가신 후
+
+데이터베이스 왼쪽의 + 클릭 -> PL/SQL 컴파일러
+
+들어가신 후 PLScope 식별자가 모두 에서 없음으로 바꿔주셔야 합니다.
