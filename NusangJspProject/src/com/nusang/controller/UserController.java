@@ -11,7 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
+<<<<<<< HEAD
 import com.nusang.action.user.UserSelectAll;
+=======
+import com.nusang.action.account.LoginAction;
+import com.nusang.controller.assistance.ConAsist;
+>>>>>>> aa968a94fd701d74a34ca913c149154f2e64a7de
 import com.nusang.dao.UserDao;
 import com.nusang.dto.User;
 
@@ -26,15 +31,14 @@ public class UserController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+<<<<<<< HEAD
 		System.out.println("user");
 
+=======
+>>>>>>> aa968a94fd701d74a34ca913c149154f2e64a7de
 		Action action = null;
 		ActionForward actionForward = null;
-
-		String requestURI = request.getRequestURI();
-		int lstindex = requestURI.lastIndexOf("/") + 1;
-
-		String requestPage = requestURI.substring(lstindex);
+		String requestPage = ConAsist.getRequestName(request);
 
 		try {
 			switch (requestPage) {
@@ -45,6 +49,12 @@ public class UserController extends HttpServlet {
 				//actionForward : list.jsp
 				
 				
+				break;
+			case "login":
+			case "kakaologin":
+			case "naverlogin":
+				action = new LoginAction();
+				action.execute(request, response);
 				break;
 			}
 		} catch (Exception e) {
