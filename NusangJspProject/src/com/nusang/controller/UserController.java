@@ -11,12 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
-<<<<<<< HEAD
-import com.nusang.action.user.UserSelectAll;
-=======
 import com.nusang.action.account.LoginAction;
 import com.nusang.controller.assistance.ConAsist;
->>>>>>> aa968a94fd701d74a34ca913c149154f2e64a7de
 import com.nusang.dao.UserDao;
 import com.nusang.dto.User;
 
@@ -31,11 +27,6 @@ public class UserController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-<<<<<<< HEAD
-		System.out.println("user");
-
-=======
->>>>>>> aa968a94fd701d74a34ca913c149154f2e64a7de
 		Action action = null;
 		ActionForward actionForward = null;
 		String requestPage = ConAsist.getRequestName(request);
@@ -43,11 +34,10 @@ public class UserController extends HttpServlet {
 		try {
 			switch (requestPage) {
 			case "selectAll":
-				action = new UserSelectAll();
-				actionForward = action.execute(request, response);
-				// UserDao : selectAll함수를 통해서 userList객체를 attribute에 저장 
+//				action = new UserSelectAll();
+//				actionForward = action.execute(request, response);
+//				// UserDao : selectAll함수를 통해서 userList객체를 attribute에 저장 
 				//actionForward : list.jsp
-				
 				
 				break;
 			case "login":
