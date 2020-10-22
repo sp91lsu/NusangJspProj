@@ -30,9 +30,10 @@
         FROM
             NUSER
         WHERE 
-        userid = #{userid}
-        AND
-        password = ${password}
+        userid = #{userid} 
+       AND 
+       password = #{password}
+       
     </select>
     
      <insert id="insert"  > 
