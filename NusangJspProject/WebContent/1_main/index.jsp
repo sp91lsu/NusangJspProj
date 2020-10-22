@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 
 <!DOCTYPE html>
@@ -11,7 +10,10 @@
 <body>
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
-	<div id="body">indexBody</div>
+
+	<div class="container">
+		<div id="body">indexBody</div>
+	</div>
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
 </body>
 </body>

@@ -40,6 +40,7 @@ public class LoginAction implements Action {
 			System.out.println("로그인 처리");
 			System.out.println("actionForward " + actionForward);
 			session.setAttribute("user", user);
+			actionForward.setRedirect(true);
 			actionForward.setNextPath("/1_main/index.jsp");
 		} else {
 			System.out.println("여기로빠졌다");
