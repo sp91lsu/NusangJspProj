@@ -25,32 +25,20 @@ public class UserDao extends BasicDao<User> {
 	private UserDao(String namespace) {
 		super(namespace);
 	}
-<<<<<<< HEAD
-	
-	public User findByUUid(int methoduuid) {
-		SqlSession session = sqlSessionFactory.openSession();
-		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("queryuuid", methoduuid);
-		User user = session.selectOne("findByUUid",map);
-		
-		session.close();
-		return user;
-=======
 
 	public int insertUser(User user) {
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userid", user.getUserid());
 		map.put("password", user.getPassword());
-		map.put("userid", user.getUserid());
 		map.put("username", user.getUsername());
 		map.put("role", user.getRole());
+		map.put("email", user.getEmail());
 		map.put("logintype", user.getLogintype());
 		map.put("location", user.getLocation());
 		// uuid,userid,username,password,role
 		return insert(session, map);
 
->>>>>>> aa968a94fd701d74a34ca913c149154f2e64a7de
 	}
 
 }
