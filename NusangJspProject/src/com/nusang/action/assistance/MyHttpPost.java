@@ -3,6 +3,8 @@ package com.nusang.action.assistance;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -17,7 +19,12 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.tomcat.util.json.JSONParser;
-import org.json.simple.JSONObject;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import lombok.Data;
 
@@ -26,9 +33,10 @@ public class MyHttpPost {
 
 	private HttpClient client = null;
 	private HttpPost postRequest = null;
-	private JSONObject header = null;
-	private JSONObject body = null;
-	private JSONObject res = null;
+	private JsonNode rootNode = null;
+	private ObjectMapper m = new ObjectMapper();
+	private Map<String, String> header = null;
+	private ObjectNode body = null;
 
 	private EContentType cType = null;
 
@@ -38,7 +46,7 @@ public class MyHttpPost {
 		this.cType = cType;
 	}
 
-	public JSONObject request() {
+	public JsonNode request() {
 
 		try {
 
@@ -59,9 +67,7 @@ public class MyHttpPost {
 //							+ javaResponse.getAllHeaders()[i].getValue());
 //				}
 
-				JSONParser parser = new JSONParser(body);
-				res = new JSONObject();
-				res.putAll(parser.object());
+				rootNode = m.readTree(body);
 
 			} else {
 				System.out.println("response is error : " + javaResponse.getStatusLine());
@@ -71,20 +77,22 @@ public class MyHttpPost {
 			e.printStackTrace();
 		}
 
-		return res;
+		return rootNode;
 	}
 
 	private void headerCheck() throws UnsupportedEncodingException {
 
-		postRequest.setHeader("Content-Type", cType.getText());
+		postRequest.addHeader("Content-Type", cType.getText());
 		if (header != null) {
-			System.out.println("header :" + header.toJSONString());
+//			System.out.println("header :" + header.toJSONString());
 
 			Object[] headArr = header.keySet().toArray();
 			for (int i = 0; i < headArr.length; i++) {
 				String key = headArr[i].toString();
-				postRequest.setHeader(key, header.get(key).toString());
+				postRequest.addHeader(key, header.get(key).toString());
 			}
+
+			System.out.println("헤더요청 : " + postRequest.getURI());
 		}
 	}
 
@@ -93,17 +101,23 @@ public class MyHttpPost {
 		if (body != null) {
 
 			if (cType == EContentType.JSON) {
-				StringEntity sn = new StringEntity(body.toJSONString());
-				System.out.println("body : " + body.toJSONString());
+				StringEntity sn = new StringEntity(body.toPrettyString());
+				System.out.println("body : " + body.toPrettyString());
 				sn.setContentType(cType.getText());
 				postRequest.setEntity(sn); // json 메시지 입력
 				System.out.println("entity : " + postRequest.getEntity());
 			} else if (cType == EContentType.FORM) {
 				List<NameValuePair> pair = new ArrayList<NameValuePair>();
-				Object[] bodyArr = body.keySet().toArray();
-				for (int i = 0; i < bodyArr.length; i++) {
-					String key = bodyArr[i].toString();
-					pair.add(new BasicNameValuePair(key, body.get(key).toString()));
+
+				Map<String, Object> bodyMap = m.convertValue(body, Map.class);
+				try {
+					for (Entry<String, Object> entrySet : bodyMap.entrySet()) {
+
+						pair.add(new BasicNameValuePair(entrySet.getKey(), (String) entrySet.getValue()));
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 				UrlEncodedFormEntity ent = new UrlEncodedFormEntity(pair, HTTP.UTF_8);
 				postRequest.setEntity(ent);

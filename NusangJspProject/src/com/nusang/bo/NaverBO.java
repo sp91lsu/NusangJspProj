@@ -1,12 +1,14 @@
 package com.nusang.bo;
 
+import java.util.HashMap;
 import java.util.Map;
 
-import org.json.simple.JSONObject;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.nusang.action.assistance.EContentType;
 import com.nusang.action.assistance.KakaoAuthToken;
 import com.nusang.action.assistance.MyHttpGet;
@@ -44,19 +46,19 @@ public class NaverBO extends BasicBO {
 		this.state = authArr[1];
 		MyHttpPost httpPost = new MyHttpPost(reqTokenURL, EContentType.FORM);
 
-		JSONObject postJson = new JSONObject();
-		postJson.put("grant_type", "authorization_code");
-		postJson.put("client_id", Client_ID);
-		postJson.put("client_secret", client_secret);
-		postJson.put("code", code);
-		postJson.put("state", state);
-		httpPost.setBody(postJson);
+		ObjectNode createTokenNode = m.createObjectNode();
+		createTokenNode.put("grant_type", "authorization_code");
+		createTokenNode.put("client_id", Client_ID);
+		createTokenNode.put("client_secret", client_secret);
+		createTokenNode.put("code", code);
+		createTokenNode.put("state", state);
+		httpPost.setBody(createTokenNode);
 
-		JSONObject resObject = httpPost.request();
+		JsonNode resObject = httpPost.request();
 
-		ObjectMapper om = new ObjectMapper();
 		try {
-			oAuthToken = om.readValue(resObject.toJSONString(), NaverAuthToken.class);
+			System.out.println(resObject.toPrettyString());
+			oAuthToken = m.readValue(resObject.toString(), NaverAuthToken.class);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -72,18 +74,18 @@ public class NaverBO extends BasicBO {
 		// 사용자 정보 요청 token은 헤더에 담아서 보내야함
 		MyHttpGet httpGet = new MyHttpGet(reqUserInfoURL, EContentType.FORM);
 
-		JSONObject getJson = new JSONObject();
-		getJson.put("Authorization", "Bearer " + oAuthToken.getAccess_token());
-		httpGet.setHeader(getJson);
+		Map<String,String> reqUserInfoMap = new HashMap<String, String>();
+		reqUserInfoMap.put("Authorization", "Bearer " + oAuthToken.getAccess_token());
+		httpGet.setHeader(reqUserInfoMap);
 
-		JSONObject resObject = httpGet.request();
+		JsonNode resNode = httpGet.request();
 
-		System.out.println("사용자 정보 : " + resObject.toJSONString());
-		Map<String, String> userMap = (Map<String, String>) resObject.get("response");
+		System.out.println("사용자 정보 : " + resNode.toPrettyString());
+		JsonNode userMap = resNode.get("response");
 
 		String userId = userMap.get("email") + "_" + userMap.get("id");
-		String name = userMap.get("name");
-		User user = User.builder().userid(userId).username(name).password(NData.security).logintype("NAVER").build();
+		String name = userMap.get("name").asText();
+		User user = User.builder().location("naver").email(userMap.get("email").asText()).userid(userId).username(name).password(NData.security).logintype("NAVER").build();
 		return user;
 	}
 

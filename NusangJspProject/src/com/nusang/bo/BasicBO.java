@@ -1,7 +1,7 @@
 package com.nusang.bo;
 
-import org.json.simple.JSONObject;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nusang.action.assistance.MyHttpGet;
 import com.nusang.action.assistance.MyHttpPost;
 import com.nusang.dto.User;
@@ -19,7 +19,7 @@ public abstract class BasicBO {
 	String redirectURL = null;
 	String reqUserInfoURL = null;
 	String code = null;
-
+	protected ObjectMapper m = new ObjectMapper();
 	public abstract void reqAuthToken(String... code);
 	public abstract User reqUserInfo();
 }

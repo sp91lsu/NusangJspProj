@@ -9,7 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.tomcat.util.json.JSONParser;
 import org.apache.tomcat.util.json.ParseException;
-import org.json.simple.JSONObject;
+
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 //controller를 도와주는 클래스
 public class ConAsist {
@@ -24,19 +28,14 @@ public class ConAsist {
 	}
 
 	// json으로 보낸 데이터 읽기
-	public static JSONObject getJSON(HttpServletRequest request) throws IOException {
+	public static JsonNode getJSON(HttpServletRequest request) throws IOException {
 
-		JSONParser parser = new JSONParser(request.getInputStream());
+		ObjectMapper mapper = new ObjectMapper();
+		JsonParser parser = mapper.createParser(request.getInputStream());
+		JsonNode node = mapper.readTree(parser);
+		
+		System.out.println("getJSON : " + node.toPrettyString());
 
-		JSONObject jsonObject = new JSONObject();
-		try {
-			jsonObject.putAll(parser.object());
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("getJSON : " + jsonObject.toString());
-
-		return jsonObject;
+		return node;
 	}
 }

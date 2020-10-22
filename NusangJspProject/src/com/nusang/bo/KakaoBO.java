@@ -1,14 +1,15 @@
 package com.nusang.bo;
 
+import java.util.HashMap;
 import java.util.Map;
 
-import org.json.simple.JSONObject;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.nusang.action.assistance.EContentType;
-import com.nusang.action.assistance.JsonFinder;
 import com.nusang.action.assistance.KakaoAuthToken;
 import com.nusang.action.assistance.MyHttpGet;
 import com.nusang.action.assistance.MyHttpPost;
@@ -43,19 +44,17 @@ public class KakaoBO extends BasicBO {
 		MyHttpPost httpPost = new MyHttpPost(reqTokenURL, EContentType.FORM);
 		System.out.println("code : " + code);
 		System.out.println("Client_ID : " + Client_ID);
-		JSONObject postJson = new JSONObject();
-		postJson.put("grant_type", "authorization_code");
-		postJson.put("client_id", Client_ID);
-		postJson.put("redirect_uri", redirectURL);
-		postJson.put("code", code);
-		httpPost.setBody(postJson);
+		ObjectNode createTokenNode = m.createObjectNode();
+		createTokenNode.put("grant_type", "authorization_code");
+		createTokenNode.put("client_id", Client_ID);
+		createTokenNode.put("redirect_uri", redirectURL);
+		createTokenNode.put("code", code);
+		httpPost.setBody(createTokenNode);
 
-		JSONObject resObject = httpPost.request();
-
-		ObjectMapper om = new ObjectMapper();
+		JsonNode resObject = httpPost.request();
 
 		try {
-			oAuthToken = om.readValue(resObject.toJSONString(), KakaoAuthToken.class);
+			oAuthToken = m.readValue(resObject.toString(), KakaoAuthToken.class);
 			System.out.println("mapper accessToken : " + oAuthToken.getAccess_token());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -69,24 +68,23 @@ public class KakaoBO extends BasicBO {
 		// 사용자 정보 요청 token은 헤더에 담아서 보내야함
 		MyHttpGet httpGet = new MyHttpGet(reqUserInfoURL, EContentType.FORM);
 
-		JSONObject getJson = new JSONObject();
-		getJson.put("Authorization", "Bearer " + oAuthToken.getAccess_token());
-		httpGet.setHeader(getJson);
+		Map<String,String> reqUserInfoMap = new HashMap<String, String>();
+		reqUserInfoMap.put("Authorization", "Bearer " + oAuthToken.getAccess_token());
+		httpGet.setHeader(reqUserInfoMap);
 
-		JSONObject resObject = httpGet.request();
+		JsonNode resNode = httpGet.request();
 
-		System.out.println("사용자 정보 : " + resObject.toJSONString());
-		Object id = resObject.get("id");
+		System.out.println("사용자 정보 : " + resNode.toPrettyString());
+		String id = resNode.get("id").asText();
 		System.out.println(id);
-		JsonFinder finder = new JsonFinder(resObject);
-		finder.getFirst("kakao_account");
-		String email = finder.getString("email");
+		JsonNode accountNode = resNode.get("kakao_account");
+		String email = accountNode.get("email").asText();
 		System.out.println("email : " + email);
-		Map<String, String> profile = (Map<String, String>) finder.findGet("profile");
+		JsonNode profileNode = accountNode.get("profile");
 
 		String userId = "kakao_" + id;
-		String name = profile.get("nickname");
-		User user = User.builder().userid(userId).username(name).password(NData.security).logintype("KAKAO").build();
+		String name = profileNode.get("nickname").asText();
+		User user = User.builder().userid(userId).email(email).username(name).password(NData.security).logintype("KAKAO").location("fd").build();
 		return user;
 	}
 

@@ -3,6 +3,7 @@ package com.nusang.action.assistance;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -11,7 +12,11 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.tomcat.util.json.JSONParser;
-import org.json.simple.JSONObject;
+//import org.json.simple.JSONObject;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import lombok.Data;
 
@@ -20,8 +25,10 @@ public class MyHttpGet {
 
 	private HttpClient client = null;
 	private HttpGet getRequest = null;
-	private JSONObject header = null;
-	private JSONObject res = null;
+	private JsonNode rootNode = null;
+	private ObjectMapper m = new ObjectMapper();
+	private Map<String,String> header = null;
+//	private ObjectNode res = null;
 
 	private EContentType cType = EContentType.FORM;
 
@@ -31,12 +38,12 @@ public class MyHttpGet {
 		this.cType = cType;
 	}
 
-	public JSONObject request() {
+	public JsonNode request() {
 
 		try {
 
 			headerCheck();
-		
+
 			HttpResponse javaResponse = client.execute(getRequest);
 
 			// Response 출력
@@ -50,10 +57,11 @@ public class MyHttpGet {
 //					System.out.println("header i  : " + javaResponse.getAllHeaders()[i].getName()
 //							+ javaResponse.getAllHeaders()[i].getValue());
 //				}
+//				JSONParser parser = new JSONParser(body);
+//				res = new JSONObject();
+//				res.putAll(parser.object());
 
-				JSONParser parser = new JSONParser(body);
-				res = new JSONObject();
-				res.putAll(parser.object());
+				rootNode = m.readTree(body);
 
 			} else {
 				System.out.println("response is error : " + javaResponse.getStatusLine());
@@ -63,21 +71,21 @@ public class MyHttpGet {
 			e.printStackTrace();
 		}
 
-		return res;
+		return rootNode;
 	}
 
 	private void headerCheck() throws UnsupportedEncodingException {
 
 		getRequest.addHeader("Content-Type", cType.getText());
 		if (header != null) {
-			System.out.println("header :" + header.toJSONString());
-
+//			System.out.println("header :" + header.toJSONString());
+			
 			Object[] headArr = header.keySet().toArray();
 			for (int i = 0; i < headArr.length; i++) {
 				String key = headArr[i].toString();
 				getRequest.addHeader(key, header.get(key).toString());
 			}
-			
+
 			System.out.println("헤더요청 : " + getRequest.getURI());
 		}
 	}
