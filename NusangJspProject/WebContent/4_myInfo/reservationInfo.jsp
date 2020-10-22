@@ -24,23 +24,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>구매내역</title>
+<title>구매신청 현황</title>
 </head>
 
 <body>
 
 	<div class="container">
-	<h2>구매내역</h2>
+	<h2>구매신청 현황</h2>
 	<br><br><br>
-	
+
 		<table class="table">
 		  <thead class="thead-dark">
 		    <tr>
-		      <th scope="col">#</th>
+		      <th scope="col">주문번호</th>
 		      <th scope="col">구매품목</th>
-		      <th scope="col">금액</th>
+		      <th scope="col">진행상태</th>
 		      <th scope="col">날짜</th>
-		      <th scope="col">판매자명</th>
 		    </tr>
 		  </thead>
 		  <tbody>
@@ -49,21 +48,18 @@
 		      <td>Mark</td>
 		      <td>Otto</td>
 		      <td>@mdo</td>
-		      <td>@mdo</td>
 		    </tr>
 		    <tr>
 		      <th scope="row">2</th>
 		      <td>Jacob</td>
 		      <td>Thornton</td>
 		      <td>@fat</td>
-		      <td>@mdo</td>
 		    </tr>
 		    <tr>
 		      <th scope="row">3</th>
 		      <td>Larry</td>
 		      <td>the Bird</td>
 		      <td>@twitter</td>
-		      <td>@mdo</td>
 		    </tr>
 		  </tbody>
 		</table>
@@ -86,6 +82,7 @@
 		    </li>
 		  </ul>
 		</nav>
+		
 	</div>
 </body>
 </html>
