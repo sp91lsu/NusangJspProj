@@ -13,7 +13,7 @@ public class BasicDao<T> {
 
 	protected static SqlSessionFactory sqlSessionFactory = SqlSessionManager.getInstance();
 
-	private String namespace = null;
+	protected String namespace = null;
 
 	public BasicDao(String namespace) {
 		this.namespace = namespace;

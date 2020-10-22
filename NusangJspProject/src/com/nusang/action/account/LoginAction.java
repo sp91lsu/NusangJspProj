@@ -19,30 +19,34 @@ public class LoginAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		ActionForward actionForward = null;
+		ActionForward actionForward = new ActionForward();
 		User user = null;
 		switch (ConAsist.getRequestName(request)) {
 		case "kakaologin":
 			user = kakaoLogin(request);
+			sosialLogin(user);
 			break;
 		case "naverlogin":
 			user = naverLogin(request);
+			sosialLogin(user);
+			break;
+		case "login":
+			user = login(request);
 			break;
 		}
 		
-		user.setRole("ROLE_USER");
-		User entity = UserDao.getInstance().findBy("USERID", user.getUserid());
-
-		if (entity == null) {
-			System.out.println("회원가입을 아직 하지 않아서 자동 회원가입진행");
-			UserDao.getInstance().insertUser(user);
+		if (user != null) {
+			HttpSession session = request.getSession();
+			System.out.println("로그인 처리");
+			System.out.println("actionForward " + actionForward);
+			session.setAttribute("user", user);
+			actionForward.setNextPath("/1_main/index.jsp");
 		} else {
-			System.out.println("우리 회원이시군요!");
+			System.out.println("여기로빠졌다");
+			request.setAttribute("error", "아이디 혹은 패스워드가 다릅니다. 다시 시도해주세요.");
+			actionForward.setNextPath("/0_common/error.jsp");
 		}
 
-		System.out.println("로그인 처리");
-		HttpSession session = request.getSession();
-		session.setAttribute("user", user);
 		return actionForward;
 	}
 
@@ -61,6 +65,30 @@ public class LoginAction implements Action {
 		System.out.println("naverCode : " + code);
 		NaverBO.getInstance().reqAuthToken(code, state);
 		return NaverBO.getInstance().reqUserInfo();
+
+	}
+
+	private User login(HttpServletRequest request) throws JsonMappingException, JsonProcessingException {
+
+		String userid = request.getParameter("userid");
+		String password = request.getParameter("password");
+
+		User user = UserDao.getInstance().loginCheck(userid, password);
+
+		return user;
+	}
+
+	private void sosialLogin(User user) {
+
+		user.setRole("ROLE_USER");
+		User entity = UserDao.getInstance().findBy("USERID", user.getUserid());
+
+		if (entity == null) {
+			System.out.println("회원가입을 아직 하지 않아서 자동 회원가입진행");
+			UserDao.getInstance().insertUser(user);
+		} else {
+			System.out.println("우리 회원이시군요!");
+		}
 
 	}
 

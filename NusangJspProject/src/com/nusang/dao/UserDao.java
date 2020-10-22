@@ -15,7 +15,7 @@ public class UserDao extends BasicDao<User> {
 
 	public static UserDao getInstance() {
 
-		if (instance == null) {   //mapper의 namespace
+		if (instance == null) { // mapper의 namespace
 			instance = new UserDao("userMapper.");
 		}
 
@@ -35,10 +35,21 @@ public class UserDao extends BasicDao<User> {
 		map.put("role", user.getRole());
 		map.put("email", user.getEmail());
 		map.put("logintype", user.getLogintype());
-		map.put("location", user.getLocation());
+		map.put("latitude", user.getLatitude());
+		map.put("longtitude", user.getLongtitude());
+		map.put("picture", user.getPicture());
 		// uuid,userid,username,password,role
 		return insert(session, map);
 
 	}
 
+	public User loginCheck(String userid, String password) {
+		SqlSession session = sqlSessionFactory.openSession();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userid", userid);
+		map.put("password", password);
+		User user = session.selectOne(namespace + "loginCheck", map);
+		session.close();
+		return user;
+	}
 }

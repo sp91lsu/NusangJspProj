@@ -16,18 +16,18 @@
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
 
 	<div class="container">
-	
+
 		<h1 class="display-4 text-center mt-5">로그인</h1>
 		<form action="/user/login" method="post">
 			<div class="form-group">
-				<label for="userid">아이디 :</label> <input name="username"
-					type="text" class="form-control" placeholder=""
-					id="username">
+				<label for="userid">아이디 :</label> <input name="userid" type="text"
+					class="form-control w-50 container" placeholder="" id="userid"
+					required="required">
 			</div>
 			<div class="form-group">
 				<label for="password">패스워드:</label> <input name="password"
-					type="password" class="form-control" placeholder=""
-					id="password">
+					type="password" class="form-control w-50 container" placeholder="" id="password"
+					required="required">
 			</div>
 
 
@@ -45,6 +45,5 @@
 
 </body>
 </html>
-<script src="login.js">
 	
 </script>

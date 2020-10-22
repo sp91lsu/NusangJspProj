@@ -37,14 +37,15 @@ public class UserController extends HttpServlet {
 //				action = new UserSelectAll();
 //				actionForward = action.execute(request, response);
 //				// UserDao : selectAll함수를 통해서 userList객체를 attribute에 저장 
-				//actionForward : list.jsp
-				
+				// actionForward : list.jsp
+
 				break;
 			case "login":
 			case "kakaologin":
 			case "naverlogin":
+
 				action = new LoginAction();
-				action.execute(request, response);
+				actionForward =  action.execute(request, response);
 				break;
 			}
 		} catch (Exception e) {

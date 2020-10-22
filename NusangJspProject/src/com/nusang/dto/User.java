@@ -14,6 +14,8 @@ public class User {
 	private String role;
 	private String logintype;
 	private String email;
-	private String location;
 	private String regdate;
+	private byte[] picture;
+	private String latitude;
+	private String longtitude;
 }
