@@ -28,9 +28,12 @@
 </head>
 <body>
 
-<h2>관심목록</h2>
-<br><br><br>
+
 <div class="container">
+
+	<h2>관심목록</h2>
+	<br><br><br>
+
 	<div class="card" style="width: 18rem;">
 	  <img src="../img/kakaoLoginBtn.png" class="card-img-top" alt="...">
 	  <div class="card-body">

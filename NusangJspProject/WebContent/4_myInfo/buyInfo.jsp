@@ -28,9 +28,11 @@
 </head>
 
 <body>
-<h2>구매내역</h2>
-<br><br><br>
+
 	<div class="container">
+	<h2>구매내역</h2>
+	<br><br><br>
+	
 		<table class="table">
 		  <thead class="thead-dark">
 		    <tr>
