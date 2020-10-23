@@ -17,29 +17,30 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	crossorigin="anonymous">
+	
 <style>
-.card{
-display: block;}
-#update{
-display: block;
-margin: 20px 0 0 30px;
+.card {
+	display: block;
 }
 
+#update {
+	display: block;
+	margin: 20px 0 0 30px;
+}
 </style>
 
 <div class="container justify-content-center">
 	<div class="card" style="width: 20rem;">
 		<img src="../img/프로필 기본이미지.jpg" class="card-img-top" alt="...">
 		<div class="card-body">
-			<h5 class="card-title">김천의</h5>
+			<h5 class="card-title">${user.username}</h5>
 		</div>
 	</div>
-	
-	<div id="update" class = "d-flex row">
+
+	<div id="update" class="d-flex row">
 		<button type="button" class="btn btn-lg btn-primary">사진 변경</button>
-		<button type="button" class="btn btn-secondary btn-lg" style="margin-left: 10px;">닉네임 변경</button>
+		<button type="button" class="btn btn-secondary btn-lg"
+			style="margin-left: 10px;">닉네임 변경</button>
 	</div>
-
-
 </div>
 </body>

@@ -12,11 +12,10 @@
 <%
 	String sideMenu = request.getParameter("sidemenu");
 
-if (sideMenu == null) {
-	sideMenu = "profile.jsp";
-}
-
-System.out.println(sideMenu);
+	if (sideMenu == null) {
+		sideMenu = "profile.jsp";
+	}
+	System.out.println("위치 어디냐" + sideMenu);
 %>
 
 
