@@ -23,7 +23,7 @@
 			<c:choose>
 				<c:when test="${user != null}">
 
-					<li class="nav-item"><a class="nav-link" href="../4_myInfo/buyInfo.jsp">${user.username} 님</a></li>
+					<li class="nav-item"><a class="nav-link" href="../4_myInfo/myInfoMain.jsp">${user.username} 님</a></li>
 					<li class="nav-item"><button id="logoutBtn" type="button" class="btn btn-primary btn-sm" onclick="location.href='/3_account/logout.jsp'">로그아웃</button></li>
 					<li class="nav-item"><div class="dropdown">
 							<button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">역삼동</button>

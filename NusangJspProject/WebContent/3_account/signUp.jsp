@@ -9,7 +9,7 @@
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
 
-	<div class="container">
+	<div class="container w-50">
 
 		<h1 class="display-4 text-center mt-5">회원가입</h1>
 		<form action="/user/signup" method="post">

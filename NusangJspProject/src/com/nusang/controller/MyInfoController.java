@@ -1,7 +1,6 @@
 package com.nusang.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,12 +13,6 @@ import com.nusang.action.ActionForward;
 import com.nusang.action.account.LoginAction;
 import com.nusang.action.myinfo.ProfileAction;
 import com.nusang.controller.assistance.ConAsist;
-import com.nusang.dao.UserDao;
-import com.nusang.dto.User;
-
-/**
- * Servlet implementation class UserController
- */
 
 @WebServlet("/myinfo/*")
 public class MyInfoController extends HttpServlet {
@@ -48,7 +41,6 @@ public class MyInfoController extends HttpServlet {
 				break;
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

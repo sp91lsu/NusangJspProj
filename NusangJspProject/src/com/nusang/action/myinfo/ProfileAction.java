@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
-import com.nusang.dao.UserDao;
 import com.nusang.dto.User;
 
 public class ProfileAction implements Action {

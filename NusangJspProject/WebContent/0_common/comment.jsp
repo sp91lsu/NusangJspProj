@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 	crossorigin="anonymous"></script>
@@ -12,4 +14,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" type="text/css" href="../css/comment.css">
-<div>comment</div>
+
+<div class="comment">
+	<div>
+		댓글
+	</div>
+	
+	<form>
+		<textarea rows="3" cols="10"></textarea>
+		<input type="submit" value="등록">
+	</form>
+</div>
