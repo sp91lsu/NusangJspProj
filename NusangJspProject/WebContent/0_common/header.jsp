@@ -39,7 +39,7 @@
             <c:when test="${user != null}">
 
                <li class="nav-item"><a class="nav-link"
-                  href="../4_myInfo/buyInfo.jsp">${user.username} 님</a></li>
+                  href="/myinfo/profile">${user.username} 님</a></li>
                <li class="nav-item"><button id="logoutBtn" type="button"
                      class="btn btn-primary btn-sm"
                      onclick="location.href='/3_account/logout.jsp'">로그아웃</button></li>

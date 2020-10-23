@@ -10,13 +10,7 @@
 </head>
 
 <%
-	String sideMenu = null;
-try {
-	sideMenu = request.getParameter("sidemenu");
-
-} catch (Exception e) {
-
-}
+	String sideMenu = request.getParameter("sidemenu");
 
 if (sideMenu == null) {
 	sideMenu = "profile.jsp";
