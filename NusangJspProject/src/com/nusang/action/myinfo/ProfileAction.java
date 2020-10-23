@@ -1,30 +1,24 @@
-package com.nusang.action.user;
-
-import java.util.List;
+package com.nusang.action.myinfo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
-import com.nusang.dao.UserDao;
 import com.nusang.dto.User;
 
-public class UserSelectAll implements Action {
+public class ProfileAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-	
-		
-		List<User> userList = UserDao.getInstance().selectAll();
 
-		System.out.println("list : " + userList.get(0).getUserid());
-		
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+
+		request.setAttribute("user", user);
 		ActionForward af = new ActionForward();
-		request.setAttribute("userlist",userList );
-		
-		af.setNextPath("list.jsp");
-		
+		af.setNextPath("/4_myInfo/myInfoMain.jsp?sidemenu=profile.jsp");
 		return af;
 	}
 

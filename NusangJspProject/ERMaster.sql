@@ -288,7 +288,7 @@ BEGIN
 END;
 
 /
-
+commit;
 
 
 

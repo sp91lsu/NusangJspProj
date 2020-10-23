@@ -11,10 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
 import com.nusang.action.account.LoginAction;
+import com.nusang.action.myinfo.ProfileAction;
 import com.nusang.controller.assistance.ConAsist;
 
-@WebServlet("/user/*")
-public class UserController extends HttpServlet {
+@WebServlet("/myinfo/*")
+public class MyInfoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -22,23 +23,21 @@ public class UserController extends HttpServlet {
 
 		Action action = null;
 		ActionForward actionForward = null;
+		// http://localhost:8787/myinfo/profile
 		String requestPage = ConAsist.getRequestName(request);
-
+		//profile
 		try {
 			switch (requestPage) {
-			case "selectAll":
-//				action = new UserSelectAll();
-//				actionForward = action.execute(request, response);
-//				// UserDao : selectAll함수를 통해서 userList객체를 attribute에 저장 
-				// actionForward : list.jsp
-
+			case "profile":
+				action = new ProfileAction();
+				actionForward = action.execute(request, response);
+				//
 				break;
 			case "login":
 			case "kakaologin":
 			case "naverlogin":
-
 				action = new LoginAction();
-				actionForward =  action.execute(request, response);
+				action.execute(request, response);
 				break;
 			}
 		} catch (Exception e) {

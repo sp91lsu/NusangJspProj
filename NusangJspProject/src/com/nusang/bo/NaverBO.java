@@ -83,9 +83,9 @@ public class NaverBO extends BasicBO {
 		System.out.println("사용자 정보 : " + resNode.toPrettyString());
 		JsonNode userMap = resNode.get("response");
 
-		String userId = userMap.get("email") + "_" + userMap.get("id");
+		String userId = userMap.get("email").asText() + "_" + userMap.get("id").asText();
 		String name = userMap.get("name").asText();
-		User user = User.builder().location("naver").email(userMap.get("email").asText()).userid(userId).username(name).password(NData.security).logintype("NAVER").build();
+		User user = User.builder().email(userMap.get("email").asText()).userid(userId).username(name).password(NData.security).logintype("NAVER").build();
 		return user;
 	}
 

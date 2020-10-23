@@ -23,9 +23,22 @@
         ${search} = #{keyword}
     </select>
     
+    
+       <select id="loginCheck"  resultType="com.nusang.dto.User">
+        SELECT
+            *
+        FROM
+            NUSER
+        WHERE 
+        userid = #{userid} 
+       AND 
+       password = #{password}
+       
+    </select>
+    
      <insert id="insert"  > 
-        INSERT INTO NUSER (userid,username,password,role,logintype,email,location)
-         VALUES (#{userid}, #{username}, #{password}, #{role},#{logintype},#{email},#{location}) 
+        INSERT INTO NUSER (userid,username,password,role,logintype,email,picture,latitude,longtitude)
+         VALUES (#{userid}, #{username}, #{password}, #{role},#{logintype},#{email},#{picture, jdbcType=BLOB},#{latitude, jdbcType=FLOAT},#{longtitude, jdbcType=FLOAT}) 
     </insert>
 </mapper>
 
