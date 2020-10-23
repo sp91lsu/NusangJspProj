@@ -40,6 +40,7 @@
 			</div>
 		</form>
 	</div>
+	
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
 </body>
 </html>
