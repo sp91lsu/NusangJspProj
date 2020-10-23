@@ -42,6 +42,7 @@
 	 			"기타 중고물품"
 		 	}; 
 		 	%>
+		 	
 		 	<br>
 		 	카테고리:
 			<div class="dropdown">
