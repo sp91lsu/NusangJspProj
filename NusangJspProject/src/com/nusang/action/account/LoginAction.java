@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
 import com.nusang.bo.KakaoBO;
+import com.nusang.bo.Mail;
 import com.nusang.bo.NaverBO;
 import com.nusang.controller.assistance.ConAsist;
 import com.nusang.dao.UserDao;
@@ -19,6 +20,7 @@ public class LoginAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+		//new Mail().sendMail();
 		ActionForward actionForward = new ActionForward();
 		User user = null;
 		switch (ConAsist.getRequestName(request)) {
