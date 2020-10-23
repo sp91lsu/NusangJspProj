@@ -1,17 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
+    pageEncoding="UTF-8"%>
  <div class="container">
 		<div class="card" style="width: 400px">
-			<img class="card-img-top" src="../img/«¡∑Œ«  ±‚∫ª¿ÃπÃ¡ˆ.jpg" alt="Card image">
+			<img class="card-img-top" src="../img/ÌîÑÎ°úÌïÑ Í∏∞Î≥∏Ïù¥ÎØ∏ÏßÄ.jpg" alt="Card image">
 			<div class="card-body">
-				<h4 class="card-title">±Ë√µ¿«</h4>
+				<h4 class="card-title">ÍπÄÏ≤úÏùò</h4>
 				<p class="card-text">Some example text.</p>
 				<a href="" class="btn btn-primary">See Profile</a>
 			</div>
@@ -20,4 +13,3 @@
 		
 	</div> 
 </body>
-</html>

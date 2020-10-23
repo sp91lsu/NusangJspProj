@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,8 +13,8 @@
 			<thead class="thead-dark">
 				<tr>
 					<th scope="col">no.</th>
-					<th scope="col">°áÁ¦±Ý¾×</th>
-					<th scope="col">³¯Â¥</th>
+					<th scope="col">ê²°ì œê¸ˆì•¡</th>
+					<th scope="col">ë‚ ì§œ</th>
 				</tr>
 			</thead>
 			<tbody>
