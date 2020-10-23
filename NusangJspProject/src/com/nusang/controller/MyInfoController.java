@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
 import com.nusang.action.account.LoginAction;
-import com.nusang.action.myinfo.ProfileAction;
 import com.nusang.controller.assistance.ConAsist;
 import com.nusang.dto.User;
 
@@ -32,8 +31,8 @@ public class MyInfoController extends HttpServlet {
 			try {
 				switch (requestPage) {
 				case "profile":
-					action = new ProfileAction();
-					actionForward = action.execute(request, response);
+					actionForward = new ActionForward();
+					actionForward.setNextPath(ConAsist.URL_MYINFOMAIN);
 					//
 					break;
 				}
