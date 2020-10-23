@@ -17,6 +17,7 @@ public class ConAsist {
 	public static final String URL_MAIN = "/1_main/index.jsp";
 	public static final String URL_LOGIN = "/3_account/login.jsp";
 	public static final String URL_MYINFOMAIN = "/4_myInfo/myInfoMain.jsp";
+
 	// 요청 마지막 경로
 	public static String getRequestName(HttpServletRequest request) {
 		String requestURI = request.getRequestURI();
@@ -32,19 +33,22 @@ public class ConAsist {
 		ObjectMapper mapper = new ObjectMapper();
 		JsonParser parser = mapper.createParser(request.getInputStream());
 		JsonNode node = mapper.readTree(parser);
-		
+
 		System.out.println("getJSON : " + node.toPrettyString());
 
 		return node;
 	}
-	
+
 	public static ActionForward checkLogin(HttpServletRequest request) {
-		
+
 		HttpSession session = request.getSession();
-		User user = (User)session.getAttribute("user");
-		ActionForward actionForward = new ActionForward();
-		actionForward.setNextPath(URL_LOGIN);
-		actionForward.setRedirect(true);
+		User user = (User) session.getAttribute("user");
+		ActionForward actionForward = null;
+		if (user == null) {
+			actionForward = new ActionForward();
+			actionForward.setNextPath(URL_LOGIN);
+			actionForward.setRedirect(true);
+		}
 		return actionForward;
 	}
 }
