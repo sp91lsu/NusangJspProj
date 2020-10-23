@@ -13,6 +13,7 @@ import com.nusang.bo.Mail;
 import com.nusang.bo.NaverBO;
 import com.nusang.controller.assistance.ConAsist;
 import com.nusang.dao.UserDao;
+import com.nusang.data.Location;
 import com.nusang.dto.User;
 
 public class LoginAction implements Action {
@@ -20,25 +21,26 @@ public class LoginAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		//new Mail().sendMail();
+		// new Mail().sendMail();
+		HttpSession session = request.getSession();
 		ActionForward actionForward = new ActionForward();
 		User user = null;
 		switch (ConAsist.getRequestName(request)) {
 		case "kakaologin":
 			user = kakaoLogin(request);
-			sosialLogin(user);
+			sosialLogin(session, user);
 			break;
 		case "naverlogin":
 			user = naverLogin(request);
-			sosialLogin(user);
+			sosialLogin(session, user);
 			break;
 		case "login":
 			user = login(request);
 			break;
 		}
-		
+
 		if (user != null) {
-			HttpSession session = request.getSession();
+
 			System.out.println("로그인 처리");
 			System.out.println("actionForward " + actionForward);
 			session.setAttribute("user", user);
@@ -81,14 +83,20 @@ public class LoginAction implements Action {
 		return user;
 	}
 
-	private void sosialLogin(User user) {
+	private void sosialLogin(HttpSession session, User user) {
 
 		user.setRole("ROLE_USER");
 		User entity = UserDao.getInstance().findBy("USERID", user.getUserid());
 
 		if (entity == null) {
 			System.out.println("회원가입을 아직 하지 않아서 자동 회원가입진행");
+			Location location = (Location) session.getAttribute("location");
+			user.setLatitude(location.getLatitude());
+			user.setLongtitude(location.getLongtitude());
+
 			UserDao.getInstance().insertUser(user);
+
+			// user.setLocation(location);
 		} else {
 			System.out.println("우리 회원이시군요!");
 		}

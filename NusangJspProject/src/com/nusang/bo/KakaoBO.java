@@ -3,16 +3,17 @@ package com.nusang.bo;
 import java.util.HashMap;
 import java.util.Map;
 
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.nusang.action.assistance.EContentType;
 import com.nusang.action.assistance.KakaoAuthToken;
 import com.nusang.action.assistance.MyHttpGet;
 import com.nusang.action.assistance.MyHttpPost;
+import com.nusang.data.Location;
 import com.nusang.data.NData;
 import com.nusang.dto.User;
 
@@ -68,7 +69,7 @@ public class KakaoBO extends BasicBO {
 		// 사용자 정보 요청 token은 헤더에 담아서 보내야함
 		MyHttpGet httpGet = new MyHttpGet(reqUserInfoURL, EContentType.FORM);
 
-		Map<String,String> reqUserInfoMap = new HashMap<String, String>();
+		Map<String, String> reqUserInfoMap = new HashMap<String, String>();
 		reqUserInfoMap.put("Authorization", "Bearer " + oAuthToken.getAccess_token());
 		httpGet.setHeader(reqUserInfoMap);
 
@@ -84,8 +85,35 @@ public class KakaoBO extends BasicBO {
 
 		String userId = "kakao_" + id;
 		String name = profileNode.get("nickname").asText();
-		User user = User.builder().userid(userId).username(name).password(NData.security).password(NData.security).email(email).logintype("KAKAO").build();
+		User user = User.builder().userid(userId).username(name).password(NData.security).password(NData.security)
+				.email(email).logintype("KAKAO").build();
 		return user;
 	}
 
+	public Location reqLocation(float longtitude, float latitude) {
+		String url = "https://dapi.kakao.com/v2/local/geo/coord2address.json?x=" + longtitude + "&y=" + latitude
+				+ "&input_coord=WGS84";
+
+		MyHttpGet httpGet = new MyHttpGet(url, EContentType.FORM);
+
+		Map<String, String> reqUserInfoMap = new HashMap<String, String>();
+		reqUserInfoMap.put("Authorization", "KakaoAK " + Client_ID);
+
+		httpGet.setHeader(reqUserInfoMap);
+
+		JsonNode resNode = httpGet.request();
+
+		ArrayNode documentsNode = m.createArrayNode();
+
+		documentsNode = (ArrayNode) resNode.get("documents");
+		JsonNode addressNode = documentsNode.get(0).get("address");
+		System.out.println("위치 정보 : " + addressNode.toPrettyString());
+		Location location = new Location();
+		location.setRegion_1(addressNode.get("region_1depth_name").asText());
+		location.setRegion_2(addressNode.get("region_2depth_name").asText());
+		location.setRegion_3(addressNode.get("region_3depth_name").asText());
+		location.setLatitude(latitude);
+		location.setLongtitude(longtitude);
+		return location;
+	}
 }

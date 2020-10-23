@@ -49,7 +49,8 @@ public class BasicDao<T> {
 		return object;
 	}
 
-	protected int insert(SqlSession session, Map map) {
+	protected int insert(Map map) {
+		SqlSession session = sqlSessionFactory.openSession();
 		int result = session.insert(namespace + "insert", map);
 		session.commit();
 		session.close();

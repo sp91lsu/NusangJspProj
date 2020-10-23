@@ -1,5 +1,7 @@
 package com.nusang.dto;
 
+import com.nusang.data.Location;
+
 import lombok.Builder;
 import lombok.Data;
 
@@ -16,6 +18,10 @@ public class User {
 	private String email;
 	private String regdate;
 	private byte[] picture;
-	private String latitude;
-	private String longtitude;
+	private float latitude;
+	private float longtitude;
+
+	public boolean isLocationNull() {
+		return longtitude == 0 && longtitude == 0;
+	}
 }

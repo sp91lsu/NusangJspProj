@@ -27,7 +27,6 @@ public class UserDao extends BasicDao<User> {
 	}
 
 	public int insertUser(User user) {
-		SqlSession session = sqlSessionFactory.openSession();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userid", user.getUserid());
 		map.put("password", user.getPassword());
@@ -39,7 +38,7 @@ public class UserDao extends BasicDao<User> {
 		map.put("longtitude", user.getLongtitude());
 		map.put("picture", user.getPicture());
 		// uuid,userid,username,password,role
-		return insert(session, map);
+		return insert(map);
 
 	}
 
