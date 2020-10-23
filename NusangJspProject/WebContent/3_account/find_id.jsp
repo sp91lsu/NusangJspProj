@@ -36,7 +36,6 @@
 			<input class = "w-50 container"type="submit" value="아이디 찾기"><br>			
 			</div>
 		</form>
-
 	</div>
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
 </body>
