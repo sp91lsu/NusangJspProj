@@ -18,8 +18,8 @@ public class User {
 	private String email;
 	private String regdate;
 	private byte[] picture;
-	private float latitude;
-	private float longtitude;
+	private double latitude;
+	private double longtitude;
 
 	public boolean isLocationNull() {
 		return longtitude == 0 && longtitude == 0;

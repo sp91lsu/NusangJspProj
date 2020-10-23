@@ -21,8 +21,7 @@
 				<button class="btn btn-dark " type="button">찾기</button>
 			</span>
 		</div>
-		<h1 class="mt-5" id="titleAddress"> 근처 판매 목록
-		</h1>
+		<h1 class="mt-5" id="titleAddress"></h1>
 
 		<c:forEach var="i" begin="0" end="5">
 			<div class="list-group mt-3">

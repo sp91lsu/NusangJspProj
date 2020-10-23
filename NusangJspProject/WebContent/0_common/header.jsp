@@ -28,7 +28,7 @@
 					<li class="nav-item"><div class="dropdown">
 							<button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${location.region_3 }</button>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-								<a class="dropdown-item" href="#">위치 설정</a>
+								<a class="dropdown-item" href="/5_search_location/search.jsp">위치 설정</a>
 							</div>
 						</div></li>
 				</c:when>

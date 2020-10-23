@@ -17,7 +17,7 @@ public class ConAsist {
 	public static final String URL_MAIN = "/1_main/index.jsp";
 	public static final String URL_LOGIN = "/3_account/login.jsp";
 	public static final String URL_MYINFOMAIN = "/4_myInfo/myInfoMain.jsp";
-
+	public static final String URL_SEARCH = "/5_search_location/search.jsp";
 	// 요청 마지막 경로
 	public static String getRequestName(HttpServletRequest request) {
 		String requestURI = request.getRequestURI();

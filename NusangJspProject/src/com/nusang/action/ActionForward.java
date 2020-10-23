@@ -13,6 +13,7 @@ public class ActionForward {
 	}
 
 	public String getNextPath() {
+		System.out.println(nextPath);
 		return nextPath;
 	}
 

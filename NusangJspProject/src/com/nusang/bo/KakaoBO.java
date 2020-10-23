@@ -1,5 +1,8 @@
 package com.nusang.bo;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -90,7 +93,7 @@ public class KakaoBO extends BasicBO {
 		return user;
 	}
 
-	public Location reqLocation(float longtitude, float latitude) {
+	public Location reqLocation(double longtitude, double latitude) {
 		String url = "https://dapi.kakao.com/v2/local/geo/coord2address.json?x=" + longtitude + "&y=" + latitude
 				+ "&input_coord=WGS84";
 
@@ -106,8 +109,8 @@ public class KakaoBO extends BasicBO {
 		ArrayNode documentsNode = m.createArrayNode();
 
 		documentsNode = (ArrayNode) resNode.get("documents");
+		System.out.println("위치 정보 : " + documentsNode.toPrettyString());
 		JsonNode addressNode = documentsNode.get(0).get("address");
-		System.out.println("위치 정보 : " + addressNode.toPrettyString());
 		Location location = new Location();
 		location.setRegion_1(addressNode.get("region_1depth_name").asText());
 		location.setRegion_2(addressNode.get("region_2depth_name").asText());
@@ -115,5 +118,30 @@ public class KakaoBO extends BasicBO {
 		location.setLatitude(latitude);
 		location.setLongtitude(longtitude);
 		return location;
+	}
+
+	public String reqLocationList(String searchName) {
+		System.out.println(searchName);
+		
+		String encodeSearchName = "";
+		try {
+			encodeSearchName = URLEncoder.encode(searchName, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String url = "https://dapi.kakao.com/v2/local/search/address.json?query=" + encodeSearchName;
+		MyHttpGet httpGet = new MyHttpGet(url, EContentType.FORM);
+
+		Map<String, String> reqUserInfoMap = new HashMap<String, String>();
+		reqUserInfoMap.put("Authorization", "KakaoAK " + Client_ID);
+
+		httpGet.setHeader(reqUserInfoMap);
+
+		JsonNode resNode = httpGet.request();
+
+		System.out.println("위치 정보 : " + resNode.toPrettyString());
+
+		return resNode.toString();
 	}
 }

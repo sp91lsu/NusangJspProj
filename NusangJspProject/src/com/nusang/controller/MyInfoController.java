@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
 import com.nusang.action.account.LoginAction;
-import com.nusang.action.myinfo.PaymentList_Action;
+//import com.nusang.action.myinfo.PaymentList_Action;
 import com.nusang.controller.assistance.ConAsist;
 import com.nusang.dto.User;
 
@@ -38,8 +38,8 @@ public class MyInfoController extends HttpServlet {
 					break;
 					
 				case "paymentList":
-					PaymentList_Action P_A = new PaymentList_Action();
-					actionForward = P_A.execute(request, response);
+//					PaymentList_Action P_A = new PaymentList_Action();
+//					actionForward = P_A.execute(request, response);
 					break;
 				case "reservationInfo":
 					break;
