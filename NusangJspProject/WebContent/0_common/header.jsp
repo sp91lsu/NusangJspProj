@@ -25,16 +25,15 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
    <a class="navbar-brand" href="../1_main/index.jsp">아이콘</a> <a
       class="navbar-brand" href="../1_main/index.jsp">너근마켓</a>
+      
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+   </button>
 
    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      
-      <div class="input-group w-50 container">
-         <input type="text" class="form-control" placeholder="검색 키워드를 입력하세요!">
-         <span class="input-group-btn">
-            <button class="btn btn-secondary" type="button">찾기</button>
-         </span>
-      </div>
-
       <div class="navbar-nav mr-auto ">
          <c:choose>
             <c:when test="${user != null}">
@@ -67,11 +66,4 @@
          </c:choose>
       </div>
    </div>
-   
-   <button class="navbar-toggler" type="button" data-toggle="collapse"
-      data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false"
-      aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-   </button>
 </nav>
