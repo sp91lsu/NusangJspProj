@@ -1,0 +1,8 @@
+@charset "UTF-8";
+.dropdown{
+	display: inline-block;
+}
+form{
+	width: 600px;
+	border: 1px solid black;
+}
