@@ -9,7 +9,7 @@
 	<table class="table">
 	  <thead class="thead-dark">
 	    <tr>
-	      <th scope="col">주문번호</th>
+	      <th scope="col">no.</th>
 	      <th scope="col">구매품목</th>
 	      <th scope="col">진행상태</th>
 	      <th scope="col">날짜</th>
