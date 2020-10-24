@@ -15,6 +15,7 @@ import com.nusang.action.myinfo.BuyInfo_Action;
 import com.nusang.action.myinfo.PaymentList_Action;
 import com.nusang.action.myinfo.ReservationInfo_Action;
 import com.nusang.action.myinfo.SaleList_Action;
+import com.nusang.action.myinfo.Search_Action;
 import com.nusang.action.myinfo.WatchList_Action;
 //import com.nusang.action.myinfo.PaymentList_Action;
 import com.nusang.controller.assistance.ConAsist;
@@ -56,12 +57,13 @@ public class MyInfoController extends HttpServlet {
 					WatchList_Action W_A = new WatchList_Action();
 					actionForward = W_A.execute(request, response);
 					break;
-				case "위치설정":
-
+				case "search":
+					Search_Action S_A = new Search_Action();
+					actionForward = S_A.execute(request, response);
 					break;
 				case "saleList":
-					SaleList_Action S_A = new SaleList_Action();
-					actionForward = S_A.execute(request, response);
+					SaleList_Action SL_A = new SaleList_Action();
+					actionForward = SL_A.execute(request, response);
 					break;
 				}
 			} catch (Exception e) {
