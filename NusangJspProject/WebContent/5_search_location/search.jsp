@@ -25,25 +25,33 @@
 	</div>
 
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
-	<button id="modalBtn" class="btn">button</button>
+
+
 
 	<jsp:include page="../0_common/modal.jsp" flush="true">
+		<jsp:param name="modalId" value='<%=URLEncoder.encode("modal_loc", "UTF-8")%>' />
 		<jsp:param name="title" value='<%=URLEncoder.encode("위치 설정", "UTF-8")%>' />
 		<jsp:param name="body" value='<%=URLEncoder.encode("현재위치로 설정하시겠습니까?", "UTF-8")%>' />
 	</jsp:include>
+
+	//우리가 쓸 페이지
+	<button id="modalBtn_1" class="btn">button</button>
+
 	<script>
-		$('#modalBtn').click(function(e) {
-			e.preventDefault();
-			$('#testModal').modal("show");
+		$('#modalBtn_1').click(function(e) {
 			
-		});
-		$('#modalY').click(function(e) {
-			e.preventDefault();
-			$('#testModal').modal("show");
+			let modal = $('#modal_loc');
+			 
+			$(modal).modal("show");
 			
+			let modalY = $('#modal_loc #modalY');
+			console.log($(modalY).text())
+			$(modalY).click(function(e) {
+				console.log("fdasfsda")
+				$(modal).modal('hide').data('bs.modal', null);
+				//여기에서 예를 눌렀을 떄 수행해야함
+			});
 		});
-		
-		
 	</script>
 </body>
 
