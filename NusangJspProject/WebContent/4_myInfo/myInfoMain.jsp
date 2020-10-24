@@ -25,13 +25,15 @@
 	<div id="body" class="container">
 		<div class="row">
 			<div class="col-2"><jsp:include
-					page="../0_common/myInfo_sideMenu.jsp"></jsp:include></div>
+					page="../0_common/myInfo_sideMenu.jsp"></jsp:include>
+			</div>
+			
 			<div class="col-10">
-				<jsp:include page="<%=sideMenu%>" flush="false"></jsp:include></div>
+				<jsp:include page="<%=sideMenu%>" flush="false"></jsp:include>
+			</div>
 		</div>
 	</div>
+	
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
-
-
 </body>
 </html>

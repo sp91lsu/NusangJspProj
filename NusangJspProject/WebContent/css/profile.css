@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.card {
+	display: block;
+}
+
+#update {
+	display: block;
+	margin: 20px 0 0 30px;
+}
