@@ -28,7 +28,6 @@
 </head>
 
 <body>
-
 	<div class="container">
 	<h2>구매신청 현황</h2>
 	<br><br><br>
@@ -42,6 +41,7 @@
 		      <th scope="col">날짜</th>
 		    </tr>
 		  </thead>
+		  
 		  <tbody>
 		    <tr>
 		      <th scope="row">1</th>
@@ -49,21 +49,23 @@
 		      <td>Otto</td>
 		      <td>@mdo</td>
 		    </tr>
+		    
 		    <tr>
 		      <th scope="row">2</th>
 		      <td>Jacob</td>
 		      <td>Thornton</td>
 		      <td>@fat</td>
 		    </tr>
+		    
 		    <tr>
 		      <th scope="row">3</th>
 		      <td>Larry</td>
 		      <td>the Bird</td>
 		      <td>@twitter</td>
 		    </tr>
+		    
 		  </tbody>
 		</table>
-		
 		
 		<nav aria-label="Page navigation example">
 		  <ul class="pagination justify-content-center">
@@ -82,7 +84,6 @@
 		    </li>
 		  </ul>
 		</nav>
-		
 	</div>
 </body>
 </html>
