@@ -8,6 +8,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
+import com.nusang.action.EActionType;
 import com.nusang.bo.KakaoBO;
 import com.nusang.bo.Mail;
 import com.nusang.bo.NaverBO;
@@ -44,7 +45,7 @@ public class LoginAction implements Action {
 			System.out.println("로그인 처리");
 			System.out.println("actionForward " + actionForward);
 			session.setAttribute("user", user);
-			actionForward.setRedirect(true);
+			actionForward.setActionType(EActionType.REDIRECT);
 			actionForward.setNextPath("/1_main/index.jsp");
 		} else {
 			System.out.println("여기로빠졌다");

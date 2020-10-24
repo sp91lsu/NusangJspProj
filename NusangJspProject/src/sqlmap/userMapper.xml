@@ -39,5 +39,15 @@
         INSERT INTO NUSER (userid,username,password,role,logintype,email,picture,latitude,longtitude)
          VALUES (#{userid}, #{username}, #{password}, #{role},#{logintype},#{email},#{picture, jdbcType=BLOB},#{latitude, jdbcType=FLOAT},#{longtitude, jdbcType=FLOAT}) 
     </insert>
+    
+    
+    <update id="updateBy"  > 
+         
+         UPDATE NUSER
+SET 
+${colum} = #{value}
+WHERE
+ userno = #{userno}
+    </update>
 </mapper>
 

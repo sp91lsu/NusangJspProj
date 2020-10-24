@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
+import com.nusang.action.EActionType;
 import com.nusang.action.myinfo.BuyInfo_Action;
 import com.nusang.action.myinfo.PaymentList_Action;
 import com.nusang.action.myinfo.ReservationInfo_Action;
@@ -26,7 +27,7 @@ public class MyInfoController extends HttpServlet {
 			throws ServletException, IOException {
 
 		Action action = null;
-		ActionForward actionForward = null;
+		ActionForward actionForward = new ActionForward();
 		actionForward = ConAsist.checkLogin(request);
 		if (actionForward == null) { // http://localhost:8787/myinfo/profile
 			String requestPage = ConAsist.getRequestName(request);
@@ -38,7 +39,7 @@ public class MyInfoController extends HttpServlet {
 					actionForward.setNextPath(ConAsist.URL_MYINFOMAIN);
 					//
 					break;
-					
+
 				case "paymentList":
 					PaymentList_Action P_A = new PaymentList_Action();
 					actionForward = P_A.execute(request, response);
@@ -56,7 +57,7 @@ public class MyInfoController extends HttpServlet {
 					actionForward = W_A.execute(request, response);
 					break;
 				case "위치설정":
-					
+
 					break;
 				case "saleList":
 					SaleList_Action S_A = new SaleList_Action();
@@ -67,17 +68,8 @@ public class MyInfoController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
-		if (actionForward != null)
 
-		{
-			
-			if (actionForward.isRedirect()) {
-				response.sendRedirect(actionForward.getNextPath());
-			} else {
-				request.getRequestDispatcher(actionForward.getNextPath()).forward(request, response);
-			}
-		}
+		actionForward.moveUrl(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

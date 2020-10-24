@@ -57,4 +57,15 @@ public class BasicDao<T> {
 		return result;
 	}
 
+	
+	public int updateBy(int userNo, String colum, Object value) {
+		SqlSession session = sqlSessionFactory.openSession();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userno", userNo);
+		map.put("colum", colum);
+		map.put("value", value);
+		int state = session.selectOne(namespace + "updateBy", map);
+		session.close();
+		return state;
+	}
 }

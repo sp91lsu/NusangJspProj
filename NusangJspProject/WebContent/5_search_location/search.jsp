@@ -34,25 +34,6 @@
 		<jsp:param name="body" value='<%=URLEncoder.encode("현재위치로 설정하시겠습니까?", "UTF-8")%>' />
 	</jsp:include>
 
-	//우리가 쓸 페이지
-	<button id="modalBtn_1" class="btn">button</button>
-
-	<script>
-		$('#modalBtn_1').click(function(e) {
-			
-			let modal = $('#modal_loc');
-			 
-			$(modal).modal("show");
-			
-			let modalY = $('#modal_loc #modalY');
-			console.log($(modalY).text())
-			$(modalY).click(function(e) {
-				console.log("fdasfsda")
-				$(modal).modal('hide').data('bs.modal', null);
-				//여기에서 예를 눌렀을 떄 수행해야함
-			});
-		});
-	</script>
 </body>
 
 

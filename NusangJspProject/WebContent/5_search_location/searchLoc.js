@@ -28,10 +28,14 @@
 							}
 						});
 
-						console.log($('.searchTab'));
-						$('.searchTab').click(function() {
-							$(this).children("tr").children("td").text();
-						})
+						$('.searchTab').click(
+								function() {
+									let
+									locName = $(this).children("tr").children(
+											"td").text();
+
+									setLocation(locName);
+								});
 					},
 					error : function(request, status, error) {
 						alert(status);
@@ -39,12 +43,30 @@
 				});
 			});
 
-	function setLocation(locName) {
-		
-		
-		$.ajax({
-			url : "/api/search_location?searchValue=" + $("#searchText").val(),
+	function setLocation(locationName) {
 
+		let
+		modal = $('#modal_loc');
+
+		$(modal).modal("show");
+
+		let
+		modalY = $('#modal_loc #modalY');
+		console.log($(modalY).text())
+		$(modalY).click(function(e) {
+			$(modal).modal('hide').data('bs.modal', null);
+			// 여기에서 예를 눌렀을 떄 수행해야함
+
+			$.ajax({
+				url : "/user/set_location?searchValue=" + locationName,
+				success : function(data) {
+					
+					location.href = data;
+				}
+			})
+			
+			;
 		});
 	}
+	;
 })()

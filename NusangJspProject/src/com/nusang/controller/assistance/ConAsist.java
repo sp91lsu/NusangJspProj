@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nusang.action.ActionForward;
+import com.nusang.action.EActionType;
 import com.nusang.dto.User;
 
 //controller를 도와주는 클래스
@@ -47,7 +48,7 @@ public class ConAsist {
 		if (user == null) {
 			actionForward = new ActionForward();
 			actionForward.setNextPath(URL_LOGIN);
-			actionForward.setRedirect(true);
+			actionForward.setActionType(EActionType.REDIRECT);
 		}
 		return actionForward;
 	}

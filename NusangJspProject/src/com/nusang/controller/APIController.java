@@ -25,9 +25,8 @@ public class APIController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
-		ActionForward actionForward = null;
+		ActionForward actionForward = new ActionForward();
 		String requestPage = ConAsist.getRequestName(request);
-		String res = null;
 
 		try {
 			switch (requestPage) {
@@ -47,28 +46,21 @@ public class APIController extends HttpServlet {
 				}
 				Location location = KakaoBO.getInstance().reqLocation(longtitude, latitude);
 				request.getSession().setAttribute("location", location);
-				res = location.getAddress();
+				String address = location.getAddress();
+				actionForward.setAsyncData(address);
 				break;
 
 			case "search_location":
 
-				res = KakaoBO.getInstance().reqLocationList(request.getParameter("searchValue"));
-				
+				String searchValue = KakaoBO.getInstance().reqLocationList(request.getParameter("searchValue"));
+				actionForward.setAsyncData(searchValue);
 				break;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		if (actionForward != null) {
-			if (actionForward.isRedirect()) {
-				response.sendRedirect(actionForward.getNextPath());
-			} else {
-				request.getRequestDispatcher(actionForward.getNextPath()).forward(request, response);
-			}
-		} else {
-			response.getWriter().write(res);
-		}
+		actionForward.moveUrl(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
