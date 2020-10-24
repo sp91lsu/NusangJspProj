@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="../css/profile.css">
 
 
-<div class="container justify-content-center">
+<div class="container justify-content-center" style="width: 50%">
 	<div class="card" style="width: 20rem;">
 		<img src="../img/프로필 기본이미지.jpg" class="card-img-top" alt="...">
 		<div class="card-body">
