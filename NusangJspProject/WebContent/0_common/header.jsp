@@ -11,35 +11,37 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<a class="navbar-brand" href="../1_main/index.jsp">아이콘</a> <a class="navbar-brand" href="../1_main/index.jsp">너근마켓</a>
-
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-
-	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<div class="navbar-nav mr-auto ">
-			<c:choose>
-				<c:when test="${user != null}">
-
-					<li class="nav-item"><a class="nav-link" href="/myinfo/profile">${user.username} 님</a></li>
-					<li class="nav-item"><button id="logoutBtn" type="button" class="btn btn-primary btn-sm" onclick="location.href='/3_account/logout.jsp'">로그아웃</button></li>
-					<li class="nav-item"><div class="dropdown">
-							<button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${location.region_3 }</button>
-							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-								<a class="dropdown-item" href="/5_search_location/search.jsp">위치 설정</a>
-							</div>
-						</div></li>
-				</c:when>
-
-
-				<c:otherwise>
-					<li class="nav-item p-2"><button type="button" class="btn btn-primary btn-sm" onclick="location.href='../3_account/login.jsp'">로그인</button></li>
-					<li class="nav-item p-2"><button type="button" class="btn btn-primary btn-sm" onclick="location.href='../3_account/signUp.jsp'">회원가입</button></li>
-				</c:otherwise>
-
-			</c:choose>
+<nav class="navbar navbar-expand-lg navbar-light bg-light row ">
+	<a class="navbar-brand col-4" style="box-sizing: border-box; margin: 0;" href="../1_main/index.jsp">아이콘</a> 
+	<a class="navbar-brand col-4 text-center" style="box-sizing: border-box; margin: 0;" href="../1_main/index.jsp">너근마켓</a>
+	<div class="navbar-brand col-4 text-right " style="box-sizing: border-box; margin: 0;" >
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+	
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<div class="navbar-nav pull-right" style="margin-left: 35% ">
+				<c:choose>
+					<c:when test="${user != null}">
+	
+						<li class="nav-item"><a class="nav-link" href="/myinfo/profile">${user.username} 님</a></li>
+						<li class="nav-item"><button id="logoutBtn" type="button" class="btn btn-primary btn-sm" onclick="location.href='/3_account/logout.jsp'">로그아웃</button></li>
+						<li class="nav-item"><div class="dropdown">
+								<button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${location.region_3 }</button>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									<a class="dropdown-item" href="/5_search_location/search.jsp">위치 설정</a>
+								</div>
+							</div></li>
+					</c:when>
+	
+	
+					<c:otherwise>
+						<li class="nav-item p-2"><button type="button" class="btn btn-primary btn-sm" onclick="location.href='../3_account/login.jsp'">로그인</button></li>
+						<li class="nav-item p-2"><button type="button" class="btn btn-primary btn-sm" onclick="location.href='../3_account/signUp.jsp'">회원가입</button></li>
+					</c:otherwise>
+	
+				</c:choose>
+			</div>
 		</div>
 	</div>
 </nav>
