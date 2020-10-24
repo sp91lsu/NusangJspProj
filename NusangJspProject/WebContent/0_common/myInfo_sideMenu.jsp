@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<link rel="stylesheet" type="text/css" href="../css/myInfo_sideMenu.css">
-
-
 <button type="button" class="btn btn-secondary btn-block" onclick="location.href='/myinfo/profile'">프로필</button>
 <button type="button" class="btn btn-secondary btn-block" onclick="location.href='/myinfo/paymentList'">결제내역</button>
 <button type="button" class="btn btn-secondary btn-block" onclick="location.href='/myinfo/reservationInfo'">구매신청 현황</button>

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link rel="stylesheet" type="text/css" href="../css/myInfo_sideMenu.css">
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,9 +23,9 @@
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
 
-	<div id="body" class="container">
+	<div id="body" class="container" style="margin: 40px auto 0px auto">
 		<div class="row">
-			<div class="col-2"><jsp:include
+			<div class="col-2 sideMenu_Btngroup"><jsp:include
 					page="../0_common/myInfo_sideMenu.jsp"></jsp:include>
 			</div>
 			
