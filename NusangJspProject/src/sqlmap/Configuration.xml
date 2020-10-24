@@ -13,7 +13,10 @@
            <setting name="autoMappingBehavior" value="FULL"/>
           
     </settings>
- 
+    <typeAliases>
+		<typeAlias type="com.nusang.dto.User" alias="User" />
+		<typeAlias type="com.nusang.dto.Location" alias="Location" />
+	</typeAliases>
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC" />
@@ -26,9 +29,10 @@
             </dataSource>
         </environment>
     </environments>
- 
+
     <mappers>
         <mapper resource="sqlmap/userMapper.xml" />
+         <mapper resource="sqlmap/locationMapper.xml" />
     </mappers>
 </configuration>
 

@@ -14,7 +14,7 @@ import com.nusang.bo.Mail;
 import com.nusang.bo.NaverBO;
 import com.nusang.controller.assistance.ConAsist;
 import com.nusang.dao.UserDao;
-import com.nusang.data.Location;
+import com.nusang.dto.Location;
 import com.nusang.dto.User;
 
 public class SetLocationAction implements Action {
@@ -23,19 +23,27 @@ public class SetLocationAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		// new Mail().sendMail();
-		User user = (User)request.getSession().getAttribute("user");
+		User user = (User) request.getSession().getAttribute("user");
 		ActionForward actionForward = new ActionForward();
 
-		if(user != null)
-		{
-			
+		if (user != null) {
+
 			String searchValue = request.getParameter("searchValue");
-			KakaoBO.getInstance().reqLocationList(searchValue);
-			//UserDao.getInstance().updateBy(user.getUserno(), colum, value)(user)
+			Location location = KakaoBO.getInstance().reqLocation(searchValue);
+			UserDao.getInstance().updateLocation(user.getUserno(), location);
+			user = UserDao.getInstance().findBy("userno", user.getUserno());
+			HttpSession session = request.getSession();
+			
+			session.setAttribute("user", user);
+			/*
+			 * .getAttribute("user"); 
+			 */
+
+			Location sessionLoc = (Location) session.getAttribute("location");
+			sessionLoc = location;
 		}
-		
-		actionForward.setActionType(EActionType.REDIRECT);
-		actionForward.setNextPath(ConAsist.URL_MAIN);
+
+		actionForward.setAsyncData(ConAsist.URL_MAIN);
 		return actionForward;
 	}
 }

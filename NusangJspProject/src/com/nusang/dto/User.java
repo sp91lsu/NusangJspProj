@@ -1,12 +1,16 @@
 package com.nusang.dto;
 
-import com.nusang.data.Location;
+import java.sql.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
 	private int userno;
@@ -16,12 +20,17 @@ public class User {
 	private String role;
 	private String logintype;
 	private String email;
-	private String regdate;
+	private Date regdate;
 	private byte[] picture;
-	private double latitude;
-	private double longtitude;
+	private Location location;
 
 	public boolean isLocationNull() {
-		return longtitude == 0 && longtitude == 0;
+
+		if (location != null) {
+			if (location.getLongtitude() != 0 && location.getLatitude() != 0) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

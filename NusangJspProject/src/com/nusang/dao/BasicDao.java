@@ -29,7 +29,7 @@ public class BasicDao<T> {
 
 	// where 바로 뒤에 검색하고자 하는 검색어는 ${}, 키워드는 #{}
 	// 예 : select * from 테이블 where ${search} = #{keyword}
-	public T findBy(String search, String keyword) {
+	public T findBy(String search, Object keyword) {
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("search", search);
@@ -39,6 +39,14 @@ public class BasicDao<T> {
 		return object;
 	}
 
+	public T findBy(SqlSession session, String search, Object keyword) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("search", search);
+		map.put("keyword", keyword);
+		T object = session.selectOne(namespace + "findBy", map);
+		return object;
+	}
+	
 	public List<T> findByList(String search, String keyword) {
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -49,23 +57,15 @@ public class BasicDao<T> {
 		return object;
 	}
 
-	protected int insert(Map map) {
-		SqlSession session = sqlSessionFactory.openSession();
-		int result = session.insert(namespace + "insert", map);
-		session.commit();
-		session.close();
-		return result;
+	protected int insert(SqlSession session, Object object) {
+		return session.insert(namespace + "insert", object);
 	}
 
-	
-	public int updateBy(int userNo, String colum, Object value) {
-		SqlSession session = sqlSessionFactory.openSession();
+	public void updateBy(SqlSession session, int userNo, String colum, Object value) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userno", userNo);
 		map.put("colum", colum);
 		map.put("value", value);
-		int state = session.selectOne(namespace + "updateBy", map);
-		session.close();
-		return state;
+		session.update(namespace + "updateBy", map);
 	}
 }

@@ -1,6 +1,6 @@
 (function() {
 
-	$("#searchBtn").click(
+	/*$("#searchBtn").click(
 			function() {
 
 				$("#searchTable").empty();
@@ -41,9 +41,9 @@
 						alert(status);
 					}
 				});
-			});
+			});*/
 
-	function setLocation(locationName) {
+	/*function setLocation(locationName) {
 
 		let
 		modal = $('#modal_loc');
@@ -61,12 +61,13 @@
 				url : "/user/set_location?searchValue=" + locationName,
 				success : function(data) {
 					
-					location.href = data;
+					
+					//location.href = data;
 				}
 			})
 			
 			;
 		});
 	}
-	;
+	;*/
 })()
