@@ -8,7 +8,7 @@
 	<table class="table">
 		<thead class="thead-dark">
 			<tr>
-				<th scope="col">#</th>
+				<th scope="col">no.</th>
 				<th scope="col">구매품목</th>
 				<th scope="col">금액</th>
 				<th scope="col">날짜</th>
