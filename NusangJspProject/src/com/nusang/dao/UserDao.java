@@ -30,8 +30,8 @@ public class UserDao extends BasicDao<User> {
 		super(namespace);
 	}
 
-	public void insertUser(User user) {
-
+	public int insertUser(User user) {
+		int userno = 0;
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -42,12 +42,17 @@ public class UserDao extends BasicDao<User> {
 			map.put("email", user.getEmail());
 			map.put("logintype", user.getLogintype());
 			map.put("picture", user.getPicture());
-			insert(session, map);
+			userno = insert(session, map);
 			session.commit();
 			session.close();
+
 		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("가입 실패");
 			session.rollback();
 		}
+
+		return userno;
 
 	}
 
@@ -69,7 +74,7 @@ public class UserDao extends BasicDao<User> {
 			LocationDao.getInstance().insert(session, location);
 			System.out.println("insert한 위치 값 : " + location.getLocationno());
 			System.out.println("insert한 위치 값 : " + location.getLocationno());
-			Location locEntity = LocationDao.getInstance().findBy(session, "locationno", location.getLocationno()-1);
+			Location locEntity = LocationDao.getInstance().findBy(session, "locationno", location.getLocationno() - 1);
 			System.out.println(locEntity.getAddress());
 			updateBy(session, userNo, "locationno", locEntity.getLocationno());
 

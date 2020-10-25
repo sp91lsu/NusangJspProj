@@ -39,7 +39,7 @@
 			</div>
 			
 			<div class="form-group w-50 container">
-			<button id="btn-login" class="btn btn-primary">회원가입</button>			
+			<button type = "submit" id="btn-login" class="btn btn-primary">회원가입</button>			
 			</div>
 		</form>
 	</div>
