@@ -19,6 +19,8 @@ import com.nusang.action.myinfo.Search_Action;
 import com.nusang.action.myinfo.WatchList_Action;
 //import com.nusang.action.myinfo.PaymentList_Action;
 import com.nusang.controller.assistance.ConAsist;
+import com.nusang.dao.UserDao;
+import com.nusang.dto.User;
 
 @WebServlet("/myinfo/*")
 public class MyInfoController extends HttpServlet {
@@ -64,6 +66,20 @@ public class MyInfoController extends HttpServlet {
 				case "saleList":
 					SaleList_Action SL_A = new SaleList_Action();
 					actionForward = SL_A.execute(request, response);
+					break;
+				case "nickname_change":
+					actionForward = new ActionForward();
+					System.out.println("닉네임 체인지세상으로 이동");
+					actionForward.setNextPath(ConAsist.URL_MAIN);
+					System.out.println("보낸 닉네임값 : " + request.getParameter("nickName"));
+					User user = (User) request.getSession().getAttribute("user");
+					UserDao.getInstance().updateBy(user.getUserno(), "username", request.getParameter("nickName"));
+
+					user = UserDao.getInstance().findBy("userno", user.getUserno());
+					System.out.println(user.getUsername());
+					actionForward.setActionType(EActionType.REDIRECT);
+
+					request.getSession().setAttribute("user", user);
 					break;
 				}
 			} catch (Exception e) {

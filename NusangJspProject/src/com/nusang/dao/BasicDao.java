@@ -68,4 +68,16 @@ public class BasicDao<T> {
 		map.put("value", value);
 		session.update(namespace + "updateBy", map);
 	}
+	
+	
+	public void updateBy( int userNo, String colum, Object value) {
+		SqlSession session = sqlSessionFactory.openSession();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userno", userNo);
+		map.put("colum", colum);
+		map.put("value", value);
+		session.update(namespace + "updateBy", map);
+		session.commit();
+		session.close();
+	}
 }

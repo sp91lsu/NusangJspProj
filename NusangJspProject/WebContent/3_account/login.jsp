@@ -15,7 +15,7 @@
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
 
-	<div class="container">
+	<div class="container" style = "min-height: 400px">
 		<h1 class="display-4 text-center mt-5">로그인</h1>
 		<form action="/user/login" method="post">
 			<div class="form-group w-50 container">
