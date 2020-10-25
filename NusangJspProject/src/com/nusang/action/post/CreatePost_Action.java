@@ -13,6 +13,7 @@ public class CreatePost_Action implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Post post = new Post();
+		request.setCharacterEncoding("UTF-8");
 		post.setTitle(request.getParameter("title"));
 		post.setCategory(request.getParameter("category"));
 		post.setPrice(Long.parseLong(request.getParameter("price")));
