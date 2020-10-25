@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+*{
+	margin: 0;
+	padding: 0;
+}
+#content {
+	width: 720px;
+}
+
+[id^='Section-']{
+	display: block;
+}
+/* 상품이미지 섹션 */
+#Section-prodImg {
+	height: 450px;
+	border: 1px solid black;
+}
+
+/* 판매자정보 섹션 */
+#Section-sellerInfo #profile{
+	padding: 20px 0px;
+	height: auto;
+}
+
+#Section-sellerInfo #profile_left{
+	padding-right: 20px;
+}
+#Section-sellerInfo #profile_img{
+	color: gray;
+	opacity: 0.5;
+}
+
+#Section-sellerInfo #profile_right{
+	padding-top: 7px;
+	
+}
+#Section-sellerInfo #profile_name{
+	font-weight: bold;
+}
+
+/* 포스트 섹션 */
+#Section-post{
+	padding: 30px 0px;
+}
+#Section-post #post_title{
+	font-weight: bold;
+}
+#Section-post #post_cate-time{
+	color: gray;
+}
+#Section-post #post_writing{
+	padding-top: 1rem;
+}
+
+
+.carousel-inner img {
+	width: 100%;
+	height: 100%;
+}
+h8{
+	font-size: 12px;
+	color: gray;
+}

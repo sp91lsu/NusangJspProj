@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="postMapper">
+
+	<select id="selectAll" resultType="com.nusang.dto.Post">
+		SELECT
+		*
+		FROM
+		SELLPOST
+	</select>
+
+
+	<select id="findBy" resultType="com.nusang.dto.Post">
+		SELECT
+		*
+		FROM
+		SELLPOST
+		WHERE
+		${search} = #{keyword}
+	</select>
+
+	<insert id="insert">
+		INSERT INTO SELLPOST
+		(userid,username,password,role,logintype,email,picture,latitude,longtitude)
+		VALUES (#{userid}, #{username}, #{password},
+		#{role},#{logintype},#{email},#{picture, jdbcType=BLOB},#{latitude,
+		jdbcType=FLOAT},#{longtitude, jdbcType=FLOAT})
+	</insert>
+
+	<update id="updateBy">
+
+		UPDATE NUSER
+		SET
+		${colum} = #{value}
+		WHERE
+		userno = #{userno}
+	</update>
+</mapper>
+
