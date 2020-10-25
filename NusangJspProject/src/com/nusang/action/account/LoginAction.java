@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.SqlSession;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.nusang.action.Action;
@@ -13,9 +15,12 @@ import com.nusang.bo.KakaoBO;
 import com.nusang.bo.Mail;
 import com.nusang.bo.NaverBO;
 import com.nusang.controller.assistance.ConAsist;
+import com.nusang.dao.LocationDao;
 import com.nusang.dao.UserDao;
-import com.nusang.data.Location;
+import com.nusang.dto.Location;
 import com.nusang.dto.User;
+
+import sqlmap.SqlSessionManager;
 
 public class LoginAction implements Action {
 
@@ -29,11 +34,11 @@ public class LoginAction implements Action {
 		switch (ConAsist.getRequestName(request)) {
 		case "kakaologin":
 			user = kakaoLogin(request);
-			sosialLogin(session, user);
+			user = sosialLogin(session, user);
 			break;
 		case "naverlogin":
 			user = naverLogin(request);
-			sosialLogin(session, user);
+			user = sosialLogin(session, user);
 			break;
 		case "login":
 			user = login(request);
@@ -84,24 +89,25 @@ public class LoginAction implements Action {
 		return user;
 	}
 
-	private void sosialLogin(HttpSession session, User user) {
+	private User sosialLogin(HttpSession session, User user) {
 
 		user.setRole("ROLE_USER");
-		User entity = UserDao.getInstance().findBy("USERID", user.getUserid());
+		User entity = UserDao.getInstance().findBy("userid", user.getUserid());
 
 		if (entity == null) {
 			System.out.println("회원가입을 아직 하지 않아서 자동 회원가입진행");
-			Location location = (Location) session.getAttribute("location");
-			user.setLatitude(location.getLatitude());
-			user.setLongtitude(location.getLongtitude());
-
 			UserDao.getInstance().insertUser(user);
-
-			// user.setLocation(location);
 		} else {
-			System.out.println("우리 회원이시군요!");
-		}
+			System.out.println("우리 회원이시군요");
+			user = entity;
+			if (entity.getLocation() == null) {
+				Location location = (Location) session.getAttribute("location");
+				boolean success = UserDao.getInstance().updateLocation(entity.getUserno(), location);
 
+				System.out.println("insertLocation");
+			}
+		}
+		return user;
 	}
 
 }

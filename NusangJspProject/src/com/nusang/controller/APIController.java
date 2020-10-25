@@ -11,11 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nusang.action.ActionForward;
 import com.nusang.bo.KakaoBO;
 import com.nusang.controller.assistance.ConAsist;
-import com.nusang.data.Location;
+import com.nusang.dto.Location;
 import com.nusang.dto.User;
 
 @WebServlet("/api/*")
@@ -37,8 +38,8 @@ public class APIController extends HttpServlet {
 				User user = (User) request.getSession().getAttribute("user");
 				if (user != null && !user.isLocationNull()) {
 					System.out.println("userLocation ");
-					longtitude = user.getLongtitude();
-					latitude = user.getLatitude();
+					longtitude = user.getLocation().getLongtitude();
+					latitude = user.getLocation().getLatitude();
 				} else {
 					System.out.println("sessionLocation");
 					longtitude = Float.parseFloat(request.getParameter("longitude"));
@@ -52,8 +53,8 @@ public class APIController extends HttpServlet {
 
 			case "search_location":
 
-				String searchValue = KakaoBO.getInstance().reqLocationList(request.getParameter("searchValue"));
-				actionForward.setAsyncData(searchValue);
+				JsonNode searchValue = KakaoBO.getInstance().reqLocationList(request.getParameter("searchValue"));
+				actionForward.setAsyncData(searchValue.toString());
 				break;
 			}
 		} catch (Exception e) {

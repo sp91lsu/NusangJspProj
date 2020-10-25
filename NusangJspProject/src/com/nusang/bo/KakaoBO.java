@@ -16,8 +16,8 @@ import com.nusang.action.assistance.EContentType;
 import com.nusang.action.assistance.KakaoAuthToken;
 import com.nusang.action.assistance.MyHttpGet;
 import com.nusang.action.assistance.MyHttpPost;
-import com.nusang.data.Location;
 import com.nusang.data.NData;
+import com.nusang.dto.Location;
 import com.nusang.dto.User;
 
 public class KakaoBO extends BasicBO {
@@ -106,23 +106,28 @@ public class KakaoBO extends BasicBO {
 
 		JsonNode resNode = httpGet.request();
 
-		ArrayNode documentsNode = m.createArrayNode();
-
-		documentsNode = (ArrayNode) resNode.get("documents");
-		System.out.println("위치 정보 : " + documentsNode.toPrettyString());
-		JsonNode addressNode = documentsNode.get(0).get("address");
-		Location location = new Location();
-		location.setRegion_1(addressNode.get("region_1depth_name").asText());
-		location.setRegion_2(addressNode.get("region_2depth_name").asText());
-		location.setRegion_3(addressNode.get("region_3depth_name").asText());
+		/*
+		 * ArrayNode documentsNode = m.createArrayNode();
+		 * 
+		 * documentsNode = (ArrayNode) resNode.get("documents");
+		 * System.out.println("위치 정보 : " + documentsNode.toPrettyString()); JsonNode
+		 * addressNode = documentsNode.get(0).get("address"); Location location = new
+		 * Location();
+		 * location.setRegion_1(addressNode.get("region_1depth_name").asText());
+		 * location.setRegion_2(addressNode.get("region_2depth_name").asText());
+		 * location.setRegion_3(addressNode.get("region_3depth_name").asText());
+		 * location.setLatitude(latitude); location.setLongtitude(longtitude);
+		 */
+		
+		Location location = JsonToLocation(resNode);
+		location.setLongtitude(longtitude); 
 		location.setLatitude(latitude);
-		location.setLongtitude(longtitude);
 		return location;
 	}
 
-	public String reqLocationList(String searchName) {
+	public JsonNode reqLocationList(String searchName) {
 		System.out.println(searchName);
-		
+
 		String encodeSearchName = "";
 		try {
 			encodeSearchName = URLEncoder.encode(searchName, "UTF-8");
@@ -142,6 +147,37 @@ public class KakaoBO extends BasicBO {
 
 		System.out.println("위치 정보 : " + resNode.toPrettyString());
 
-		return resNode.toString();
+		return resNode;
+	}
+
+	// 지번으로 검색하기
+	public Location reqLocation(String locationName) {
+		JsonNode resNode = reqLocationList(locationName);
+		return JsonToLocation(resNode);
+	}
+
+	private Location JsonToLocation(JsonNode resNode) {
+
+		ArrayNode documentsNode = m.createArrayNode();
+
+		documentsNode = (ArrayNode) resNode.get("documents");
+		System.out.println("위치 정보 : " + documentsNode.toPrettyString());
+		JsonNode addressNode = documentsNode.get(0).get("address");
+		Location location = new Location();
+		location.setName1(addressNode.get("region_1depth_name").asText());
+		location.setName2(addressNode.get("region_2depth_name").asText());
+		location.setName3(addressNode.get("region_3depth_name").asText());
+
+		if (addressNode.get("x") != null) {
+			double x = Double.parseDouble(addressNode.get("x").asText());
+			location.setLongtitude(x);
+		}
+		if (addressNode.get("y") != null) {
+			double y = Double.parseDouble(addressNode.get("y").asText());
+			location.setLatitude(y);
+		}
+		
+		System.out.println("변환할 위치 : " + location.getAddress());
+		return location;
 	}
 }

@@ -27,7 +27,7 @@
 						<li class="nav-item"><a class="nav-link" href="/myinfo/profile">${user.username} 님</a></li>
 						<li class="nav-item"><button id="logoutBtn" type="button" class="btn btn-primary btn-sm" onclick="location.href='/3_account/logout.jsp'">로그아웃</button></li>
 						<li class="nav-item"><div class="dropdown">
-								<button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${location.region_3 }</button>
+								<button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${user.location != null ? user.location.name3 : '위치를 설정해주세요' }</button>
 								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 									<a class="dropdown-item" href="/myinfo/search">위치 설정</a>
 								</div>
