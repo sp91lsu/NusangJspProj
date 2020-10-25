@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="userMapper">
+
+	
+	<resultMap id="userResultMap" type="User">
+	
+	 <id  property="userno"  column="userno"/>
+	<result property="username" column="username"/>
+	<result property="userid" column="userid"/>
+	<result property="password" column="password"/>
+	<result property="logintype" column="logintype"/>
+	<result property="email" column="email"/>
+	<result property="regdate" column="regdate"/>
+	<result property="picture" column="picture"/>
+	<result property="role" column="role"/>
+	<association property="location" column="locationno" javaType="Location"   select="selectLocation"/>						
+	
+	</resultMap>
+	
+	
+      <select id="selectAll" resultMap="userResultMap">
+        SELECT
+            *
+        FROM
+            NUSER
+    </select>
+     
+      <select id="selectLocation"  resultType="Location">
+        SELECT
+            *
+        FROM
+            LOCATION
+            WHERE
+            LOCATIONNO = #{location}
+    </select>
+     
+       <select id="findBy" resultMap="userResultMap">
+        SELECT
+            *
+        FROM
+            NUSER
+        WHERE 
+        ${search} = #{keyword}
+    </select>
+    
+       <select id="loginCheck" resultMap="userResultMap">
+        SELECT
+            *
+        FROM
+            NUSER
+        WHERE 
+        userid = #{userid} 
+       AND 
+       password = #{password}
+       
+    </select>
+    
+     <insert id="insert" useGeneratedKeys="true"  keyProperty="userno" parameterType="Map" > 
+        INSERT INTO NUSER (userid,username,password,role,logintype,email,picture)
+         VALUES (#{userid}, #{username}, #{password}, #{role},#{logintype},#{email},#{picture, jdbcType=BLOB}) 
+    </insert>
+    
+    
+    <update id="updateBy"  > 
+         
+         UPDATE NUSER
+SET 
+${colum} = #{value}
+WHERE
+ userno = #{userno}
+    </update>
+    
+    
+    
+</mapper>
+
