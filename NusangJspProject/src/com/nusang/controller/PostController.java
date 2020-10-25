@@ -21,18 +21,25 @@ public class PostController extends HttpServlet {
 			throws ServletException, IOException {
 
 		Action action = null;
-		ActionForward actionForward = new ActionForward();
+		ActionForward actionForward = null;
 		String requestPage = ConAsist.getRequestName(request);
-
+		actionForward = ConAsist.checkLogin(request);
+		if(actionForward == null) {
+			
 		try {
 			switch (requestPage) {
 			case "readBuyer":
 				action = new ReadBuyer_Action();
 				actionForward = action.execute(request, response);
 				break;
+			case "moveMkPost":
+				actionForward = new ActionForward();
+				actionForward.setNextPath(ConAsist.URL_MKPOST);
+				break;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
 		}
 
 		actionForward.moveUrl(request, response);
