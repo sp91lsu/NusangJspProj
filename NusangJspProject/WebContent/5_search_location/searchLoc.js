@@ -28,14 +28,10 @@
 							}
 						});
 
-						$('.searchTab').click(
-								function() {
-									let
-									locName = $(this).children("tr").children(
-											"td").text();
+						$('.searchTab').click(function() {
 
-									setLocation(locName);
-								});
+							setLocation(this);
+						});
 					},
 					error : function(request, status, error) {
 						alert(status);
@@ -43,8 +39,10 @@
 				});
 			});
 
-	function setLocation(locationName) {
+	function setLocation(searchTab) {
 
+		let
+		locName = $(searchTab).children("tr").children("td").text();
 		let
 		modal = $('#modal_loc');
 
@@ -52,20 +50,20 @@
 
 		let
 		modalY = $('#modal_loc #modalY');
-		console.log($(modalY).text())
+		console.log(locName)
 		$(modalY).click(function(e) {
 			$(modal).modal('hide').data('bs.modal', null);
 			// 여기에서 예를 눌렀을 떄 수행해야함
 
 			$.ajax({
-				url : "/user/set_location?searchValue=" + locationName,
+				url : "/user/set_location?searchValue=" + locName,
 				success : function(data) {
-
-					// location.href = data;
+					location.href = data;
 				}
 			})
 
-			;
-		});
-	};
+		})
+		
+	}
+
 })()

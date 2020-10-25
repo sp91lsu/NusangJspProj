@@ -42,7 +42,6 @@ public class SetLocationAction implements Action {
 			Location sessionLoc = (Location) session.getAttribute("location");
 			sessionLoc = location;
 		}
-
 		actionForward.setAsyncData(ConAsist.URL_MAIN);
 		return actionForward;
 	}
