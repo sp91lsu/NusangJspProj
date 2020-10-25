@@ -40,7 +40,7 @@ public class BasicDao<T> {
 		return object;
 	}
 
-	public T findBy(SqlSession session, String search, Object keyword) {
+	protected T findBy(SqlSession session, String search, Object keyword) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("search", search);
 		map.put("keyword", keyword);
@@ -62,14 +62,14 @@ public class BasicDao<T> {
 		return session.insert(namespace + "insert", object);
 	}
 
-	protected int insert(Object object) {
+	public int insert(Object object) {
 		SqlSession session = sqlSessionFactory.openSession();
 		int result = session.insert(namespace + "insert", object);
 		session.commit();
 		return result;
 	}
 
-	public void updateBy(SqlSession session, int userNo, String colum, Object value) {
+	protected void updateBy(SqlSession session, int userNo, String colum, Object value) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userno", userNo);
 		map.put("colum", colum);

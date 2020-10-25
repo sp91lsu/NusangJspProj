@@ -17,6 +17,12 @@
 		<typeAlias type="com.nusang.dto.User" alias="User" />
 		<typeAlias type="com.nusang.dto.Location" alias="Location" />
 		<typeAlias type="com.nusang.dto.Post" alias="Post" />
+		<typeAlias type="com.nusang.dto.Buy_Reservation" alias="Buy_Reservation" />
+		<typeAlias type="com.nusang.dto.Payment_Market" alias="Payment_Market" />
+		<typeAlias type="com.nusang.dto.Payment_User" alias="Payment_User" />
+		<typeAlias type="com.nusang.dto.Reply" alias="Reply" />
+		<typeAlias type="com.nusang.dto.WatchList" alias="WatchList" />
+		
 	</typeAliases>
     <environments default="development">
         <environment id="development">
@@ -35,6 +41,11 @@
         <mapper resource="sqlmap/userMapper.xml" />
         <mapper resource="sqlmap/locationMapper.xml" />
         <mapper resource="sqlmap/postMapper.xml" />
+        <mapper resource="sqlmap/buy_reservationMapper.xml" />
+        <mapper resource="sqlmap/payment_marketMapper.xml" />
+        <mapper resource="sqlmap/payment_userMapper.xml" />
+        <mapper resource="sqlmap/replyMapper.xml" />
+        <mapper resource="sqlmap/watchlistMapper.xml" />
     </mappers>
 </configuration>
 

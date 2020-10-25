@@ -16,8 +16,10 @@
 		<result property="picture" column="picture" />
 		<result property="role" column="role" />
 		<association property="location" column="locationno" javaType="Location" select="selectLocation" />
+        <collection property="payment_MarketList" column="userno" javaType="java.util.ArrayList" ofType="Payment_Market" select="getPMListById"/>
 
 	</resultMap>
+
 
 
 	<select id="selectAll" resultMap="userResultMap">
@@ -57,9 +59,9 @@
        
     </select>
 
-	<insert id="insert" useGeneratedKeys="true" keyProperty="userno" parameterType="Map">
+	<insert id="insert" useGeneratedKeys="true" keyProperty="userno" parameterType="User">
 		<selectKey keyProperty="userno" resultType="int" order="AFTER">			   
-    	SELECT SEQ_NUSER_USERNO.NEXTVAL FROM DUAL
+    	SELECT SEQ_NUSER_USERNO.CURRVAL FROM DUAL
  		</selectKey>
 		INSERT INTO NUSER (userid,username,password,role,logintype,email,picture)
          VALUES (#{userid}, #{username}, #{password}, #{role},#{logintype},#{email},#{picture, jdbcType=BLOB})
@@ -74,6 +76,12 @@ ${colum} = #{value}
 WHERE
  userno = #{userno}
     </update>
+
+
+<select id="getPMListById" resultType="Payment_Market">
+    SELECT * FROM Payment_Market WHERE userno = #{userno}
+</select>
+
 
 
 </mapper>

@@ -20,7 +20,11 @@
 			<%-- 이미지 --%>
 			이미지:
 			<button name="addImg" type="button">이미지 추가</button>
-
+			<input type="hidden" name="pm_merchant_uid" id="pm_merchant_uid"/>
+			<input type="hidden" name="pm_paymenttype" id="pm_paymenttype"/>
+			<input type="hidden" name="pm_imp_uid" id="pm_imp_uid"/>
+			<input type="hidden" name="pm_paid_amount" id="pm_paid_amount"/>
+			
 			<div id="imgPreview"></div>
 			<br>
 			<%-- 글제목 --%>

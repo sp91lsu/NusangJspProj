@@ -39,7 +39,7 @@
     
      <insert id="insert" parameterType="Location" useGeneratedKeys="true" keyColumn="locationno" keyProperty="locationno">
     	<selectKey keyProperty="locationno" resultType="int" order="AFTER">			   
-    	SELECT SEQ_LOCATION_LOCATIONNO.NEXTVAL FROM DUAL
+    	SELECT SEQ_LOCATION_LOCATIONNO.CURRVAL FROM DUAL
  		</selectKey>
 		
         INSERT INTO LOCATION (name1,name2,name3,longtitude,latitude,tabletype)

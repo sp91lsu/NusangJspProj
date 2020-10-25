@@ -9,12 +9,14 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Payment_Market {
-	private int ph_marketno;
-	private String patmenttype;
-	private int state;
+	private Integer ph_marketno;
+	private String paymenttype;
+	private String state;
 	private String name;
-	private int userno;
+	private Integer userno;
 	private Date regdate;
-	private String import_uuid;
+	private String imp_uid;
 }

@@ -1,6 +1,7 @@
 package com.nusang.dto;
 
 import java.sql.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +10,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Reply {
 	private int replyno;
 	private int userno;
@@ -16,6 +19,6 @@ public class Reply {
 	private String textbody;
 	private Date regdate;
 	private int state;
-	private int child_replyno;
+	private List<Reply> child_replyList;
 
 }

@@ -21,5 +21,5 @@ public abstract class BasicBO {
 	String code = null;
 	protected ObjectMapper m = new ObjectMapper();
 	public abstract void reqAuthToken(String... code);
-	public abstract User reqUserInfo();
+	
 }

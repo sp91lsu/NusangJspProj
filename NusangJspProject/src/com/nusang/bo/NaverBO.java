@@ -69,7 +69,6 @@ public class NaverBO extends BasicBO {
 
 	}
 
-	@Override
 	public User reqUserInfo() {
 		// 사용자 정보 요청 token은 헤더에 담아서 보내야함
 		MyHttpGet httpGet = new MyHttpGet(reqUserInfoURL, EContentType.FORM);

@@ -1,6 +1,8 @@
 package com.nusang.dto;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,7 +25,10 @@ public class User {
 	private Date regdate;
 	private byte[] picture;
 	private Location location;
-
+	private ArrayList<Payment_Market> payment_MarketList;
+	
+	
+	
 	public boolean isLocationNull() {
 
 		if (location != null) {
