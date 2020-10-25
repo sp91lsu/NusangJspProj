@@ -9,12 +9,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/createPost.css">
+<link rel="stylesheet" type="text/css" href="/4_post/css/createPost.css">
 </head>
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
 	<div id="body" class="d-flex justify-content-center">
-		<form class="" name="frm" action="https://www.w3schools.com/action_page.php" method="post" onsubmit="return chkSubmit()">
+		<form class="" name="frm" action="/post/createPost" method="post" onsubmit="return chkSubmit()">
 			<%-- 이미지 --%>
 			이미지:
 			<button name="addImg" type="button">이미지 추가</button>
@@ -60,6 +60,7 @@
 		  	
 		  	<script type="text/javascript">
 			  	function changeCateName(choice) {
+			  		alert(choice);
 					$("#cateDrop").text(choice);
 					$("input[name='category']").attr('value',choice);
 				}

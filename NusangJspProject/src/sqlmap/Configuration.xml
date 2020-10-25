@@ -33,7 +33,8 @@
 
     <mappers>
         <mapper resource="sqlmap/userMapper.xml" />
-         <mapper resource="sqlmap/locationMapper.xml" />
+        <mapper resource="sqlmap/locationMapper.xml" />
+        <mapper resource="sqlmap/postMapper.xml" />
     </mappers>
 </configuration>
 

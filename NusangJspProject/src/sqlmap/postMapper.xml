@@ -61,9 +61,9 @@
 		INSERT INTO SELLPOST
 		(title,bodytext,price,category)
 		VALUES (#{title}, #{bodytext}, #{price},#{category}
-		<!-- ,#{picture, jdbcType=BLOB},#{latitude, jdbcType=FLOAT},#{longtitude, jdbcType=FLOAT} -->
 		)
 	</insert>
+		<!-- ,#{picture, jdbcType=BLOB},#{latitude, jdbcType=FLOAT},#{longtitude, jdbcType=FLOAT} -->
 
 	<update id="updateBy">
 

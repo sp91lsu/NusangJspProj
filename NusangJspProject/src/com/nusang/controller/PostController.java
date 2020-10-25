@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
+import com.nusang.action.post.CreatePost_Action;
 import com.nusang.action.post.ReadBuyer_Action;
 import com.nusang.controller.assistance.ConAsist;
 
@@ -26,20 +27,24 @@ public class PostController extends HttpServlet {
 		actionForward = ConAsist.checkLogin(request);
 		if(actionForward == null) {
 			
-		try {
-			switch (requestPage) {
-			case "readBuyer":
-				action = new ReadBuyer_Action();
-				actionForward = action.execute(request, response);
-				break;
-			case "moveMkPost":
-				actionForward = new ActionForward();
-				actionForward.setNextPath(ConAsist.URL_MKPOST);
-				break;
+			try {
+				switch (requestPage) {
+				case "readBuyer":
+					action = new ReadBuyer_Action();
+					actionForward = action.execute(request, response);
+					break;
+				case "createPost":
+					action = new CreatePost_Action();
+					actionForward = action.execute(request, response);
+					break;
+				case "moveMkPost":
+					actionForward = new ActionForward();
+					actionForward.setNextPath(ConAsist.URL_MKPOST);
+					break;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		}
 
 		actionForward.moveUrl(request, response);
