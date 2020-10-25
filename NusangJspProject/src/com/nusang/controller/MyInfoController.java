@@ -72,9 +72,9 @@ public class MyInfoController extends HttpServlet {
 					System.out.println("닉네임 체인지세상으로 이동");
 					actionForward.setNextPath(ConAsist.URL_MAIN);
 					System.out.println("보낸 닉네임값 : " + request.getParameter("nickName"));
-					User user = (User) request.getSession().getAttribute("user");
-					UserDao.getInstance().updateBy(user.getUserno(), "username", request.getParameter("nickName"));
-
+					User user = (User) request.getSession().getAttribute("user"); //유저 가져옴
+					UserDao.getInstance().updateBy(user.getUserno(), "username", request.getParameter("nickName")); 
+													//유저 고유값 가져옴    ,  바꿀 컬럼 명 ,    바꿀 컬럼 값
 					user = UserDao.getInstance().findBy("userno", user.getUserno());
 					System.out.println(user.getUsername());
 					actionForward.setActionType(EActionType.REDIRECT);

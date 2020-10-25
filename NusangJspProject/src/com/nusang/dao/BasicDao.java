@@ -35,6 +35,7 @@ public class BasicDao<T> {
 		map.put("search", search);
 		map.put("keyword", keyword);
 		T object = session.selectOne(namespace + "findBy", map);
+		session.commit();
 		session.close();
 		return object;
 	}
@@ -46,7 +47,7 @@ public class BasicDao<T> {
 		T object = session.selectOne(namespace + "findBy", map);
 		return object;
 	}
-	
+
 	public List<T> findByList(String search, String keyword) {
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -61,6 +62,13 @@ public class BasicDao<T> {
 		return session.insert(namespace + "insert", object);
 	}
 
+	protected int insert(Object object) {
+		SqlSession session = sqlSessionFactory.openSession();
+		int result = session.insert(namespace + "insert", object);
+		session.commit();
+		return result;
+	}
+
 	public void updateBy(SqlSession session, int userNo, String colum, Object value) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userno", userNo);
@@ -68,9 +76,8 @@ public class BasicDao<T> {
 		map.put("value", value);
 		session.update(namespace + "updateBy", map);
 	}
-	
-	
-	public void updateBy( int userNo, String colum, Object value) {
+
+	public void updateBy(int userNo, String colum, Object value) {
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userno", userNo);
