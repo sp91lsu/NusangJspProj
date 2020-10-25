@@ -16,6 +16,7 @@
     <typeAliases>
 		<typeAlias type="com.nusang.dto.User" alias="User" />
 		<typeAlias type="com.nusang.dto.Location" alias="Location" />
+		<typeAlias type="com.nusang.dto.Post" alias="Post" />
 	</typeAliases>
     <environments default="development">
         <environment id="development">

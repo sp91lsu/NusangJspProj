@@ -5,7 +5,42 @@
 
 <mapper namespace="postMapper">
 
-	<select id="selectAll" resultType="com.nusang.dto.Post">
+	<resultMap id="postResultMap" type="Post">
+
+		<id property="userno" column="userno" />
+		<result property="username" column="username" />
+		<result property="userid" column="userid" />
+		<result property="password" column="password" />
+		<result property="logintype" column="logintype" />
+		<result property="email" column="email" />
+		<result property="regdate" column="regdate" />
+		<result property="picture" column="picture" />
+		<result property="role" column="role" />
+		<!-- 둥지 dto 안에 알 dto -->
+			<!-- 
+			association property: 	둥지dto 자바클래스의 멤버변수중 
+										DB상에서 다른 Table을 참조할 외래키를 넣는데 
+										외래키 대신 외래키에 해당하는 dto자체를 
+										객체 형태로 넣으려 할 때 해당 알dto 타입의 객체명
+		 	column: 				둥지dto_DB Table의 외래키 = 알 dto_DB Table의 고유키
+		 	javaType: 				알dto의 자바클래스 
+		 	select: 				알dto 타입의 객체를 생성하는 쿼리문
+		 	-->
+		<association property="location" column="locationno"
+			javaType="Location" select="selectLocation" />
+
+	</resultMap>
+
+	<select id="selectLocation" resultType="Location">
+		SELECT
+		*
+		FROM
+		LOCATION
+		WHERE
+		LOCATIONNO = #{locationno}
+	</select>
+
+	<select id="selectAll" resultMap="postResultMap">
 		SELECT
 		*
 		FROM
@@ -24,10 +59,10 @@
 
 	<insert id="insert">
 		INSERT INTO SELLPOST
-		(userid,username,password,role,logintype,email,picture,latitude,longtitude)
-		VALUES (#{userid}, #{username}, #{password},
-		#{role},#{logintype},#{email},#{picture, jdbcType=BLOB},#{latitude,
-		jdbcType=FLOAT},#{longtitude, jdbcType=FLOAT})
+		(title,bodytext,price,category)
+		VALUES (#{title}, #{bodytext}, #{price},#{category}
+		<!-- ,#{picture, jdbcType=BLOB},#{latitude, jdbcType=FLOAT},#{longtitude, jdbcType=FLOAT} -->
+		)
 	</insert>
 
 	<update id="updateBy">
@@ -36,7 +71,8 @@
 		SET
 		${colum} = #{value}
 		WHERE
-		userno = #{userno}
+		userno =
+		#{userno}
 	</update>
 </mapper>
 

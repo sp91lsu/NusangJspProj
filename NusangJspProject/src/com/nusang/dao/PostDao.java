@@ -28,24 +28,16 @@ public class PostDao extends BasicDao<Post> {
 	}
 
 	public int insertPost(Post post) {
+		SqlSession session = sqlSessionFactory.openSession();
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("postno", post.getPostno());
 		map.put("title", post.getTitle());
 		map.put("bodytext", post.getBodytext());
 		map.put("price", post.getPrice());
 		map.put("category", post.getCategory());
-		return insert(map);
-	}
-	
-	
-
-	public User loginCheck(String userid, String password) {
-		SqlSession session = sqlSessionFactory.openSession();
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("userid", userid);
-		map.put("password", password);
-		User user = session.selectOne(namespace + "loginCheck", map);
+		int result = insert(session,map);
+		session.commit();
 		session.close();
-		return user;
+		return result;
 	}
+
 }

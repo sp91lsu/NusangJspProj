@@ -1,7 +1,5 @@
 package com.nusang.dto;
 
-import com.nusang.data.Location;
-
 import lombok.Builder;
 import lombok.Data;
 
@@ -21,6 +19,6 @@ public class Post {
 	private String sellstate;
 	private int viewcnt;
 	private int visible;
-	private int locationno;
+	private Location location;
 	
 }
