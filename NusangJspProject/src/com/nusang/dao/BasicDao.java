@@ -14,9 +14,10 @@ public class BasicDao<T> {
 	protected static SqlSessionFactory sqlSessionFactory = SqlSessionManager.getInstance();
 
 	protected String namespace = null;
-
-	public BasicDao(String namespace) {
+	private String uidName = null;
+	public BasicDao(String namespace,String uidName) {
 		this.namespace = namespace;
+		this.uidName = uidName;
 	}
 
 	public List<T> selectAll() {
@@ -71,7 +72,7 @@ public class BasicDao<T> {
 
 	protected void updateBy(SqlSession session, int userNo, String colum, Object value) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("userno", userNo);
+		map.put(uidName, userNo);
 		map.put("colum", colum);
 		map.put("value", value);
 		session.update(namespace + "updateBy", map);
@@ -80,7 +81,7 @@ public class BasicDao<T> {
 	public void updateBy(int userNo, String colum, Object value) {
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("userno", userNo);
+		map.put(uidName, userNo);
 		map.put("colum", colum);
 		map.put("value", value);
 		session.update(namespace + "updateBy", map);

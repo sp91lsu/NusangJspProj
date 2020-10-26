@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
+import com.nusang.action.main.MainAction;
 import com.nusang.controller.assistance.ConAsist;
 
 @WebServlet("/main/*")
@@ -26,8 +27,9 @@ public class MainController extends HttpServlet {
 		try {
 			switch (requestPage) {
 			case "index":
-				actionForward = new ActionForward();
-				actionForward.setNextPath(ConAsist.URL_MAIN);
+				action = new MainAction();
+				actionForward = action.execute(request, response);
+				
 				break;
 			case "chk":
 				actionForward = new ActionForward();

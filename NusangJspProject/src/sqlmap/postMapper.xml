@@ -48,7 +48,7 @@
 	</select>
 
 
-	<select id="findBy" resultType="com.nusang.dto.Post">
+	<select id="findBy" resultType="postMapper">
 		SELECT
 		*
 		FROM

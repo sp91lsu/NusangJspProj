@@ -26,7 +26,7 @@ public class Payment_MarketDao extends BasicDao<Payment_Market> {
 	}
 
 	private Payment_MarketDao(String namespace) {
-		super(namespace);
+		super(namespace,"ph_marketno");
 	}
 
 	

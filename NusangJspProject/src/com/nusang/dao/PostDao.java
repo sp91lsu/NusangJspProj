@@ -25,7 +25,7 @@ public class PostDao extends BasicDao<Post> {
 	}
 	
 	private PostDao(String namespace) {
-		super(namespace);
+		super(namespace,"postno");
 	}
 
 	public int insertPost(Post post) {
@@ -40,5 +40,13 @@ public class PostDao extends BasicDao<Post> {
 		session.close();
 		return result;
 	}
+	
+	
+	/*
+	 * public List<Post> findLocationPost() { SqlSession session =
+	 * sqlSessionFactory.openSession();
+	 * 
+	 * //findBy(search, keyword) }
+	 */
 
 }

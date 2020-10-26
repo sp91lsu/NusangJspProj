@@ -27,7 +27,7 @@ public class UserDao extends BasicDao<User> {
 	}
 
 	private UserDao(String namespace) {
-		super(namespace);
+		super(namespace,"userno");
 	}
 
 	public int insertUser(User user) {

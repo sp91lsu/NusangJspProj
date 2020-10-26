@@ -25,7 +25,7 @@ public class LocationDao extends BasicDao<Location> {
 	}
 
 	private LocationDao(String namespace) {
-		super(namespace);
+		super(namespace,"locationno");
 	}
 
 	
