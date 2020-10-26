@@ -22,20 +22,6 @@
         ${search} = #{keyword}
     </select>
     
-      <select id="findByLocationName"  resultType="Location">
-        SELECT
-            *
-        FROM
-            LOCATION
-        WHERE 
-        TABLETYPE = 'POST'
-        AND
-        NAME1 = #{name1}
-        AND
-        NAME1 = #{name2}
-        AND
-        NAME1 = #{name3}
-    </select>
 
 
 
@@ -48,6 +34,19 @@
         INSERT INTO LOCATION (name1,name2,name3,longtitude,latitude,tabletype)
          VALUES ( #{name1}, #{name2}, #{name3},#{longtitude},#{latitude},#{tabletype}) 
     </insert>
+    
+       <update id="update" parameterType="Location" keyColumn="locationno" >
+		
+        UPDATE LOCATION SET
+        name1 = #{name1},
+        name2= #{name2},
+        name3=#{name3},
+        longtitude=#{longtitude},
+        latitude=#{latitude},
+        tabletype=#{tabletype}
+        
+         WHERE locationno = #{locationno}
+    </update>
     
     
     <update id="updateBy"  > 

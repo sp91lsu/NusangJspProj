@@ -22,6 +22,8 @@ public class User {
 	private String role;
 	private String logintype;
 	private String email;
+	@Builder.Default
+	private int view_distance = 5;
 	private Date regdate;
 	private String picture;
 	private Location location;

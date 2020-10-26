@@ -92,7 +92,7 @@ public class KakaoBO extends BasicBO {
 		return user;
 	}
 
-	public Location reqLocation(double longtitude, double latitude) {
+	public Location reqLocation(double longtitude, double latitude) throws Exception {
 		String url = "https://dapi.kakao.com/v2/local/geo/coord2address.json?x=" + longtitude + "&y=" + latitude
 				+ "&input_coord=WGS84";
 
@@ -117,9 +117,9 @@ public class KakaoBO extends BasicBO {
 		 * location.setRegion_3(addressNode.get("region_3depth_name").asText());
 		 * location.setLatitude(latitude); location.setLongtitude(longtitude);
 		 */
-		
+
 		Location location = JsonToLocation(resNode);
-		location.setLongtitude(longtitude); 
+		location.setLongtitude(longtitude);
 		location.setLatitude(latitude);
 		return location;
 	}
@@ -150,12 +150,12 @@ public class KakaoBO extends BasicBO {
 	}
 
 	// 지번으로 검색하기
-	public Location reqLocation(String locationName) {
+	public Location reqLocation(String locationName) throws Exception {
 		JsonNode resNode = reqLocationList(locationName);
 		return JsonToLocation(resNode);
 	}
 
-	private Location JsonToLocation(JsonNode resNode) {
+	private Location JsonToLocation(JsonNode resNode) throws Exception {
 
 		ArrayNode documentsNode = m.createArrayNode();
 
@@ -163,9 +163,14 @@ public class KakaoBO extends BasicBO {
 		System.out.println("위치 정보 : " + documentsNode.toPrettyString());
 		JsonNode addressNode = documentsNode.get(0).get("address");
 		Location location = new Location();
-		location.setName1(addressNode.get("region_1depth_name").asText());
-		location.setName2(addressNode.get("region_2depth_name").asText());
-		location.setName3(addressNode.get("region_3depth_name").asText());
+
+		String[] addArr = addressNode.get("address_name").asText().split(" ");
+
+		if (addArr.length >= 3) {
+			location.setName1(addArr[0]);
+			location.setName2(addArr[1]);
+			location.setName3(addArr[2]);
+		}
 
 		if (addressNode.get("x") != null) {
 			double x = Double.parseDouble(addressNode.get("x").asText());
@@ -175,7 +180,7 @@ public class KakaoBO extends BasicBO {
 			double y = Double.parseDouble(addressNode.get("y").asText());
 			location.setLatitude(y);
 		}
-		
+
 		System.out.println("변환할 위치 : " + location.getAddress());
 		return location;
 	}

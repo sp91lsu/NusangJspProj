@@ -42,4 +42,17 @@ public class PostDao extends BasicDao<Post> {
 		return result;
 	}
 
+	public ArrayList<Post> findPostByLocation(Location userLocation,int distance) {
+		SqlSession session = sqlSessionFactory.openSession();
+		Map<String, Object> map = new HashMap<String, Object>();
+		System.out.println("lat : " + userLocation.getLatitude());
+		System.out.println("long : " + userLocation.getLongtitude());
+		map.put("latitude", userLocation.getLatitude());
+		map.put("longtitude", userLocation.getLongtitude());
+		map.put("distance", distance);
+		List<Post> postList = session.selectList(namespace + "findPostByLocation",map);
+		session.commit();
+		session.close();
+		return (ArrayList<Post>) postList;
+	}
 }

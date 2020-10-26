@@ -21,7 +21,7 @@ public class Post {
 	private String bodytext;
 	private long price;
 	private String productname;
-	private int userno;
+	private User user;
 	private String regdate;
 	private String category;
 	private String sellstate;

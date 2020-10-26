@@ -102,8 +102,7 @@ public class LoginAction implements Action {
 			user = entity;
 			if (entity.getLocation() == null) {
 				Location location = (Location) session.getAttribute("location");
-				boolean success = UserDao.getInstance().updateLocation(entity.getUserno(), location);
-
+				UserDao.getInstance().updateLocation(entity.getUserno(), location);
 				System.out.println("insertLocation");
 			}
 		}

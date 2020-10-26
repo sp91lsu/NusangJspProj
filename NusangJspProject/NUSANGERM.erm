@@ -10,9 +10,9 @@
 		<right_margin>30</right_margin>
 	</page_setting>
 	<category_index>0</category_index>
-	<zoom>0.5</zoom>
-	<x>0</x>
-	<y>0</y>
+	<zoom>0.8</zoom>
+	<x>439</x>
+	<y>1216</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2020-10-24 20:37:14</creation_date>
-			<updated_date>2020-10-26 22:15:43</updated_date>
+			<updated_date>2020-10-27 02:19:26</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -756,12 +756,28 @@
 			<args></args>
 			<char_semantics>false</char_semantics>
 			<description></description>
+			<logical_name>게시물 보기 거리계산</logical_name>
+			<physical_name>VIEW_DISTANCE</physical_name>
+			<type>decimal</type>
+		</word>
+		<word>
+			<id>37</id>
+			<length>null</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>false</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description></description>
 			<logical_name>VISIBLE</logical_name>
 			<physical_name>VISIBLE</physical_name>
 			<type>decimal</type>
 		</word>
 		<word>
-			<id>37</id>
+			<id>38</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -915,7 +931,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>37</word_id>
+					<word_id>38</word_id>
 					<id>2</id>
 					<description></description>
 					<unique_key_name>C_WATCHLISTNO</unique_key_name>
@@ -1662,7 +1678,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>36</word_id>
+					<word_id>37</word_id>
 					<id>20</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1696,7 +1712,7 @@
 				</normal_column>
 				<normal_column>
 					<id>21</id>
-					<referenced_column>46</referenced_column>
+					<referenced_column>47</referenced_column>
 					<relation>4</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -2103,7 +2119,7 @@
 					<child_cardinality>1..n</child_cardinality>
 					<parent_cardinality>1</parent_cardinality>
 					<reference_for_pk>true</reference_for_pk>
-					<name>SYS_C0012149</name>
+					<name>SYS_C0010234</name>
 					<on_delete_action>RESTRICT</on_delete_action>
 					<on_update_action>CASCADE</on_update_action>
 					<referenced_column>null</referenced_column>
@@ -2125,7 +2141,7 @@
 					<child_cardinality>1..n</child_cardinality>
 					<parent_cardinality>1</parent_cardinality>
 					<reference_for_pk>true</reference_for_pk>
-					<name>SYS_C0010234</name>
+					<name>SYS_C0012149</name>
 					<on_delete_action>RESTRICT</on_delete_action>
 					<on_update_action>CASCADE</on_update_action>
 					<referenced_column>null</referenced_column>
@@ -2241,7 +2257,7 @@
 				<normal_column>
 					<id>32</id>
 					<referenced_column>36</referenced_column>
-					<relation>10</relation>
+					<relation>9</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2341,7 +2357,7 @@
 				<normal_column>
 					<id>35</id>
 					<referenced_column>36</referenced_column>
-					<relation>9</relation>
+					<relation>10</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name>BUSINESS_PARTNER</logical_name>
@@ -2724,7 +2740,7 @@
 				</normal_column>
 				<normal_column>
 					<id>45</id>
-					<referenced_column>46</referenced_column>
+					<referenced_column>47</referenced_column>
 					<relation>11</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -2736,6 +2752,39 @@
 					<auto_increment>false</auto_increment>
 					<foreign_key>true</foreign_key>
 					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>36</word_id>
+					<id>46</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>decimal</type>
+					<constraint></constraint>
+					<default_value>5</default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
 					<primary_key>false</primary_key>
 					<unique_key>false</unique_key>
 					<character_set></character_set>
@@ -2789,7 +2838,7 @@
 			<columns>
 				<normal_column>
 					<word_id>5</word_id>
-					<id>46</id>
+					<id>47</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2822,39 +2871,6 @@
 				</normal_column>
 				<normal_column>
 					<word_id>9</word_id>
-					<id>47</id>
-					<description></description>
-					<unique_key_name></unique_key_name>
-					<logical_name></logical_name>
-					<physical_name></physical_name>
-					<type>varchar(n)</type>
-					<constraint></constraint>
-					<default_value></default_value>
-					<auto_increment>false</auto_increment>
-					<foreign_key>false</foreign_key>
-					<not_null>false</not_null>
-					<primary_key>false</primary_key>
-					<unique_key>false</unique_key>
-					<character_set></character_set>
-					<collation></collation>
-					<sequence>
-						<name></name>
-						<schema></schema>
-						<increment></increment>
-						<min_value></min_value>
-						<max_value></max_value>
-						<start></start>
-						<cache></cache>
-						<nocache>false</nocache>
-						<cycle>false</cycle>
-						<order>false</order>
-						<description></description>
-						<data_type></data_type>
-						<decimal_size>0</decimal_size>
-					</sequence>
-				</normal_column>
-				<normal_column>
-					<word_id>10</word_id>
 					<id>48</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -2887,7 +2903,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>11</word_id>
+					<word_id>10</word_id>
 					<id>49</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -2920,13 +2936,13 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>7</word_id>
+					<word_id>11</word_id>
 					<id>50</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>decimal</type>
+					<type>varchar(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -2953,7 +2969,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>4</word_id>
+					<word_id>7</word_id>
 					<id>51</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -2986,8 +3002,41 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>29</word_id>
+					<word_id>4</word_id>
 					<id>52</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>decimal</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>29</word_id>
+					<id>53</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -3027,10 +3076,10 @@
 					<name></name>
 					<columns>
 						<column>
-							<id>46</id>
+							<id>47</id>
 						</column>
 						<column>
-							<id>52</id>
+							<id>53</id>
 						</column>
 					</columns>
 				</complex_unique_key>
@@ -3085,7 +3134,7 @@
 			<columns>
 				<normal_column>
 					<word_id>14</word_id>
-					<id>53</id>
+					<id>54</id>
 					<description></description>
 					<unique_key_name>C_PH_MARKETNO</unique_key_name>
 					<logical_name></logical_name>
@@ -3118,39 +3167,6 @@
 				</normal_column>
 				<normal_column>
 					<word_id>13</word_id>
-					<id>54</id>
-					<description></description>
-					<unique_key_name></unique_key_name>
-					<logical_name></logical_name>
-					<physical_name></physical_name>
-					<type>varchar(n)</type>
-					<constraint></constraint>
-					<default_value></default_value>
-					<auto_increment>false</auto_increment>
-					<foreign_key>false</foreign_key>
-					<not_null>true</not_null>
-					<primary_key>false</primary_key>
-					<unique_key>false</unique_key>
-					<character_set></character_set>
-					<collation></collation>
-					<sequence>
-						<name></name>
-						<schema></schema>
-						<increment></increment>
-						<min_value></min_value>
-						<max_value></max_value>
-						<start></start>
-						<cache></cache>
-						<nocache>false</nocache>
-						<cycle>false</cycle>
-						<order>false</order>
-						<description></description>
-						<data_type></data_type>
-						<decimal_size>0</decimal_size>
-					</sequence>
-				</normal_column>
-				<normal_column>
-					<word_id>28</word_id>
 					<id>55</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -3183,7 +3199,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>8</word_id>
+					<word_id>28</word_id>
 					<id>56</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -3216,7 +3232,40 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+					<word_id>8</word_id>
 					<id>57</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<id>58</id>
 					<referenced_column>36</referenced_column>
 					<relation>12</relation>
 					<description></description>
@@ -3251,7 +3300,7 @@
 				</normal_column>
 				<normal_column>
 					<word_id>21</word_id>
-					<id>58</id>
+					<id>59</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -3284,7 +3333,7 @@
 				</normal_column>
 				<normal_column>
 					<word_id>3</word_id>
-					<id>59</id>
+					<id>60</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -3324,6 +3373,23 @@
 				<schema>NUSANGUSER</schema>
 			</table_properties>
 		</table>
+		<note>
+			<id>8</id>
+			<height>1110</height>
+			<width>712</width>
+				<font_name>맑은 고딕</font_name>
+				<font_size>9</font_size>
+			<x>624</x>
+			<y>1404</y>
+			<color>
+				<r>128</r>
+				<g>128</g>
+				<b>192</b>
+			</color>
+			<connections>
+			</connections>
+			<text>--거리계산 함수&#x0D;&#x0A;create or replace FUNCTION calc_distance(&#x0D;&#x0A; pLat1 NUMBER,&#x0D;&#x0A; pLon1 NUMBER,&#x0D;&#x0A; pLat2 NUMBER,&#x0D;&#x0A; pLon2 NUMBER)&#x0D;&#x0A; RETURN NUMBER&#x0D;&#x0A;IS&#x0D;&#x0A;&#x0D;&#x0A;-- r is the spherical radius of earth in Kilometers&#x0D;&#x0A;cSpherRad CONSTANT NUMBER := 6367;&#x0D;&#x0A;                                                                        -- The spherical radius of earth in miles is 3956&#x0D;&#x0A;a        NUMBER;&#x0D;&#x0A;vLat     NUMBER;&#x0D;&#x0A;vLat1Rad NUMBER;&#x0D;&#x0A;vLat2Rad NUMBER;&#x0D;&#x0A;vLon     NUMBER;&#x0D;&#x0A;vLon1Rad NUMBER;&#x0D;&#x0A;vLon2Rad NUMBER;&#x0D;&#x0A;&#x0D;&#x0A;BEGIN&#x0D;&#x0A;  /*&#x0D;&#x0A;  Most computers require the arguments of trigonometric functions to be&#x0D;&#x0A;  expressed in radians. To convert lon1, lat1 and lon2,lat2 from&#x0D;&#x0A;  degrees,minutes, seconds to radians, first convert them to decimal&#x0D;&#x0A;  degrees. To convert decimal degrees to radians, multiply the number&#x0D;&#x0A;  of degrees by pi/180 = 0.017453293 radians/degrees.&#x0D;&#x0A;  */&#x0D;&#x0A;&#x0D;&#x0A;  vLat1Rad := pLat1 * 0.017453293;&#x0D;&#x0A;  vLat2Rad := pLat2 * 0.017453293;&#x0D;&#x0A;  vLon1Rad := pLon1 * 0.017453293;&#x0D;&#x0A;  vLon2Rad := pLon2 * 0.017453293;&#x0D;&#x0A;&#x0D;&#x0A;  vLon := vLon2Rad - vLon1Rad;&#x0D;&#x0A;  vLat := vLat2Rad - vLat1Rad;&#x0D;&#x0A;&#x0D;&#x0A;  a := POWER(SIN(vLat/2),2) + COS(vLat1Rad) * COS(vLat2Rad) *&#x0D;&#x0A;  POWER(SIN(vLon/2),2);&#x0D;&#x0A;&#x0D;&#x0A;  /*&#x0D;&#x0A;  The intermediate result c is the great circle distance in radians.&#x0D;&#x0A;  Inverse trigonometric functions return results expressed in radians.&#x0D;&#x0A;  To express c in decimal degrees, multiply the number of radians by&#x0D;&#x0A;   180/pi = 57.295780 degrees/radian.&#x0D;&#x0A;  The great circle distance d will be in the same units as r.&#x0D;&#x0A;  */&#x0D;&#x0A;&#x0D;&#x0A;  RETURN ROUND(cSpherRad * 2 * ATAN2(SQRT(a), SQRT(1-a)),1);&#x0D;&#x0A;EXCEPTION&#x0D;&#x0A;  WHEN OTHERS THEN&#x0D;&#x0A;    RETURN 999;&#x0D;&#x0A;END calc_distance;&#x0D;&#x0A;</text>
+		</note>
 	</contents>
 	<column_groups>
 	</column_groups>

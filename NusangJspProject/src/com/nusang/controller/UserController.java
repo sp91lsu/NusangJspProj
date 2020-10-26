@@ -54,6 +54,7 @@ public class UserController extends HttpServlet {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			actionForward.setAsyncData(e.getMessage());
 		}
 
 		actionForward.moveUrl(request, response);

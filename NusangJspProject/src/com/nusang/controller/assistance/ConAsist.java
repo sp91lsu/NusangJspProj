@@ -10,6 +10,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nusang.action.ActionForward;
 import com.nusang.action.EActionType;
+import com.nusang.bo.KakaoBO;
+import com.nusang.dto.Location;
 import com.nusang.dto.User;
 
 //controller를 도와주는 클래스
@@ -23,6 +25,7 @@ public class ConAsist {
 	public static final String URL_SEARCH = "/5_search_location/search.jsp";
 	public static final String URL_MKPOST = "/4_post/createPost.jsp";
 	public static final String URL_PROFILE = "/4_myInfo/myInfoMain.jsp";
+
 	// 요청 마지막 경로
 	public static String getRequestName(HttpServletRequest request) {
 		String requestURI = request.getRequestURI();
@@ -55,5 +58,24 @@ public class ConAsist {
 			actionForward.setActionType(EActionType.REDIRECT);
 		}
 		return actionForward;
+	}
+
+	public static Location getLocation(HttpServletRequest request) throws Exception {
+		double longtitude = 0;
+		double latitude = 0;
+		Location location = (Location) request.getSession().getAttribute("location");
+		User user = (User) request.getSession().getAttribute("user");
+		if (user != null && !user.isLocationNull()) {
+			System.out.println("userLocation ");
+			location = user.getLocation();
+		} else if (location == null) {
+			System.out.println("sessionLocation");
+			longtitude = Float.parseFloat(request.getParameter("longitude"));
+			latitude = Float.parseFloat(request.getParameter("latitude"));
+			location = KakaoBO.getInstance().reqLocation(longtitude, latitude);
+		}
+
+		request.getSession().setAttribute("location", location);
+		return location;
 	}
 }

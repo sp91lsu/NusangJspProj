@@ -28,9 +28,9 @@
 			<button type="button" id="btnPost" onclick="location.href='/post/moveMkPost'">글쓰기</button>
 		</div>
 		
-		<c:forEach var="i" begin="0" end="5">
+		<c:forEach var="post" items="${postList}">
 			<div class="list-group mt-3">
-				<a href="#" class="list-group-item list-group-item-action active bg-dark border-dark">XX동 다이소 책상 2000원</a> 
+				<a href="#" class="list-group-item list-group-item-action active bg-dark border-dark">${post.user.username } 다이소 책상 2000원</a> 
 				<a href="#" class="list-group-item list-group-item-action"> 2000원에 급처합니다. </a>
 			</div>
 		</c:forEach>

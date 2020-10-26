@@ -27,7 +27,7 @@ public class UserDao extends BasicDao<User> {
 	}
 
 	private UserDao(String namespace) {
-		super(namespace,"userno");
+		super(namespace, "userno");
 	}
 
 	public int insertUser(User user) {
@@ -62,9 +62,14 @@ public class UserDao extends BasicDao<User> {
 	public boolean updateLocation(int userNo, Location location) {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			
+
 			location.setTabletype("user");
-			LocationDao.getInstance().insert(session, location);
+			if (location.getLocationno() == 0) {
+				LocationDao.getInstance().insert(session, location);
+			} else {
+				LocationDao.getInstance().update(session, location);
+			}
+
 			System.out.println("insert한 위치 값 : " + location.getLocationno());
 			Location locEntity = LocationDao.getInstance().findBy(session, "locationno", location.getLocationno());
 			System.out.println(locEntity.getAddress());

@@ -15,7 +15,8 @@ public class BasicDao<T> {
 
 	protected String namespace = null;
 	private String uidName = null;
-	public BasicDao(String namespace,String uidName) {
+
+	public BasicDao(String namespace, String uidName) {
 		this.namespace = namespace;
 		this.uidName = uidName;
 	}
@@ -70,12 +71,23 @@ public class BasicDao<T> {
 		return result;
 	}
 
-	protected void updateBy(SqlSession session, int userNo, String colum, Object value) {
+	protected void updateBy(SqlSession session, int primeryNo, String colum, Object value) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put(uidName, userNo);
+		map.put(uidName, primeryNo);
 		map.put("colum", colum);
 		map.put("value", value);
 		session.update(namespace + "updateBy", map);
+	}
+
+	public int update(T t) {
+		SqlSession session = sqlSessionFactory.openSession();
+		int result = session.update(namespace + "update", t);
+		session.commit();
+		return result;
+	}
+	public int update(SqlSession session,T t) {
+		int result = session.update(namespace + "update", t);
+		return result;
 	}
 
 	public void updateBy(int userNo, String colum, Object value) {

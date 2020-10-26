@@ -29,38 +29,24 @@ public class APIController extends HttpServlet {
 		ActionForward actionForward = new ActionForward();
 		String requestPage = ConAsist.getRequestName(request);
 
-		try {
-			switch (requestPage) {
-			case "kakao_locale_api":
-
-				double longtitude = 0;
-				double latitude = 0;
-				Location location = null;
-				User user = (User) request.getSession().getAttribute("user");
-				if (user != null && !user.isLocationNull()) {
-					System.out.println("userLocation ");
-					location = user.getLocation();
-				} else {
-					System.out.println("sessionLocation");
-					longtitude = Float.parseFloat(request.getParameter("longitude"));
-					latitude = Float.parseFloat(request.getParameter("latitude"));
-					location = KakaoBO.getInstance().reqLocation(longtitude, latitude);
-				}
-
-				request.getSession().setAttribute("location", location);
+		switch (requestPage) {
+		case "kakao_locale_api":
+			try {
+				Location location = ConAsist.getLocation(request);
 				String address = location.getAddress();
-				//여기서 바꿀 위치 이름 넣고 게시물 데이터요청 해야함 
+				// 여기서 바꿀 위치 이름 넣고 게시물 데이터요청 해야함
 				actionForward.setAsyncData(address);
-				break;
-
-			case "search_location":
-
-				JsonNode searchValue = KakaoBO.getInstance().reqLocationList(request.getParameter("searchValue"));
-				actionForward.setAsyncData(searchValue.toString());
-				break;
+			} catch (Exception e) {
+				actionForward.setAsyncData(e.getMessage());
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+			break;
+
+		case "search_location":
+
+			JsonNode searchValue = KakaoBO.getInstance().reqLocationList(request.getParameter("searchValue"));
+			actionForward.setAsyncData(searchValue.toString());
+			break;
 		}
 
 		actionForward.moveUrl(request, response);

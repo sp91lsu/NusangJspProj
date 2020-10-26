@@ -29,20 +29,32 @@ public class SetLocationAction implements Action {
 		if (user != null) {
 
 			String searchValue = request.getParameter("searchValue");
-			Location location = KakaoBO.getInstance().reqLocation(searchValue);
-			UserDao.getInstance().updateLocation(user.getUserno(), location);
-			user = UserDao.getInstance().findBy("userno", user.getUserno());
-			HttpSession session = request.getSession();
-			
-			session.setAttribute("user", user);
-			/*
-			 * .getAttribute("user"); 
-			 */
+			Location newLocation = KakaoBO.getInstance().reqLocation(searchValue);
 
-			Location sessionLoc = (Location) session.getAttribute("location");
-			sessionLoc = location;
+			if (newLocation.getName3() != null) {
+				if (user.getLocation() != null) {
+					int userLocationNo = user.getLocation().getLocationno();
+					newLocation.setLocationno(userLocationNo);
+				}
+
+				UserDao.getInstance().updateLocation(user.getUserno(), newLocation);
+				user = UserDao.getInstance().findBy("userno", user.getUserno());
+				HttpSession session = request.getSession();
+
+				session.setAttribute("user", user);
+				/*
+				 * .getAttribute("user");
+				 */
+
+				Location sessionLoc = (Location) session.getAttribute("location");
+				sessionLoc = newLocation;
+				actionForward.setAsyncData(ConAsist.URL_CHKLOCATION);
+			}else {
+				actionForward.setAsyncData("동 단위까지 선택해주세요");
+			}
+			
 		}
-		actionForward.setAsyncData(ConAsist.URL_CHKLOCATION);
+		
 		return actionForward;
 	}
 }

@@ -14,7 +14,6 @@
 		<result property="price" column="price" />
 		<result property="productname" column="productname" />
 		<result property="regdate" column="regdate" />
-		<result property="userno" column="userno" />
 		<result property="regdate" column="regdate" />
 		<result property="category" column="category" />
 		<result property="sellstate" column="sellstate" />
@@ -25,6 +24,7 @@
 			넣는데 외래키 대신 외래키에 해당하는 dto자체를 객체 형태로 넣으려 할 때 해당 알dto 타입의 객체명 column: 둥지dto_DB 
 			Table의 외래키 = 알 dto_DB Table의 고유키 javaType: 알dto의 자바클래스 select: 알dto 타입의 객체를 
 			생성하는 쿼리문 -->
+			<association property="user" column="userno" javaType="User" select="selectUser" />
 		<association property="location" column="locationno"
 			javaType="Location" select="selectLocation" />
 
@@ -38,6 +38,15 @@
 		LOCATION
 		WHERE
 		LOCATIONNO = #{locationno}
+	</select>
+
+	<select id="selectUser" resultMap="userMapper.userResultMap">
+		SELECT
+		*
+		FROM
+		NUSER
+		WHERE
+		USERNO = #{userno}
 	</select>
 
 	<select id="selectAll" resultMap="postResultMap">
@@ -76,5 +85,19 @@
 		userno =
 		#{userno}
 	</update>
+	
+	
+	 <select id="findPostByLocation"  resultMap="postResultMap"  statementType="CALLABLE">
+      
+      SELECT *
+			FROM sellpost  
+			WHERE 
+				locationno IN
+					(SELECT  loc.locationno FROM location loc WHERE 
+			 calc_distance( #{latitude,jdbcType=NUMERIC  , mode=IN}, #{longtitude,jdbcType=NUMERIC  , mode=IN}, loc.latitude, loc.longtitude )	 <![CDATA[<]]>  #{distance}  	
+				  	  
+				  )
+				  
+    </select>
 </mapper>
 

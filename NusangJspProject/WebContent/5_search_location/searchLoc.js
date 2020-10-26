@@ -16,13 +16,17 @@
 							if (key == 'documents') {
 
 								$.each(documents, function(key, value) {
+									
 									let
 									address = value.address;
-									$("#searchTable").append(
+									var jbSplit = address.split(' ');
+									if(jbSplit.length >= 3 )
+									{
+										$("#searchTable").append(
 											"<tbody class='searchTab'><tr><td>"
 													+ address.address_name
 													+ "</td></tr></tbody>");
-
+									}
 								});
 
 							}
@@ -34,7 +38,7 @@
 						});
 					},
 					error : function(request, status, error) {
-						alert(status);
+						alert(request + status + error);
 					}
 				});
 			});
@@ -58,12 +62,16 @@
 			$.ajax({
 				url : "/user/set_location?searchValue=" + locName,
 				success : function(data) {
-					location.href = data;
+					if (data.charAt(0) == '/') {
+						location.href = data;
+					}else{
+						alert(data);
+					}
 				}
 			})
 
 		})
-		
+
 	}
 
 })()
