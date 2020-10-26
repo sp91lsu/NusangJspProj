@@ -35,7 +35,7 @@ public class CreatePost_Action implements Action {
 		
 		post.setTitle(request.getParameter("title"));
 		post.setCategory(request.getParameter("category"));
-		post.setPrice(Long.parseLong(request.getParameter("price")));
+		post.setPrice(100);
 		post.setBodytext(request.getParameter("bodytext"));
 		int insertResult = PostDao.getInstance().insertPost(post);
 		request.setAttribute("result", insertResult);
