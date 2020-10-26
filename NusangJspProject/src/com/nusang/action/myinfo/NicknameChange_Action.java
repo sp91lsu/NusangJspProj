@@ -10,7 +10,7 @@ import com.nusang.controller.assistance.ConAsist;
 import com.nusang.dao.UserDao;
 import com.nusang.dto.User;
 
-public class Nickname_change_Action implements Action {
+public class NicknameChange_Action implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

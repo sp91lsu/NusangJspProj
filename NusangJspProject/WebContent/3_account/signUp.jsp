@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
 </head>
+
+
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
 
@@ -18,11 +20,9 @@
 				<div class="d-flex flex-row bg-secondary">
 					<input name="userid" type="text" class="form-control "
 						placeholder="" id="username">
-					<button type="button" id="idChkBtn" class="btn btn-primary" 
-						onclick="location.href='/user/id_chk?uid='+${input[name='userid']}">중복확인</button>
+					<button type="button" id="idChkBtn" class="btn btn-primary">중복확인</button>
 				</div>
 			</div>
-
 			<div class="form-group w-50 container">
 				<label for="password">패스워드</label> <input name="password"
 					type="password" class="form-control" placeholder="비밀번호 8글자 이상"
@@ -45,7 +45,8 @@
 			</div>
 
 			<div class="form-group w-50 container">
-				<button type="submit" formaction="/user/signup" id="btn-login" class="btn btn-primary">회원가입</button>
+				<button type="submit" formaction="/user/signup" id="btn-login"
+					class="btn btn-primary">회원가입</button>
 			</div>
 		</form>
 	</div>
@@ -53,3 +54,9 @@
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
 </body>
 </html>
+<script>
+	$("#idChkBtn").click(function() {
+		let username = $("#username").val();
+		location.href = "/user/id_chk?uid=" + username;
+	})
+</script>
