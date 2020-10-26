@@ -12,7 +12,7 @@ import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
 import com.nusang.action.EActionType;
 import com.nusang.action.myinfo.BuyInfo_Action;
-import com.nusang.action.myinfo.Nickname_change_Action;
+import com.nusang.action.myinfo.NicknameChange_Action;
 import com.nusang.action.myinfo.PaymentList_Action;
 import com.nusang.action.myinfo.ReservationInfo_Action;
 import com.nusang.action.myinfo.SaleList_Action;
@@ -69,7 +69,7 @@ public class MyInfoController extends HttpServlet {
 					actionForward = SL_A.execute(request, response);
 					break;
 				case "nickname_change":
-					Nickname_change_Action N_A = new Nickname_change_Action();
+					NicknameChange_Action N_A = new NicknameChange_Action();
 					actionForward = N_A.execute(request, response);
 					break;
 				}

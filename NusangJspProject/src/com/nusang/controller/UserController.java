@@ -13,6 +13,7 @@ import com.nusang.action.ActionForward;
 import com.nusang.action.EActionType;
 import com.nusang.action.account.LoginAction;
 import com.nusang.action.account.SetLocationAction;
+import com.nusang.action.user.SignUp_Action;
 import com.nusang.controller.assistance.ConAsist;
 import com.nusang.dao.UserDao;
 import com.nusang.dto.User;
@@ -45,34 +46,8 @@ public class UserController extends HttpServlet {
 				System.out.println("id중복체크 세상으로 이동");
 				break;
 			case "signup":
-				request.setCharacterEncoding("UTF-8");
-				actionForward = new ActionForward();
-				System.out.println("회원가입 세상으로 이동");
-				User signupUser = new User();
-				signupUser.setUserid(request.getParameter("userid"));
-				signupUser.setPassword(request.getParameter("password"));
-				signupUser.setUsername(request.getParameter("username"));
-				signupUser.setEmail(request.getParameter("email"));
-				signupUser.setRole("ROLE_USER");
-				signupUser.setLogintype("NORMAL");
-
-				System.out.println(signupUser.getUserid());
-				System.out.println(signupUser.getPassword());
-				System.out.println(signupUser.getUsername());
-				System.out.println(signupUser.getEmail());
-				System.out.println(signupUser.getRole());
-				System.out.println(signupUser.getLogintype());
-				
-				System.out.println("db저장된 유저 정보: " + UserDao.getInstance().selectAll());
-				
-				UserDao.getInstance().insertUser(signupUser); //유저 추가
-
-				User user = UserDao.getInstance().findBy("userid", signupUser.getUserid());
-
-				System.out.println("추가된 유저이름: " + user.getUsername());
-				actionForward.setNextPath(ConAsist.URL_LOGIN);
-
-				actionForward.setActionType(EActionType.REDIRECT);
+				SignUp_Action S_A = new SignUp_Action();
+				actionForward = S_A.execute(request, response);
 				break;
 				
 			}
