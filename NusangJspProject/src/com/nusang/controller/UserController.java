@@ -40,6 +40,10 @@ public class UserController extends HttpServlet {
 				action = new LoginAction();
 				actionForward = action.execute(request, response);
 				break;
+			case "id_chk" : 
+				request.setCharacterEncoding("UTF-8");
+				System.out.println("id중복체크 세상으로 이동");
+				break;
 			case "signup":
 				request.setCharacterEncoding("UTF-8");
 				actionForward = new ActionForward();
@@ -58,16 +62,19 @@ public class UserController extends HttpServlet {
 				System.out.println(signupUser.getEmail());
 				System.out.println(signupUser.getRole());
 				System.out.println(signupUser.getLogintype());
-				UserDao.getInstance().insertUser(signupUser);
+				
+				System.out.println("db저장된 유저 정보: " + UserDao.getInstance().selectAll());
+				
+				UserDao.getInstance().insertUser(signupUser); //유저 추가
 
 				User user = UserDao.getInstance().findBy("userid", signupUser.getUserid());
 
 				System.out.println("추가된 유저이름: " + user.getUsername());
-
 				actionForward.setNextPath(ConAsist.URL_LOGIN);
 
 				actionForward.setActionType(EActionType.REDIRECT);
 				break;
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

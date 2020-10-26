@@ -15,7 +15,7 @@ public class ActionForward {
 	private String asyncData;
 
 	public String getNextPath() {
-		System.out.println(nextPath);
+		System.out.println("nextpath: " + nextPath);
 		return nextPath;
 	}
 

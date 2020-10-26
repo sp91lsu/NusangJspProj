@@ -18,7 +18,6 @@
 			<div id="update" class="d-flex row">
 				<button type="button" class="btn btn-lg btn-primary">사진 변경</button>
 
-
 				<button type="submit" class="btn btn-secondary btn-lg"
 					style="margin-left: 10px;">닉네임
 					변경</button>

@@ -16,7 +16,7 @@
 	if (sideMenu == null) {
 		sideMenu = "profile.jsp";
 	}
-	System.out.println("위치 어디냐" + sideMenu);
+	System.out.println("sideMenu: " + sideMenu);
 %>
 
 

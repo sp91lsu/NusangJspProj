@@ -12,7 +12,7 @@
 	<category_index>0</category_index>
 	<zoom>0.5</zoom>
 	<x>0</x>
-	<y>228</y>
+	<y>0</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2020-10-24 20:37:14</creation_date>
-			<updated_date>2020-10-26 13:45:23</updated_date>
+			<updated_date>2020-10-26 17:23:55</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -426,7 +426,7 @@
 		</word>
 		<word>
 			<id>16</id>
-			<length>null</length>
+			<length>500</length>
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
@@ -438,7 +438,7 @@
 			<description></description>
 			<logical_name>PICTURE</logical_name>
 			<physical_name>PICTURE</physical_name>
-			<type>blob</type>
+			<type>varchar(n)</type>
 		</word>
 		<word>
 			<id>17</id>
@@ -1337,7 +1337,7 @@
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>blob</type>
+					<type>varchar(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -2696,7 +2696,7 @@
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>blob</type>
+					<type>varchar(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
