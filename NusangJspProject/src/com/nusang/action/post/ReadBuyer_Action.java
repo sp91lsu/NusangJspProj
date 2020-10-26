@@ -12,7 +12,9 @@ public class ReadBuyer_Action implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Post post = PostDao.getInstance().findBy("postno", request.getParameter("postno"));
+		
+		int postNo = Integer.parseInt(request.getParameter("postno"));
+		Post post = PostDao.getInstance().findBy("postno",postNo );
 		request.setAttribute("post", post);
 		ActionForward acf = new ActionForward();
 		acf.setNextPath("/4_post/readBuyer.jsp");

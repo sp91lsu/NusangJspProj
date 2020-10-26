@@ -1,3 +1,4 @@
+<%@page import="com.nusang.dto.Post"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -8,7 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="css/readBuyer.css">
+<link rel="stylesheet" type="text/css" href="/4_post/css/readBuyer.css">
 </head>
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
@@ -84,7 +85,7 @@
 					</div>
 					<div id="profile_right">
 						<div>
-							<h5 id="profile_name">판매자</h5>
+							<h5 id="profile_name">userno: ${post.userno}</h5>
 						</div>
 						<div>
 							<h6 id="profile_addr">주소</h6>
@@ -97,12 +98,12 @@
 			<div id="Section-post">
 				<h4 id="post_title">${post.title}</h4>
 				<div id="post_cate-time" class="d-flex">
-					<h6 id="post_category">카테고리</h6>
+					<h6 id="post_category">${post.category}</h6>
 					<h6>·</h6>
 					<h6 id="post_time">시간정보</h6>
 				</div>
-				<h5 id="post_price">000원</h5>
-				<p id="post_writing">글글글 글글글 글글글 </p>
+				<h5 id="post_price">${post.price}원</h5>
+				<p id="post_writing">${post.bodytext}</p>
 				<div id="post_co&in&vi" class="d-flex">
 					<h8 id="post_comment">댓글 [cnt]</h8>
 					<h8>·</h8>

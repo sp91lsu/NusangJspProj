@@ -29,5 +29,5 @@ public class Post {
 	private int visible;
 	private Location location;
 	private ArrayList<Buy_Reservation> buy_ReservationList;
-	
+	private ArrayList<Reply> replyList;
 }
