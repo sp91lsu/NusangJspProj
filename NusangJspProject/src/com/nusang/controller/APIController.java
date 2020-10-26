@@ -35,19 +35,21 @@ public class APIController extends HttpServlet {
 
 				double longtitude = 0;
 				double latitude = 0;
+				Location location = null;
 				User user = (User) request.getSession().getAttribute("user");
 				if (user != null && !user.isLocationNull()) {
 					System.out.println("userLocation ");
-					longtitude = user.getLocation().getLongtitude();
-					latitude = user.getLocation().getLatitude();
+					location = user.getLocation();
 				} else {
 					System.out.println("sessionLocation");
 					longtitude = Float.parseFloat(request.getParameter("longitude"));
 					latitude = Float.parseFloat(request.getParameter("latitude"));
+					location = KakaoBO.getInstance().reqLocation(longtitude, latitude);
 				}
-				Location location = KakaoBO.getInstance().reqLocation(longtitude, latitude);
+
 				request.getSession().setAttribute("location", location);
 				String address = location.getAddress();
+				//여기서 바꿀 위치 이름 넣고 게시물 데이터요청 해야함 
 				actionForward.setAsyncData(address);
 				break;
 

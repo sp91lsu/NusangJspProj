@@ -15,7 +15,8 @@ import com.nusang.dto.User;
 //controller를 도와주는 클래스
 public class ConAsist {
 
-	public static final String URL_MAIN = "/1_main/index.jsp";
+	public static final String URL_CHKLOCATION = "/1_main/index.jsp";
+	public static final String URL_MAIN = "/1_main/main.jsp";
 	public static final String URL_LOGIN = "/3_account/login.jsp";
 	public static final String URL_MYINFOMAIN = "/4_myInfo/myInfoMain.jsp";
 	public static final String URL_SEARCH = "/5_search_location/search.jsp";

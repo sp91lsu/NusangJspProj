@@ -12,8 +12,8 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light row ">
-	<a class="navbar-brand col-4" style="box-sizing: border-box; margin: 0;" href="/index">아이콘</a> 
-	<a class="navbar-brand col-4 text-center" style="box-sizing: border-box; margin: 0;" href="/index">너근마켓</a>
+	<a class="navbar-brand col-4" style="box-sizing: border-box; margin: 0;" href="/main/index">아이콘</a> 
+	<a class="navbar-brand col-4 text-center" style="box-sizing: border-box; margin: 0;" href="/main/index">너근마켓</a>
 	<div class="navbar-brand col-4 text-right " style="box-sizing: border-box; margin: 0;" >
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>

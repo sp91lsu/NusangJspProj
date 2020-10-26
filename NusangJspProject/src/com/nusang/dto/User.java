@@ -23,7 +23,7 @@ public class User {
 	private String logintype;
 	private String email;
 	private Date regdate;
-	private byte[] picture;
+	private String picture;
 	private Location location;
 	private ArrayList<Payment_Market> payment_MarketList;
 	private ArrayList<Payment_User> payment_UserList;

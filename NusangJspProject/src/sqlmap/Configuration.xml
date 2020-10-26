@@ -11,7 +11,7 @@
         <setting name="defaultExecutorType" value="REUSE" />
           <setting name="autoMappingUnknownColumnBehavior" value="WARNING"/>
            <setting name="autoMappingBehavior" value="FULL"/>
-          
+        <setting name="jdbcTypeForNull" value="NULL" />
     </settings>
     <typeAliases>
 		<typeAlias type="com.nusang.dto.Buy_Reservation" alias="Buy_Reservation" />

@@ -10,12 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
-import com.nusang.action.main.MainAction;
-import com.nusang.action.post.CreatePost_Action;
-import com.nusang.action.post.ReadBuyer_Action;
 import com.nusang.controller.assistance.ConAsist;
 
-@WebServlet("/index/*")
+@WebServlet("/main/*")
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -29,8 +26,13 @@ public class MainController extends HttpServlet {
 		try {
 			switch (requestPage) {
 			case "index":
-				action = new MainAction();
-				action.execute(request, response);
+				actionForward = new ActionForward();
+				actionForward.setNextPath(ConAsist.URL_MAIN);
+				break;
+			case "chk":
+				actionForward = new ActionForward();
+				actionForward.setNextPath(ConAsist.URL_CHKLOCATION);
+				break;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

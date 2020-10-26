@@ -67,7 +67,7 @@
     	SELECT SEQ_NUSER_USERNO.CURRVAL FROM DUAL
  		</selectKey>
 		INSERT INTO NUSER (userid,username,password,role,logintype,email,picture)
-         VALUES (#{userid}, #{username}, #{password}, #{role},#{logintype},#{email},#{picture, jdbcType=BLOB})
+         VALUES (#{userid}, #{username}, #{password}, #{role},#{logintype},#{email},#{picture})
 	</insert>
 
 
