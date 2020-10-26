@@ -1,0 +1,47 @@
+package com.nusang.controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.nusang.action.Action;
+import com.nusang.action.ActionForward;
+import com.nusang.action.main.MainAction;
+import com.nusang.action.post.CreatePost_Action;
+import com.nusang.action.post.ReadBuyer_Action;
+import com.nusang.controller.assistance.ConAsist;
+
+@WebServlet("/index/*")
+public class MainController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		Action action = null;
+		ActionForward actionForward = null;
+		String requestPage = ConAsist.getRequestName(request);
+
+		try {
+			switch (requestPage) {
+			case "index":
+				action = new MainAction();
+				action.execute(request, response);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		actionForward.moveUrl(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}
