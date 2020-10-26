@@ -70,7 +70,7 @@ public class MyInfoController extends HttpServlet {
 				case "nickname_change":
 					actionForward = new ActionForward();
 					System.out.println("닉네임 체인지세상으로 이동");
-					actionForward.setNextPath(ConAsist.URL_MAIN);
+					actionForward.setNextPath(ConAsist.URL_PROFILE);
 					System.out.println("보낸 닉네임값 : " + request.getParameter("nickName"));
 					User user = (User) request.getSession().getAttribute("user"); //유저 가져옴
 					UserDao.getInstance().updateBy(user.getUserno(), "username", request.getParameter("nickName")); 
