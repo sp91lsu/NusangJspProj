@@ -23,9 +23,9 @@ public class PostDao extends BasicDao<Post> {
 
 		return instance;
 	}
-	
+
 	private PostDao(String namespace) {
-		super(namespace,"postno");
+		super(namespace, "postno");
 	}
 
 	public int insertPost(Post post) {
@@ -35,18 +35,17 @@ public class PostDao extends BasicDao<Post> {
 		map.put("bodytext", post.getBodytext());
 		map.put("price", post.getPrice());
 		map.put("category", post.getCategory());
-		int result = insert(session,map);
+		int result = insert(session, map);
 		session.commit();
 		session.close();
 		return result;
 	}
-	
-	
-	/*
-	 * public List<Post> findLocationPost() { SqlSession session =
-	 * sqlSessionFactory.openSession();
-	 * 
-	 * //findBy(search, keyword) }
-	 */
+
+	public List<Post> findLocationPost() {
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		
+		return null;
+	}
 
 }
