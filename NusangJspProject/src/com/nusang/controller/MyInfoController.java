@@ -12,6 +12,7 @@ import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
 import com.nusang.action.EActionType;
 import com.nusang.action.myinfo.BuyInfo_Action;
+import com.nusang.action.myinfo.Nickname_change_Action;
 import com.nusang.action.myinfo.PaymentList_Action;
 import com.nusang.action.myinfo.ReservationInfo_Action;
 import com.nusang.action.myinfo.SaleList_Action;
@@ -68,18 +69,8 @@ public class MyInfoController extends HttpServlet {
 					actionForward = SL_A.execute(request, response);
 					break;
 				case "nickname_change":
-					actionForward = new ActionForward();
-					System.out.println("닉네임 체인지세상으로 이동");
-					actionForward.setNextPath(ConAsist.URL_PROFILE);
-					System.out.println("보낸 닉네임값 : " + request.getParameter("nickName"));
-					User user = (User) request.getSession().getAttribute("user"); //유저 가져옴
-					UserDao.getInstance().updateBy(user.getUserno(), "username", request.getParameter("nickName")); 
-													//유저 고유값 가져옴    ,  바꿀 컬럼 명 ,    바꿀 컬럼 값
-					user = UserDao.getInstance().findBy("userno", user.getUserno());
-					System.out.println(user.getUsername());
-					actionForward.setActionType(EActionType.REDIRECT);
-
-					request.getSession().setAttribute("user", user);
+					Nickname_change_Action N_A = new Nickname_change_Action();
+					actionForward = N_A.execute(request, response);
 					break;
 				}
 			} catch (Exception e) {

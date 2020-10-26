@@ -40,6 +40,10 @@ public class UserController extends HttpServlet {
 				action = new LoginAction();
 				actionForward = action.execute(request, response);
 				break;
+			case "id_chk" : 
+				request.setCharacterEncoding("UTF-8");
+				System.out.println("id중복체크 세상으로 이동");
+				break;
 			case "signup":
 				request.setCharacterEncoding("UTF-8");
 				actionForward = new ActionForward();
@@ -70,9 +74,6 @@ public class UserController extends HttpServlet {
 
 				actionForward.setActionType(EActionType.REDIRECT);
 				break;
-			case "idchk" : 
-				request.setCharacterEncoding("UTF-8");
-				System.out.println("id중복체크 세상으로 이동");
 				
 			}
 		} catch (Exception e) {

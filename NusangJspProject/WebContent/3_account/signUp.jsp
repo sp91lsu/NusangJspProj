@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,8 +18,8 @@
 				<div class="d-flex flex-row bg-secondary">
 					<input name="userid" type="text" class="form-control "
 						placeholder="" id="username">
-					<button type = "submit" formaction="" id="idChkBtn" class="btn btn-primary" 
-						>중복확인</button>
+					<button type="button" id="idChkBtn" class="btn btn-primary" 
+						onclick="location.href='/user/id_chk?uid='+${input[name='userid']}">중복확인</button>
 				</div>
 			</div>
 
