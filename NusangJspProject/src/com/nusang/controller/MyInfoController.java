@@ -12,6 +12,7 @@ import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
 import com.nusang.action.EActionType;
 import com.nusang.action.myinfo.BuyInfo_Action;
+import com.nusang.action.myinfo.ImageChange_Action;
 import com.nusang.action.myinfo.NicknameChange_Action;
 import com.nusang.action.myinfo.PaymentList_Action;
 import com.nusang.action.myinfo.ReservationInfo_Action;
@@ -71,6 +72,11 @@ public class MyInfoController extends HttpServlet {
 				case "nickname_change":
 					NicknameChange_Action N_A = new NicknameChange_Action();
 					actionForward = N_A.execute(request, response);
+					break;
+				
+				case "image_change":
+					ImageChange_Action C_A = new ImageChange_Action();
+					actionForward = C_A.execute(request, response);
 					break;
 				}
 			} catch (Exception e) {
