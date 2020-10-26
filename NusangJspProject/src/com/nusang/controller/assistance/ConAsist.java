@@ -17,6 +17,7 @@ public class ConAsist {
 
 	public static final String URL_CHKLOCATION = "/1_main/index.jsp";
 	public static final String URL_MAIN = "/1_main/main.jsp";
+	public static final String URL_MAIN2 = "/1_main/main2.jsp";
 	public static final String URL_LOGIN = "/3_account/login.jsp";
 	public static final String URL_MYINFOMAIN = "/4_myInfo/myInfoMain.jsp";
 	public static final String URL_SEARCH = "/5_search_location/search.jsp";
