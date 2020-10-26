@@ -8,7 +8,6 @@
 <title>회원가입</title>
 </head>
 
-
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
 
@@ -57,6 +56,11 @@
 <script>
 	$("#idChkBtn").click(function() {
 		let username = $("#username").val();
-		location.href = "/user/id_chk?uid=" + username;
+		$.ajax({
+			url : "/user/idChk?uid=" + username,
+			success : function(data) {
+				alert(data);
+			}
+		})
 	})
 </script>

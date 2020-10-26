@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
 import com.nusang.action.EActionType;
+import com.nusang.action.account.IdChk_Action;
 import com.nusang.action.account.LoginAction;
 import com.nusang.action.account.SetLocationAction;
 import com.nusang.action.user.SignUp_Action;
@@ -41,9 +42,9 @@ public class UserController extends HttpServlet {
 				action = new LoginAction();
 				actionForward = action.execute(request, response);
 				break;
-			case "id_chk" : 
-				request.setCharacterEncoding("UTF-8");
-				System.out.println("id중복체크 세상으로 이동");
+			case "idChk" :
+				IdChk_Action I_A = new IdChk_Action();
+				actionForward = I_A.execute(request, response);				
 				break;
 			case "signup":
 				SignUp_Action S_A = new SignUp_Action();

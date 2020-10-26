@@ -40,6 +40,7 @@ public class ActionForward {
 			break;
 
 		case ASYNC:
+			response.setCharacterEncoding("UTF-8");
 			response.getWriter().write(getAsyncData());
 			break;
 		}
