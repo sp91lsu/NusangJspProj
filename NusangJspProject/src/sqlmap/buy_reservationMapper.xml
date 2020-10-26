@@ -6,19 +6,18 @@
 <mapper namespace="buy_reservationMapper">
 
 	
-	<resultMap id="payment_userResultMap" type="Payment_User">
+	<resultMap id="buy_reservationMap" type="Buy_Reservation">
 	
-	 <id  property="ph_userno"  column="ph_userno"/>
-	<result property="productname" column="productname"/>
-	<result property="price" column="price"/>
-	<result property="sellstate" column="sellstate"/>
+	<id property="reserno" column="reserno"/>
+	<result property="reser_price" column="reser_price"/>
+	<result property="state" column="state"/>
 	<result property="regdate" column="regdate"/>
-	<association property="user" column="userno" javaType="User"   select="selectUser"/>						
+	<association property="sellpost" column="sellpostno" javaType="Post"   select="selectPost"/>						
 	<association property="user" column="userno" javaType="User"   select="selectUser"/>						
 	</resultMap>
 	
 	
-	<select id="selectUser"  resultType="User">
+	<select id="selectUser"  resultMap="userMapper.userResultMap">
         SELECT
             *
         FROM
@@ -26,37 +25,23 @@
             WHERE
             USERNO = #{user}
     </select>
+    
+    <select id="selectPost"  resultMap="postMapper.postResultMap">
+        SELECT
+            *
+        FROM
+            SELLPOST
+            WHERE
+            POSTNO = #{sellpost}
+    </select>
+    
 	
-      <select id="selectAll" resultMap="payment_userResultMap">
-        SELECT
-            *
-        FROM
-            Payment_User
-    </select>
      
-       <select id="findBy" resultMap="payment_userResultMap">
-        SELECT
-            *
-        FROM
-            Payment_User
-        WHERE 
-        ${search} = #{keyword}
-    </select>
     
      <insert id="insert" useGeneratedKeys="true"  keyProperty="userno" parameterType="Map" > 
         INSERT INTO Payment_User (userid,username,password,role,logintype,email,picture)
          VALUES (#{userid}, #{username}, #{password}, #{role},#{logintype},#{email},#{picture, jdbcType=BLOB}) 
     </insert>
-    
-    
-    <update id="updateBy"  > 
-         
-         UPDATE Payment_User
-SET 
-${colum} = #{value}
-WHERE
- userno = #{userno}
-    </update>
     
     
     

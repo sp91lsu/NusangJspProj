@@ -26,8 +26,8 @@ public class User {
 	private byte[] picture;
 	private Location location;
 	private ArrayList<Payment_Market> payment_MarketList;
-	
-	
+	private ArrayList<Payment_User> payment_UserList;
+	private ArrayList<Buy_Reservation> buy_ReservationList;
 	
 	public boolean isLocationNull() {
 

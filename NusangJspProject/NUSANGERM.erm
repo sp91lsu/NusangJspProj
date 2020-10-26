@@ -11,8 +11,8 @@
 	</page_setting>
 	<category_index>0</category_index>
 	<zoom>0.5</zoom>
-	<x>143</x>
-	<y>34</y>
+	<x>0</x>
+	<y>228</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2020-10-24 20:37:14</creation_date>
-			<updated_date>2020-10-26 03:19:21</updated_date>
+			<updated_date>2020-10-26 13:45:23</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -566,7 +566,7 @@
 			<description></description>
 			<logical_name>RESER_PRICE</logical_name>
 			<physical_name>RESER_PRICE</physical_name>
-			<type>long</type>
+			<type>decimal</type>
 		</word>
 		<word>
 			<id>25</id>
@@ -1097,7 +1097,7 @@
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>long</type>
+					<type>decimal</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -2771,8 +2771,8 @@
 			<width>261</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>1560</x>
-			<y>48</y>
+			<x>1632</x>
+			<y>24</y>
 			<color>
 				<r>128</r>
 				<g>128</g>

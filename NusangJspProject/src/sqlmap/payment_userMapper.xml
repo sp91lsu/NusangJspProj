@@ -3,61 +3,43 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
-<mapper namespace="payment_userMapper">
+<mapper namespace="payment_UserMapper">
 
 	
-	<resultMap id="payment_userResultMap" type="Payment_User">
 	
-	 <id  property="ph_userno"  column="ph_userno"/>
-	<result property="productname" column="productname"/>
-	<result property="price" column="price"/>
-	<result property="sellstate" column="sellstate"/>
-	<result property="regdate" column="regdate"/>
-	<association property="user" column="userno" javaType="User"   select="selectUser"/>						
-	<association property="user" column="userno" javaType="User"   select="selectUser"/>						
-	</resultMap>
-	
-	
-	<select id="selectUser"  resultType="User">
+      <select id="selectAll" resultType="Payment_User">
         SELECT
             *
         FROM
-            NUSER
-            WHERE
-            USERNO = #{user}
-    </select>
-	
-      <select id="selectAll" resultMap="payment_userResultMap">
-        SELECT
-            *
-        FROM
-            Payment_User
+            PAYMENT_USER
     </select>
      
-       <select id="findBy" resultMap="payment_userResultMap">
+       <select id="findBy" resultType="Payment_User">
         SELECT
             *
         FROM
-            Payment_User
+            PAYMENT_USER
         WHERE 
         ${search} = #{keyword}
     </select>
     
-     <insert id="insert" useGeneratedKeys="true"  keyProperty="userno" parameterType="Map" > 
-        INSERT INTO Payment_User (userid,username,password,role,logintype,email,picture)
-         VALUES (#{userid}, #{username}, #{password}, #{role},#{logintype},#{email},#{picture, jdbcType=BLOB}) 
+     <insert id="insert" useGeneratedKeys="true"  keyProperty="ph_userno" parameterType="Payment_User" > 
+       <selectKey keyProperty="ph_userno" resultType="int" order="AFTER">			   
+    	SELECT SEQ_PAYMENT_USER_PH_USERNO.CURRVAL FROM DUAL
+ 		</selectKey>
+        INSERT INTO PAYMENT_USER (productname,price,business_partner,sellstate,userno)
+         VALUES (#{productname}, #{price}, #{business_partner}, #{sellstate},#{userno}) 
     </insert>
     
     
     <update id="updateBy"  > 
          
-         UPDATE Payment_User
+         UPDATE PAYMENT_USER
 SET 
 ${colum} = #{value}
 WHERE
  userno = #{userno}
     </update>
-    
     
     
 </mapper>

@@ -1,5 +1,7 @@
 package com.nusang.dto;
 
+import java.util.ArrayList;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,5 +28,6 @@ public class Post {
 	private int viewcnt;
 	private int visible;
 	private Location location;
+	private ArrayList<Buy_Reservation> buy_ReservationList;
 	
 }
