@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.nusang.dto.Location;
 import com.nusang.dto.Post;
 import com.nusang.dto.User;
 
@@ -39,13 +40,6 @@ public class PostDao extends BasicDao<Post> {
 		session.commit();
 		session.close();
 		return result;
-	}
-
-	public List<Post> findLocationPost() {
-		SqlSession session = sqlSessionFactory.openSession();
-		
-		
-		return null;
 	}
 
 }

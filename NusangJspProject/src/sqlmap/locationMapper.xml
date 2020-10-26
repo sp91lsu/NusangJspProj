@@ -5,17 +5,6 @@
  
 <mapper namespace="locationMapper">
      
-     <resultMap id="locationResultMap" type="Location">
-	
-	 <id  property="locationno"  column="locationno"/>
-	<result property="name1" column="name1"/>
-	<result property="name2" column="name2"/>
-	<result property="name3" column="name3"/>
-	<result property="longtitude" column="longtitude"/>
-	<result property="latitude" column="latitude"/>
-	<result property="tabletype" column="tabletype"/>
-	</resultMap>
-     
       <select id="selectAll" resultType="Location">
         SELECT
             *
@@ -33,6 +22,20 @@
         ${search} = #{keyword}
     </select>
     
+      <select id="findByLocationName"  resultType="Location">
+        SELECT
+            *
+        FROM
+            LOCATION
+        WHERE 
+        TABLETYPE = 'POST'
+        AND
+        NAME1 = #{name1}
+        AND
+        NAME1 = #{name2}
+        AND
+        NAME1 = #{name3}
+    </select>
 
 
 
