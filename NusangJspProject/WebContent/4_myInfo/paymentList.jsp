@@ -1,11 +1,16 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.nusang.dto.Payment_Market"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="com.nusang.dao.UserDao"%>
+<%@page import="com.nusang.dto.User"%>
+<%@page import="lombok.val"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+
 <div class="container">
 	<h2>결제내역</h2>
-	<br>
-	<br>
-	<br>
+	<br> <br> <br>
 
 	<table class="table">
 		<thead class="thead-dark">
@@ -15,22 +20,15 @@
 				<th scope="col">날짜</th>
 			</tr>
 		</thead>
+		
 		<tbody>
-			<tr>
-				<th scope="row">1</th>
-				<td>1000</td>
-				<td>2020-01-11</td>
-			</tr>
-			<tr>
-				<th scope="row">2</th>
-				<td>2000</td>
-				<td>2020-06-28</td>
-			</tr>
-			<tr>
-				<th scope="row">3</th>
-				<td>3000</td>
-				<td>2020-12-25</td>
-			</tr>
+			<c:forEach var="payment" items="${user.payment_MarketList}">
+				<tr>
+					<th scope="row">${payment.paymenttype}</th>
+					<td>${payment.name}</td>
+					<td>${payment.regdate}</td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 

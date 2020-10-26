@@ -13,10 +13,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Payment_Market {
 	private Integer ph_marketno;
-	private String paymenttype;
-	private String state;
-	private String name;
+	private String paymenttype;//카카오,네이버,카드
+	private String state;//결제 환불
+	private String name;//판매 or 등록
 	private Integer userno;
-	private Date regdate;
-	private String imp_uid;
+	private Date regdate;//날짜
+	private String imp_uid;//등록 아이디. 제일 앞에 띄우기
 }

@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2020-10-24 20:37:14</creation_date>
-			<updated_date>2020-10-26 20:00:59</updated_date>
+			<updated_date>2020-10-26 22:15:43</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -2103,7 +2103,7 @@
 					<child_cardinality>1..n</child_cardinality>
 					<parent_cardinality>1</parent_cardinality>
 					<reference_for_pk>true</reference_for_pk>
-					<name>SYS_C0010234</name>
+					<name>SYS_C0012149</name>
 					<on_delete_action>RESTRICT</on_delete_action>
 					<on_update_action>CASCADE</on_update_action>
 					<referenced_column>null</referenced_column>
@@ -2125,7 +2125,7 @@
 					<child_cardinality>1..n</child_cardinality>
 					<parent_cardinality>1</parent_cardinality>
 					<reference_for_pk>true</reference_for_pk>
-					<name>SYS_C0012149</name>
+					<name>SYS_C0010234</name>
 					<on_delete_action>RESTRICT</on_delete_action>
 					<on_update_action>CASCADE</on_update_action>
 					<referenced_column>null</referenced_column>
@@ -2241,7 +2241,7 @@
 				<normal_column>
 					<id>32</id>
 					<referenced_column>36</referenced_column>
-					<relation>9</relation>
+					<relation>10</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2341,7 +2341,7 @@
 				<normal_column>
 					<id>35</id>
 					<referenced_column>36</referenced_column>
-					<relation>10</relation>
+					<relation>9</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name>BUSINESS_PARTNER</logical_name>
