@@ -22,6 +22,7 @@ public class SignUp_Action implements Action {
 		signupUser.setUserid(request.getParameter("userid"));
 		signupUser.setPassword(request.getParameter("password"));
 		signupUser.setUsername(request.getParameter("username"));
+		signupUser.setNickname(request.getParameter("username"));
 		signupUser.setEmail(request.getParameter("email"));
 		signupUser.setRole("ROLE_USER");
 		signupUser.setLogintype("NORMAL");

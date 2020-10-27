@@ -15,6 +15,7 @@
 		<result property="regdate" column="regdate" />
 		<result property="picture" column="picture" />
 		<result property="role" column="role" />
+		<result property="nickname" column="nickname" />
 		<result property="view_distance" column="view_distance" />
 		<association property="location" column="locationno" javaType="Location" select="selectLocation" />
         <collection property="payment_MarketList" column="userno" javaType="java.util.ArrayList" ofType="Payment_Market" select="getPMListById"/>
@@ -67,8 +68,8 @@
 		<selectKey keyProperty="userno" resultType="int" order="AFTER">			   
     	SELECT SEQ_NUSER_USERNO.CURRVAL FROM DUAL
  		</selectKey>
-		INSERT INTO NUSER (userid,username,password,role,logintype,email,picture)
-         VALUES (#{userid}, #{username}, #{password}, #{role},#{logintype},#{email},#{picture})
+		INSERT INTO NUSER (userid,username,password,role,logintype,email,picture,nickname)
+         VALUES (#{userid}, #{username}, #{password}, #{role},#{logintype},#{email},#{picture},#{nickname})
 	</insert>
 
 

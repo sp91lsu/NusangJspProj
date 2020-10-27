@@ -88,7 +88,7 @@ public class KakaoBO extends BasicBO {
 		String userId = "kakao_" + id;
 		String name = profileNode.get("nickname").asText();
 		User user = User.builder().userid(userId).username(name).password(NData.security).password(NData.security)
-				.email(email).logintype("KAKAO").build();
+				.email(email).logintype("KAKAO").nickname(name).build();
 		return user;
 	}
 
