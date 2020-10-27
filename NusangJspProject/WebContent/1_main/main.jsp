@@ -31,15 +31,21 @@
 		
 		<div id="postListSection" class="d-flex flex-wrap align-content-start justify-content-center">
 			<c:forEach var="post" items="${postList}">
-				<div class="postCard" >
-					<img alt="" src="/img/postImg_default.png">
-					<span>${post.title }</span>
-					<span>${post.price }</span>
-					<span>${post.user.location.name1} ${post.user.location.name2} ${post.user.location.name3}</span>
-					<
-					<span>${post.replyList }</span>
-					<button onclick="location.href='/post/readBuyer?postno=${post.postno}'"> 글보기</button>
-					
+				<div id="postCard">
+					<div class="card" style='width:100%;'>
+						<img class="card-img-top" alt="default image" src="/img/postImg_default.png">
+						<div class="card-body">
+							<h4 id="card_title">${post.title }</h4>
+							<h5 id="card_price">${post.price }원</h5>
+							<h6 id="card_addr">${post.user.location.name1} ${post.user.location.name2} ${post.user.location.name3}</h6>
+							<h8 id="post_comment">댓글 [cnt]</h8>
+							<h8>·</h8>
+							<h8 id="post_interest">관심 [cnt]</h8>
+							<h8>·</h8>
+							<h8 id="post_view">조회 [cnt]</h8>
+							<button id="card_" class="btn btn-primary" onclick="location.href='/post/readBuyer?postno=${post.postno}'"> 글보기</button>
+						</div>
+					</div>
 				</div>
 			</c:forEach>
 		</div>
