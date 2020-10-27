@@ -30,8 +30,8 @@
 		
 		<c:forEach var="post" items="${postList}">
 			<div class="list-group mt-3">
-				<a href="#" class="list-group-item list-group-item-action active bg-dark border-dark">${post.user.username } 다이소 책상 2000원</a> 
-				<a href="#" class="list-group-item list-group-item-action"> 2000원에 급처합니다. </a>
+				<a href="#" class="list-group-item list-group-item-action active bg-dark border-dark">${post.location.name3 } ${post.price }원 ${post.productname }    ${post.user.username } </a> 
+				<a href="#" class="list-group-item list-group-item-action"> ${post.title } </a>
 			</div>
 		</c:forEach>
 	</div>
