@@ -1,61 +1,102 @@
 package com.nusang.bo;
 
+import java.util.Date;
 import java.util.Properties;
+
+import javax.activation.CommandMap;
+import javax.activation.MailcapCommandMap;
+import javax.mail.Authenticator;
 import javax.mail.Message;
-import javax.mail.MessagingException;
+import javax.mail.Message.RecipientType;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.mail.internet.MimeUtility;
 
 public class Mail {
 
-	static final String FROM = "tmdghks7836@naver.com";
-	static final String FROMNAME = "지오서비스";
-	static final String TO = "tmdghks7836@naver.com";
-	static final String SMTP_USERNAME = "tmdghks7836";
-	static final String SMTP_PASSWORD = "vkfl4521687!";
+	/**
+	 * SendMail
+	 */
+	public static void sendMail(String title, String value) {
+		// 메일 인코딩
+		final String bodyEncoding = "UTF-8"; // 콘텐츠 인코딩
 
-	static final String HOST = "smtp.naver.com";
-	static final int PORT = 587;
+		String subject = title;
+		String fromEmail = "tmdghks0021@gmail.com";
+		String fromUsername = "SYSTEM MANAGER";
+		String toEmail = "pppsh720@gmail.com"; // 콤마(,)로 여러개 나열
 
-	static final String SUBJECT = "메일 제목";
+		final String username = "tmdghks0021";
+		final String password = "gftzvjvwtziwnrnx";
 
-	static final String BODY = String.join(System.getProperty("line.separator"), "<h1>메일 내용</h1>",
-			"<p>이 메일은 아름다운 사람이 보낸 아름다운 메일입니다!</p>.");
+		// 메일에 출력할 텍스트
+		StringBuffer sb = new StringBuffer();
+		sb.append("<h3>안녕하세요</h3>\n");
+		sb.append("<h4>개발하는 도치입니다.</h4>\n");
+		String html = sb.toString();
 
-	public void sendMail() {
+		// 메일 옵션 설정
+		Properties props = new Properties();
+		props.put("mail.transport.protocol", "smtp");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "465");
+		props.put("mail.smtp.auth", "true");
 
-		Properties prop = new Properties();
-		prop.put("mail.smtp.host", "smtp.naver.com");
-		prop.put("mail.smtp.port", PORT);
-		prop.put("mail.smtp.auth", "true");
-		prop.put("mail.smtp.ssl.enable", "true");
-		prop.put("mail.smtp.ssl.trust", "smtp.naver.com");
-		Session session = Session.getDefaultInstance(prop);
-		MimeMessage msg = new MimeMessage(session);
-		Transport transport = null;
+		props.put("mail.smtp.quitwait", "false");
+		props.put("mail.smtp.socketFactory.port", "465");
+		props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		props.put("mail.smtp.socketFactory.fallback", "false");
+
 		try {
-			msg.setFrom(new InternetAddress(FROM, FROMNAME));
-			msg.setRecipient(Message.RecipientType.TO, new InternetAddress(TO));
-			msg.setSubject(SUBJECT);
-			msg.setContent(BODY, "text/html;charset=euc-kr");
+			// 메일 서버 인증 계정 설정
+			Authenticator auth = new Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication(username, password);
+				}
+			};
 
-			transport = session.getTransport();
-			System.out.println("Sending...");
+			// 메일 세션 생성
+			Session session = Session.getInstance(props, auth);
 
-			transport.connect(HOST, SMTP_USERNAME, SMTP_PASSWORD);
-			transport.sendMessage(msg, msg.getAllRecipients());
-			System.out.println("Email sent!");
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			try {
-				transport.close();
-			} catch (MessagingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			// 메일 송/수신 옵션 설정
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(fromEmail, fromUsername));
+			message.setRecipients(RecipientType.TO, InternetAddress.parse(toEmail, false));
+			message.setSubject(subject);
+			message.setSentDate(new Date());
+
+			// 메일 콘텐츠 설정
+			Multipart mParts = new MimeMultipart();
+			MimeBodyPart mTextPart = new MimeBodyPart();
+			MimeBodyPart mFilePart = null;
+
+			// 메일 콘텐츠 - 내용
+			mTextPart.setText(html, bodyEncoding, "html");
+			mParts.addBodyPart(mTextPart);
+
+			// 메일 콘텐츠 설정
+			message.setContent(mParts);
+
+			// MIME 타입 설정
+			MailcapCommandMap MailcapCmdMap = (MailcapCommandMap) CommandMap.getDefaultCommandMap();
+			MailcapCmdMap.addMailcap("text/html;; x-java-content-handler=com.sun.mail.handlers.text_html");
+			MailcapCmdMap.addMailcap("text/xml;; x-java-content-handler=com.sun.mail.handlers.text_xml");
+			MailcapCmdMap.addMailcap("text/plain;; x-java-content-handler=com.sun.mail.handlers.text_plain");
+			MailcapCmdMap.addMailcap("multipart/*;; x-java-content-handler=com.sun.mail.handlers.multipart_mixed");
+			MailcapCmdMap.addMailcap("message/rfc822;; x-java-content-handler=com.sun.mail.handlers.message_rfc822");
+			CommandMap.setDefaultCommandMap(MailcapCmdMap);
+
+			// 메일 발송
+			Transport.send(message);
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }
