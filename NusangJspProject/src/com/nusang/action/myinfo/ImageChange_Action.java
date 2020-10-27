@@ -40,20 +40,30 @@ public class ImageChange_Action implements Action {
 		int maxSize = 10 * 1024 * 1024;
 		// String savePath =
 		String savePath = request.getSession().getServletContext().getRealPath("upload");
-		//String savePath = "C:\\Users\\Sunghoon\\Desktop\\nusangJspProject";
+		// String savePath = "C:\\Users\\Sunghoon\\Desktop\\nusangJspProject";
 		String format = "UTF-8";
 		String uploadFile = "";
 		String fileName = "";
 		int read = 0;
 		byte[] buf = new byte[1024];
+
+		// 파일 객체 생성
+		File mkFile = new File(savePath );
+		// !표를 붙여주어 파일이 존재하지 않는 경우의 조건을 걸어줌
+		if (!mkFile.exists()) {
+			// 디렉토리 생성 메서드
+			mkFile.mkdirs();
+			System.out.println("created directory successfully!");
+		}
+
 		try {
 			MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, format,
 					new DefaultFileRenamePolicy());
 			String title = multi.getParameter("title");
 			uploadFile = multi.getFilesystemName("uploadFile");
 			File file = new File(savePath + uploadFile);
-			
-			//업로드 파일 이름가져오기
+
+			// 업로드 파일 이름가져오기
 			Enumeration names = multi.getFileNames();
 			while (names.hasMoreElements()) {
 				String name = (String) names.nextElement();
@@ -70,15 +80,15 @@ public class ImageChange_Action implements Action {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		//fileName = savePath + "\\" + fileSystemName;
-		User user = (User)request.getSession().getAttribute("user");
+
+		// fileName = savePath + "\\" + fileSystemName;
+		User user = (User) request.getSession().getAttribute("user");
 		UserDao.getInstance().updateBy(user.getUserno(), "picture", fileSystemName);
 		user = UserDao.getInstance().findBy("userno", user.getUserno());
 		System.out.println("파일이름 이 뭐야?? --" + user.getPicture());
 		actionForward.setActionType(EActionType.REDIRECT);
 		request.getSession().setAttribute("user", user);
-		
+
 		return actionForward;
 	}
 
