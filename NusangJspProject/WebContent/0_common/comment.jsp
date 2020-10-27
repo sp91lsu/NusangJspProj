@@ -7,7 +7,7 @@
 		댓글
 	</div>
 	
-	<form>
+	<form action="">
 		<textarea rows="3" cols="10"></textarea>
 		<input type="submit" value="등록">
 	</form>
