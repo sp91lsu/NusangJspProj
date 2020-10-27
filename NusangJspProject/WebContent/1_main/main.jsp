@@ -33,6 +33,11 @@
 			<c:forEach var="post" items="${postList}">
 				<div class="postCard" >
 					<img alt="" src="/img/postImg_default.png">
+					<span>${post.title }</span>
+					<span>${post.price }</span>
+					<span>${post.user.location.name1} ${post.user.location.name2} ${post.user.location.name3}</span>
+					<
+					<span>${post.replyList }</span>
 					<button onclick="location.href='/post/readBuyer?postno=${post.postno}'"> 글보기</button>
 					
 				</div>
