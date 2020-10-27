@@ -144,7 +144,7 @@ public class KakaoBO extends BasicBO {
 
 		JsonNode resNode = httpGet.request();
 
-		System.out.println("위치 정보 : " + resNode.toPrettyString());
+		//System.out.println("위치 정보 : " + resNode.toPrettyString());
 
 		return resNode;
 	}
@@ -160,7 +160,7 @@ public class KakaoBO extends BasicBO {
 		ArrayNode documentsNode = m.createArrayNode();
 
 		documentsNode = (ArrayNode) resNode.get("documents");
-		System.out.println("위치 정보 : " + documentsNode.toPrettyString());
+		//System.out.println("위치 정보 : " + documentsNode.toPrettyString());
 		JsonNode addressNode = documentsNode.get(0).get("address");
 		Location location = new Location();
 

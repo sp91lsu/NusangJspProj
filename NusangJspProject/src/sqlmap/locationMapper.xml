@@ -26,7 +26,7 @@
 
 
     
-     <insert id="insert" parameterType="Location" useGeneratedKeys="true" keyColumn="locationno" keyProperty="locationno">
+     <insert id="insert"  useGeneratedKeys="true"  keyProperty="locationno" parameterType="Location">
     	<selectKey keyProperty="locationno" resultType="int" order="AFTER">			   
     	SELECT SEQ_LOCATION_LOCATIONNO.CURRVAL FROM DUAL
  		</selectKey>

@@ -2,8 +2,17 @@
 	var IMP = window.IMP; // 생략가능
 	IMP.init('imp11398251'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 
-	$("#buyBtn").click(buyProduct);
+	$("#buyBtn").click(testBuyProduct);
 
+	
+	function testBuyProduct(){
+		$("#pm_merchant_uid").val("merach");
+		$("#pm_imp_uid").val("uiduid");
+		$("#pm_paid_amount").val(123123);
+		document.createPostForm.submit();
+	}
+	
+	
 	function buyProduct() {
 
 		IMP.request_pay({

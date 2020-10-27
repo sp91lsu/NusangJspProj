@@ -33,17 +33,17 @@ public class PostDao extends BasicDao<Post> {
 		SqlSession session = sqlSessionFactory.openSession();
 		int result = 0;
 		try {
-			int locationno = LocationDao.getInstance().insert(session, post.getLocation());
+			LocationDao.getInstance().insert(session, post.getLocation());
 			Map<String , Object> map = new HashMap<String, Object>();
-			
+			System.out.println("post location 값 : " + post.getLocation().getLocationno());
 			map.put("title", post.getTitle());
 			map.put("bodytext", post.getBodytext());
 			map.put("price", post.getPrice());
 			map.put("category", post.getCategory());
 			map.put("userno", post.getUser().getUserno());
 			map.put("productname", post.getProductname());
-			map.put("locationno", locationno);
-			result = insert(session, post);
+			map.put("locationno", post.getLocation().getLocationno());
+			result = insert(session, map);
 			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();

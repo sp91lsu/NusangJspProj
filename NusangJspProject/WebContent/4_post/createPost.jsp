@@ -17,10 +17,9 @@
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
 	<div id="body" class="d-flex justify-content-center">
 		<form name="createPostForm" action="/post/createPost" method="post" onsubmit="return chkSubmit()">
-			
-			<input type="hidden" name="map_latitude" id="latitude" value="${location.latitude }">
-			<input type="hidden" name="map_longtitude" id="longtitude" value="${location.longtitude }">
-			
+
+			<input type="hidden" name="map_latitude" id="latitude" value="${location.latitude }"> <input type="hidden" name="map_longtitude" id="longtitude" value="${location.longtitude }">
+
 			<%-- 이미지 --%>
 			이미지:
 			<button name="addImg" type="button">이미지 추가</button>
@@ -29,8 +28,7 @@
 			<div id="imgPreview"></div>
 			<br>
 			<%-- 글제목 --%>
-			제목: <input type="text" name="title" required="required"/>
-			상품명: <input type="text" name="productName" required="required"/>
+			제목: <input type="text" name="title" required="required" /> 상품명: <input type="text" name="productName" required="required" />
 			<%-- 카테고리 --%>
 			<%
 				String cate[] = new String[]{"디지털/가전", "가구/인테리어", "유아동/유아도서", "생활/가공식품", "스포츠/레저", "여성잡화", "여성의류", "남성패션/잡화", "게임/취미",
@@ -39,7 +37,7 @@
 
 			<br> 카테고리:
 			<div class="dropdown">
-				<button id="cateDrop" class="btn dropdown-toggle" type="button" data-toggle="dropdown" >
+				<button id="cateDrop" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
 					선택 <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
@@ -52,7 +50,6 @@
 
 			<script type="text/javascript">
 				function changeCateName(choice) {
-					alert(choice);
 					$("#cateDrop").text(choice);
 					$("input[name='category']").attr('value', choice);
 				}
@@ -69,8 +66,8 @@
 			<div id="map" style="width: 500px; height: 400px;"></div>
 			<script>
 				// 마커가 표시될 위치입니다 
-				var position = new kakao.maps.LatLng($("#latitude").val(),
-						$("#longtitude").val());
+				var position = new kakao.maps.LatLng($("#latitude").val(), $(
+						"#longtitude").val());
 
 				// 마커를 생성합니다
 				var marker = new kakao.maps.Marker({
@@ -81,7 +78,8 @@
 
 				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 				mapOption = {
-					center : new kakao.maps.LatLng(position.getLat(),position.getLng()), // 지도의 중심좌표
+					center : new kakao.maps.LatLng(position.getLat(), position
+							.getLng()), // 지도의 중심좌표
 					level : 3
 				// 지도의 확대 레벨
 				};
@@ -90,19 +88,20 @@
 				map.setCenter(position);
 				marker.setMap(map);
 
-				kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
-				    
-				    // 클릭한 위도, 경도 정보를 가져옵니다 
-				    var latlng = mouseEvent.latLng; 
-				    
-				    // 마커 위치를 클릭한 위치로 옮깁니다
-				    marker.setPosition(latlng);
-				    $("#latitude").val(latlng.getLat())
-				    $("#longtitude").val(latlng.getLng())
-				     console.log( $("#latitude").val());
-				    console.log( $("#longtitude").val());
-				    
-				});
+				kakao.maps.event.addListener(map, 'click',
+						function(mouseEvent) {
+
+							// 클릭한 위도, 경도 정보를 가져옵니다 
+							var latlng = mouseEvent.latLng;
+
+							// 마커 위치를 클릭한 위치로 옮깁니다
+							marker.setPosition(latlng);
+							$("#latitude").val(latlng.getLat())
+							$("#longtitude").val(latlng.getLng())
+							console.log($("#latitude").val());
+							console.log($("#longtitude").val());
+
+						});
 			</script>
 			<div id="dealingSpot"></div>
 
@@ -113,10 +112,21 @@
 	</div>
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
 </body>
+<script type="text/javascript">
+	$("#buyBtn").click(testBuyProduct);
+
+	function testBuyProduct() {
+		$("#pm_merchant_uid").val("merach");
+		$("#pm_imp_uid").val("uiduid");
+		$("#pm_paid_amount").val(123123);
+		document.createPostForm.submit();
+	}
+</script>
+<!-- <script type="text/javascript" src="/4_post/createPost.js">
+	
+</script> -->
+
 </html>
 
 
-<script type="text/javascript" src="/4_post/createPost.js">
-	
-</script>
 
