@@ -31,28 +31,49 @@ public class PostDao extends BasicDao<Post> {
 
 	public int insertPost(Post post) {
 		SqlSession session = sqlSessionFactory.openSession();
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("title", post.getTitle());
-		map.put("bodytext", post.getBodytext());
-		map.put("price", post.getPrice());
-		map.put("category", post.getCategory());
-		int result = insert(session, map);
-		session.commit();
-		session.close();
+		int result = 0;
+		try {
+			int locationno = LocationDao.getInstance().insert(session, post.getLocation());
+			Map<String , Object> map = new HashMap<String, Object>();
+			
+			map.put("title", post.getTitle());
+			map.put("bodytext", post.getBodytext());
+			map.put("price", post.getPrice());
+			map.put("category", post.getCategory());
+			map.put("userno", post.getUser().getUserno());
+			map.put("productname", post.getProductname());
+			map.put("locationno", locationno);
+			result = insert(session, post);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.rollback();
+		} finally {
+			session.close();
+		}
+
 		return result;
 	}
 
-	public ArrayList<Post> findPostByLocation(Location userLocation,int distance) {
+	public ArrayList<Post> findPostByLocation(Location userLocation, int distance) {
 		SqlSession session = sqlSessionFactory.openSession();
-		Map<String, Object> map = new HashMap<String, Object>();
-		System.out.println("lat : " + userLocation.getLatitude());
-		System.out.println("long : " + userLocation.getLongtitude());
-		map.put("latitude", userLocation.getLatitude());
-		map.put("longtitude", userLocation.getLongtitude());
-		map.put("distance", distance);
-		List<Post> postList = session.selectList(namespace + "findPostByLocation",map);
-		session.commit();
-		session.close();
+		List<Post> postList = new ArrayList<Post>();
+		try {
+			Map<String, Object> map = new HashMap<String, Object>();
+			System.out.println("lat : " + userLocation.getLatitude());
+			System.out.println("long : " + userLocation.getLongtitude());
+			map.put("latitude", userLocation.getLatitude());
+			map.put("longtitude", userLocation.getLongtitude());
+			map.put("distance", distance);
+			postList = session.selectList(namespace + "findPostByLocation", map);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.rollback();
+		} finally {
+			session.close();
+		}
+		
 		return (ArrayList<Post>) postList;
 	}
 }

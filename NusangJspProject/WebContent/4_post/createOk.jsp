@@ -13,7 +13,7 @@
 	<c:otherwise>
 		<script>
 			alert("등록 성공, 리스트를 출력합니다");
-			location.href = "/1_main/index.jsp";
+			location.href = "/main/chk";
 		</script>
 	</c:otherwise>
 </c:choose>
