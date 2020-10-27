@@ -15,6 +15,7 @@
 	<table class="table">
 		<thead class="thead-dark">
 			<tr>
+				<th scope="col">결제번호</th>
 				<th scope="col">no.</th>
 				<th scope="col">결제금액</th>
 				<th scope="col">날짜</th>
@@ -24,7 +25,7 @@
 		<tbody>
 			<c:forEach var="payment" items="${user.payment_MarketList}">
 				<tr>
-					<th scope="row">${payment.paymenttype}</th>
+					<th scope="row">${payment.imp_uid}</th>
 					<td>${payment.name}</td>
 					<td>${payment.regdate}</td>
 				</tr>

@@ -1,3 +1,4 @@
+<%@page import="com.nusang.dto.User"%>
 <%@page import="com.nusang.dto.Post"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -13,6 +14,7 @@
 </head>
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
+	
 	<div id="body" class="d-flex justify-content-center">
 		<div id="content">
 			<!-- 상품 이미지 -->
@@ -32,10 +34,12 @@
 							<img src="https://www.w3schools.com/bootstrap4/la.jpg"
 								alt="Los Angeles" width="1100" height="500">
 						</div>
+						
 						<div class="carousel-item">
 							<img src="https://www.w3schools.com/bootstrap4/chicago.jpg"
 								alt="Chicago" width="1100" height="500">
 						</div>
+						
 						<div class="carousel-item">
 							<img src="https://www.w3schools.com/bootstrap4/ny.jpg"
 								alt="New York" width="1100" height="500">
@@ -77,19 +81,34 @@
 					});
 				</script>
 			</div>
+			
 			<!-- 판매자 정보 -->		
 			<div id="Section-sellerInfo">
 				<div id="profile" class="d-flex">
 					<div id="profile_left">
 						<i id="profile_img" class="fas fa-user-circle fa-4x"></i>
 					</div>
+					
 					<div id="profile_right">
 						<div>
 							<h5 id="profile_name">${post.user.username}</h5>
 						</div>
+						
 						<div>
 							<h6 id="profile_addr">${post.user.location.name1} ${post.user.location.name2} ${post.user.location.name3}</h6>
 						</div>
+					</div>
+					
+					<div>
+						<c:choose>
+							<c:when test="${user.userid == post.user.getUserid()}"><!--내 글이면-->
+								내 글이다
+							</c:when>
+								
+							<c:otherwise>
+								내 글이 아니다
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</div>
@@ -113,9 +132,10 @@
 				</div>
 			</div>
 			<hr class="m-0">
+			<jsp:include page="../0_common/comment.jsp"></jsp:include>
 		</div>
 	</div>
+	
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
 </body>
 </html>
-
