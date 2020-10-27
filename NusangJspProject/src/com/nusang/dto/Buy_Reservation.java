@@ -13,10 +13,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Buy_Reservation {
-	private Post sellpost;
-	private User user;
-	private long reser_price;
-	private String state;
-	private int reserno;
-	private Date regdate;
+	private Post sellpost;//게시글
+	private User user;//구매신청한 유저
+	private long reser_price;//구매금액
+	private String state;//진행상태
+	private int reserno;//테이블 고유값
+	private Date regdate;//날짜
 }
