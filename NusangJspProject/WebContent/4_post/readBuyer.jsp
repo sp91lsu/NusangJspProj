@@ -85,10 +85,10 @@
 					</div>
 					<div id="profile_right">
 						<div>
-							<h5 id="profile_name">userno: ${post.userno}</h5>
+							<h5 id="profile_name">${post.user.username}</h5>
 						</div>
 						<div>
-							<h6 id="profile_addr">주소</h6>
+							<h6 id="profile_addr">${post.user.location.name1} ${post.user.location.name2} ${post.user.location.name3}</h6>
 						</div>
 					</div>
 				</div>

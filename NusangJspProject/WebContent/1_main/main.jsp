@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>너근마켓</title>
+<link rel="stylesheet" type="text/css" href="/1_main/css/postCard.css">
 </head>
 
 
@@ -28,12 +29,15 @@
 			<button type="button" id="btnPost" onclick="location.href='/post/moveMkPost'">글쓰기</button>
 		</div>
 		
-		<c:forEach var="post" items="${postList}">
-			<div class="list-group mt-3">
-				<a href="#" class="list-group-item list-group-item-action active bg-dark border-dark">${post.location.name3 } ${post.price }원 ${post.productname }    ${post.user.username } </a> 
-				<a href="#" class="list-group-item list-group-item-action"> ${post.title } </a>
-			</div>
-		</c:forEach>
+		<div id="postListSection" class="d-flex flex-wrap align-content-start justify-content-center">
+			<c:forEach var="post" items="${postList}">
+				<div class="postCard" >
+					<img alt="" src="/img/postImg_default.png">
+					<button onclick="location.href='/post/readBuyer?postno=${post.postno}'"> 글보기</button>
+					
+				</div>
+			</c:forEach>
+		</div>
 	</div>
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
 </body>
