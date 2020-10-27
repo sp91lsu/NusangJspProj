@@ -32,10 +32,12 @@
 							<img src="https://www.w3schools.com/bootstrap4/la.jpg"
 								alt="Los Angeles" width="1100" height="500">
 						</div>
+						
 						<div class="carousel-item">
 							<img src="https://www.w3schools.com/bootstrap4/chicago.jpg"
 								alt="Chicago" width="1100" height="500">
 						</div>
+						
 						<div class="carousel-item">
 							<img src="https://www.w3schools.com/bootstrap4/ny.jpg"
 								alt="New York" width="1100" height="500">
@@ -77,6 +79,7 @@
 					});
 				</script>
 			</div>
+			
 			<!-- 판매자 정보 -->		
 			<div id="Section-sellerInfo">
 				<div id="profile" class="d-flex">
@@ -113,9 +116,9 @@
 				</div>
 			</div>
 			<hr class="m-0">
+			<jsp:include page="../0_common/comment.jsp"></jsp:include>
 		</div>
 	</div>
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
 </body>
 </html>
-
