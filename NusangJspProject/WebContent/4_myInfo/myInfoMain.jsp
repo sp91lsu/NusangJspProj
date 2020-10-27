@@ -3,6 +3,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" type="text/css" href="../css/myInfo_sideMenu.css">
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +30,7 @@
 					page="../0_common/myInfo_sideMenu.jsp"></jsp:include>
 			</div>
 			
-			<div class="col-10" style="height:100%;">
+			<div class="col-10 row">
 				<jsp:include page="<%=sideMenu%>" flush="false" ></jsp:include>
 			</div>
 		</div>
