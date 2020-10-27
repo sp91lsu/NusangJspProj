@@ -74,6 +74,20 @@
        email = #{email}
        
     </select>
+
+	<select id="pwCheck" resultMap="userResultMap">
+        SELECT
+            *
+        FROM
+            NUSER
+        WHERE 
+        username = #{username} 
+       AND 
+		userid = #{userid}
+	   AND
+       email = #{email}
+       
+    </select>
 	
 	<insert id="insert" useGeneratedKeys="true" keyProperty="userno" parameterType="User">
 		<selectKey keyProperty="userno" resultType="int" order="AFTER">			   

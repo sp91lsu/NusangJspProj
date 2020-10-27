@@ -15,6 +15,7 @@ import com.nusang.action.account.IdChk_Action;
 import com.nusang.action.account.LoginAction;
 import com.nusang.action.account.SetLocationAction;
 import com.nusang.action.user.FindId_Action;
+import com.nusang.action.user.FindPw_Action;
 import com.nusang.action.user.SignUp_Action;
 import com.nusang.controller.assistance.ConAsist;
 import com.nusang.dao.UserDao;
@@ -54,7 +55,9 @@ public class UserController extends HttpServlet {
 			case "findId":
 				FindId_Action F_A = new FindId_Action();
 				actionForward = F_A.execute(request, response);
-				
+			case "findPw":
+				FindPw_Action F_A2 = new FindPw_Action();
+				actionForward = F_A2.execute(request, response);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

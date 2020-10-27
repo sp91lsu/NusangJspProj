@@ -70,6 +70,18 @@ public class UserDao extends BasicDao<User> {
 		return user;
 	}
 	
+	public User pwCheck(String username,String userid, String email) {
+		SqlSession session = sqlSessionFactory.openSession();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("username", username);
+		map.put("userid", userid);
+		map.put("email", email);
+		User user = session.selectOne(namespace + "pwCheck", map);
+		session.commit();
+		session.close();
+		return user;
+	}
+	
 
 	public boolean updateLocation(int userNo, Location location) {
 		SqlSession session = sqlSessionFactory.openSession();

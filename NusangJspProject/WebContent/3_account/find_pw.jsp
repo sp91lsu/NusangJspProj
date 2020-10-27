@@ -22,28 +22,52 @@
 		<form action="" method="post"><!-- action값 설정! -->
 			<div class="form-group w-50 container">
 				<label for="name">이름 </label> <input name="username"
-					type="text" class="form-control" placeholder=""
-					id="name">
+					type="text" class="form-control" placeholder="찾고자 하는 비밀번호의 이름을 입력해주세요."
+					id="username">
 			</div>
 			
 			<div class="form-group w-50 container">
-				<label for="id">아이디</label> <input name="password"
-					type="password" class="form-control" placeholder=""
-					id="id">
+				<label for="id">아이디</label> <input name="userid"
+					type="text" class="form-control" placeholder="찾고자 하는 비밀번호의 아이디를 입력해주세요."
+					id="userid">
 			</div>
 			
 			<div class="form-group w-50 container">
-				<label for="email">이메일</label> <input name="password"
-					type="password" class="form-control" placeholder=""
+				<label for="email">이메일</label> <input name="email"
+					type="text" class="form-control" placeholder="찾고자 하는 비밀번호의 이메일을 입력해주세요."
 					id="email">
 			</div>
 			
 			<div class="form-group w-50 container">
-			<input class = "w-50 container"type="submit" value="비밀번호 찾기"><br>			
+			<input class = "w-50 container"type="button" id = "pwfindBtn" value="비밀번호 찾기"><br>			
 			</div>
 		</form>
 
 	</div>
+	
+	<script>
+		$("#pwfindBtn").click(function(){
+			
+			$.ajax({
+				url : "/user/findPw",
+				type : "POST",
+				data : {
+					username : $("#username").val(),
+					userid : $("#userid").val(),
+					email : $("#email").val()				
+				},
+				success: function(res){
+					alert(res);
+				}
+			})
+			
+			
+			
+			
+		})
+		
+
+	</script>
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
 </body>
 </html>
