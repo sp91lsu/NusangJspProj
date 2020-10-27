@@ -63,7 +63,6 @@
 		var passwordChk = frm.passwordChk.value.trim();
 		var username = frm.username.value.trim();
 		var email = frm.email.value.trim();
-		
 			
 		  var idPattern = /^[A-Za-z]{1}[A-Za-z0-9]{5,19}$/; //첫글자는 영어 6글자 이상
 	      var pwPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/; //영어+특수문자+숫자를 섞어서 (8~16)자리
@@ -92,18 +91,34 @@
 			alert("이메일을 형식에 맞게 입력하세요.");
 			return false;
 		}
+	    if(chk == false){
+	    	alert("아이디 중복확인 하세요.");
+	    	return false;
+	    }
+	    if(userid != username){
+	    	alert("아이디 중복확인 하세요.")
+	    	return false;
+	    }
 	    
 	    return true;
 	}
 	
-	
+	var chk = false;
+	let username = "";
 
 	$("#idChkBtn").click(function() {
-		let username = $("#userid").val();
+		username = $("#userid").val();
 		$.ajax({
 			url : "/user/idChk?uid=" + username,
 			success : function(data) {
-				alert(data);
+				if(data == "0"){
+					alert("아이디를 입력해 주세요.");
+				}else if(data == "1"){
+					alert("사용가능한 아이디 입니다.");
+					chk = true;
+				}else{
+					alert("중복된 아이디 입니다.");
+				}
 			}
 		})
 	})
