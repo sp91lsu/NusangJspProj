@@ -28,9 +28,9 @@ public class User {
 	private Date regdate;
 	private String picture;
 	private Location location;
-	private ArrayList<Payment_Market> payment_MarketList;
-	private ArrayList<Payment_User> payment_UserList;
-	private ArrayList<Buy_Reservation> buy_ReservationList;
+	private ArrayList<Payment_Market> payment_MarketList;//결제내역
+	private ArrayList<Payment_User> payment_UserList;//구매내역,판매내역
+	private ArrayList<Buy_Reservation> buy_ReservationList;//구매신청현황
 	
 	public boolean isLocationNull() {
 

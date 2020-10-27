@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
       
 <div class="container">
 	<h2>구매신청 현황</h2>
@@ -11,33 +11,22 @@
 	    <tr>
 	      <th scope="col">no.</th>
 	      <th scope="col">구매품목</th>
+	      <th scope="col">가격</th>
 	      <th scope="col">진행상태</th>
 	      <th scope="col">날짜</th>
 	    </tr>
 	  </thead>
 	  
 	  <tbody>
-	    <tr>
-	      <th scope="row">1</th>
-	      <td>Mark</td>
-	      <td>Otto</td>
-	      <td>@mdo</td>
-	    </tr>
-	    
-	    <tr>
-	      <th scope="row">2</th>
-	      <td>Jacob</td>
-	      <td>Thornton</td>
-	      <td>@fat</td>
-	    </tr>
-	    
-	    <tr>
-	      <th scope="row">3</th>
-	      <td>Larry</td>
-	      <td>the Bird</td>
-	      <td>@twitter</td>
-	    </tr>
-	    
+	  	<c:forEach var="reservation" items="${user.buy_ReservationList}">
+		    <tr>
+		      <th scope="row">1</th>
+		      <td>1</td>
+		      <td>${reservation.reser_price}</td>
+		      <td>${reservation.state}</td>
+		      <td>${reservation.regdate}</td>
+		    </tr>
+		</c:forEach>
 	  </tbody>
 	</table>
 	
