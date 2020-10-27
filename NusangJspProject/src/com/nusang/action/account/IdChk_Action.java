@@ -18,13 +18,15 @@ public class IdChk_Action implements Action {
 		User userid = UserDao.getInstance().findBy("userid", uid);
 
 		if ((uid == "")) {
-			actionForward.setAsyncData("아이디를 입력해 주세요.");
+			actionForward.setAsyncData("0");
 		} else if ((userid == null) && (uid != "")) {
-			actionForward.setAsyncData("사용가능한 아이디 입니다.");
+			actionForward.setAsyncData("1");
 		} else {
-			actionForward.setAsyncData("중복된 아이디 입니다");
+			actionForward.setAsyncData("2");
 		}
 		return actionForward;
+		
+	
 	}
 
 }
