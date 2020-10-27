@@ -23,14 +23,14 @@
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
 
-	<div id="body" class="container" style="margin: 70px auto 0px auto; height: 500px">
+	<div id="body" class="container" style="margin: 70px auto 0px auto; min-height: 500px">
 		<div class="row">
 			<div class="col-2 sideMenu_Btngroup"><jsp:include
 					page="../0_common/myInfo_sideMenu.jsp"></jsp:include>
 			</div>
 			
-			<div class="col-10">
-				<jsp:include page="<%=sideMenu%>" flush="false"></jsp:include>
+			<div class="col-10" style="height:100%;">
+				<jsp:include page="<%=sideMenu%>" flush="false" ></jsp:include>
 			</div>
 		</div>
 	</div>

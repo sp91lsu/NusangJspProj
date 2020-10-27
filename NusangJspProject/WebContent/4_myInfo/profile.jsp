@@ -2,63 +2,68 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<link rel="stylesheet" type="text/css" href="../css/profile.css">
+<link rel="stylesheet" type="text/css" href="/css/profile.css">
 
 
-<div class="container justify-content-center" style="width: 50%">
-	<div class="card" style="width: 20rem;">
+<div class="container justify-content-center" style="width: 100%; height:100%">
+	<h2>프로필 수정</h2>
+	<div class="section d-flex justify-content-center">
+		<div class="section1 d-flex">
+			<c:choose>
+				<c:when test="${empty user.picture}">
+					<img src="../img/프로필 기본이미지.jpg" class="align-self-center" alt="..."
+						id="profileImg">
+				</c:when>
+				<c:when test="${user.picture == '프로필 기본이미지.jpg'}">
+					<img src="../img/프로필 기본이미지.jpg" class="align-self-center" alt="..."
+						id="profileImg">
+				</c:when>
+				<c:otherwise>
+					<img src="../upload/${user.picture}" class="align-self-center" alt="..."
+						id="profileImg">
+				</c:otherwise>
+			</c:choose>
+		</div>
 
-		<c:choose>
-			<c:when test="${empty user.picture}">
-				<img src="../img/프로필 기본이미지.jpg" class="card-img-top" alt="..."
-					id="profileImg">
-			</c:when>
-			<c:when test="${user.picture == '프로필 기본이미지.jpg'}">
-				<img src="../img/프로필 기본이미지.jpg" class="card-img-top" alt="..."
-					id="profileImg">
-			</c:when>
-			<c:otherwise>
-				<img src="../upload/${user.picture}" class="card-img-top" alt="..."
-					id="profileImg">
-			</c:otherwise>
-		</c:choose>
+		<div class="section2">
+			<div class="btnSec">
+				<form action="/myinfo/image_change" method="post"
+					enctype="multipart/form-data" onsubmit="return changeImgChk()">
 
-		<form action="/myinfo/image_change" method="post"
-			enctype="multipart/form-data" onsubmit="return changeImgChk()">
+					<input type="file" id="file" name="file" accept=".gif, .jpg, .png"
+						style="display: none" />
+					<button type="button" id="potoSubmit" style="display: none"></button>
 
-			<div id="update" class="d-flex row">
-				<input type="file" id="file" name="file" accept=".gif, .jpg, .png"
-					style="display: none" />
-				<button type="button" id="potoSubmit" style="display: none"></button>
+					<!--보여지는 버튼 -->
+					<button type="button" class="btn btn-sm btn-secondary"
+						id="btn-upload">사진 변경</button>
 
-				<!--보여지는 버튼 -->
-				<button type="button" class="btn btn-lg btn-primary" id="btn-upload">사진
-					변경</button>
+
+					<button type="submit" class="btn btn-sm btn-primary">저장하기</button>
+				</form>
+
+				<form action="/myinfo/image_delete">
+					<button type="submit" class="btn btn-sm btn-secondary">사진
+						지우기</button>
+				</form>
+
 			</div>
 
+			<div class="nicknameSec">
+				<form action="/myinfo/nickname_change">
+					<h5 class="card-title">
+						<input class="nickName" name="nickName" type="text" value=${user.username } />
+					</h5>
 
-			<div id="update" class="d-flex row" style="padding-right: 20px">
-				<button type="submit" class="btn btn-secondary btn-lg">저장하기</button>
+					<button type="submit" class="btn btn-primary btn-lg">닉네임
+						변경</button>
+				</form>
 			</div>
+		</div>
 
-		</form>
 
-		<form action="/myinfo/image_delete">
-			<button type="submit" class="btn btn-lg btn-primary">사진 지우기</button>
-		</form>
 
-		<form action="/myinfo/nickname_change">
-			<div class="card-body">
-				<h5 class="card-title">
-					<input name="nickName" type="text" value=${user.username } />
-				</h5>
-			</div>
-
-			<button type="submit" class="btn btn-secondary btn-lg"
-				style="margin-left: 10px;">닉네임 변경</button>
-		</form>
 	</div>
-
 </div>
 
 <script>
