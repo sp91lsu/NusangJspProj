@@ -23,22 +23,22 @@ public class Mail {
 	/**
 	 * SendMail
 	 */
-	public static void sendMail(String title, String value) {
+	public static void sendMail(String email, String title, String value) {
 		// 메일 인코딩
 		final String bodyEncoding = "UTF-8"; // 콘텐츠 인코딩
 
 		String subject = title;
 		String fromEmail = "tmdghks0021@gmail.com";
 		String fromUsername = "SYSTEM MANAGER";
-		String toEmail = "pppsh720@gmail.com"; // 콤마(,)로 여러개 나열
+		String toEmail = email; // 콤마(,)로 여러개 나열
 
 		final String username = "tmdghks0021";
 		final String password = "gftzvjvwtziwnrnx";
 
 		// 메일에 출력할 텍스트
 		StringBuffer sb = new StringBuffer();
-		sb.append("<h3>안녕하세요</h3>\n");
-		sb.append("<h4>개발하는 도치입니다.</h4>\n");
+		sb.append("<h3>안녕하세요~ 너근마켓입니다.</h3>\n");
+		sb.append("<h4>" + value + "</h4>\n");
 		String html = sb.toString();
 
 		// 메일 옵션 설정

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
+import com.nusang.bo.Mail;
 import com.nusang.controller.assistance.ConAsist;
 import com.nusang.dao.UserDao;
 import com.nusang.dto.User;
@@ -29,7 +30,9 @@ public class FindId_Action implements Action {
 		if (user != null) {
 			if (user.getLogintype().equals("NORMAL")) {
 				resText = "해당 메일로 아이디를 보냈습니다.";
-			}else {
+				Mail.sendMail(user.getEmail(), "너근마켓 아이디 찾기", "너근마켓 아이디 : " + user.getUserid());
+
+			} else {
 				resText = "해당 계정은 소셜계정입니다.";
 			}
 		} else {
