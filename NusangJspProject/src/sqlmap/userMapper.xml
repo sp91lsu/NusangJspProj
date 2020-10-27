@@ -18,13 +18,12 @@
 		<result property="nickname" column="nickname" />
 		<result property="view_distance" column="view_distance" />
 		<association property="location" column="locationno" javaType="Location" select="selectLocation" />
-        <collection property="payment_MarketList" column="userno" javaType="java.util.ArrayList" ofType="Payment_Market" select="getPMListById"/>
- 		<collection property="payment_UserList" column="userno" javaType="java.util.ArrayList" ofType="Payment_User" select="getPUListById"/>
-	    <collection property="buy_ReservationList" column="userno" javaType="java.util.ArrayList" ofType="Buy_Reservation" select="getBRListById"/>
-	
-	
-	</resultMap>
+		<collection property="payment_MarketList" column="userno" javaType="java.util.ArrayList" ofType="Payment_Market" select="getPMListById" />
+		<collection property="payment_UserList" column="userno" javaType="java.util.ArrayList" ofType="Payment_User" select="getPUListById" />
+		<collection property="buy_ReservationList" column="userno" javaType="java.util.ArrayList" ofType="Buy_Reservation" select="getBRListById" />
 
+
+	</resultMap>
 
 
 	<select id="selectAll" resultMap="userResultMap">
@@ -64,6 +63,18 @@
        
     </select>
 
+	<select id="idCheck" resultMap="userResultMap">
+        SELECT
+            *
+        FROM
+            NUSER
+        WHERE 
+        username = #{username} 
+       AND 
+       email = #{email}
+       
+    </select>
+	
 	<insert id="insert" useGeneratedKeys="true" keyProperty="userno" parameterType="User">
 		<selectKey keyProperty="userno" resultType="int" order="AFTER">			   
     	SELECT SEQ_NUSER_USERNO.CURRVAL FROM DUAL
@@ -83,16 +94,15 @@ WHERE
     </update>
 
 
-<select id="getPMListById" resultType="Payment_Market">
+	<select id="getPMListById" resultType="Payment_Market">
     SELECT * FROM Payment_Market WHERE userno = #{userno}
 </select>
-<select id="getPUListById" resultType="Payment_User">
+	<select id="getPUListById" resultType="Payment_User">
     SELECT * FROM Payment_User WHERE userno = #{userno}
 </select>
- <select id="getBRListById" resultMap="buy_reservationMapper.buy_reservationMap">
+	<select id="getBRListById" resultMap="buy_reservationMapper.buy_reservationMap">
     SELECT * FROM BUY_RESERVATION WHERE userno = #{userno}
 </select>
-   
 
 
 </mapper>

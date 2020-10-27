@@ -58,6 +58,18 @@ public class UserDao extends BasicDao<User> {
 		session.close();
 		return user;
 	}
+	
+	public User idCheck(String username, String email) {
+		SqlSession session = sqlSessionFactory.openSession();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("username", username);
+		map.put("email", email);
+		User user = session.selectOne(namespace + "idCheck", map);
+		session.commit();
+		session.close();
+		return user;
+	}
+	
 
 	public boolean updateLocation(int userNo, Location location) {
 		SqlSession session = sqlSessionFactory.openSession();

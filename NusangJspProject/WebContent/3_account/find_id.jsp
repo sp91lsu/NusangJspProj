@@ -19,24 +19,39 @@
 
 	<div class="container">
 		<h1 class="display-4 text-center mt-5">아이디 찾기</h1>
-		<form action="" method="post"><!-- action값 설정! -->
-			<div class="form-group w-50 container">
-				<label for="name">이름 :</label> <input name="username"
-					type="text" class="form-control" placeholder=""
-					id="name">
-			</div>
-			
-			<div class="form-group w-50 container">
-				<label for="email">이메일:</label> <input name="password"
-					type="password" class="form-control" placeholder=""
-					id="email">
-			</div>
-			
-			<div class="form-group w-50 container">
-			<input class = "w-50 container"type="submit" value="아이디 찾기"><br>			
-			</div>
-		</form>
+		<div class="form-group w-50 container">
+			<label for="name">이름 :</label> <input name="username"  type="text"
+				class="form-control" placeholder="찾고자 하는 아이디의 이름을 입력하세요." id="username">
+		</div>
+
+		<div class="form-group w-50 container">
+			<label for="email">이메일:</label> <input name="email" type="email"
+				class="form-control" placeholder="찾고자 하는 아이디의 이메일을 입력하세요."
+				id="email">
+		</div>
+
+		<div class="form-group w-50 container">
+			<input class="w-50 container" type="button" id="findBtn"
+				value="아이디 찾기"><br>
+		</div>
 	</div>
+	<script type="text/javascript">
+		$("#findBtn").click(function() {
+
+			$.ajax({
+				url : "/user/findId",
+				type : "POST",
+				data : {
+					username : $("#username").val(),
+					email : $("#email").val()
+				},
+				success : function(res){
+					
+					alert(res);
+				}
+			})
+		})
+	</script>
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
 </body>
 </html>
