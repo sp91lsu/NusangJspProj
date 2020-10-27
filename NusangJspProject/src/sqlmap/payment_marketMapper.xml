@@ -27,8 +27,8 @@
        <selectKey keyProperty="ph_marketno" resultType="int" order="AFTER">			   
     	SELECT SEQ_PAYMENT_MARKET_PH_MARKETNO.CURRVAL FROM DUAL
  		</selectKey>
-        INSERT INTO PAYMENT_MARKET (paymenttype,state,name,userno,imp_uid)
-         VALUES (#{paymenttype}, #{state}, #{name}, #{userno},#{imp_uid}) 
+        INSERT INTO PAYMENT_MARKET (paymenttype,state,name,userno,imp_uid,price)
+         VALUES (#{paymenttype}, #{state}, #{name}, #{userno},#{imp_uid},#{price}) 
     </insert>
     
     
