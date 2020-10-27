@@ -67,10 +67,10 @@
 	</select>
 
 
-	<insert id="insert">
+	<insert id="insert"   parameterType="Map">
 		INSERT INTO SELLPOST
-		(title,bodytext,price,category)
-		VALUES (#{title}, #{bodytext}, #{price},#{category}
+		(title,bodytext,price,category,userno,productname,locationno)
+		VALUES (#{title}, #{bodytext}, #{price},#{category},#{userno},#{productname},#{locationno}
 		)
 	</insert>
 	<!-- ,#{picture, jdbcType=BLOB},#{latitude, jdbcType=FLOAT},#{longtitude, 

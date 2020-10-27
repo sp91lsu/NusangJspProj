@@ -18,8 +18,9 @@
 	<div id="body" class="d-flex justify-content-center">
 		<form name="createPostForm" action="/post/createPost" method="post" onsubmit="return chkSubmit()">
 			
-			<input type="hidden" id="latitude" value="${user.location.latitude }">
-			<input type="hidden" id="longtitude" value="${user.location.longtitude }">
+			<input type="hidden" name="map_latitude" id="latitude" value="${location.latitude }">
+			<input type="hidden" name="map_longtitude" id="longtitude" value="${location.longtitude }">
+			
 			<%-- 이미지 --%>
 			이미지:
 			<button name="addImg" type="button">이미지 추가</button>
@@ -28,7 +29,8 @@
 			<div id="imgPreview"></div>
 			<br>
 			<%-- 글제목 --%>
-			제목: <input type="text" name="title" />
+			제목: <input type="text" name="title" required="required"/>
+			상품명: <input type="text" name="productName" required="required"/>
 			<%-- 카테고리 --%>
 			<%
 				String cate[] = new String[]{"디지털/가전", "가구/인테리어", "유아동/유아도서", "생활/가공식품", "스포츠/레저", "여성잡화", "여성의류", "남성패션/잡화", "게임/취미",
@@ -37,7 +39,7 @@
 
 			<br> 카테고리:
 			<div class="dropdown">
-				<button id="cateDrop" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+				<button id="cateDrop" class="btn dropdown-toggle" type="button" data-toggle="dropdown" >
 					선택 <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
@@ -46,7 +48,7 @@
 					</c:forEach>
 				</ul>
 			</div>
-			<span></span> <input type="hidden" name="category" value=""> <br>
+			<span></span> <input type="hidden" name="category" value="" required="required"> <br>
 
 			<script type="text/javascript">
 				function changeCateName(choice) {
@@ -57,10 +59,10 @@
 			</script>
 
 			<%-- 가격 --%>
-			가격: <input type="text" name="price" /><br>
+			가격: <input type="number" name="price" required="required" /><br>
 			<%-- 글내용 --%>
 			<label for="bodytext">내용:</label><br>
-			<textarea name="bodytext" class="form-control" rows="5"></textarea>
+			<textarea name="bodytext" class="form-control" rows="5" required="required"></textarea>
 			<br>
 			<%-- 지도 : 거래장소 설정 --%>
 
@@ -95,12 +97,10 @@
 				    
 				    // 마커 위치를 클릭한 위치로 옮깁니다
 				    marker.setPosition(latlng);
-				    
-				   /*  var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
-				    message += '경도는 ' + latlng.getLng() + ' 입니다';
-				    
-				    var resultDiv = document.getElementById('clickLatlng'); 
-				    resultDiv.innerHTML = message; */
+				    $("#latitude").val(latlng.getLat())
+				    $("#longtitude").val(latlng.getLng())
+				     console.log( $("#latitude").val());
+				    console.log( $("#longtitude").val());
 				    
 				});
 			</script>
