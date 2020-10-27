@@ -19,7 +19,7 @@
 									
 									let
 									address = value.address;
-									var jbSplit = address.split(' ');
+									var jbSplit = address.address_name.split(' ');
 									if(jbSplit.length >= 3 )
 									{
 										$("#searchTable").append(

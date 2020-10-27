@@ -35,5 +35,5 @@
 	</jsp:include> 
 
 </body>
-<script  src="/5_search_location/searchLoc.js"></script>
+<script  type="text/javascript" src="/5_search_location/search.js"></script>
 </html>
