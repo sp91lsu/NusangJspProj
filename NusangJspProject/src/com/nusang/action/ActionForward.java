@@ -6,6 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.nusang.dto.User;
+
 import lombok.Data;
 
 @Data
@@ -45,4 +47,6 @@ public class ActionForward {
 			break;
 		}
 	}
+
+	
 }

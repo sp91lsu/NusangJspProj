@@ -38,6 +38,7 @@ public class MyInfoController extends HttpServlet {
 		if (actionForward == null) { // http://localhost:8787/myinfo/profile
 			String requestPage = ConAsist.getRequestName(request);
 			// profile
+			ConAsist.updateMyUser(request);
 			try {
 				switch (requestPage) {
 				case "profile":
@@ -74,12 +75,12 @@ public class MyInfoController extends HttpServlet {
 					NicknameChange_Action N_A = new NicknameChange_Action();
 					actionForward = N_A.execute(request, response);
 					break;
-				
+
 				case "image_change":
 					ImageChange_Action C_A = new ImageChange_Action();
 					actionForward = C_A.execute(request, response);
 					break;
-					
+
 				case "image_delete":
 					ImageDelete_Action D_A = new ImageDelete_Action();
 					actionForward = D_A.execute(request, response);

@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nusang.action.ActionForward;
 import com.nusang.action.EActionType;
 import com.nusang.bo.KakaoBO;
+import com.nusang.dao.UserDao;
 import com.nusang.dto.Location;
 import com.nusang.dto.User;
 
@@ -77,5 +78,15 @@ public class ConAsist {
 
 		request.getSession().setAttribute("location", location);
 		return location;
+	}
+
+	public static User getSessionUser(HttpServletRequest request) {
+		return (User) request.getSession().getAttribute("user");
+	}
+
+	public static User updateMyUser(HttpServletRequest request) {
+		User user = UserDao.getInstance().findBy("userno", getSessionUser(request).getUserno());
+		request.getSession().setAttribute("user", user);
+		return user;
 	}
 }
