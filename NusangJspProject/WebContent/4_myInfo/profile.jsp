@@ -13,6 +13,10 @@
 				<img src="../img/프로필 기본이미지.jpg" class="card-img-top" alt="..."
 					id="profileImg">
 			</c:when>
+			<c:when test="${user.picture == '프로필 기본이미지.jpg'}">
+				<img src="../img/프로필 기본이미지.jpg" class="card-img-top" alt="..."
+					id="profileImg">
+			</c:when>
 			<c:otherwise>
 				<img src="../upload/${user.picture}" class="card-img-top" alt="..."
 					id="profileImg">
