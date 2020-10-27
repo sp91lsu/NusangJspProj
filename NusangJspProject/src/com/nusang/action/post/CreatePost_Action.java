@@ -21,7 +21,7 @@ public class CreatePost_Action implements Action {
 		request.setCharacterEncoding("UTF-8");
 
 		String pm_merchant_uid = request.getParameter("pm_merchant_uid");
-		String pm_paid_amount = request.getParameter("pm_paid_amount");
+		int pm_paid_amount = Integer.parseInt(request.getParameter("pm_paid_amount"));
 		String imp_uid = request.getParameter("pm_imp_uid");
 
 		User user = (User) request.getSession().getAttribute("user");
@@ -29,8 +29,8 @@ public class CreatePost_Action implements Action {
 		double map_latitude = Double.parseDouble(request.getParameter("map_latitude"));
 		double map_longtitude = Double.parseDouble(request.getParameter("map_longtitude"));
 
-		Payment_Market pm = Payment_Market.builder().name("게시글 등록 " + pm_paid_amount).imp_uid(imp_uid)
-				.paymenttype("card").state("결제").userno(user.getUserno()).build();
+		Payment_Market pm = Payment_Market.builder().name("게시글 등록 ").imp_uid(imp_uid).paymenttype("card").state("결제")
+				.userno(user.getUserno()).price(pm_paid_amount).build();
 
 		Payment_MarketDao.getInstance().insert(pm);
 
