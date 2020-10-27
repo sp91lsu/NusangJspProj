@@ -27,13 +27,13 @@ import com.nusang.dao.Payment_MarketDao;
 import com.nusang.dto.Payment_Market;
 
 @WebServlet("/payment/*")
-public class PaymentController extends HttpServlet {
+public class ImportController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public PaymentController() {
+	public ImportController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

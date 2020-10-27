@@ -43,10 +43,21 @@ public class CreatePost_Action implements Action {
 		post.setProductname(request.getParameter("productName"));
 		post.setUser(user);
 		post.setLocation(location);
-		int insertResult = PostDao.getInstance().insertPost(post);
-		request.setAttribute("result", insertResult);
+		int postno = PostDao.getInstance().insertPost(post);
+
+		// 데이터 확인
+		post = PostDao.getInstance().findBy("postno", postno);
+
 		ActionForward acf = new ActionForward();
-		acf.setNextPath("/4_post/createOk.jsp");
+		if (post != null) {
+			acf.setNextPath("/post/readBuyer?postno=" + post.getPostno());
+		}else {
+			request.setAttribute("error", "게시글 등록에 실패하였습니다.");
+			acf.setNextPath("/0_common/error.jsp");
+		}
+
+		
+		
 		return acf;
 	}
 

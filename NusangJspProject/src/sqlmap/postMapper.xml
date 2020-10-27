@@ -67,7 +67,11 @@
 	</select>
 
 
-	<insert id="insert"   parameterType="Map">
+	<insert id="insert" useGeneratedKeys="true" keyProperty="postno"  parameterType="Map">
+	<selectKey keyProperty="postno" resultType="int" order="AFTER">			   
+    	SELECT SEQ_SELLPOST_POSTNO.CURRVAL FROM DUAL
+ 		</selectKey>
+	
 		INSERT INTO SELLPOST
 		(title,bodytext,price,category,userno,productname,locationno)
 		VALUES (#{title}, #{bodytext}, #{price},#{category},#{userno},#{productname},#{locationno}

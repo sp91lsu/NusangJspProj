@@ -31,10 +31,10 @@ public class PostDao extends BasicDao<Post> {
 
 	public int insertPost(Post post) {
 		SqlSession session = sqlSessionFactory.openSession();
-		int result = 0;
+		int postno = 0;
 		try {
 			LocationDao.getInstance().insert(session, post.getLocation());
-			Map<String , Object> map = new HashMap<String, Object>();
+			Map<String, Object> map = new HashMap<String, Object>();
 			System.out.println("post location 값 : " + post.getLocation().getLocationno());
 			map.put("title", post.getTitle());
 			map.put("bodytext", post.getBodytext());
@@ -43,7 +43,9 @@ public class PostDao extends BasicDao<Post> {
 			map.put("userno", post.getUser().getUserno());
 			map.put("productname", post.getProductname());
 			map.put("locationno", post.getLocation().getLocationno());
-			result = insert(session, map);
+			insert(session, map);
+			postno = (int) map.get("postno");
+
 			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -52,7 +54,7 @@ public class PostDao extends BasicDao<Post> {
 			session.close();
 		}
 
-		return result;
+		return postno;
 	}
 
 	public ArrayList<Post> findPostByLocation(Location userLocation, int distance) {
@@ -73,7 +75,7 @@ public class PostDao extends BasicDao<Post> {
 		} finally {
 			session.close();
 		}
-		
+
 		return (ArrayList<Post>) postList;
 	}
 }
