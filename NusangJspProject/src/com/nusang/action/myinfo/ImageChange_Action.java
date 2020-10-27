@@ -70,10 +70,15 @@ public class ImageChange_Action implements Action {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		fileName = savePath + "\\" + fileSystemName;
+		
+		//fileName = savePath + "\\" + fileSystemName;
 		User user = (User)request.getSession().getAttribute("user");
-		UserDao.getInstance().updateBy(user.getUserno(), "picture", fileName);
-
+		UserDao.getInstance().updateBy(user.getUserno(), "picture", fileSystemName);
+		user = UserDao.getInstance().findBy("userno", user.getUserno());
+		System.out.println("파일이름 이 뭐야?? --" + user.getPicture());
+		actionForward.setActionType(EActionType.REDIRECT);
+		request.getSession().setAttribute("user", user);
+		
 		return actionForward;
 	}
 
