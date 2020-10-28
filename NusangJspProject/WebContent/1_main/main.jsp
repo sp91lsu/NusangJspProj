@@ -15,7 +15,7 @@
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
 
 
-	<div class="container border border-dark mt-4 overflow-auto rounded-lg" style="height: 600px;">
+	<div class="container border border-dark mt-4 overflow-auto rounded-lg" style="min-height: 1000px;">
 		
 		<div class="input-group w-50 container mt-4 ">
 			<input type="text" class="form-control" placeholder="검색 키워드를 입력하세요!"> <span class="input-group-btn">
@@ -23,7 +23,7 @@
 			</span>
 		</div>
 		<h1 class="mt-5" id="titleAddress" align = "center">너의 근처 ${location.getAddress() } 판매목록</h1>
-
+		<br><hr>
 		<!-- 카테고리, 글쓰기버튼 -->
 		<div id="cate-post" class="d-flex">
 			<div id="cate" class="mr-auto"></div>
