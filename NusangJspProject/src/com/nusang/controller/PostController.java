@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
+import com.nusang.action.post.AddComments_Aciton;
 import com.nusang.action.post.CreatePost_Action;
 import com.nusang.action.post.ReadPost_Action;
 import com.nusang.controller.assistance.ConAsist;
@@ -41,6 +42,10 @@ public class PostController extends HttpServlet {
 				case "moveMkPost":
 					actionForward = new ActionForward();
 					actionForward.setNextPath(ConAsist.URL_MKPOST);
+					break;
+				case "addComments":
+					AddComments_Aciton A_A = new AddComments_Aciton();
+					actionForward = A_A.execute(request, response);
 					break;
 				}
 			} catch (Exception e) {

@@ -2,13 +2,12 @@
 	pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="../css/comment.css">
 
-<div class="comment">
-	<div>
-		댓글
-	</div>
-	
-	<form action="">
-		<textarea rows="3" cols="10"></textarea>
-		<input type="submit" value="등록">
-	</form>
+
+<div>
+	댓글
 </div>
+
+<form action="">
+	<textarea rows="3" cols="10"></textarea>
+	<input type="submit" value="등록">
+</form>
