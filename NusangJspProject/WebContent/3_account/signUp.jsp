@@ -95,7 +95,7 @@
 	    	alert("아이디 중복확인 하세요.");
 	    	return false;
 	    }
-	    if(userid != username){
+	    if(userid != useridchk){
 	    	alert("아이디 중복확인 하세요.")
 	    	return false;
 	    }
@@ -104,20 +104,22 @@
 	}
 	
 	var chk = false;
-	let username = "";
+	let useridchk = "";
 
 	$("#idChkBtn").click(function() {
-		username = $("#userid").val();
+		useridchk = $("#userid").val();
 		$.ajax({
-			url : "/user/idChk?uid=" + username,
+			url : "/user/idChk?uid=" + useridchk,
 			success : function(data) {
 				if(data == "0"){
 					alert("아이디를 입력해 주세요.");
+					chk = false;
 				}else if(data == "1"){
 					alert("사용가능한 아이디 입니다.");
 					chk = true;
 				}else{
 					alert("중복된 아이디 입니다.");
+					chk = false;
 				}
 			}
 		})
