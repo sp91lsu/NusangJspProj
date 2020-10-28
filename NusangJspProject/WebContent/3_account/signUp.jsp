@@ -99,7 +99,7 @@
 	    	alert("아이디 중복확인 하세요.")
 	    	return false;
 	    }
-	    
+	    alert("회원가입을 축하드립니다♥");
 	    return true;
 	}
 	
