@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="post_pictureMapper">
+
+	<select id="selectAll" resultType="Post_Picture">
+		SELECT
+		*
+		FROM
+		SELLPOST
+	</select>
+
+
+	<select id="findBy" resultType="Post_Picture">
+		SELECT
+		*
+		FROM
+		SELLPOST
+		WHERE
+		${search} = #{keyword}
+	</select>
+
+
+	<insert id="insert"  useGeneratedKeys="true" keyProperty="post_picno"  parameterType="Post_Picture">
+		<selectKey keyProperty="post_picno" resultType="int" order="AFTER">			   
+    	SELECT SEQ_POST_PICTURE_POST_PICNO.CURRVAL FROM DUAL
+ 		</selectKey>
+		
+		INSERT INTO POST_PICTURE
+		(POST_PICNO,P_1,P_2,P_3,P_4,P_5)
+		VALUES (#{post_picno},#{p_1}, #{p_2}, #{p_3},#{p_4},#{p_5})
+	</insert>
+	<!-- ,#{picture, jdbcType=BLOB},#{latitude, jdbcType=FLOAT},#{longtitude, 
+		jdbcType=FLOAT} -->
+
+	
+	
+</mapper>
+

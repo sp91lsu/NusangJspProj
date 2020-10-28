@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.nusang.dto.Location;
 import com.nusang.dto.Post;
+import com.nusang.dto.Post_Picture;
 import com.nusang.dto.User;
 
 public class PostDao extends BasicDao<Post> {
@@ -29,12 +30,16 @@ public class PostDao extends BasicDao<Post> {
 		super(namespace, "postno");
 	}
 
-	public int insertPost(Post post) {
+	public int insertPost(Post post,List<String> fileSystemNames) {
 		SqlSession session = sqlSessionFactory.openSession();
 		int postno = 0;
 		try {
 			LocationDao.getInstance().insert(session, post.getLocation());
+			Post_PictureDao.getInstance().insert(session,post.getPost_picture()); // 1
+
+			
 			Map<String, Object> map = new HashMap<String, Object>();
+			System.out.println("post getPost_picno 값 : " + post.getPost_picture().getPost_picno());
 			System.out.println("post location 값 : " + post.getLocation().getLocationno());
 			map.put("title", post.getTitle());
 			map.put("bodytext", post.getBodytext());
@@ -43,9 +48,11 @@ public class PostDao extends BasicDao<Post> {
 			map.put("userno", post.getUser().getUserno());
 			map.put("productname", post.getProductname());
 			map.put("locationno", post.getLocation().getLocationno());
+			map.put("post_picno", post.getPost_picture().getPost_picno());
 			insert(session, map);
 			postno = (int) map.get("postno");
 
+			
 			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();

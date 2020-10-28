@@ -7,8 +7,6 @@
 	
 	<h2 style = "margin-left:100px;">프로필 수정</h2>
 	
-	
-	
 	<!-- 프로필 사진 영역 -->
 	<c:choose>
 		<c:when test="${empty user.picture}">
