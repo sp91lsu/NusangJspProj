@@ -102,28 +102,28 @@
 					
 				<div id="buyer_seller" class="d-flex align-items-center">
 					<c:choose>
-						<!--내 글이면(판매자)-->
-						<c:when test="${user.userid == post.user.getUserid()}">
-							<!-- 구매예약현황 드롭다운메뉴 -->
-							<div class="dropdown">
+						
+						<c:when test="${user.userid == post.user.getUserid()}"><!--내 글이면(판매자)-->
+							
+							<div class="dropdown"><!-- 구매예약현황 드롭다운메뉴 -->
 								<button id="status" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
 									구매신청현황 <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
-									<c:forEach var="resv" items="${post.buy_ReservationList}">
+									<%-- <c:forEach var="resv" items="${post.buy_ReservationList}">
 										<li class="dropdown-item" href="#" onclick="mkResv()">${resv.user.nickname} | ${resv.reser_price}</li>
-									</c:forEach>
+									</c:forEach> --%>
 								</ul>
 							</div>
-							<!-- 글 수정,삭제버튼 -->
-							<div id="btnArea">
+							
+							<div id="btnArea"><!-- 글 수정,삭제버튼 -->
 								<button id="uptPost" class="btn btn-primary">글 수정</button>
 								<button id="delPost" class="btn btn-primary">글 삭제</button>
 							</div>
 						</c:when>
 							
-						<!-- 구매자 -->	
-						<c:otherwise>
+						
+						<c:otherwise><!-- 구매자 -->	
 							내 글이 아니다
 						</c:otherwise>
 					</c:choose>

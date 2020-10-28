@@ -42,7 +42,7 @@
 					<h8 id="post_interest">관심 [cnt]</h8>
 					<h8>·</h8>
 					<h8 id="post_view">조회 [cnt]</h8>
-					<button class="btn btn-primary" onclick="location.href='/post/readBuyer?postno=${post.postno}'"> 글보기</button>
+					<button class="btn btn-primary" onclick="location.href='/post/readPost?postno=${post.postno}'"> 글보기</button>
 				</div>
 			</c:forEach>
 		</div>
