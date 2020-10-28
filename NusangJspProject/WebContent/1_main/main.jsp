@@ -31,11 +31,12 @@
 		
 		<!-- 카테고리, 글쓰기버튼 -->
 		
-		<div id="postListSection" class="d-flex flex-wrap align-content-start justify-content-center" style = "margin-top: 20px;">
+		<div id="postListSection" class="d-flex flex-wrap align-content-start justify-content-center" style = "margin-top: 50px;">
 			<c:forEach var="post" items="${postList}">
 				<div id="postCard">
-					<img id="card_img" alt="default image" src="/img/puppy.jpg">
-					<h6 id="card_title">${post.title }</h6>
+					<img id="card_img" alt="default image" src="/img/puppy.jpg" class ="rounded-bottom" style = "height:150px; margin-bottom:0px;">
+					<div style = "box-shadow: 0px 0px 3px 1px #EAEAEA">
+					<h6 id="card_title" style = "padding-top : 20px">${post.title }</h6>
 					<h6 id="card_price">${post.price }원</h6>
 					<h7 id="card_addr">${post.user.location.name1} ${post.user.location.name2} ${post.user.location.name3}</h6><br>
 					<h8 id="post_comment">댓글 [cnt]</h8>
@@ -43,7 +44,8 @@
 					<h8 id="post_interest">관심 [cnt]</h8>
 					<h8>·</h8>
 					<h8 id="post_view">조회 [cnt]</h8>
-					<button class="btn btn-primary" onclick="location.href='/post/readPost?postno=${post.postno}'"> 글보기</button>
+					<button id = "viewBtn" class="btn btn-success" style = "width:190px; margin-top:10px;" onclick="location.href='/post/readPost?postno=${post.postno}'"> 글보기</button>
+					</div>
 				</div>
 			</c:forEach>
 		</div>
