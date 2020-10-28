@@ -7,18 +7,26 @@
 	<h2>프로필 수정</h2>
 	<c:choose>
 		<c:when test="${empty user.picture}">
-			<img src="../img/프로필 기본이미지.jpg" alt="..." id="profileImg">
+			<img src="/img/프로필 기본이미지.jpg" alt="..." id="profileImg">
 		</c:when>
 		<c:when test="${user.picture == '프로필 기본이미지.jpg'}">
-			<img src="../img/프로필 기본이미지.jpg" alt="..." id="profileImg">
+			<img src="/img/프로필 기본이미지.jpg" alt="..." id="profileImg">
 		</c:when>
 		<c:otherwise>
-			<img src="../upload/${user.picture}" alt="..." id="profileImg">
+			<img src="/upload/${user.picture}" alt="..." id="profileImg">
 		</c:otherwise>
 	</c:choose>
 </div>
 
 <div class="section2">
+	<div class="nicknameSec">
+		<form action="/myinfo/nickname_change">
+			<input class="nickName" name="nickName" type="text"
+				value=${user.username } />
+
+			<button type="submit" class="btn btn-primary btn-sm">닉네임 변경</button>
+		</form>
+	</div>
 	<div class="btnSec">
 		<form action="/myinfo/image_change" method="post"
 			enctype="multipart/form-data" onsubmit="return changeImgChk()">
@@ -35,21 +43,12 @@
 		</form>
 
 		<form action="/myinfo/image_delete">
-			<button type="submit" class="btn btn-sm btn-secondary">사진
+			<button type="submit" class="btn btn-sm btn-secondary" id="deleteBtn">사진
 				지우기</button>
 		</form>
 	</div>
 
-	<div class="nicknameSec">
-		<form action="/myinfo/nickname_change">
-			<h5 class="card-title">
-				<input class="nickName" name="nickName" type="text"
-					value=${user.username } />
-			</h5>
 
-			<button type="submit" class="btn btn-primary btn-lg">닉네임 변경</button>
-		</form>
-	</div>
 </div>
 
 <script type="text/javascript">
