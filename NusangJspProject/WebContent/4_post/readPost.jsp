@@ -32,7 +32,7 @@
 						</div>
 
 						<div>
-							<h6 id="profile_addr">${post.user.location.name1}${post.user.location.name2} ${post.user.location.name3}</h6>
+							<h6 id="profile_addr">${post.user.location.name1}${post.user.location.name2}${post.user.location.name3}</h6>
 						</div>
 					</div>
 				</div>
@@ -58,7 +58,7 @@
 								<!-- 글 수정,삭제버튼 -->
 								<button id="uptPost" class="btn btn-primary" onclick="location.href='<%= ConAsist.SERVLET_UPDATEPOST %>?postno=${post.postno}'">글 수정</button>
 								<button id="delPost" class="btn btn-primary">글 삭제</button>
-								
+
 							</div>
 						</c:when>
 
@@ -72,8 +72,7 @@
 								<%
 									request.setAttribute("post", request.getAttribute("post"));
 								%>
-								<button id="resvBuy" class="btn btn-primary" onclick="location.href='/post/buy_reservation'">
-								가격 제시</button>
+								<button id="resvBuy" class="btn btn-primary" onclick="location.href='/post/buy_reservation'">가격 제시</button>
 
 							</div>
 						</c:otherwise>
@@ -175,9 +174,37 @@
 			<br>
 
 			<!-- 지도 -->
-			<div id="map" class="d-flex justify-content-center align-items-center">
-				<span style="font-size: 30px;">지도</span>
-			</div>
+			<div id="map" style="width: 100%; height: 350px;"></div>
+
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1db6aaded4b028f19067fca5394bb829"></script>
+			<input type="hidden" id="latitude" value="${post.location.latitude }"> <input type="hidden" id="longtitude" value="${post.location.longtitude }">
+			<script>
+				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+				mapOption = {
+					center : new kakao.maps.LatLng($(latitude).val(), $(
+							longtitude).val()), // 지도의 중심좌표
+					level : 3
+				// 지도의 확대 레벨
+				};
+
+				var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+				console.log($(latitude).val());
+				console.log($(longtitude).val());
+				// 마커가 표시될 위치입니다 
+				var markerPosition = new kakao.maps.LatLng($(latitude).val(),
+						$(longtitude).val());
+
+				// 마커를 생성합니다
+				var marker = new kakao.maps.Marker({
+					position : markerPosition
+				});
+
+				// 마커가 지도 위에 표시되도록 설정합니다
+				marker.setMap(map);
+
+				// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+				// marker.setMap(null);
+			</script>
 			<br>
 
 			<hr class="m-0">
