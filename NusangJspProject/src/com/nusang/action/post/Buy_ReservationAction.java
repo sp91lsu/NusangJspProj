@@ -28,5 +28,4 @@ public class Buy_ReservationAction implements Action {
 		af.setAsyncData(result.toString());
 		return af;
 	}
-
 }
