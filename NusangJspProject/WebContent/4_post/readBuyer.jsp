@@ -132,7 +132,7 @@
 				</div>
 			</div>
 			<hr class="m-0">
-			<jsp:include page="../0_common/comment.jsp"></jsp:include>
+			<jsp:include page="../0_common/comments.jsp"></jsp:include>
 		</div>
 	</div>
 	
