@@ -28,6 +28,7 @@ public class Post {
 	private int viewcnt;
 	private int visible;
 	private Location location;
+	private Post_Picture post_picture;
 	private ArrayList<Buy_Reservation> buy_ReservationList;
 	private ArrayList<Reply> replyList;
 }

@@ -26,6 +26,7 @@
 			javaType: 알dto의 자바클래스 
 			select: 알dto 타입의 객체를 생성하는 쿼리문 
 			-->
+			<association property="post_picture" column="post_picno" javaType="Post_Picture" select="selectPostPicture" />
 			<association property="user" column="userno" javaType="User" select="selectUser" />
 		<association property="location" column="locationno"
 			javaType="Location" select="selectLocation" />
@@ -41,6 +42,17 @@
 		WHERE
 		LOCATIONNO = #{locationno}
 	</select>
+
+<select id="selectPostPicture" resultType="Post_Picture">
+		SELECT
+		*
+		FROM
+		Post_Picture
+		WHERE
+		POST_PICNO = #{post_picno}
+	</select>
+
+
 
 	<select id="selectUser" resultMap="userMapper.userResultMap">
 		SELECT
@@ -75,8 +87,8 @@
  		</selectKey>
 	
 		INSERT INTO SELLPOST
-		(title,bodytext,price,category,userno,productname,locationno)
-		VALUES (#{title}, #{bodytext}, #{price},#{category},#{userno},#{productname},#{locationno}
+		(title,bodytext,price,category,userno,productname,locationno,post_picno)
+		VALUES (#{title}, #{bodytext}, #{price},#{category},#{userno},#{productname},#{locationno},#{post_picno}
 		)
 	</insert>
 	<!-- ,#{picture, jdbcType=BLOB},#{latitude, jdbcType=FLOAT},#{longtitude, 
