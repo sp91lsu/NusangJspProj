@@ -18,8 +18,9 @@
 	<div id="body" class="d-flex justify-content-center">
 		<div id="content">
 			
-			<!-- 판매자 정보 -->		
+			<!-- 유저 섹션 -->		
 			<div id="Section-sellerInfo" class="d-flex ">
+				<!-- 프로필 -->
 				<div id="profile" class="d-flex mr-auto">
 					<div id="profile_left">
 						<i id="profile_img" class="fas fa-user-circle fa-4x"></i>
@@ -36,12 +37,11 @@
 					</div>
 				</div>
 					
+				<!-- 버튼 영역 as 구매자or판매자 -->
 				<div id="buyer_seller" class="d-flex align-items-center">
 					<c:choose>
-						
 						<c:when test="${user.userid == post.user.getUserid()}"><!--내 글이면(판매자)-->
-							
-							<div class="dropdown"><!-- 구매예약현황 드롭다운메뉴 -->
+							<div class="dropdown"><!-- 구매신청현황 드롭다운메뉴 -->
 								<button id="status" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
 									구매신청현황 <span class="caret"></span>
 								</button>
@@ -59,93 +59,34 @@
 						</c:when>
 							
 						
-						<c:otherwise><!-- 구매자 -->	
-							<button id="resvBuy" class="btn btn-primary">구매 신청</button>
+						<c:otherwise><!-- 구매자 -->
+							<div id="buyerBtn" class="d-flex flex-column">
+								<div>구매신청현황 <br> :${post.sellstate} </div>
+								<button id="resvBuy" class="btn btn-primary">구매 신청</button>
+							</div>	
 						</c:otherwise>
 					</c:choose>
 				</div>
 			</div>
+			
 			<hr class="m-0">
+			
 			<!-- 상품 내용 -->
 			<div id="Section-post">
+				<!-- 글제목 -->
 				<h4 id="post_title">${post.title}</h4>
+				<!-- 카테고리 & 시간 -->
 				<div id="post_cate-time" class="d-flex">
 					<h6 id="post_category">${post.category}</h6>
 					<h6>·</h6>
 					<h6 id="post_time">시간정보</h6>
 				</div>
+				<!-- 가격 -->
 				<h5 id="post_price">${post.price}원</h5>
 				
-				<!-- 상품 이미지 -->
-				<div id="Section-prodImg">
-					<div id="myCarousel" class="carousel slide">
-	
-						<!-- Indicators -->
-						<ul class="carousel-indicators">
-							<li class="item1 active"></li>
-							<li class="item2"></li>
-							<li class="item3"></li>
-						</ul>
-	
-						<!-- The slideshow -->
-						<div class="carousel-inner">
-							<div class="carousel-item active">
-								<img src="https://www.w3schools.com/bootstrap4/la.jpg"
-									alt="Los Angeles" >
-							</div>
-							
-							<div class="carousel-item">
-								<img src="https://www.w3schools.com/bootstrap4/chicago.jpg"
-									alt="Chicago">
-							</div>
-							
-							<div class="carousel-item">
-								<img src="https://www.w3schools.com/bootstrap4/ny.jpg"
-									alt="New York"	>
-							</div>
-						</div>
-	
-						<!-- Left and right controls -->
-						<a class="carousel-control-prev" href="#myCarousel"> <span
-							class="carousel-control-prev-icon"></span>
-						</a> <a class="carousel-control-next" href="#myCarousel"> <span
-							class="carousel-control-next-icon"></span>
-						</a>
-					</div>
-	
-					<script>
-						$(document).ready(function() {
-							// Activate Carousel
-							$("#myCarousel").carousel();
-	
-							// Enable Carousel Indicators
-							$(".item1").click(function() {
-								$("#myCarousel").carousel(0);
-							})
-							$(".item2").click(function() {
-								$("#myCarousel").carousel(1);
-							})
-							$(".item3").click(function() {
-								$("#myCarousel").carousel(2);
-							})
-	
-							// Enable Carousel Controls
-							$(".carousel-control-prev").click(function() {
-								$("#myCarousel").carousel("prev")
-							})
-							$(".carousel-control-next").click(function() {
-								$("#myCarousel").carousel("next")
-							})
-	
-						});
-					</script>
-				</div>
 				<!-- 글 내용 -->
 				<p id="post_writing">${post.bodytext}</p>
-				<!-- 지도 -->
-				<div id="map" class="d-flex justify-content-center align-items-center" style="width:500px; height:270px; background-color: lightblue;"><span style="font-size:30px;">지도</span>
-				</div>
-				<br>
+				
 				<!-- 댓글,관심,조회 -->
 				<div id="post_co&in&vi" class="d-flex">
 					<h8 id="post_comment">댓글 [cnt]</h8>
@@ -154,12 +95,97 @@
 					<h8>·</h8>
 					<h8 id="post_view">조회 [cnt]</h8>
 				</div>
+					
+				<br>
+				<hr class="m-0">
+				<br>
 			</div>
-			<hr class="m-0">
+				
+			<!-- 상품 이미지 -->
+			<div id="Section-prodImg">
+				<div id="myCarousel" class="carousel slide">
+
+					<!-- Indicators -->
+					<ul class="carousel-indicators">
+						<li class="item1 active"></li>
+						<li class="item2"></li>
+						<li class="item3"></li>
+					</ul>
+
+					<!-- The slideshow -->
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img src="https://www.w3schools.com/bootstrap4/la.jpg"
+								alt="Los Angeles" >
+						</div>
+						
+						<div class="carousel-item">
+							<img src="https://www.w3schools.com/bootstrap4/chicago.jpg"
+								alt="Chicago">
+						</div>
+						
+						<div class="carousel-item">
+							<img src="https://www.w3schools.com/bootstrap4/ny.jpg"
+								alt="New York"	>
+						</div>
+					</div>
+
+					<!-- Left and right controls -->
+					<a class="carousel-control-prev" href="#myCarousel"> 
+						<span class="carousel-control-prev-icon"></span>
+					</a> 
+					<a class="carousel-control-next" href="#myCarousel"> 
+						<span class="carousel-control-next-icon"></span>
+					</a>
+				</div>
+
+				<script>
+					$(document).ready(function() {
+						// Activate Carousel
+						$("#myCarousel").carousel();
+
+						// Enable Carousel Indicators
+						$(".item1").click(function() {
+							$("#myCarousel").carousel(0);
+						})
+						$(".item2").click(function() {
+							$("#myCarousel").carousel(1);
+						})
+						$(".item3").click(function() {
+							$("#myCarousel").carousel(2);
+						})
+
+						// Enable Carousel Controls
+						$(".carousel-control-prev").click(function() {
+							$("#myCarousel").carousel("prev")
+						})
+						$(".carousel-control-next").click(function() {
+							$("#myCarousel").carousel("next")
+						})
+
+					});
+				</script>
+			</div>
+			<br>	
+				
+			<!-- 지도 -->
+			<div id="map" class="d-flex justify-content-center align-items-center">
+				<span style="font-size:30px;">지도</span>
+			</div>
+			<br>
 			
-			<div class="comment">
-            	<jsp:include page="../0_common/comments.jsp"></jsp:include>
-         	</div>
+			<hr class="m-0">
+			<!-- 댓글 섹션 -->
+			댓글
+         	<div class="addComments">
+         		<div>
+         			<img src="/img/logo.png" style="width: 50px; height: 50px">
+         			<%String id = "아이디";%>
+         			<%=id%>: 내용
+				</div>
+				
+				<jsp:include page="../0_common/comments.jsp?postno=${post.postno}"></jsp:include>
+			</div>
 		</div>
 	</div>
 	

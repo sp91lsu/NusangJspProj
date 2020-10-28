@@ -5,7 +5,7 @@
 	padding: 0;
 }
 #content {
-	width: 720px;
+	width: 700px;
 }
 
 [id^='Section-']{
@@ -13,13 +13,13 @@
 }
 /* 상품이미지 섹션 */
 #Section-prodImg {
-	width: 500px;
-	height: 350px;
+	width: 100%;
+	height: 550px;
 	border: 1px solid black;
 }
 .carousel-inner img {
-	width: 500px;
-	height: 350px;
+	width: 100%;
+	height: 550px;
 }
 
 /* 판매자정보 섹션 */
@@ -58,6 +58,12 @@
 	padding-top: 1rem;
 }
 
+/* 지도 */
+#map{
+	width:500px; 
+	height:270px; 
+	background-color: lightblue;
+}
 
 h8{
 	font-size: 12px;
