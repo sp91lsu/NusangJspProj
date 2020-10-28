@@ -37,7 +37,7 @@
 					href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=h3YOPfhFkTcn5ls8RX3g&state=STATE_STRING&redirect_uri=http://localhost:8787/user/naverlogin"><img
 					height="38px" src="../img/naverLoginBtn.PNG"></a>
 					<a href="find_id.jsp" style = "margin-left: 40px; font-size:small; border-right: 1px solid skyblue; padding-right: 20px;">아이디 찾기</a>
-					<a href="find_pw.jsp">비밀번호 찾기</a>
+					<a href="find_pw.jsp" style = "margin-left: 15px; font-size:small;">비밀번호 찾기</a>
 			</div>
 					
 		</form>
