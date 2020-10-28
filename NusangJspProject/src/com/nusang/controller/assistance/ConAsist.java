@@ -19,6 +19,7 @@ import com.nusang.dto.User;
 public class ConAsist {
 
 	public static final String SERVLET_READPOST = "/post/readPost";
+	public static final String SERVLET_UPDATEPOST = "/post/updatePost";
 	
 	public static final String URL_CHKLOCATION = "/1_main/index.jsp";
 	public static final String URL_MAIN = "/1_main/main.jsp";
@@ -27,6 +28,7 @@ public class ConAsist {
 	public static final String URL_MYINFOMAIN = "/4_myInfo/myInfoMain.jsp";
 	public static final String URL_SEARCH = "/5_search_location/search.jsp";
 	public static final String URL_MKPOST = "/4_post/createPost.jsp";
+	public static final String URL_UPDATEPOST = "/4_post/updatePost.jsp";
 	public static final String URL_PROFILE = "/4_myInfo/myInfoMain.jsp";
 
 	// 요청 마지막 경로

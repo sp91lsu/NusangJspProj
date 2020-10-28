@@ -1,5 +1,6 @@
 <%@page import="com.nusang.dto.User"%>
 <%@page import="com.nusang.dto.Post"%>
+<%@page import="com.nusang.controller.assistance.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -42,9 +43,9 @@
 						<c:when test="${user.userid == post.user.getUserid()}">
 							<!--내 글이면(판매자)-->
 							<div class="dropdown">
-								<!-- 구매신청현황 드롭다운메뉴 -->
+								<!-- 거래상태 현황 드롭다운메뉴 -->
 								<button id="status" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
-									구매신청현황 <span class="caret"></span>
+									거래상태 현황 <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
 									<%-- <c:forEach var="resv" items="${post.buy_ReservationList}">
@@ -55,8 +56,9 @@
 
 							<div id="btnArea">
 								<!-- 글 수정,삭제버튼 -->
-								<button id="uptPost" class="btn btn-primary">글 수정</button>
+								<button id="uptPost" class="btn btn-primary" onclick="location.href='<%= ConAsist.SERVLET_UPDATEPOST %>?postno=${post.postno}'">글 수정</button>
 								<button id="delPost" class="btn btn-primary">글 삭제</button>
+								
 							</div>
 						</c:when>
 
@@ -65,12 +67,13 @@
 							<!-- 구매자 -->
 							<div id="buyerBtn" class="d-flex flex-column">
 								<div>
-									구매신청현황 <br> :${post.sellstate}
+									거래상태 현황 <br> :${post.sellstate}
 								</div>
 								<%
 									request.setAttribute("post", request.getAttribute("post"));
 								%>
-								<button id="resvBuy" class="btn btn-primary" onclick="location.href='/post/buy_reservation'">구매 신청</button>
+								<button id="resvBuy" class="btn btn-primary" onclick="location.href='/post/buy_reservation'">
+								가격 제시</button>
 
 							</div>
 						</c:otherwise>
