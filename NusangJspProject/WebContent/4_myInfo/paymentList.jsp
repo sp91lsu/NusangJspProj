@@ -10,7 +10,7 @@
 
 <div class="container" style = "margin-left: 100px;">
 	<h2>결제내역</h2>
-	<br> <br> <br>
+	<br> <br>
 
 	<table class="table">
 		<thead class="thead-dark">

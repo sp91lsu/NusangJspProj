@@ -4,7 +4,7 @@
       
 <div class="container" style = "margin-left: 100px;">
 	<h2>구매신청 현황</h2>
-	<br><br><br>
+	<br><br>
 
 	<table class="table">
 	  <thead class="thead-dark">

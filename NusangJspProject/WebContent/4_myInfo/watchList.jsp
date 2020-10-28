@@ -3,7 +3,7 @@
     
 <div class="container" style = "margin-left: 100px;">
 	<h2>관심목록</h2>
-	<br><br><br>
+	<br><br>
 
 	<div class="card" style="width: 18rem;">
 		<img src="../img/ㄴㄱㅁㅋ-logo.png" class="card-img-top" alt="...">
