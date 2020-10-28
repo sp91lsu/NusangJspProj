@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>너근마켓</title>
 <link rel="stylesheet" type="text/css" href="/1_main/css/postCard.css">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Single+Day&display=swap" rel="stylesheet">
 <script type="text/javascript" src="/1_main/main.js"></script>
 </head>
 
@@ -14,23 +15,23 @@
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
 
-
-	<div class="container border border-dark mt-4 overflow-auto rounded-lg" style="min-height: 1000px;">
-		
+	<div style = "background: #EEE; width: 100%; margin-top : -50px; ">
+		<h1 class="mt-5" id="titleAddress" align = "center" style = "padding-top: 50px;"><span style = "font-family: 'Do Hyeon', sans-serif;font-size:50px; color: #1DDB16">너의 근처</span> ${location.getAddress() } 판매목록</h1>
 		<div class="input-group w-50 container mt-4 ">
 			<input type="text" class="form-control" placeholder="검색 키워드를 입력하세요!"> <span class="input-group-btn">
-				<button class="btn btn-dark " type="button">찾기</button>
+				<button class="btn btn-dark " type="button" style = "background: #10620A;">찾기</button>
 			</span>
 		</div>
-		<h1 class="mt-5" id="titleAddress" align = "center">너의 근처 ${location.getAddress() } 판매목록</h1>
-		<br><hr>
-		<!-- 카테고리, 글쓰기버튼 -->
 		<div id="cate-post" class="d-flex">
 			<div id="cate" class="mr-auto"></div>
-			<button type="button" class="btn btn-dark" id="btnPost" onclick="location.href='/post/moveMkPost'">글쓰기</button>
+			<button type="button" class="btn btn-dark" id="btnPost"  style = "background: #10620A; onclick="location.href='/post/moveMkPost'">글쓰기</button>
 		</div>
+	</div>
+	<div class="container" style="min-height: 1000px;">
 		
-		<div id="postListSection" class="d-flex flex-wrap align-content-start justify-content-center">
+		<!-- 카테고리, 글쓰기버튼 -->
+		
+		<div id="postListSection" class="d-flex flex-wrap align-content-start justify-content-center" style = "margin-top: 20px;">
 			<c:forEach var="post" items="${postList}">
 				<div id="postCard">
 					<img id="card_img" alt="default image" src="/img/puppy.jpg">
