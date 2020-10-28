@@ -83,8 +83,8 @@
 			</div>
 			
 			<!-- 판매자 정보 -->		
-			<div id="Section-sellerInfo">
-				<div id="profile" class="d-flex">
+			<div id="Section-sellerInfo" class="d-flex ">
+				<div id="profile" class="d-flex mr-auto">
 					<div id="profile_left">
 						<i id="profile_img" class="fas fa-user-circle fa-4x"></i>
 					</div>
@@ -98,18 +98,35 @@
 							<h6 id="profile_addr">${post.user.location.name1} ${post.user.location.name2} ${post.user.location.name3}</h6>
 						</div>
 					</div>
+				</div>
 					
-					<div>
-						<c:choose>
-							<c:when test="${user.userid == post.user.getUserid()}"><!--내 글이면-->
-								내 글이다
-							</c:when>
-								
-							<c:otherwise>
-								내 글이 아니다
-							</c:otherwise>
-						</c:choose>
-					</div>
+				<div id="buyer_seller" class="d-flex align-items-center">
+					<c:choose>
+						<!--내 글이면(판매자)-->
+						<c:when test="${user.userid == post.user.getUserid()}">
+							<!-- 구매예약현황 드롭다운메뉴 -->
+							<div class="dropdown">
+								<button id="status" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+									구매신청현황 <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<c:forEach var="resv" items="${post.buy_ReservationList}">
+										<li class="dropdown-item" href="#" onclick="mkResv()">${resv.user.nickname} | ${resv.reser_price}</li>
+									</c:forEach>
+								</ul>
+							</div>
+							<!-- 글 수정,삭제버튼 -->
+							<div id="btnArea">
+								<button id="uptPost" class="btn btn-primary">글 수정</button>
+								<button id="delPost" class="btn btn-primary">글 삭제</button>
+							</div>
+						</c:when>
+							
+						<!-- 구매자 -->	
+						<c:otherwise>
+							내 글이 아니다
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 			<hr class="m-0">
@@ -129,6 +146,8 @@
 					<h8 id="post_interest">관심 [cnt]</h8>
 					<h8>·</h8>
 					<h8 id="post_view">조회 [cnt]</h8>
+				</div>
+				<div class="d-flex justify-content-center align-items-center" style="width:500px; height:270px; background-color: lightblue;"><span style="font-size:30px;">지도</span>
 				</div>
 			</div>
 			<hr class="m-0">

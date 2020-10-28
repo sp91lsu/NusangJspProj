@@ -8,7 +8,7 @@ import com.nusang.action.ActionForward;
 import com.nusang.dao.PostDao;
 import com.nusang.dto.Post;
 
-public class ReadBuyer_Action implements Action {
+public class ReadPost_Action implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -17,7 +17,7 @@ public class ReadBuyer_Action implements Action {
 		Post post = PostDao.getInstance().findBy("postno",postNo );
 		request.setAttribute("post", post);
 		ActionForward acf = new ActionForward();
-		acf.setNextPath("/4_post/readBuyer.jsp");
+		acf.setNextPath("/4_post/readPost.jsp");
 		return acf;
 	}
 
