@@ -16,12 +16,14 @@ public class IdChk_Action implements Action {
 		ActionForward actionForward = new ActionForward();
 		String uid = request.getParameter("uid");
 		User userid = UserDao.getInstance().findBy("userid", uid);
+		
 
 		if ((uid == "")) {
 			actionForward.setAsyncData("0");
 		} else if ((userid == null) && (uid != "")) {
 			actionForward.setAsyncData("1");
-		} else {
+		}
+		else {
 			actionForward.setAsyncData("2");
 		}
 		return actionForward;

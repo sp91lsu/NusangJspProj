@@ -15,7 +15,6 @@ public class FindId_Action implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward actionForward = new ActionForward();
-		actionForward.setNextPath(ConAsist.URL_LOGIN);
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("아이디 찾기 세상으로 이동");
 
