@@ -38,7 +38,7 @@
 					<div style = "box-shadow: 0px 0px 3px 1px #EAEAEA">
 					<h6 id="card_title" style = "padding-top : 20px">${post.title }</h6>
 					<h6 id="card_price">${post.price }원</h6>
-					<h7 id="card_addr">${post.user.location.name1} ${post.user.location.name2} ${post.user.location.name3}</h6><br>
+					<h7 id="card_addr">${post.location.getAddress()}</h6><br>
 					<h8 id="post_comment">댓글 [cnt]</h8>
 					<h8>·</h8>
 					<h8 id="post_interest">관심 [cnt]</h8>

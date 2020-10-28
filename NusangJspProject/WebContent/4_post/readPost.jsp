@@ -32,7 +32,7 @@
 						</div>
 
 						<div>
-							<h6 id="profile_addr">${post.user.location.name1}${post.user.location.name2}${post.user.location.name3}</h6>
+							<h6 id="profile_addr">${post.location.getAddress()}</h6>
 						</div>
 					</div>
 				</div>

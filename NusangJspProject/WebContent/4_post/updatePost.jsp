@@ -18,7 +18,7 @@
 	<div id="body" class="d-flex justify-content-center">
 		<form name="createPostForm" action="/post/createPost" method="post" onsubmit="return chkSubmit()">
 
-			<input type="hidden" name="map_latitude" id="latitude" value="${location.latitude }"> <input type="hidden" name="map_longtitude" id="longtitude" value="${location.longtitude }">
+			<input type="hidden" name="map_latitude" id="latitude" value="${post.location.latitude }"> <input type="hidden" name="map_longtitude" id="longtitude" value="${post.location.longtitude }">
 
 			<%-- 이미지 --%>
 			이미지:
