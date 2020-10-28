@@ -179,18 +179,7 @@
 
 			<hr class="m-0">
 			<!-- 댓글 섹션 -->
-			댓글
-			<div class="addComments">
-				<div>
-					<img src="/img/logo.png" style="width: 50px; height: 50px">
-					<%
-						String id = "아이디";
-					%>
-					<%=id%>: 내용
-				</div>
-
-				<jsp:include page="../0_common/comments.jsp?postno=${post.postno}"></jsp:include>
-			</div>
+			<jsp:include page="../0_common/comments.jsp?postno=${post.postno}"></jsp:include>
 		</div>
 	</div>
 
