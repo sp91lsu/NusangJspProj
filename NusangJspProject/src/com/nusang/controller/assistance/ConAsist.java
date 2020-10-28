@@ -18,6 +18,8 @@ import com.nusang.dto.User;
 //controller를 도와주는 클래스
 public class ConAsist {
 
+	public static final String SERVLET_READPOST = "/post/readPost";
+	
 	public static final String URL_CHKLOCATION = "/1_main/index.jsp";
 	public static final String URL_MAIN = "/1_main/main.jsp";
 	public static final String URL_MAIN2 = "/1_main/main2.jsp";

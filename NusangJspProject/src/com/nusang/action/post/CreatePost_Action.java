@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
 import com.nusang.bo.KakaoBO;
+import com.nusang.controller.assistance.ConAsist;
 import com.nusang.dao.Payment_MarketDao;
 import com.nusang.dao.PostDao;
 import com.nusang.dto.Location;
@@ -50,7 +51,7 @@ public class CreatePost_Action implements Action {
 
 		ActionForward acf = new ActionForward();
 		if (post != null) {
-			acf.setNextPath("/post/readBuyer?postno=" + post.getPostno());
+			acf.setNextPath(ConAsist.SERVLET_READPOST +  "?postno=" + post.getPostno());
 		}else {
 			request.setAttribute("error", "게시글 등록에 실패하였습니다.");
 			acf.setNextPath("/0_common/error.jsp");
