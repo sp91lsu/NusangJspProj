@@ -5,6 +5,8 @@
 
 <div class="section1">
 	<h2>프로필 수정</h2>
+	
+	<!-- 프로필 사진 영역 -->
 	<c:choose>
 		<c:when test="${empty user.picture}">
 			<img src="/img/프로필 기본이미지.jpg" alt="..." id="profileImg">
@@ -19,6 +21,8 @@
 </div>
 
 <div class="section2">
+
+	<!-- 닉네임 & 닉네임변경버튼 -->
 	<div class="nicknameSec">
 		<form action="/myinfo/nickname_change">
 			<input class="nickName" name="nickName" type="text"
@@ -27,6 +31,8 @@
 			<button type="submit" class="btn btn-primary btn-sm">닉네임 변경</button>
 		</form>
 	</div>
+	
+	<!-- 사진변경 & 저장 & 지우기 버튼 -->
 	<div class="btnSec">
 		<form action="/myinfo/image_change" method="post"
 			enctype="multipart/form-data" onsubmit="return changeImgChk()">
