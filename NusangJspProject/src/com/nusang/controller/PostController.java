@@ -2,7 +2,6 @@ package com.nusang.controller;
 
 import java.io.IOException;
 
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
 import com.nusang.action.post.AddComments_Aciton;
+import com.nusang.action.post.Buy_ReservationAction;
 import com.nusang.action.post.CreatePost_Action;
 import com.nusang.action.post.ReadPost_Action;
 import com.nusang.controller.assistance.ConAsist;
@@ -27,8 +27,8 @@ public class PostController extends HttpServlet {
 		ActionForward actionForward = null;
 		String requestPage = ConAsist.getRequestName(request);
 		actionForward = ConAsist.checkLogin(request);
-		if(actionForward == null) {
-			
+		if (actionForward == null) {
+
 			try {
 				switch (requestPage) {
 				case "readPost":
@@ -47,6 +47,10 @@ public class PostController extends HttpServlet {
 					AddComments_Aciton A_A = new AddComments_Aciton();
 					actionForward = A_A.execute(request, response);
 					break;
+				case "buy_reservation":
+					action = new Buy_ReservationAction();
+					actionForward = action.execute(request, response);
+					break;
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -62,5 +66,3 @@ public class PostController extends HttpServlet {
 	}
 
 }
-
-
