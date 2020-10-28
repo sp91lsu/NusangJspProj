@@ -55,9 +55,11 @@ public class UserController extends HttpServlet {
 			case "findId":
 				FindId_Action F_A = new FindId_Action();
 				actionForward = F_A.execute(request, response);
+				break;
 			case "findPw":
 				FindPw_Action F_A2 = new FindPw_Action();
 				actionForward = F_A2.execute(request, response);
+				break;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
