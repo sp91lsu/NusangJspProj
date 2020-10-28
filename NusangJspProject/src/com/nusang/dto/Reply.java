@@ -19,6 +19,6 @@ public class Reply {
 	private String textbody;
 	private Date regdate;
 	private int state;
-	private List<Reply> child_replyList;
+	private int child_replyno;
 
 }

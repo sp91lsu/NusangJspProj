@@ -6,23 +6,18 @@
 <mapper namespace="replyMapper">
 
 	
-	<resultMap id="userResultMap" type="User">
-	
-	 <id  property="userno"  column="userno"/>
-	<result property="username" column="username"/>
-	<result property="userid" column="userid"/>
-	<result property="password" column="password"/>
-	<result property="logintype" column="logintype"/>
-	<result property="email" column="email"/>
+	<resultMap id="replyMap" type="Reply">
+	 <id  property="replyno"  column="replyno"/>
+	<result property="userno" column="userno"/>
+	<result property="postno" column="postno"/>
+	<result property="textbody" column="textbody"/>
 	<result property="regdate" column="regdate"/>
-	<result property="picture" column="picture"/>
-	<result property="role" column="role"/>
-	<association property="location" column="locationno" javaType="Location"   select="selectLocation"/>						
-	
+	<result property="state" column="state"/>
+	<result property="child_leplyno" column="child_replyno"/>
 	</resultMap>
 	
 	
-      <select id="selectAll" resultMap="userResultMap">
+      <select id="selectAll" resultMap="replyMap">
         SELECT
             *
         FROM
@@ -38,7 +33,7 @@
             LOCATIONNO = #{location}
     </select>
      
-       <select id="findBy" resultMap="userResultMap">
+       <select id="findBy" resultMap="replyMap">
         SELECT
             *
         FROM
@@ -47,23 +42,12 @@
         ${search} = #{keyword}
     </select>
     
-       <select id="loginCheck" resultMap="userResultMap">
-        SELECT
-            *
-        FROM
-            NUSER
-        WHERE 
-        userid = #{userid} 
-       AND 
-       password = #{password}
-       
-    </select>
+     
     
-     <insert id="insert" useGeneratedKeys="true"  keyProperty="userno" parameterType="Map" > 
-        INSERT INTO NUSER (userid,username,password,role,logintype,email,picture)
-         VALUES (#{userid}, #{username}, #{password}, #{role},#{logintype},#{email},#{picture, jdbcType=BLOB}) 
+     <insert id="insert" useGeneratedKeys="true"  keyProperty="replyno" parameterType="Map" > 
+        INSERT INTO REPLY (userno,postno,postno,textbody,state)
+         VALUES (#{userno}, #{postno}, #{postno}, #{textbody},#{state}) 
     </insert>
-    
     
     <update id="updateBy"  > 
          
