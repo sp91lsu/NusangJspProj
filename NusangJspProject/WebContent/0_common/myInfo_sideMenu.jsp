@@ -6,5 +6,5 @@
 <button type="button" class="btn btn-secondary btn-block" onclick="location.href='/myinfo/reservationInfo'">구매신청 현황</button>
 <button type="button" class="btn btn-secondary btn-block" onclick="location.href='/myinfo/buyInfo'">구매내역</button>
 <button type="button" class="btn btn-secondary btn-block" onclick="location.href='/myinfo/watchList'">관심목록</button>
-<button type="button" class="btn btn-secondary btn-block"onclick="location.href='/myinfo/search'">위치설정</button>
 <button type="button" class="btn btn-secondary btn-block" onclick="location.href='/myinfo/saleList'">판매목록</button>
+<button type="button" class="btn btn-secondary btn-block"onclick="location.href='/myinfo/search'">위치설정</button>

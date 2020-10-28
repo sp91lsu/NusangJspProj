@@ -4,7 +4,10 @@
 <link rel="stylesheet" type="text/css" href="/css/profile.css">
 
 <div class="section1">
-	<h2>프로필 수정</h2>
+	
+	<h2 style = "margin-left:100px;">프로필 수정</h2>
+	
+	
 	
 	<!-- 프로필 사진 영역 -->
 	<c:choose>

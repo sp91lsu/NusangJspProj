@@ -8,7 +8,7 @@
 	pageEncoding="UTF-8"%>
 
 
-<div class="container">
+<div class="container" style = "margin-left: 100px;">
 	<h2>결제내역</h2>
 	<br> <br> <br>
 

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div class="container">
+<div class="container" style = "margin-left: 100px;">
 	<h2>구매내역</h2>
 	<br><br><br>
 	

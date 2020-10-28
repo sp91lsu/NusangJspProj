@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<div class="container">
+<div class="container" style = "margin-left: 100px;">
 	<h2>관심목록</h2>
 	<br><br><br>
 
 	<div class="card" style="width: 18rem;">
-		<img src="../img/kakaoLoginBtn.png" class="card-img-top" alt="...">
+		<img src="../img/ㄴㄱㅁㅋ-logo.png" class="card-img-top" alt="...">
 		
 		<div class="card-body">
 		    <h5 class="card-title">매물 제목</h5>
@@ -15,7 +15,6 @@
 		    <a href="#" class="btn btn-primary">상품보러가기</a>
 	    </div>
 	</div>
-</div>
 
 <br><br>
 
@@ -36,3 +35,4 @@
 	    </li>
 	</ul>
 </nav>
+</div>
