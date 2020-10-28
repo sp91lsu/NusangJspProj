@@ -15,7 +15,7 @@
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
 
-	<div style = "background: #EEE; width: 100%; margin-top : -50px; ">
+	<div style = "background: #EEE; width: 100%; margin-top : -50px;  ">
 		<h1 class="mt-5" id="titleAddress" align = "center" style = "padding-top: 50px;"><span style = "font-family: 'Do Hyeon', sans-serif;font-size:50px; color: #1DDB16">너의 근처</span> ${location.getAddress() } 판매목록</h1>
 		<div class="input-group w-50 container mt-4 ">
 			<input type="text" class="form-control" placeholder="검색 키워드를 입력하세요!"> <span class="input-group-btn">
@@ -24,7 +24,7 @@
 		</div>
 		<div id="cate-post" class="d-flex">
 			<div id="cate" class="mr-auto"></div>
-			<button type="button" class="btn btn-dark" id="btnPost"  style = "background: #10620A; onclick="location.href='/post/moveMkPost'">글쓰기</button>
+			<button type="button" class="btn btn-dark" id="btnPost"  style = "background: #10620A;" onclick="location.href='/post/moveMkPost'">글쓰기</button>
 		</div>
 	</div>
 	<div class="container" style="min-height: 1000px;">

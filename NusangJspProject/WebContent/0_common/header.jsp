@@ -37,8 +37,8 @@
 	
 	
 					<c:otherwise>
-						<li class="nav-item p-2"><button type="button" class="btn btn-success btn-sm" onclick="location.href='../3_account/login.jsp'">로그인</button></li>
-						<li class="nav-item p-2"><button type="button" class="btn btn-success btn-sm" onclick="location.href='../3_account/signUp.jsp'">회원가입</button></li>
+						<li class="nav-item p-2"><button type="button" class="btn btn-success btn-sm"   style = "background: #10620A;" onclick="location.href='../3_account/login.jsp'">로그인</button></li>
+						<li class="nav-item p-2"><button type="button" class="btn btn-outline-dark btn-sm" onclick="location.href='../3_account/signUp.jsp'">회원가입</button></li>
 					</c:otherwise>
 	
 				</c:choose>
