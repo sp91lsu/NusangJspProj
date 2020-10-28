@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="/4_post/css/readBuyer.css">
+<link rel="stylesheet" type="text/css" href="/4_post/css/readPost.css">
 </head>
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
@@ -60,7 +60,7 @@
 							
 						
 						<c:otherwise><!-- 구매자 -->	
-							내 글이 아니다
+							<button id="resvBuy" class="btn btn-primary">구매 신청</button>
 						</c:otherwise>
 					</c:choose>
 				</div>
@@ -91,17 +91,17 @@
 						<div class="carousel-inner">
 							<div class="carousel-item active">
 								<img src="https://www.w3schools.com/bootstrap4/la.jpg"
-									alt="Los Angeles" width="1100" height="500">
+									alt="Los Angeles" >
 							</div>
 							
 							<div class="carousel-item">
 								<img src="https://www.w3schools.com/bootstrap4/chicago.jpg"
-									alt="Chicago" width="1100" height="500">
+									alt="Chicago">
 							</div>
 							
 							<div class="carousel-item">
 								<img src="https://www.w3schools.com/bootstrap4/ny.jpg"
-									alt="New York" width="1100" height="500">
+									alt="New York"	>
 							</div>
 						</div>
 	
@@ -143,7 +143,7 @@
 				<!-- 글 내용 -->
 				<p id="post_writing">${post.bodytext}</p>
 				<!-- 지도 -->
-				<div class="d-flex justify-content-center align-items-center" style="width:500px; height:270px; background-color: lightblue;"><span style="font-size:30px;">지도</span>
+				<div id="map" class="d-flex justify-content-center align-items-center" style="width:500px; height:270px; background-color: lightblue;"><span style="font-size:30px;">지도</span>
 				</div>
 				<br>
 				<!-- 댓글,관심,조회 -->
