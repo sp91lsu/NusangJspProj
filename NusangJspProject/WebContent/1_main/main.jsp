@@ -22,12 +22,12 @@
 				<button class="btn btn-dark " type="button">찾기</button>
 			</span>
 		</div>
-		<h1 class="mt-5" id="titleAddress">너의 근처 ${location.getAddress() } 판매목록</h1>
+		<h1 class="mt-5" id="titleAddress" align = "center">너의 근처 ${location.getAddress() } 판매목록</h1>
 
 		<!-- 카테고리, 글쓰기버튼 -->
 		<div id="cate-post" class="d-flex">
 			<div id="cate" class="mr-auto"></div>
-			<button type="button" id="btnPost" onclick="location.href='/post/moveMkPost'">글쓰기</button>
+			<button type="button" class="btn btn-dark" id="btnPost" onclick="location.href='/post/moveMkPost'">글쓰기</button>
 		</div>
 		
 		<div id="postListSection" class="d-flex flex-wrap align-content-start justify-content-center">
