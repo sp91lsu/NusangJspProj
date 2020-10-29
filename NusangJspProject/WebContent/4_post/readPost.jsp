@@ -1,16 +1,22 @@
 <%@page import="com.nusang.dto.User"%>
 <%@page import="com.nusang.dto.Post"%>
 <%@page import="com.nusang.controller.assistance.*"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+	integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="/4_post/css/readPost.css">
+<link rel="stylesheet" type="text/css" href="../css/comments.css">
 </head>
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
@@ -44,7 +50,8 @@
 							<!--내 글이면(판매자)-->
 							<div class="dropdown">
 								<!-- 거래상태 현황 드롭다운메뉴 -->
-								<button id="status" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+								<button id="status" class="btn dropdown-toggle" type="button"
+									data-toggle="dropdown">
 									거래상태 현황 <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
@@ -56,7 +63,9 @@
 
 							<div id="btnArea">
 								<!-- 글 수정,삭제버튼 -->
-								<button id="uptPost" class="btn btn-primary" onclick="location.href='<%= ConAsist.SERVLET_UPDATEPOST %>?postno=${post.postno}'">글 수정</button>
+								<button id="uptPost" class="btn btn-primary"
+									onclick="location.href='<%= ConAsist.SERVLET_UPDATEPOST %>?postno=${post.postno}'">글
+									수정</button>
 								<button id="delPost" class="btn btn-primary">글 삭제</button>
 
 							</div>
@@ -72,8 +81,10 @@
 								<%
 									request.setAttribute("post", request.getAttribute("post"));
 								%>
-								<input type="number" id="reser_price"> <input type="hidden" id="reser_postno" value="${post.postno }">
-								<button id="buy_reservationBtn" class="btn btn-primary"">가격 제시</button>
+								<input type="number" id="reser_price"> <input
+									type="hidden" id="reser_postno" value="${post.postno }">
+								<button id="buy_reservationBtn" class="btn btn-primary"">가격
+									제시</button>
 
 							</div>
 						</c:otherwise>
@@ -119,29 +130,40 @@
 
 					<!-- Indicators -->
 					<ul class="carousel-indicators">
-						<li class="item1 active"></li>
-						<li class="item2"></li>
-						<li class="item3"></li>
+						<c:forEach var="name" items="${post.post_picture.getList()}"
+							varStatus="status">
+							<c:if test="${!empty name && status.count == 1}">
+								<li class="item${status.count} active"></li>
+							</c:if>
+							<c:if test="${!empty name && status.count != 1}">
+								<li class="item${status.count}"></li>
+							</c:if>
+						</c:forEach>
 					</ul>
 
 					<!-- The slideshow -->
 					<div class="carousel-inner">
-						<div class="carousel-item active">
-							<img src="https://www.w3schools.com/bootstrap4/la.jpg" alt="Los Angeles">
-						</div>
+						<c:forEach var="name" items="${post.post_picture.getList()}"
+							varStatus="status">
+							<c:if test="${!empty name && status.count == 1}">
+								<div class="carousel-item active">
+									<img src="/upload/${name }" alt="..">
+								</div>
+							</c:if>
+							<c:if test="${!empty name && status.count != 1}">
+								<div class="carousel-item">
+									<img src="/upload/${name }" alt="..">
+								</div>
+							</c:if>
+						</c:forEach>
 
-						<div class="carousel-item">
-							<img src="https://www.w3schools.com/bootstrap4/chicago.jpg" alt="Chicago">
-						</div>
-
-						<div class="carousel-item">
-							<img src="https://www.w3schools.com/bootstrap4/ny.jpg" alt="New York">
-						</div>
 					</div>
 
 					<!-- Left and right controls -->
-					<a class="carousel-control-prev" href="#myCarousel"> <span class="carousel-control-prev-icon"></span>
-					</a> <a class="carousel-control-next" href="#myCarousel"> <span class="carousel-control-next-icon"></span>
+					<a class="carousel-control-prev" href="#myCarousel"> <span
+						class="carousel-control-prev-icon"></span>
+					</a> <a class="carousel-control-next" href="#myCarousel"> <span
+						class="carousel-control-next-icon"></span>
 					</a>
 				</div>
 
@@ -160,6 +182,12 @@
 						$(".item3").click(function() {
 							$("#myCarousel").carousel(2);
 						})
+						$(".item4").click(function() {
+							$("#myCarousel").carousel(3);
+						})
+						$(".item5").click(function() {
+							$("#myCarousel").carousel(4);
+						})
 
 						// Enable Carousel Controls
 						$(".carousel-control-prev").click(function() {
@@ -177,10 +205,15 @@
 			<!-- 지도 -->
 			<div id="map" style="width: 100%; height: 350px;"></div>
 
-			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1db6aaded4b028f19067fca5394bb829"></script>
-			<input type="hidden" id="latitude" value="${post.location.latitude }"> <input type="hidden" id="longtitude" value="${post.location.longtitude }">
-			<script src="/4_post/js/readPost_Map.js?v=<%=System.currentTimeMillis()%>"></script>
-			<script src="/4_post/js/readPost.js?v=<%=System.currentTimeMillis()%>"></script>
+			<script type="text/javascript"
+				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1db6aaded4b028f19067fca5394bb829"></script>
+			<input type="hidden" id="latitude" value="${post.location.latitude }">
+			<input type="hidden" id="longtitude"
+				value="${post.location.longtitude }">
+			<script
+				src="/4_post/js/readPost_Map.js?v=<%=System.currentTimeMillis()%>"></script>
+			<script
+				src="/4_post/js/readPost.js?v=<%=System.currentTimeMillis()%>"></script>
 			<br>
 
 			<hr class="m-0">
