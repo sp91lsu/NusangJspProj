@@ -18,10 +18,10 @@ public class NicknameChange_Action implements Action {
 		actionForward.setNextPath(ConAsist.URL_PROFILE);
 		System.out.println("보낸 닉네임값 : " + request.getParameter("nickName"));
 		User user = (User) request.getSession().getAttribute("user"); //유저 가져옴
-		UserDao.getInstance().updateBy(user.getUserno(), "username", request.getParameter("nickName")); 
+		UserDao.getInstance().updateBy(user.getUserno(), "nickname", request.getParameter("nickName")); 
 										//유저 고유값 가져옴    ,  바꿀 컬럼 명 ,    바꿀 컬럼 값
 		user = UserDao.getInstance().findBy("userno", user.getUserno());
-		System.out.println(user.getUsername());
+		System.out.println("바뀐 닉네임 값 : " + user.getNickname());
 		actionForward.setActionType(EActionType.REDIRECT);
 
 		request.getSession().setAttribute("user", user);

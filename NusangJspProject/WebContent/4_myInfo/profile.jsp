@@ -27,7 +27,7 @@
 	<div class="nicknameSec">
 		<form action="/myinfo/nickname_change">
 			<input class="nickName" name="nickName" type="text"
-				value=${user.username } />
+				value=${user.nickname } />
 
 			<button type="submit" class="btn btn-primary btn-sm">닉네임 변경</button>
 		</form>
