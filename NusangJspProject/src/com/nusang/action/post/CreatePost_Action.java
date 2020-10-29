@@ -1,5 +1,6 @@
 package com.nusang.action.post;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -34,6 +35,15 @@ public class CreatePost_Action implements Action {
 		MultipartRequest multi = null;
 		ServletContext context = request.getServletContext();
 		String saveDirectory = context.getRealPath("upload");
+
+		// upload할 경로가 없을때 생성
+		File mkFile = new File(saveDirectory);
+		// !표를 붙여주어 파일이 존재하지 않는 경우의 조건을 걸어줌
+		if (!mkFile.exists()) {
+			// 디렉토리 생성 메서드
+			mkFile.mkdirs();
+			System.out.println("created directory successfully!");
+		}
 		// MultipartRequest 생성 단계에서 이미 파일은 저장됨.
 		try {
 			multi = new MultipartRequest(request, saveDirectory, maxPostSize, encoding, policy);
@@ -89,10 +99,9 @@ public class CreatePost_Action implements Action {
 		Post_Picture pp = new Post_Picture();
 		pp.setPicture(fileSystemNames);
 		post.setPost_picture(pp);
-		int postno = PostDao.getInstance().insertPost(post,fileSystemNames);
+		int postno = PostDao.getInstance().insertPost(post, fileSystemNames);
 		// 데이터 확인
 		post = PostDao.getInstance().findBy("postno", postno);
-		
 
 		ActionForward acf = new ActionForward();
 		if (post != null) {
