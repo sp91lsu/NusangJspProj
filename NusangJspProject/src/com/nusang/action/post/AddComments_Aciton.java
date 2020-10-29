@@ -1,5 +1,8 @@
 package com.nusang.action.post;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,15 +19,17 @@ public class AddComments_Aciton implements Action {
 		request.setCharacterEncoding("UTF-8");
 		ActionForward actionForward = new ActionForward();
 		actionForward.setAsyncData("");
-		
-		Reply reply = new Reply();
+
 		User user = (User) request.getSession().getAttribute("user");
 		int userno = user.getUserno();
-		
-		reply.setPostno(Integer.parseInt(request.getParameter("postno")));
-		reply.setTextbody(request.getParameter("replyText"));
-		reply.setUserno(userno);
-		ReplyDao.getInstance().insert(reply);
+
+		System.out.println("replyText : " + request.getParameter("replyText"));
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("postno", Integer.parseInt(request.getParameter("postno")));
+		map.put("textbody", request.getParameter("replyText"));
+		map.put("userno", userno);
+		map.put("state", 1);
+		ReplyDao.getInstance().insert(map);
 		return actionForward;
 	}
 }

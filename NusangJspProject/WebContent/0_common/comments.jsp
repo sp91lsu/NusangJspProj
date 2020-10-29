@@ -16,7 +16,7 @@
 						
 				<div style='width: 630px'>
 					<div>
-						${reply.userno}
+						닉네임 ${reply.user.nickname}
 					</div>
 							
 					<div>
@@ -62,7 +62,7 @@
 						
 						"<div style='width: 630px'>" +
 							"<div>" +
-								"${user.username} " +
+								"${user.nickname} " +
 							"</div>" +
 							
 							"<div>" +

@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Reply {
 	private int replyno;
-	private int userno;
+	private User user;
 	private int postno;
 	private String textbody;
 	private Date regdate;

@@ -1,30 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="replyMapper">
 
-	
+
 	<resultMap id="replyMap" type="Reply">
-	 <id  property="replyno"  column="replyno"/>
-	<result property="userno" column="userno"/>
-	<result property="postno" column="postno"/>
-	<result property="textbody" column="textbody"/>
-	<result property="regdate" column="regdate"/>
-	<result property="state" column="state"/>
-	<result property="child_leplyno" column="child_replyno"/>
+		<id property="replyno" column="replyno" />
+		<result property="postno" column="postno" />
+		<result property="textbody" column="textbody" />
+		<result property="regdate" column="regdate" />
+		<result property="state" column="state" />
+		<result property="child_leplyno" column="child_replyno" />
+		<association property="user" column="userno" javaType="User" select="findUser">
+			<id column="userno" property="userno" />
+			<result column="nickname" property="nickname" />
+			<result column="picture" property="picture" />
+		</association>
 	</resultMap>
-	
-	
-      <select id="selectAll" resultMap="replyMap">
+
+	<select id="findUser" resultType="User">
+        SELECT
+            U.userno, U.nickname, U.picture
+        FROM
+            NUSER U
+            WHERE 
+            userno = ${userno}
+    </select>
+
+
+	<select id="selectAll" resultMap="replyMap">
         SELECT
             *
         FROM
             NUSER
     </select>
-     
-      <select id="selectLocation"  resultType="Location">
+
+	<select id="selectLocation" resultType="Location">
         SELECT
             *
         FROM
@@ -32,8 +43,8 @@
             WHERE
             LOCATIONNO = #{location}
     </select>
-     
-       <select id="findBy" resultMap="replyMap">
+
+	<select id="findBy" resultMap="replyMap">
         SELECT
             *
         FROM
@@ -41,15 +52,14 @@
         WHERE 
         ${search} = #{keyword}
     </select>
-    
-     
-    
-     <insert id="insert" parameterType="Map" > 
+
+
+	<insert id="insert" parameterType="Map"> 
         INSERT INTO REPLY (userno,postno,textbody,state)
          VALUES (#{userno}, #{postno}, #{textbody},#{state}) 
     </insert>
-    
-    <update id="updateBy"  > 
+
+	<update id="updateBy"> 
          
          UPDATE NUSER
 SET 
@@ -57,8 +67,6 @@ ${colum} = #{value}
 WHERE
  userno = #{userno}
     </update>
-    
-    
-    
-</mapper>
 
+
+</mapper>
