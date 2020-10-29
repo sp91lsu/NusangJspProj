@@ -13,6 +13,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Single+Day&display=swap"
 	rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <script>
 				/* 	 	$("#1km").click(function(){
@@ -27,8 +28,7 @@
 			
 	function func1(number) {
 		$("#dropdownMenu2").text(number+"km");
-		location.href='<%=ConAsist.SERVLET_MYINFODISTANCE%>
-	?num=' + number;
+		location.href="/myinfo/distance?num="+ number;
 
 	}
 </script>
@@ -97,9 +97,9 @@
 						</c:otherwise>
 					</c:choose>
 					<div style="box-shadow: 0px 0px 3px 1px #EAEAEA">
-						<h6 id="card_title" style="padding-top: 20px">${post.title }</h6>
+						<h6 id="card_title" style="padding-top: 20px;padding-bottom:5px; font-family: 'Noto Sans KR', sans-serif; font-size:15px;">${post.title }</h6>
 						<h6 id="card_price">${post.price }원</h6>
-						<h7 id="card_addr">${post.location.getAddress()}</h6>
+						<h7 id="card_addr" style = "font-family: 'Noto Sans KR', sans-serif; font-size:12px; ">${post.location.getAddress()}</h6>
 						<br>
 						<h8 id="post_comment">댓글 [cnt]</h8> <h8>·</h8> <h8
 							id="post_interest">관심 [cnt]</h8> <h8>·</h8> <h8 id="post_view">조회
