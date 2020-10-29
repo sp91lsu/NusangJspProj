@@ -67,7 +67,7 @@
 									onclick="location.href='<%= ConAsist.SERVLET_UPDATEPOST %>?postno=${post.postno}'">글
 									수정</button>
 								<button id="delPost" class="btn btn-primary"
-									onclick="location.href='<%= ConAsist.SERVLET_DELETEPOST %>?postno=${post.postno}'">글
+									onclick="chkDelete('${post.postno}')">글
 									삭제</button>
 
 							</div>

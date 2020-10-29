@@ -22,10 +22,8 @@
 
 			<%-- 이미지 --%>
 			이미지:
-			<button name="addImg" type="button">이미지 추가</button>
-			<input type="hidden" name="pm_merchant_uid" id="pm_merchant_uid" /> <input type="hidden" name="pm_paymenttype" id="pm_paymenttype" /> <input type="hidden" name="pm_imp_uid" id="pm_imp_uid" /> <input type="hidden" name="pm_paid_amount" id="pm_paid_amount" />
-
-			<div id="imgPreview"></div>
+			<button type="button" id="btnAdd">이미지 추가</button>
+			<div id="files"></div>
 			<br>
 			<%-- 글제목 --%>
 			제목: <input id="post_title" type="text" name="title" required="required" value="${post.title }"/><br>
@@ -140,6 +138,20 @@
 		$("#pm_imp_uid").val("uiduid");
 		$("#pm_paid_amount").val(123123);
 		document.createPostForm.submit();
+	}
+	
+	/* 이미지추가 관련 스크립트  */
+	var i = 0;
+	$("#btnAdd").click(function(){
+		if(i < 5){
+			$("#files").append("<div><input type='file' name='upfile" + i + "'/><button type='button' id='deleteBtn' onclick='$(this).parent().remove(); cntdown()'>삭제</button></div>");
+			i++;
+			console.log('현제:' + i);
+		}		
+	});
+	function cntdown() {
+		console.log('현제:' + i);
+		i--;
 	}
 </script>
 <!-- <script type="text/javascript" src="/4_post/createPost.js">

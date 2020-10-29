@@ -104,8 +104,13 @@
 		#{userno}
 	</update>
 	
+	<delete id="deletePost">
+		DELETE FROM SELLPOST
+		WHERE
+		POSTNO = ${postno}
+	</delete>
 	
-	 <select id="findPostByLocation"  resultMap="postResultMap"  statementType="CALLABLE">
+	<select id="findPostByLocation"  resultMap="postResultMap"  statementType="CALLABLE">
       
       SELECT *
 			FROM sellpost  
