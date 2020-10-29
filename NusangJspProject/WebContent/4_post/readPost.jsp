@@ -227,7 +227,6 @@
 				src="/4_post/js/readPost.js?v=<%=System.currentTimeMillis()%>"></script>
 			<br>
 
-			<hr class="m-0">
 			<!-- 댓글 섹션 -->
 			<jsp:include page="../0_common/comments.jsp?postno=${post.postno}"></jsp:include>
 		</div>
