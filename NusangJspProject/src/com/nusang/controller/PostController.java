@@ -2,7 +2,6 @@ package com.nusang.controller;
 
 import java.io.IOException;
 
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +13,7 @@ import com.nusang.action.ActionForward;
 import com.nusang.action.post.AddComments_Aciton;
 import com.nusang.action.post.Buy_ReservationAction;
 import com.nusang.action.post.CreatePost_Action;
+import com.nusang.action.post.DeletePost_Action;
 import com.nusang.action.post.ReadPost_Action;
 import com.nusang.action.post.UpdatePost_Action;
 import com.nusang.controller.assistance.ConAsist;
@@ -33,6 +33,10 @@ public class PostController extends HttpServlet {
 
 			try {
 				switch (requestPage) {
+				case "createPost":
+					action = new CreatePost_Action();
+					actionForward = action.execute(request, response);
+					break;
 				case "readPost":
 					action = new ReadPost_Action();
 					actionForward = action.execute(request, response);
@@ -41,8 +45,8 @@ public class PostController extends HttpServlet {
 					action = new UpdatePost_Action();
 					actionForward = action.execute(request, response);
 					break;
-				case "createPost":
-					action = new CreatePost_Action();
+				case "deletePost":
+					action = new DeletePost_Action();
 					actionForward = action.execute(request, response);
 					break;
 				case "moveMkPost":

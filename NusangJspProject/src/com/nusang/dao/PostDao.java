@@ -85,4 +85,8 @@ public class PostDao extends BasicDao<Post> {
 
 		return (ArrayList<Post>) postList;
 	}
+	
+	public void deletePost(String postno) {
+		
+	}
 }

@@ -26,3 +26,7 @@
 	})
 
 })()
+
+function chkDelete(postno) {
+	location.href='<%= ConAsist.SERVLET_DELETEPOST %>?postno='
+}
