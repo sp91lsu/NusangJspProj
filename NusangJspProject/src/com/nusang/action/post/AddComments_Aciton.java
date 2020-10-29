@@ -29,6 +29,7 @@ public class AddComments_Aciton implements Action {
 		map.put("textbody", request.getParameter("replyText"));
 		map.put("userno", userno);
 		map.put("state", 1);
+		map.put("child_replyno", 0);
 		ReplyDao.getInstance().insert(map);
 		return actionForward;
 	}

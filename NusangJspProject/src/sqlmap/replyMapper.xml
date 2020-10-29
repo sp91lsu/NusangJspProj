@@ -10,7 +10,7 @@
 		<result property="textbody" column="textbody" />
 		<result property="regdate" column="regdate" />
 		<result property="state" column="state" />
-		<result property="child_leplyno" column="child_replyno" />
+		<result property="child_replyno" column="child_replyno" />
 		<association property="user" column="userno" javaType="User" select="findUser">
 			<id column="userno" property="userno" />
 			<result column="nickname" property="nickname" />
@@ -55,8 +55,8 @@
 
 
 	<insert id="insert" parameterType="Map"> 
-        INSERT INTO REPLY (userno,postno,textbody,state)
-         VALUES (#{userno}, #{postno}, #{textbody},#{state}) 
+        INSERT INTO REPLY (userno,postno,textbody,state,child_replyno)
+         VALUES (#{userno}, #{postno}, #{textbody},#{state},#{child_replyno}) 
     </insert>
 
 	<update id="updateBy"> 

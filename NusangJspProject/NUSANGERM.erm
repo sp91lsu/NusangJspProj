@@ -11,8 +11,8 @@
 	</page_setting>
 	<category_index>0</category_index>
 	<zoom>0.75</zoom>
-	<x>316</x>
-	<y>97</y>
+	<x>509</x>
+	<y>720</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2020-10-24 20:37:14</creation_date>
-			<updated_date>2020-10-29 19:49:19</updated_date>
+			<updated_date>2020-10-29 21:18:56</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -1674,8 +1674,8 @@
 					<relation>5</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
-					<logical_name>CHILD_LEPLYNO</logical_name>
-					<physical_name>CHILD_LEPLYNO</physical_name>
+					<logical_name>CHILD_REPLYNO</logical_name>
+					<physical_name>CHILD_REPLYNO</physical_name>
 					<type>decimal</type>
 					<constraint></constraint>
 					<default_value></default_value>
