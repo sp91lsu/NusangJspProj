@@ -52,7 +52,7 @@
 			<c:if test="${user != null }">
 				<div class="dropdown">
 
-					<button class="btn btn-info dropdown-toggle btn-sm" type="button"
+					<button class="btn btn-outline-success dropdown-toggle" type="button"
 						id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">${user.view_distance  }km</button>
 					<c:set var="arr" value='<%=new String[] { "1", "3", "5", "10" }%>' />
@@ -105,7 +105,7 @@
 							id="post_interest">관심 [cnt]</h8> <h8>·</h8> <h8 id="post_view">조회
 						[cnt]</h8>
 						<button id="viewBtn" class="btn btn-success"
-							style="width: 190px; margin-top: 10px;"
+							style="width: 190px; margin-top: 10px; background: #23A41A;"
 							onclick="location.href='/post/readPost?postno=${post.postno}'">
 							글보기</button>
 					</div>
