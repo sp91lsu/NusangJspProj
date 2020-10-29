@@ -80,7 +80,7 @@
 
 		<div id="postListSection"
 			class="d-flex flex-wrap align-content-start justify-content-center"
-			style="margin-top: 50px;">
+			style="padding-top: 50px;">
 			<c:forEach var="post" items="${postList}">
 				<div id="postCard">
 					<c:choose>
