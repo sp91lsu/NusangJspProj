@@ -44,9 +44,9 @@
     
      
     
-     <insert id="insert" useGeneratedKeys="true"  keyProperty="replyno" parameterType="Map" > 
-        INSERT INTO REPLY (userno,postno,postno,textbody,state)
-         VALUES (#{userno}, #{postno}, #{postno}, #{textbody},#{state}) 
+     <insert id="insert" parameterType="Map" > 
+        INSERT INTO REPLY (userno,postno,textbody,state)
+         VALUES (#{userno}, #{postno}, #{textbody},#{state}) 
     </insert>
     
     <update id="updateBy"  > 

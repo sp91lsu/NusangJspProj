@@ -15,21 +15,16 @@ public class AddComments_Aciton implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("UTF-8");
 		ActionForward actionForward = new ActionForward();
-		actionForward.setAsyncData("들어오긴한다");
+		actionForward.setAsyncData("");
 		
 		Reply reply = new Reply();
 		User user = (User) request.getSession().getAttribute("user");
 		int userno = user.getUserno();
 		
 		reply.setPostno(Integer.parseInt(request.getParameter("postno")));
-		reply.setTextbody(request.getParameter("replyComments"));
+		reply.setTextbody(request.getParameter("replyText"));
 		reply.setUserno(userno);
-		
-		System.out.print("postno:" + request.getParameter("postno") +
-						 " 내용:" + request.getParameter("replyText") + 
-						 " 유저no:" + userno);
-//		ReplyDao.getInstance().insert(reply);
+		ReplyDao.getInstance().insert(reply);
 		return actionForward;
 	}
-
 }
