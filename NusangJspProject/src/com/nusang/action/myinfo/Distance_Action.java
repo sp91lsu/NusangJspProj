@@ -21,7 +21,6 @@ public class Distance_Action implements Action {
 		UserDao.getInstance().updateBy(user.getUserno(), "view_distance", dis1km);
 		ConAsist.updateMyUser(request);
 		System.out.println(dis1km + "----------------------------------------------------");
-		System.out.println("현재 설정된 반경거리 :" + user.getView_distance());
 		actionForward.setNextPath(ConAsist.URL_CHKLOCATION);
 		return actionForward;
 	}
