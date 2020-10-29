@@ -34,7 +34,7 @@
 
 					<div id="profile_right">
 						<div>
-							<h5 id="profile_name">${post.user.username}</h5>
+							<h5 id="profile_name">${post.user.nickname}</h5>
 						</div>
 
 						<div>
@@ -66,7 +66,9 @@
 								<button id="uptPost" class="btn btn-primary"
 									onclick="location.href='<%= ConAsist.SERVLET_UPDATEPOST %>?postno=${post.postno}'">글
 									수정</button>
-								<button id="delPost" class="btn btn-primary">글 삭제</button>
+								<button id="delPost" class="btn btn-primary"
+									onclick="location.href='<%= ConAsist.SERVLET_DELETEPOST %>?postno=${post.postno}'">글
+									삭제</button>
 
 							</div>
 						</c:when>
@@ -143,6 +145,7 @@
 
 					<!-- The slideshow -->
 					<div class="carousel-inner">
+						<c:set var="imgCkh" value="0" />
 						<c:forEach var="name" items="${post.post_picture.getList()}"
 							varStatus="status">
 							<c:if test="${!empty name && status.count == 1}">
@@ -154,6 +157,14 @@
 								<div class="carousel-item">
 									<img src="/upload/${name }" alt="..">
 								</div>
+							</c:if>
+							<c:if test="${empty name}">
+								<c:set var="imgCkh" value="${imgCkh + 1}" />
+								<c:if test="${imgCkh eq 5}">
+									<div class="carousel-item active">
+										<img src="/img/noImg.png" alt="..">
+									</div>
+								</c:if>
 							</c:if>
 						</c:forEach>
 
