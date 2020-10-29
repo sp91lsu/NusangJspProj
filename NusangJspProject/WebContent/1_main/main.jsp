@@ -27,8 +27,8 @@
 			
 	function func1(number) {
 		$("#dropdownMenu2").text(number+"km");
-		location.href='<%=ConAsist.SERVLET_MYINFODISTANCE%>?num=' 
-				+ number;
+		location.href='<%=ConAsist.SERVLET_MYINFODISTANCE%>
+	?num=' + number;
 
 	}
 </script>
@@ -83,8 +83,19 @@
 			style="margin-top: 50px;">
 			<c:forEach var="post" items="${postList}">
 				<div id="postCard">
-					<img id="card_img" alt="default image" src="/img/puppy.jpg"
-						class="rounded-bottom" style="height: 150px; margin-bottom: 0px;">
+					<c:choose>
+						<c:when test="${!empty post.post_picture.getList()[0]}">
+							<img id="card_img" alt="product image"
+								src="/upload/${post.post_picture.getList()[0]}"
+								class="rounded-bottom"
+								style="height: 150px; margin-bottom: 0px;">
+						</c:when>
+						<c:otherwise>
+							<img id="card_img" alt="default image" src="/img/noImg.png"
+								class="rounded-bottom"
+								style="height: 150px; margin-bottom: 0px;">
+						</c:otherwise>
+					</c:choose>
 					<div style="box-shadow: 0px 0px 3px 1px #EAEAEA">
 						<h6 id="card_title" style="padding-top: 20px">${post.title }</h6>
 						<h6 id="card_price">${post.price }원</h6>
