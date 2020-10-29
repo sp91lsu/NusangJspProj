@@ -33,12 +33,18 @@ public class BasicDao<T> {
 	// 예 : select * from 테이블 where ${search} = #{keyword}
 	public T findBy(String search, Object keyword) {
 		SqlSession session = sqlSessionFactory.openSession();
+		T object = null;
+		try {
+			
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("search", search);
 		map.put("keyword", keyword);
-		T object = session.selectOne(namespace + "findBy", map);
+		object = session.selectOne(namespace + "findBy", map);
 		session.commit();
 		session.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 		return object;
 	}
 

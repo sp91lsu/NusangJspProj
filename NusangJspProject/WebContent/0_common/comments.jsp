@@ -1,14 +1,32 @@
+<%@page import="com.nusang.dto.Post"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
 <div>
 	댓글
 	<div class="addComments">
-	
+		 <c:forEach var="reply" items="${post.replyList}">
+			<div class='d-flex'>
+				<div style='width:70px'>
+					<img src='/img/logo.png' style='width: 70px; height: 70px'>
+				</div>
+						
+				<div style='width: 630px'>
+					<div>
+						${reply.userno}
+					</div>
+							
+					<div>
+						${reply.textbody}
+						<br>
+						${reply.regdate}
+					</div>
+				</div>
+			</div>
+		</c:forEach>
 	</div>
 
 	<div>

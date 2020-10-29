@@ -30,7 +30,7 @@
 			<association property="user" column="userno" javaType="User" select="selectUser" />
 		<association property="location" column="locationno"
 			javaType="Location" select="selectLocation" />
-<collection property="replyList" column="replyno" javaType="java.util.ArrayList" ofType="Reply" select="selectReplyList" />
+<collection property="replyList" column="postno" javaType="java.util.ArrayList" ofType="Reply" select="selectReplyList" />
 
 	</resultMap>
 
