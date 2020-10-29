@@ -1,6 +1,54 @@
 @charset "UTF-8";
 
-*{
+* {
 	margin: 0px;
 	padding: 0px;
+}
+
+.addComments {
+	margin-bottom: 30px;
+}
+
+.addComments>.comment>.cProfile {
+	width: 70px;
+}
+
+.addComments>.comment>.cProfile>img {
+	width: 70px;
+	height: 70px;
+}
+
+.addComments>.comment>.cContent {
+	width: 630px;
+}
+
+/*----------------------------------------------------------------------------------*/
+.cHeader {
+	margin-bottom: 5px;
+}
+
+.cHeader>div:nth-child(1) {
+	margin: 0px 420px 0px 10px;
+	font-weight: bold;
+}
+
+.cHeader>div:nth-child(2) {
+	margin-right: 20px;
+}
+
+.cSection {
+	margin-bottom: 5px;
+}
+
+.cFooter {
+	font-size: 12px;
+}
+
+/*----------------------------------------------------------------------------------*/
+.writeComments {
+	margin-bottom: 30px;
+}
+
+.writeComments>textarea {
+	border-radius: 7px 7px 7px 7px;
 }
