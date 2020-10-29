@@ -12,6 +12,7 @@ import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
 import com.nusang.action.EActionType;
 import com.nusang.action.myinfo.BuyInfo_Action;
+import com.nusang.action.myinfo.Distance_Action;
 import com.nusang.action.myinfo.ImageChange_Action;
 import com.nusang.action.myinfo.ImageDelete_Action;
 import com.nusang.action.myinfo.NicknameChange_Action;
@@ -84,6 +85,10 @@ public class MyInfoController extends HttpServlet {
 				case "image_delete":
 					ImageDelete_Action D_A = new ImageDelete_Action();
 					actionForward = D_A.execute(request, response);
+					break;
+				case "distance" :
+					Distance_Action D_A2 = new Distance_Action();
+					actionForward = D_A2.execute(request, response);
 					break;
 				}
 			} catch (Exception e) {
