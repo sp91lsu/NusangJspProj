@@ -42,6 +42,18 @@ public class BasicDao<T> {
 		return object;
 	}
 
+	// 테이블 고유값으로 찾기
+	public T findByNo(int keyword) {
+		SqlSession session = sqlSessionFactory.openSession();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("search", uidName);
+		map.put("keyword", keyword);
+		T object = session.selectOne(namespace + "findBy", map);
+		session.commit();
+		session.close();
+		return object;
+	}
+
 	protected T findBy(SqlSession session, String search, Object keyword) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("search", search);
@@ -85,7 +97,8 @@ public class BasicDao<T> {
 		session.commit();
 		return result;
 	}
-	public int update(SqlSession session,T t) {
+
+	public int update(SqlSession session, T t) {
 		int result = session.update(namespace + "update", t);
 		return result;
 	}

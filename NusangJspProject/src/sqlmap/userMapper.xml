@@ -20,7 +20,6 @@
 		<association property="location" column="locationno" javaType="Location" select="selectLocation" />
 		<collection property="payment_MarketList" column="userno" javaType="java.util.ArrayList" ofType="Payment_Market" select="getPMListById" />
 		<collection property="payment_UserList" column="userno" javaType="java.util.ArrayList" ofType="Payment_User" select="getPUListById" />
-		<collection property="buy_ReservationList" column="userno" javaType="java.util.ArrayList" ofType="Buy_Reservation" select="getBRListById" />
 
 
 	</resultMap>
@@ -113,9 +112,6 @@ WHERE
 </select>
 	<select id="getPUListById" resultType="Payment_User">
     SELECT * FROM Payment_User WHERE userno = #{userno}
-</select>
-	<select id="getBRListById" resultMap="buy_reservationMapper.buy_reservationMap">
-    SELECT * FROM BUY_RESERVATION WHERE userno = #{userno}
 </select>
 
 

@@ -3,44 +3,36 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
+ <!--양방향 테이블이므로  resultMap을 선언하면 무한참조 발생 그냥 여기서 다른 테이블을 불러오는 용도로 사용-->
 <mapper namespace="buy_reservationMapper">
 
 	
-	<resultMap id="buy_reservationMap" type="Buy_Reservation">
-	
-	<id property="reserno" column="reserno"/>
-	<result property="reser_price" column="reser_price"/>
-	<result property="state" column="state"/>
-	<result property="regdate" column="regdate"/>
-	<association property="sellpost" column="sellpostno" javaType="Post"   select="selectPost"/>						
-	<association property="user" column="userno" javaType="User"   select="selectUser"/>						
-	</resultMap>
-	
-	
-	<select id="selectUser"  resultMap="userMapper.userResultMap">
+	<select id="findPostList"  resultMap="userMapper.userResultMap">
         SELECT
             *
         FROM
             NUSER
             WHERE
-            USERNO = #{user}
+            USERNO = #{userno}
     </select>
     
-    <select id="selectPost"  resultMap="postMapper.postResultMap">
-        SELECT
-            *
-        FROM
-            SELLPOST
-            WHERE
-            POSTNO = #{sellpost}
+    <select id="findReserList"  resultType="Reser_Object">
+     SELECT BUY_RESERVATION.reser_price ,NUSER.username,BUY_RESERVATION.state,BUY_RESERVATION.regdate
+		from BUY_RESERVATION , NUSER, SELLPOST 
+		where 
+		${userOrPost} = #{no}
+		and 
+		BUY_RESERVATION.sellpostno = SELLPOST.POSTNO
+		and 
+		BUY_RESERVATION.userno = NUSER.userno
     </select>
     
 	
      
     
-     <insert id="insert" useGeneratedKeys="true"  keyProperty="userno" parameterType="Map" > 
-        INSERT INTO Payment_User (userid,username,password,role,logintype,email,picture)
-         VALUES (#{userid}, #{username}, #{password}, #{role},#{logintype},#{email},#{picture, jdbcType=BLOB}) 
+     <insert id="insert" useGeneratedKeys="true"  keyProperty="reserno" parameterType="Map" > 
+        INSERT INTO buy_reservation (sellpostno,userno,reser_price,state)
+         VALUES (#{sellpostno}, #{userno}, #{reser_price}, #{state}) 
     </insert>
     
     

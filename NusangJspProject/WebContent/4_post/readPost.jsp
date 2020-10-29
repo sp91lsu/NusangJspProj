@@ -72,7 +72,8 @@
 								<%
 									request.setAttribute("post", request.getAttribute("post"));
 								%>
-								<button id="resvBuy" class="btn btn-primary" onclick="location.href='/post/buy_reservation'">가격 제시</button>
+								<input type="number" id="reser_price"> <input type="hidden" id="reser_postno" value="${post.postno }">
+								<button id="buy_reservationBtn" class="btn btn-primary"">가격 제시</button>
 
 							</div>
 						</c:otherwise>
@@ -178,33 +179,8 @@
 
 			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1db6aaded4b028f19067fca5394bb829"></script>
 			<input type="hidden" id="latitude" value="${post.location.latitude }"> <input type="hidden" id="longtitude" value="${post.location.longtitude }">
-			<script>
-				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-				mapOption = {
-					center : new kakao.maps.LatLng($(latitude).val(), $(
-							longtitude).val()), // 지도의 중심좌표
-					level : 3
-				// 지도의 확대 레벨
-				};
-
-				var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-				console.log($(latitude).val());
-				console.log($(longtitude).val());
-				// 마커가 표시될 위치입니다 
-				var markerPosition = new kakao.maps.LatLng($(latitude).val(),
-						$(longtitude).val());
-
-				// 마커를 생성합니다
-				var marker = new kakao.maps.Marker({
-					position : markerPosition
-				});
-
-				// 마커가 지도 위에 표시되도록 설정합니다
-				marker.setMap(map);
-
-				// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
-				// marker.setMap(null);
-			</script>
+			<script src="/4_post/js/readPost_Map.js?v=<%=System.currentTimeMillis()%>"></script>
+			<script src="/4_post/js/readPost.js?v=<%=System.currentTimeMillis()%>"></script>
 			<br>
 
 			<hr class="m-0">

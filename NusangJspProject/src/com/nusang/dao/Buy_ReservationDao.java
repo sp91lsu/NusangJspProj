@@ -11,6 +11,8 @@ import org.apache.ibatis.session.SqlSession;
 import com.nusang.dto.Buy_Reservation;
 import com.nusang.dto.Location;
 import com.nusang.dto.Payment_Market;
+import com.nusang.dto.Post;
+import com.nusang.dto.Reser_Object;
 import com.nusang.dto.User;
 
 public class Buy_ReservationDao extends BasicDao<Payment_Market> {
@@ -30,27 +32,67 @@ public class Buy_ReservationDao extends BasicDao<Payment_Market> {
 		super(namespace, "ph_userno");
 	}
 
-	public int insertReser(Buy_Reservation br) {
+	public int insertReser(Buy_Reservation br, int postno) {
 		SqlSession session = sqlSessionFactory.openSession();
 		int result = 0;
 		try {
-			
+
 			Map<String, Object> map = new HashMap<String, Object>();
-			
+
 			map.put("state", br.getState());
 			map.put("reser_price", br.getReser_price());
-			map.put("postno", br.getSellpost().getPostno());
-			map.put("userno", br.getUser().getUserno());
-			
+			map.put("postno", postno);
+			map.put("userno", br.getUserno());
+			map.put("sellpostno", postno);
+
 			result = session.insert(namespace + "insert", map);
 			session.commit();
 		} catch (Exception e) {
+			e.printStackTrace();
 			session.rollback();
 		} finally {
 			session.close();
 		}
 
 		return result;
+	}
+
+
+	public void setReserList(Post post) {
+		SqlSession session = sqlSessionFactory.openSession();
+		List<Reser_Object> reser_list = null;
+		try {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("userOrPost", "NUSER.userno");
+			map.put("no", post.getPostno());
+			reser_list = session.selectList(namespace + "findReserList", map);
+			session.commit();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.rollback();
+		} finally {
+			session.close();
+		}
+		post.setReservationList((ArrayList) reser_list);
+	}
+
+	public void setReserList(User user) {
+		SqlSession session = sqlSessionFactory.openSession();
+		List<Reser_Object> reser_list = null;
+		try {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("userOrPost", "SELLPOST.postno");
+			map.put("no", user.getUserno());
+			reser_list = session.selectList(namespace + "findReserList", map);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.rollback();
+		} finally {
+			session.close();
+		}
+		user.setReservationList((ArrayList) reser_list);
 	}
 
 }

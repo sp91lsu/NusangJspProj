@@ -19,9 +19,10 @@ public class Buy_ReservationAction implements Action {
 
 		Buy_Reservation br = new Buy_Reservation();
 		User user = ConAsist.getSessionUser(request);
-		Post post = (Post) request.getAttribute("post");
-		br = Buy_Reservation.builder().user(user).reser_price(100).state("구매신청").sellpost(post).build();
-		Integer result = Buy_ReservationDao.getInstance().insertReser(br);
+		int postno = Integer.parseInt(request.getParameter("reser_postno"));
+		long reser_price = Long.parseLong(request.getParameter("reser_price"));
+		br = Buy_Reservation.builder().userno(user.getUserno()).reser_price(reser_price).state("구매신청").build();
+		Integer result = Buy_ReservationDao.getInstance().insertReser(br,postno);
 
 		ActionForward af = new ActionForward();
 

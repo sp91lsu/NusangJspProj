@@ -18,7 +18,7 @@
 	  </thead>
 	  
 	  <tbody>
-	  	<c:forEach var="reservation" items="${user.buy_ReservationList}">
+	  	<c:forEach var="reservation" items="${user.reservationList}">
 		    <tr>
 		      <th scope="row">1</th>
 		      <td>1</td>
