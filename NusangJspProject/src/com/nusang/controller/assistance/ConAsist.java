@@ -20,6 +20,7 @@ public class ConAsist {
 
 	public static final String SERVLET_READPOST = "/post/readPost";
 	public static final String SERVLET_UPDATEPOST = "/post/updatePost";
+	public static final String SERVLET_DELETEPOST = "/post/deletePost";
 	
 	public static final String URL_CHKLOCATION = "/1_main/index.jsp";
 	public static final String URL_MAIN = "/1_main/main.jsp";
