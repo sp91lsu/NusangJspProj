@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
+import com.nusang.action.EActionType;
 import com.nusang.controller.assistance.ConAsist;
 import com.nusang.dao.UserDao;
 import com.nusang.dto.User;
@@ -18,6 +19,7 @@ public class Distance_Action implements Action {
 		int dis1km =Integer.parseInt(request.getParameter("num"));
 		User user = (User)request.getSession().getAttribute("user");
 		UserDao.getInstance().updateBy(user.getUserno(), "view_distance", dis1km);
+		ConAsist.updateMyUser(request);
 		System.out.println(dis1km + "----------------------------------------------------");
 		System.out.println("현재 설정된 반경거리 :" + user.getView_distance());
 		actionForward.setNextPath(ConAsist.URL_CHKLOCATION);
