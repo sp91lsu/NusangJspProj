@@ -1,48 +1,47 @@
+$(document).ready(function() {
+	$(".resvBtn")
+	.click(function() { 
+		$(this).parent().siblings().children("button").attr("disabled","disabled");
+		$(this).html("예약됨");
+		$(this).parent().append("<button>예약취소</button>");
+		$("#button11").delay(500).trigger("click");
+	});
+	
+	
+	$("#resvList li").each(function() {
+		var moneyValue = $(this).children('input').val();
+		var moneyResult = numberToKorean(moneyValue);
+		$(this).children("span").html(moneyResult);
+	});
+	
+	$("#button11").click(function(){
+		$("#resvList").slideDown();
+	});
+});
 
+function abc(){
+	$("#resvList").slideDown();
+}
+function numberToKorean(number){
+    var inputNumber  = number < 0 ? false : number;
+    var unitWords    = ['', '만', '억', '조', '경'];
+    var splitUnit    = 10000;
+    var splitCount   = unitWords.length;
+    var resultArray  = [];
+    var resultString = '';
 
-
-
-function get_korean_money(strNo){
-   strNo = strNo.replace(/[^0-9.]/g, "");
-
-   var arr = ['','만','억','조','경']
-   var nNo = parseInt(strNo);
-   var i = 0;
-   var n = 0;
-   var retNo = "";
-
-  while (nNo > 1) {
-    n = (nNo % 10000);
-    if (n > 0) {
-      if (retNo == ""){
-         retNo = n + arr[i];
-      }
-      else {
-         retNo = n.toString() + arr[i] + " " + retNo;
-      }
+    for (var i = 0; i < splitCount; i++){
+         var unitResult = (inputNumber % Math.pow(splitUnit, i + 1)) / Math.pow(splitUnit, i);
+        unitResult = Math.floor(unitResult);
+        if (unitResult > 0){
+            resultArray[i] = unitResult;
+        }
     }
-  nNo  = (nNo  / 10000);
-  i = i + 1;
-  }
-  if (retNo == "") {
-    retNo = "0";
-  }
-  return retNo;
- }
 
-/*(function(){
-	$('#resvBtn')
-	.click(
-		function(){ 
-			$(this).parent().siblings().children('button').attr('disabled','disabled');
-			$(this).html('예약됨');
-			$(this).parent().append()
-			}
-	);
-	alert('시작');
-	$('#resvList li').each(function() {
-		var moneyValue = $('input').val();
-		var moneyResult = get_korean_money(moneyValue);
-		$('span').html(moneyResult);
-	})
-})()*/
+    for (var i = 0; i < resultArray.length; i++){
+        if(!resultArray[i]) continue;
+        resultString = String(resultArray[i]) + unitWords[i] + resultString;
+    }
+
+    return resultString;
+}

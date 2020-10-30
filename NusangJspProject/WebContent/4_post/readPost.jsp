@@ -13,10 +13,10 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="/4_post/css/readPost.css">
 <link rel="stylesheet" type="text/css" href="../css/comments.css">
-<script type="text/javascript" src="/4_post/js/readPost2.js"></script>
 </head>
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
+	<script type="text/javascript" src="/4_post/js/readPost2.js"></script>
 
 	<div id="body" class="d-flex justify-content-center">
 		<div id="content">
@@ -39,7 +39,7 @@
 						</div>
 					</div>
 				</div>
-
+				<button id="button11">버튼</button>
 				<!-- 버튼 영역 as 구매자or판매자 -->
 				<div id="buyer_seller" class="d-flex align-items-center">
 					<c:choose>
@@ -52,10 +52,11 @@
 								</button>
 								<ul id="resvList" class="dropdown-menu">
 									<c:forEach var="resv" items="${post.reservationList}">
-										<li class="dropdown-item" href="#" onclick="mkResv()">
+										<li class="dropdown-item" href="#" ><!-- nclick="mkResv()" -->
+										
 											<input type="hidden" value="${resv.reser_price}">
-											${resv.user.nickname} : <span/>원 
-											<button id="resvBtn" class="btn btn-primary">예약</button>
+											${resv.user.nickname} : <span></span>원 
+											<button class="resvBtn btn btn-primary">예약</button>
 										</li>
 									</c:forEach>
 								</ul>
