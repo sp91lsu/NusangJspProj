@@ -58,6 +58,11 @@
 	padding-top: 1rem;
 }
 
+#Section-post #wishitem {
+	background-color: black;
+	padding-top:135px;
+}
+
 /* 지도 */
 #map{
 	width:500px; 
