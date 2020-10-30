@@ -49,7 +49,7 @@ public class PostDao extends BasicDao<Post> {
 			map.put("locationno", post.getLocation().getLocationno());
 			map.put("post_picno", post.getPost_picture().getPost_picno());
 			insert(session, map);
-			postno = (int) map.get("sellpostno");
+			postno = (int) map.get("postno");
 
 			session.commit();
 		} catch (Exception e) {
