@@ -119,7 +119,7 @@
 				</div>
 				
 				<!-- 찜하기 버튼 -->
-				<div>
+				<div id="wishitem" style="padding-top:135px;">
 					찜하기
 					<button>
 						<i class="fas fa-heart"></i>
