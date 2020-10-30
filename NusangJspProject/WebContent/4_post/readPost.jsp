@@ -45,13 +45,16 @@
 						<c:when test="${user.userid == post.user.getUserid()}">
 							<!--내 글이면(판매자)-->
 							<div class="dropdown">
-								<!-- 거래상태 현황 드롭다운메뉴 -->
+								<!-- 거래신청 현황 드롭다운메뉴 -->
 								<button id="status" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
-									거래상태 현황 <span class="caret"></span>
+									거래신청 현황 <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
 									<c:forEach var="resv" items="${post.reservationList}">
-										<li class="dropdown-item" href="#" onclick="mkResv()">${resv.user.nickname}| ${resv.reser_price}</li>
+										<li class="dropdown-item" href="#" onclick="mkResv()">
+											${resv.user.nickname} : get_korean_money('${resv.reser_price}')원 
+											<button id="resvBtn" class="btn btn-primary">예약</button>
+										</li>
 									</c:forEach>
 								</ul>
 							</div>
@@ -86,28 +89,37 @@
 			<hr class="m-0">
 
 			<!-- 상품 내용 -->
-			<div id="Section-post">
-				<!-- 글제목 -->
-				<h4 id="post_title">${post.title}</h4>
-				<!-- 카테고리 & 시간 -->
-				<div id="post_cate-time" class="d-flex">
-					<h6 id="post_category">${post.category}</h6>
-					<h6>·</h6>
-					<h6 id="post_time">시간정보</h6>
+			<div id="Section-post" class="d-flex">
+				<div class="mr-auto">
+					<!-- 글제목 -->
+					<h4 id="post_title">${post.title}</h4>
+					<!-- 카테고리 & 시간 -->
+					<div id="post_cate-time" class="d-flex">
+						<h6 id="post_category">${post.category}</h6>
+						<h6>·</h6>
+						<h6 id="post_time">시간정보</h6>
+					</div>
+					<!-- 가격 -->
+					<h5 id="post_price">${post.price}원</h5>
+	
+					<!-- 글 내용 -->
+					<p id="post_writing">${post.bodytext}</p>
+	
+					<!-- 댓글,관심,조회 -->
+					<div id="post_co&in&vi" class="d-flex">
+						<h8 id="post_comment">댓글 [cnt]</h8>
+						<h8>·</h8>
+						<h8 id="post_interest">관심 [cnt]</h8>
+						<h8>·</h8>
+						<h8 id="post_view">조회 [cnt]</h8>
+					</div>
 				</div>
-				<!-- 가격 -->
-				<h5 id="post_price">${post.price}원</h5>
-
-				<!-- 글 내용 -->
-				<p id="post_writing">${post.bodytext}</p>
-
-				<!-- 댓글,관심,조회 -->
-				<div id="post_co&in&vi" class="d-flex">
-					<h8 id="post_comment">댓글 [cnt]</h8>
-					<h8>·</h8>
-					<h8 id="post_interest">관심 [cnt]</h8>
-					<h8>·</h8>
-					<h8 id="post_view">조회 [cnt]</h8>
+				
+				<div>
+					찜하기
+					<button>
+						<i class="fas fa-heart"></i>
+					</button>
 				</div>
 
 				<br>
