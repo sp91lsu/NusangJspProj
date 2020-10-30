@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.websocket.Session;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -35,16 +37,18 @@ public class BasicDao<T> {
 		SqlSession session = sqlSessionFactory.openSession();
 		T object = null;
 		try {
-			
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("search", search);
-		map.put("keyword", keyword);
-		object = session.selectOne(namespace + "findBy", map);
-		session.commit();
-		session.close();
-		}catch (Exception e) {
+
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("search", search);
+			map.put("keyword", keyword);
+			object = session.selectOne(namespace + "findBy", map);
+			session.commit();
+		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			session.close();
 		}
+
 		return object;
 	}
 
@@ -86,6 +90,7 @@ public class BasicDao<T> {
 		SqlSession session = sqlSessionFactory.openSession();
 		int result = session.insert(namespace + "insert", object);
 		session.commit();
+		session.close();
 		return result;
 	}
 
@@ -109,14 +114,47 @@ public class BasicDao<T> {
 		return result;
 	}
 
-	public void updateBy(int userNo, String colum, Object value) {
+	public int updateBy(int userNo, String colum, Object value) {
+		int result = 0;
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put(uidName, userNo);
 		map.put("colum", colum);
 		map.put("value", value);
-		session.update(namespace + "updateBy", map);
+		result = session.update(namespace + "updateBy", map);
 		session.commit();
 		session.close();
+
+		return result;
 	}
+
+	protected void deleteBy(SqlSession session, int primeryNo, String colum, Object value) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put(uidName, primeryNo);
+		map.put("colum", colum);
+		map.put("value", value);
+		session.delete(namespace + "deleteBy", map);
+	}
+
+	public int deleteBy(int primeryNo, String colum, Object value) {
+		int result = 0;
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put(uidName, primeryNo);
+			map.put("colum", colum);
+			map.put("value", value);
+			result = session.delete(namespace + "deleteBy", map);
+
+			session.commit();
+		} catch (Exception e) {
+			session.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return result;
+	}
+
 }

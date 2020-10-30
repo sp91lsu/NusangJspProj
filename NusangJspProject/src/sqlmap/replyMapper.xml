@@ -68,5 +68,13 @@ WHERE
  userno = #{userno}
     </update>
 
+	<delete id="deleteBy"> 
+         
+         DELETE REPLY 
+WHERE
+ replyno = #{replyno}
+    </delete>
+
+
 
 </mapper>
