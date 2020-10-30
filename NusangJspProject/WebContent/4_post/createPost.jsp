@@ -18,12 +18,12 @@
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
 	<div id="body" class="d-flex justify-content-center">
 		<form name="createPostForm" action="/post/createPost" method="post" onsubmit="return chkSubmit()" enctype="Multipart/form-data"
-		style = "width: 800px;background: #EAEAEA;margin-top: 30px;border-radius: 10px 10px 10px 10px;padding: 0 20px 0 20px;">
+		style = "width: 800px;background: #EAEAEA;margin-top: 30px; margin-left :20px; border-radius: 20px 20px 20px 20px;padding: 0 20px 0 20px;">
 
 			<input type="hidden" name="map_latitude" id="latitude" value="${location.latitude }"> <input type="hidden" name="map_longtitude" id="longtitude" value="${location.longtitude }">
 			<%-- 결제관련 인풋 --%>
 			<input type="hidden" name="pm_merchant_uid" id="pm_merchant_uid" /> <input type="hidden" name="pm_paymenttype" id="pm_paymenttype" /> <input type="hidden" name="pm_imp_uid" id="pm_imp_uid" /> <input type="hidden" name="pm_paid_amount" id="pm_paid_amount" />
-			<div style = " font-family: 'Noto Sans KR', sans-serif; margin-top:10px;">
+			<div style = " font-family: 'Noto Sans KR', sans-serif; margin-top:25px;">
 			<%-- 이미지 --%>
 			상품 사진
 			<button class = "btn btn-secondary btn-sm" type="button" id="btnAdd">사진 추가</button>
