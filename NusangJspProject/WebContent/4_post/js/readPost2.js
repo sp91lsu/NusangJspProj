@@ -14,17 +14,16 @@
 														url : "/post/cancel_reservation",
 														type : "POST",
 														data : {
-															"reserno" : $(this)
-																	.val(),
+															"reserno" : $(this).val(),
+															"postno" : $("#postno").val()
 														},
 														success : function(data) {
 
 															if (data > 0) {
 																alert('구매 예약이 취소되었습니다.');
 																location.href = "/post/readPost?postno="
-																		+ $(
-																				"#postno")
-																				.val();
+																		+ $("#postno")
+																				.val()
 															} else {
 																alert('예약 취소실패.');
 															}

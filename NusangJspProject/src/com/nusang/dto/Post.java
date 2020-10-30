@@ -9,12 +9,10 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor 
+@NoArgsConstructor
 @AllArgsConstructor
 public class Post {
 
-
-	
 	private int postno;
 	/* private byte[] picture; */
 	private String title;
@@ -30,5 +28,15 @@ public class Post {
 	private Location location;
 	private Post_Picture post_picture;
 	private ArrayList<Reply> replyList;
-	private ArrayList<Buy_Reservation> reservationList;//구매신청현황
+	private ArrayList<Buy_Reservation> reservationList;// 구매신청현황
+
+	public User getReserUser() {
+		for (Buy_Reservation br : reservationList) {
+			if (br.getState() == 1) {
+				return br.getUser();
+			}
+		}
+		return null;
+	}
+
 }

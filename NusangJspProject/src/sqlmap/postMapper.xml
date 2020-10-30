@@ -83,11 +83,11 @@
 
 	<update id="updateBy">
 
-		UPDATE NUSER
+		UPDATE SELLPOST
 		SET
 		${colum} = #{value}
 		WHERE
-		sellpostno =
+		postno =
 		#{postno}
 	</update>
 

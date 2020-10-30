@@ -19,7 +19,7 @@
 
 
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
-	
+
 
 	<div id="body" class="d-flex justify-content-center">
 		<div id="content">
@@ -42,7 +42,18 @@
 						</div>
 					</div>
 				</div>
-				<button id="button11">버튼</button>
+				<!-- <button id="button11">버튼</button> -->
+				<c:choose>
+					<c:when test="${post.sellstate == 0 }">
+					예약자 없음
+				</c:when>
+					<c:when test="${post.sellstate == 1 }">
+					구매 예약 중 예약자 : ${post.getReserUser().nickname }
+				</c:when>
+					<c:when test="${post.sellstate == 2 }">
+					판매 완료
+				</c:when>
+				</c:choose>
 				<!-- 버튼 영역 as 구매자or판매자 -->
 				<div id="buyer_seller" class="d-flex align-items-center">
 					<c:choose>

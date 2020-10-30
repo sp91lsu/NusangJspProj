@@ -6,14 +6,15 @@ import javax.servlet.http.HttpServletResponse;
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
 import com.nusang.dao.Buy_ReservationDao;
+import com.nusang.dao.PostDao;
 
 public class CancelReserVationAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int reserno = Integer.parseInt(request.getParameter("reserno"));
-
-		Integer result = Buy_ReservationDao.getInstance().updateBy(reserno, "state", 0);
+		int postno = Integer.parseInt(request.getParameter("postno"));
+		Integer result = Buy_ReservationDao.getInstance().cancelReservation(postno,reserno); 
 		ActionForward af = new ActionForward();
 
 		af.setAsyncData(result.toString());
