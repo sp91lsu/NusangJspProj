@@ -116,7 +116,7 @@
 			</script>
 			<div id="dealingSpot"></div>
 			<div align = center style = "margin-top:20px;margin-bottom: 20px;">
-			<button type="button" class = "btn btn-success btn-lg" onclick="location.href='list.do'">목록으로</button>
+			<button type="button" class = "btn btn-success btn-lg" onclick="location.href = '/main/index'">목록으로</button>
 			&nbsp;&nbsp;&nbsp; <input id="buyBtn"  class = "btn btn-primary btn-lg" type="button" value="등록" />
 			</div>
 		</form>

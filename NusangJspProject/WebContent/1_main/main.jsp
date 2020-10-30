@@ -3,6 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.nusang.controller.assistance.ConAsist"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -97,7 +98,13 @@
 						</c:otherwise>
 					</c:choose>
 					<div style="box-shadow: 0px 0px 3px 1px #EAEAEA">
-						<h6 id="card_title" style="padding-top: 20px;padding-bottom:5px; font-family: 'Noto Sans KR', sans-serif; font-size:15px;">${post.title }</h6>
+						<h6 id="card_title" style="padding-top: 20px;padding-bottom:5px; font-family: 'Noto Sans KR', sans-serif; font-size:15px;">
+						<c:choose>
+							<c:when test="${post.title.length() > 12 }">${fn:substring(post.title,0,12)}<span style = "font-weight: bold">...</span></c:when>
+							<c:otherwise>${post.title }</c:otherwise>
+						</c:choose>
+						
+					</h6>
 						<h6 id="card_price">${post.price }원</h6>
 						<h7 id="card_addr" style = "font-family: 'Noto Sans KR', sans-serif; font-size:12px; ">${post.location.getAddress()}</h6>
 						<br>
