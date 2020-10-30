@@ -31,10 +31,32 @@ public class ActionForward {
 	}
 
 	public void moveUrl(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String ip = request.getHeader("X-Forwarded-For");
 
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("Proxy-Client-IP");
+		}
+
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("WL-Proxy-Client-IP");
+		}
+
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("HTTP_CLIENT_IP");
+		}
+
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+		}
+
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getRemoteAddr();
+		}
+		ip = ip + ":8787";
+		System.out.println(ip + getNextPath());
 		switch (getActionType()) {
 		case FORWARD:
-			request.getRequestDispatcher(getNextPath()).forward(request, response);
+			request.getRequestDispatcher( getNextPath()).forward(request, response);
 			break;
 
 		case REDIRECT:
@@ -48,5 +70,4 @@ public class ActionForward {
 		}
 	}
 
-	
 }

@@ -16,7 +16,7 @@
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
 	<div id="body" class="d-flex justify-content-center">
-		<form name="createPostForm" action="/post/createPost" method="post" onsubmit="return chkSubmit()">
+		<form name="createPostForm" action="/post/updatePostOk" method="post" onsubmit="return chkSubmit()" enctype="Multipart/form-data">
 
 			<input type="hidden" name="map_latitude" id="latitude" value="${post.location.latitude }"> <input type="hidden" name="map_longtitude" id="longtitude" value="${post.location.longtitude }">
 
