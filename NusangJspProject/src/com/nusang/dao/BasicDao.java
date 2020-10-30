@@ -128,22 +128,18 @@ public class BasicDao<T> {
 		return result;
 	}
 
-	protected void deleteBy(SqlSession session, int primeryNo, String colum, Object value) {
+	protected void deleteBy(SqlSession session, int primeryNo) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put(uidName, primeryNo);
-		map.put("colum", colum);
-		map.put("value", value);
 		session.delete(namespace + "deleteBy", map);
 	}
 
-	public int deleteBy(int primeryNo, String colum, Object value) {
+	public int deleteBy(int primeryNo) {
 		int result = 0;
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put(uidName, primeryNo);
-			map.put("colum", colum);
-			map.put("value", value);
 			result = session.delete(namespace + "deleteBy", map);
 
 			session.commit();
