@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--양방향 테이블이므로  resultMap을 선언하면 무한참조 발생 그냥 여기서 다른 테이블을 불러오는 용도로 사용-->
+<mapper namespace="securityMapper">
+
+	<resultMap id="userMap" type="User">
+		<id property="userno" column="userno" />
+		<result property="regdate" column="regdate" />
+		<result property="picture" column="picture" />
+		<result property="nickname" column="nickname" />
+	</resultMap>
+
+	<resultMap id="postMap" type="Post">
+		<id property="postno" column="postno" />
+		<result property="title" column="title" />
+		<result property="price" column="price" />
+		<result property="productname" column="productname" />
+	</resultMap>
+
+	<select id="selectScUser" resultMap="userMap">
+       SELECT U.userno,U.regdate,U.picture,U.nickname FROM NUSER U
+       WHERE userno = #{userno}
+    </select>
+
+	<select id="selectScPost"  resultMap="postMap">
+       SELECT P.postno,P.title,P.price,P.productname FROM SELLPOST P 
+       WHERE postno = #{postno}
+    </select>
+
+</mapper>

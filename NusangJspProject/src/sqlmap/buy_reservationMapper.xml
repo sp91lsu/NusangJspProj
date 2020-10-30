@@ -1,22 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- 
- <!--양방향 테이블이므로  resultMap을 선언하면 무한참조 발생 그냥 여기서 다른 테이블을 불러오는 용도로 사용-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--양방향 테이블이므로  resultMap을 선언하면 무한참조 발생 그냥 여기서 다른 테이블을 불러오는 용도로 사용-->
 <mapper namespace="buy_reservationMapper">
 
-	
-	<select id="findPostList"  resultMap="userMapper.userResultMap">
-        SELECT
-            *
-        FROM
-            NUSER
-            WHERE
-            USERNO = #{userno}
+	<resultMap id="reservationMap" type="Buy_Reservation">
+		<id property="reserno" column="reserno" />
+		<result property="reser_price" column="reser_price" />
+		<result property="state" column="state" />
+		<result property="regdate" column="regdate" />
+		<association property="user" column="userno"  select="securityMapper.selectScUser" />
+		<association property="post" column="sellpostno"  select="securityMapper.selectScPost" />
+	</resultMap>
+
+
+	<select id="userReserList" resultMap="reservationMap">
+     SELECT BUY_RESERVATION.reser_price ,BUY_RESERVATION.state
+		from BUY_RESERVATION , NUSER, SELLPOST 
+		where 
+		userno = #{userno}
+		and 
+		BUY_RESERVATION.sellpostno = SELLPOST.POSTNO
+		and 
+		BUY_RESERVATION.userno = NUSER.userno
     </select>
-    
-    <select id="findReserList"  resultType="Reser_Object">
+
+	<select id="postReserList" resultMap="reservationMap">
+     SELECT BR.reser_price ,BR.state,BR.sellpostno,BR.userno
+		
+		from BUY_RESERVATION BR, NUSER, SELLPOST 
+		where 
+		postno = #{postno}
+		and 
+		BR.sellpostno = SELLPOST.POSTNO
+		and 
+		BR.userno = NUSER.userno
+    </select>
+
+
+	<!--	<select id="findReserList" resultType="Reser_Object">
      SELECT BUY_RESERVATION.reser_price ,NUSER.username,BUY_RESERVATION.state,BUY_RESERVATION.regdate
 		from BUY_RESERVATION , NUSER, SELLPOST 
 		where 
@@ -25,17 +47,13 @@
 		BUY_RESERVATION.sellpostno = SELLPOST.POSTNO
 		and 
 		BUY_RESERVATION.userno = NUSER.userno
-    </select>
-    
-	
-     
-    
-     <insert id="insert" useGeneratedKeys="true"  keyProperty="reserno" parameterType="Map" > 
+    </select>-->
+
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="reserno" parameterType="Map"> 
         INSERT INTO buy_reservation (sellpostno,userno,reser_price,state)
          VALUES (#{sellpostno}, #{userno}, #{reser_price}, #{state}) 
     </insert>
-    
-    
-    
-</mapper>
 
+
+</mapper>

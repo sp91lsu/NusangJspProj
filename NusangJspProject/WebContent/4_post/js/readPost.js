@@ -1,6 +1,6 @@
 (function() {
 
-	$(buy_reservationBtn).click(function() {
+	$("#buy_reservationBtn").click(function() {
 		console.log("buy_reservationBtn")
 		$.ajax({
 

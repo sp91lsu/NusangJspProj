@@ -23,7 +23,6 @@
 		<typeAlias type="com.nusang.dto.Reply" alias="Reply" />
 		<typeAlias type="com.nusang.dto.WatchList" alias="WatchList" />
 		<typeAlias type="com.nusang.dto.Post_Picture" alias="Post_Picture" />
-		<typeAlias type="com.nusang.dto.Reser_Object" alias="Reser_Object" />
 		
 	</typeAliases>
     <environments default="development">
@@ -49,6 +48,8 @@
         <mapper resource="sqlmap/watchlistMapper.xml" />
         <mapper resource="sqlmap/userMapper.xml" />
          <mapper resource="sqlmap/post_pictureMapper.xml" />
+          <mapper resource="sqlmap/securityMapper.xml" />
+         
     </mappers>
 </configuration>
 

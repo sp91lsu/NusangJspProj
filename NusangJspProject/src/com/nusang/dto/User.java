@@ -30,7 +30,7 @@ public class User {
 	private Location location;
 	private ArrayList<Payment_Market> payment_MarketList;//결제내역
 	private ArrayList<Payment_User> payment_UserList;//구매내역,판매내역
-	private ArrayList<Reser_Object> reservationList;//구매신청현황
+	private ArrayList<Buy_Reservation> reservationList;//구매신청현황
 	
 	public boolean isLocationNull() {
 

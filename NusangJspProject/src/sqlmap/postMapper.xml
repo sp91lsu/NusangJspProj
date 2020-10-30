@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="postMapper">
 
@@ -14,24 +12,15 @@
 		<result property="price" column="price" />
 		<result property="productname" column="productname" />
 		<result property="regdate" column="regdate" />
-		<result property="regdate" column="regdate" />
 		<result property="category" column="category" />
 		<result property="sellstate" column="sellstate" />
 		<result property="viewcnt" column="viewcnt" />
 		<result property="visible" column="visible" />
-		<!-- 둥지 dto 안에 알 dto -->
-		<!-- association property: 둥지dto 자바클래스의 멤버변수중 DB상에서 다른 Table을 참조할 외래키를 
-			넣는데 외래키 대신 외래키에 해당하는 dto자체를 객체 형태로 넣으려 할 때 해당 알dto 타입의 객체명 
-			column: 둥지dto_DB Table의 외래키 = 알 dto_DB Table의 고유키 
-			javaType: 알dto의 자바클래스 
-			select: 알dto 타입의 객체를 생성하는 쿼리문 
-			-->
-			<association property="post_picture" column="post_picno" javaType="Post_Picture" select="selectPostPicture" />
-			<association property="user" column="userno" javaType="User" select="selectUser" />
-		<association property="location" column="locationno"
-			javaType="Location" select="selectLocation" />
-<collection property="replyList" column="postno" javaType="java.util.ArrayList" ofType="Reply" select="selectReplyList" />
-
+		<association property="post_picture" column="post_picno" javaType="Post_Picture" select="selectPostPicture" />
+		<association property="user" column="userno" javaType="User" select="selectUser" />
+		<association property="location" column="locationno" javaType="Location" select="selectLocation" />
+		<collection property="replyList" column="postno" javaType="java.util.ArrayList" ofType="Reply" select="selectReplyList" />
+		<collection property="reservationList" column="postno" javaType="java.util.ArrayList" ofType="Buy_Reservation" select="buy_reservationMapper.postReserList" />
 	</resultMap>
 
 	<select id="selectLocation" resultType="Location">
@@ -43,7 +32,7 @@
 		LOCATIONNO = #{locationno}
 	</select>
 
-<select id="selectPostPicture" resultType="Post_Picture">
+	<select id="selectPostPicture" resultType="Post_Picture">
 		SELECT
 		*
 		FROM
@@ -51,7 +40,6 @@
 		WHERE
 		POST_PICNO = #{post_picno}
 	</select>
-
 
 
 	<select id="selectUser" resultMap="userMapper.userResultMap">
@@ -81,11 +69,10 @@
 	</select>
 
 
-	<insert id="insert" useGeneratedKeys="true" keyProperty="postno"  parameterType="Map">
-	<selectKey keyProperty="postno" resultType="int" order="AFTER">			   
+	<insert id="insert" useGeneratedKeys="true" keyProperty="postno" parameterType="Map">
+		<selectKey keyProperty="postno" resultType="int" order="AFTER">			   
     	SELECT SEQ_SELLPOST_POSTNO.CURRVAL FROM DUAL
  		</selectKey>
-	
 		INSERT INTO SELLPOST
 		(title,bodytext,price,category,userno,productname,locationno,post_picno)
 		VALUES (#{title}, #{bodytext}, #{price},#{category},#{userno},#{productname},#{locationno},#{post_picno}
@@ -103,28 +90,27 @@
 		userno =
 		#{userno}
 	</update>
-	
+
 	<delete id="deletePost">
 		DELETE FROM SELLPOST
 		WHERE
 		POSTNO = ${postno}
 	</delete>
-	
-	<select id="findPostByLocation"  resultMap="postResultMap"  statementType="CALLABLE">
-      
-      SELECT *
+
+	<select id="findPostByLocation" resultMap="postResultMap" statementType="CALLABLE">
+		SELECT *
 			FROM sellpost  
 			WHERE 
 				locationno IN
 					(SELECT  loc.locationno FROM location loc WHERE 
-			 calc_distance( #{latitude,jdbcType=NUMERIC  , mode=IN}, #{longtitude,jdbcType=NUMERIC  , mode=IN}, loc.latitude, loc.longtitude )	 <![CDATA[<]]>  #{distance}  	
+			 calc_distance( #{latitude,jdbcType=NUMERIC  , mode=IN}, #{longtitude,jdbcType=NUMERIC  , mode=IN}, loc.latitude, loc.longtitude )
+		<![CDATA[<]]>
+		#{distance}  	
 				  	  
 				  )
-				  
-    </select>
-    
+	</select>
+
 	<select id="selectReplyList" resultMap="replyMapper.replyMap">
     SELECT * FROM reply WHERE postno = #{postno} ORDER BY regdate ASC
 </select>
 </mapper>
-

@@ -1,8 +1,7 @@
 <%@page import="com.nusang.dto.User"%>
 <%@page import="com.nusang.dto.Post"%>
 <%@page import="com.nusang.controller.assistance.*"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
@@ -11,10 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
-	integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
-	crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="/4_post/css/readPost.css">
 <link rel="stylesheet" type="text/css" href="../css/comments.css">
 </head>
@@ -50,25 +46,20 @@
 							<!--내 글이면(판매자)-->
 							<div class="dropdown">
 								<!-- 거래상태 현황 드롭다운메뉴 -->
-								<button id="status" class="btn dropdown-toggle" type="button"
-									data-toggle="dropdown">
+								<button id="status" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
 									거래상태 현황 <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
-									<%-- <c:forEach var="resv" items="${post.buy_ReservationList}">
-										<li class="dropdown-item" href="#" onclick="mkResv()">${resv.user.nickname} | ${resv.reser_price}</li>
-									</c:forEach> --%>
+									<c:forEach var="resv" items="${post.reservationList}">
+										<li class="dropdown-item" href="#" onclick="mkResv()">${resv.user.nickname}| ${resv.reser_price}</li>
+									</c:forEach>
 								</ul>
 							</div>
 
 							<div id="btnArea">
 								<!-- 글 수정,삭제버튼 -->
-								<button id="uptPost" class="btn btn-primary"
-									onclick="location.href='<%= ConAsist.SERVLET_UPDATEPOST %>?postno=${post.postno}'">글
-									수정</button>
-								<button id="delPost" class="btn btn-primary"
-									onclick="chkDelete('${post.postno}')">글
-									삭제</button>
+								<button id="uptPost" class="btn btn-primary" onclick="location.href='<%= ConAsist.SERVLET_UPDATEPOST %>?postno=${post.postno}'">글 수정</button>
+								<button id="delPost" class="btn btn-primary" onclick="chkDelete('${post.postno}')">글 삭제</button>
 
 							</div>
 						</c:when>
@@ -83,10 +74,8 @@
 								<%
 									request.setAttribute("post", request.getAttribute("post"));
 								%>
-								<input type="number" id="reser_price"> <input
-									type="hidden" id="reser_postno" value="${post.postno }">
-								<button id="buy_reservationBtn" class="btn btn-primary"">가격
-									제시</button>
+								<input type="number" id="reser_price"> <input type="hidden" id="reser_postno" value="${post.postno }">
+								<button id="buy_reservationBtn" class="btn btn-primary"">가격 제시</button>
 
 							</div>
 						</c:otherwise>
@@ -132,8 +121,7 @@
 
 					<!-- Indicators -->
 					<ul class="carousel-indicators">
-						<c:forEach var="name" items="${post.post_picture.getList()}"
-							varStatus="status">
+						<c:forEach var="name" items="${post.post_picture.getList()}" varStatus="status">
 							<c:if test="${!empty name && status.count == 1}">
 								<li class="item${status.count} active"></li>
 							</c:if>
@@ -146,8 +134,7 @@
 					<!-- The slideshow -->
 					<div class="carousel-inner">
 						<c:set var="imgCkh" value="0" />
-						<c:forEach var="name" items="${post.post_picture.getList()}"
-							varStatus="status">
+						<c:forEach var="name" items="${post.post_picture.getList()}" varStatus="status">
 							<c:if test="${!empty name && status.count == 1}">
 								<div class="carousel-item active">
 									<img src="/upload/${name }" alt="..">
@@ -171,10 +158,8 @@
 					</div>
 
 					<!-- Left and right controls -->
-					<a class="carousel-control-prev" href="#myCarousel"> <span
-						class="carousel-control-prev-icon"></span>
-					</a> <a class="carousel-control-next" href="#myCarousel"> <span
-						class="carousel-control-next-icon"></span>
+					<a class="carousel-control-prev" href="#myCarousel"> <span class="carousel-control-prev-icon"></span>
+					</a> <a class="carousel-control-next" href="#myCarousel"> <span class="carousel-control-next-icon"></span>
 					</a>
 				</div>
 
@@ -216,15 +201,10 @@
 			<!-- 지도 -->
 			<div id="map" style="width: 100%; height: 350px;"></div>
 
-			<script type="text/javascript"
-				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1db6aaded4b028f19067fca5394bb829"></script>
-			<input type="hidden" id="latitude" value="${post.location.latitude }">
-			<input type="hidden" id="longtitude"
-				value="${post.location.longtitude }">
-			<script
-				src="/4_post/js/readPost_Map.js?v=<%=System.currentTimeMillis()%>"></script>
-			<script
-				src="/4_post/js/readPost.js?v=<%=System.currentTimeMillis()%>"></script>
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1db6aaded4b028f19067fca5394bb829"></script>
+			<input type="hidden" id="latitude" value="${post.location.latitude }"> <input type="hidden" id="longtitude" value="${post.location.longtitude }">
+			<script src="/4_post/js/readPost_Map.js?v=<%=System.currentTimeMillis()%>"></script>
+			<script src="/4_post/js/readPost.js?v=<%=System.currentTimeMillis()%>"></script>
 			<br>
 
 			<!-- 댓글 섹션 -->

@@ -16,7 +16,7 @@ public class Post {
 
 	
 	private int postno;
-	private byte[] picture;
+	/* private byte[] picture; */
 	private String title;
 	private String bodytext;
 	private long price;
@@ -30,5 +30,5 @@ public class Post {
 	private Location location;
 	private Post_Picture post_picture;
 	private ArrayList<Reply> replyList;
-	private ArrayList<Reser_Object> reservationList;//구매신청현황
+	private ArrayList<Buy_Reservation> reservationList;//구매신청현황
 }
