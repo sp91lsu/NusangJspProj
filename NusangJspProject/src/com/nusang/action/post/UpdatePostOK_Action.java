@@ -71,30 +71,30 @@ public class UpdatePostOK_Action implements Action {
 		} // end while
 
 		// ↑↑↑↑↑↑↑↑↑↑이미지 업로드 관련
-
-		String pm_merchant_uid = multi.getParameter("pm_merchant_uid");
-		int pm_paid_amount = Integer.parseInt(multi.getParameter("pm_paid_amount"));
-		String imp_uid = multi.getParameter("pm_imp_uid");
-
 		User user = (User) request.getSession().getAttribute("user");
 
 		double map_latitude = Double.parseDouble(multi.getParameter("map_latitude"));
 		double map_longtitude = Double.parseDouble(multi.getParameter("map_longtitude"));
-
+		int locationno = Integer.parseInt(multi.getParameter("locationno"));
+		int postno = Integer.parseInt(multi.getParameter("postno"));
+		int post_picno = Integer.parseInt(multi.getParameter("post_picno"));
+		
 		Location location = KakaoBO.getInstance().reqLocation(map_longtitude, map_latitude);
+		location.setLocationno(locationno);
 		location.setTabletype("POST");
 		Post post = new Post();
+		post.setPostno(postno);
 		post.setTitle(multi.getParameter("title"));
 		post.setCategory(multi.getParameter("category"));
 		post.setPrice(Integer.parseInt(multi.getParameter("price")));
 		post.setBodytext(multi.getParameter("bodytext"));
 		post.setProductname(multi.getParameter("productName"));
-		post.setUser(user);
 		post.setLocation(location);
 		Post_Picture pp = new Post_Picture();
+		pp.setPost_picno(post_picno);
 		pp.setPicture(fileSystemNames);
 		post.setPost_picture(pp);
-		int postno = PostDao.getInstance().insertPost(post, fileSystemNames);
+		PostDao.getInstance().updatePost(post, fileSystemNames);
 		// 데이터 확인
 		post = PostDao.getInstance().findBy("postno", postno);
 

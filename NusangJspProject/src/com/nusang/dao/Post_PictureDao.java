@@ -1,18 +1,8 @@
 package com.nusang.dao;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
+import com.nusang.dto.Post_Picture;
 
-import org.apache.ibatis.session.SqlSession;
-
-import com.nusang.dto.Location;
-import com.nusang.dto.Payment_Market;
-import com.nusang.dto.User;
-
-public class Post_PictureDao extends BasicDao<Payment_Market> {
+public class Post_PictureDao extends BasicDao<Post_Picture> {
 
 	private static Post_PictureDao instance;
 
@@ -26,11 +16,7 @@ public class Post_PictureDao extends BasicDao<Payment_Market> {
 	}
 
 	private Post_PictureDao(String namespace) {
-		super(namespace,"post_picno");
+		super(namespace, "post_picno");
 	}
 
-	
-	
-	
-	
 }

@@ -87,9 +87,25 @@
 		SET
 		${colum} = #{value}
 		WHERE
-		userno =
-		#{userno}
+		sellpostno =
+		#{postno}
 	</update>
+
+	<update id="update">
+
+		UPDATE 
+		SELLPOST
+		SET
+		title = #{title},
+		bodytext = #{bodytext},
+		price = #{price},
+		category = #{category},
+		productname = #{productname}
+		WHERE
+		postno =
+		#{postno}
+	</update>
+
 
 	<delete id="deletePost">
 		DELETE FROM SELLPOST

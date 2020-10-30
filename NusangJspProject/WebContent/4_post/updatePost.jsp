@@ -18,15 +18,19 @@
 	<div id="body" class="d-flex justify-content-center">
 		<form name="createPostForm" action="/post/updatePostOk" method="post" onsubmit="return chkSubmit()" enctype="Multipart/form-data">
 
-			<input type="hidden" name="map_latitude" id="latitude" value="${post.location.latitude }"> <input type="hidden" name="map_longtitude" id="longtitude" value="${post.location.longtitude }">
-
+			<input type="hidden" name="map_latitude" id="latitude" value="${post.location.latitude }"> 
+			<input type="hidden" name="map_longtitude" id="longtitude" value="${post.location.longtitude }"> 
+			<input type="hidden" name="locationno" value="${post.location.locationno }">
+			<input type="hidden" name="postno" value="${post.postno }">
+			<input type="hidden" name="post_picno" value="${post.post_picture.post_picno }">
+			
 			<%-- 이미지 --%>
 			이미지:
 			<button type="button" id="btnAdd">이미지 추가</button>
 			<div id="files"></div>
 			<br>
 			<%-- 글제목 --%>
-			제목: <input id="post_title" type="text" name="title" required="required" value="${post.title }"/><br>
+			제목: <input id="post_title" type="text" name="title" required="required" value="${post.title }" /><br>
 			<!-- 상품명 -->
 			상품명: <input id="post_prodname" type="text" name="productName" value="${post.productname }" required="required" />
 			<%-- 카테고리 --%>
@@ -56,13 +60,13 @@
 			</script>
 
 			<%-- 가격 --%>
-			가격: <input type="number" name="price" value="${post.price }"  required="required" /><br>
+			가격: <input type="number" name="price" value="${post.price }" required="required" /><br>
 			<%-- 글내용 --%>
 			<label for="bodytext">내용:</label><br>
 			<textarea name="bodytext" class="form-control" rows="5" required="required">${post.bodytext } </textarea>
 			<br>
-			
-			
+
+
 			<%-- 지도 : 거래장소 설정 --%>
 			<div id="map" style="width: 500px; height: 400px;"></div>
 			<script>
@@ -105,10 +109,10 @@
 						});
 			</script>
 			<div id="dealingSpot"></div>
-			
+
 			<!-- 목록으로 버튼 -->
 			<button type="button" onclick="location.href='list.do'">목록으로</button>
-			&nbsp;&nbsp;&nbsp; 
+			&nbsp;&nbsp;&nbsp;
 			<!-- 수정 버튼 -->
 			<input id="buyBtn" type="button" value="수정완료" />
 			<!-- 거래 희망자 결정 드롭다운-->
@@ -118,8 +122,7 @@
 				</button>
 				<ul class="dropdown-menu">
 					<c:forEach var="resv" items="${buy_ReservationList }">
-						<li class="dropdown-item" href="#" >
-							${resv.user} | ${resv.reser_price } 
+						<li class="dropdown-item" href="#">${resv.user}|${resv.reser_price }
 							<button type="radio"></button>
 						</li>
 					</c:forEach>
@@ -139,16 +142,20 @@
 		$("#pm_paid_amount").val(123123);
 		document.createPostForm.submit();
 	}
-	
+
 	/* 이미지추가 관련 스크립트  */
 	var i = 0;
-	$("#btnAdd").click(function(){
-		if(i < 5){
-			$("#files").append("<div><input type='file' name='upfile" + i + "'/><button type='button' id='deleteBtn' onclick='$(this).parent().remove(); cntdown()'>삭제</button></div>");
-			i++;
-			console.log('현제:' + i);
-		}		
-	});
+	$("#btnAdd")
+			.click(
+					function() {
+						if (i < 5) {
+							$("#files")
+									.append(
+											"<div><input type='file' name='upfile" + i + "'/><button type='button' id='deleteBtn' onclick='$(this).parent().remove(); cntdown()'>삭제</button></div>");
+							i++;
+							console.log('현제:' + i);
+						}
+					});
 	function cntdown() {
 		console.log('현제:' + i);
 		i--;

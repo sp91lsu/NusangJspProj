@@ -114,6 +114,11 @@ public class BasicDao<T> {
 		return result;
 	}
 
+	protected int update(SqlSession session, Map map) {
+		int result = session.update(namespace + "update", map);
+		return result;
+	}
+
 	public int updateBy(int userNo, String colum, Object value) {
 		int result = 0;
 		SqlSession session = sqlSessionFactory.openSession();

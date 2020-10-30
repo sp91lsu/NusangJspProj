@@ -30,14 +30,13 @@ public class PostDao extends BasicDao<Post> {
 		super(namespace, "postno");
 	}
 
-	public int insertPost(Post post,List<String> fileSystemNames) {
+	public int insertPost(Post post, List<String> fileSystemNames) {
 		SqlSession session = sqlSessionFactory.openSession();
 		int postno = 0;
 		try {
 			LocationDao.getInstance().insert(session, post.getLocation());
-			Post_PictureDao.getInstance().insert(session,post.getPost_picture()); // 1
+			Post_PictureDao.getInstance().insert(session, post.getPost_picture()); // 1
 
-			
 			Map<String, Object> map = new HashMap<String, Object>();
 			System.out.println("post getPost_picno 값 : " + post.getPost_picture().getPost_picno());
 			System.out.println("post location 값 : " + post.getLocation().getLocationno());
@@ -50,9 +49,8 @@ public class PostDao extends BasicDao<Post> {
 			map.put("locationno", post.getLocation().getLocationno());
 			map.put("post_picno", post.getPost_picture().getPost_picno());
 			insert(session, map);
-			postno = (int) map.get("postno");
+			postno = (int) map.get("sellpostno");
 
-			
 			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -62,6 +60,27 @@ public class PostDao extends BasicDao<Post> {
 		}
 
 		return postno;
+	}
+
+	public int updatePost(Post post, List<String> fileSystemNames) {
+		SqlSession session = sqlSessionFactory.openSession();
+		int result = 0;
+		try {
+			
+			LocationDao.getInstance().update(session, post.getLocation());
+			Post_PictureDao.getInstance().update(session, post.getPost_picture());
+			
+			result = update(session, post);
+
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.rollback();
+		} finally {
+			session.close();
+		}
+
+		return result;
 	}
 
 	public ArrayList<Post> findPostByLocation(Location userLocation, int distance) {
@@ -85,5 +104,5 @@ public class PostDao extends BasicDao<Post> {
 
 		return (ArrayList<Post>) postList;
 	}
-	
+
 }

@@ -35,27 +35,30 @@
          VALUES ( #{name1}, #{name2}, #{name3},#{longtitude},#{latitude},#{tabletype}) 
     </insert>
     
-       <update id="update" parameterType="Location" keyColumn="locationno" >
-		
-        UPDATE LOCATION SET
-        name1 = #{name1},
-        name2= #{name2},
-        name3=#{name3},
-        longtitude=#{longtitude},
-        latitude=#{latitude},
-        tabletype=#{tabletype}
-        
-         WHERE locationno = #{locationno}
-    </update>
-    
-    
     <update id="updateBy"  > 
          
          UPDATE LOCATION
 SET 
 ${colum} = #{value}
 WHERE
- userno = #{userno}
+ locationno = #{locationno}
     </update>
+    
+    <update id="update">
+
+		UPDATE 
+		LOCATION
+		SET
+		locationno = #{locationno},
+		latitude = #{latitude},
+		longtitude = #{longtitude},
+		name1 = #{name1},
+		name2 = #{name2},
+		name3 = #{name3},
+		 tabletype=#{tabletype}
+		WHERE
+		locationno =
+		#{locationno}
+	</update>
 </mapper>
 
