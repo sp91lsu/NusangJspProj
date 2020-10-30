@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="/4_post/css/readPost.css">
 <link rel="stylesheet" type="text/css" href="../css/comments.css">
+<script type="text/javascript" src="/4_post/js/readPost2.js"></script>
 </head>
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
@@ -49,10 +50,11 @@
 								<button id="status" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
 									거래신청 현황 <span class="caret"></span>
 								</button>
-								<ul class="dropdown-menu">
+								<ul id="resvList" class="dropdown-menu">
 									<c:forEach var="resv" items="${post.reservationList}">
 										<li class="dropdown-item" href="#" onclick="mkResv()">
-											${resv.user.nickname} : get_korean_money('${resv.reser_price}')원 
+											<input type="hidden" value="${resv.reser_price}">
+											${resv.user.nickname} : <span/>원 
 											<button id="resvBtn" class="btn btn-primary">예약</button>
 										</li>
 									</c:forEach>
@@ -88,8 +90,9 @@
 
 			<hr class="m-0">
 
-			<!-- 상품 내용 -->
+			<!-- 상품 관련 섹션 -->
 			<div id="Section-post" class="d-flex">
+				<!-- 상품 내용 -->
 				<div class="mr-auto">
 					<!-- 글제목 -->
 					<h4 id="post_title">${post.title}</h4>
@@ -115,6 +118,7 @@
 					</div>
 				</div>
 				
+				<!-- 찜하기 버튼 -->
 				<div>
 					찜하기
 					<button>
