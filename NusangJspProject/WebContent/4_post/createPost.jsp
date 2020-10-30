@@ -12,6 +12,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/4_post/css/createPost.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
@@ -21,26 +22,28 @@
 			<input type="hidden" name="map_latitude" id="latitude" value="${location.latitude }"> <input type="hidden" name="map_longtitude" id="longtitude" value="${location.longtitude }">
 			<%-- 결제관련 인풋 --%>
 			<input type="hidden" name="pm_merchant_uid" id="pm_merchant_uid" /> <input type="hidden" name="pm_paymenttype" id="pm_paymenttype" /> <input type="hidden" name="pm_imp_uid" id="pm_imp_uid" /> <input type="hidden" name="pm_paid_amount" id="pm_paid_amount" />
-			
+			<div style = " font-family: 'Noto Sans KR', sans-serif; margin-top:10px;">
 			<%-- 이미지 --%>
-			이미지:
-			<button type="button" id="btnAdd">이미지 추가</button>
+			상품 사진
+			<button class = "btn btn-secondary btn-sm" type="button" id="btnAdd">사진 추가</button>
 			<div id="files"></div>
 
 
 			<div id="imgPreview"></div>
 			<br>
 			<%-- 글제목 --%>
-			제목: <input type="text" name="title" required="required" /> 상품명: <input type="text" name="productName" required="required" />
+			<div style = "margin-top:-5px;">
+			제목 <input type="text" name="title" required="required" /> 상품명 <input type="text" name="productName" required="required" />
+			</div>
 			<%-- 카테고리 --%>
 			<%
 				String cate[] = new String[]{"디지털/가전", "가구/인테리어", "유아동/유아도서", "생활/가공식품", "스포츠/레저", "여성잡화", "여성의류", "남성패션/잡화", "게임/취미",
 					"뷰티/미용", "반려동물용품", "도서/티켓/음반", "기타 중고물품"};
 			%>
 
-			<br> 카테고리:
+			<br> 카테고리
 			<div class="dropdown">
-				<button id="cateDrop" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+				<button id="cateDrop" class="btn btn-outline-dark btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
 					선택 <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
@@ -59,14 +62,19 @@
 			</script>
 
 			<%-- 가격 --%>
-			가격: <input type="number" name="price" required="required" /><br>
+			<div style = "margin-top: 20px;">
+			가격 <input type="number" name="price" required="required"/><br>
+			</div>
 			<%-- 글내용 --%>
-			<label for="bodytext">내용:</label><br>
+			<div style = "margin-top: 20px;">
+			<label for="bodytext">내용</label><br>
 			<textarea name="bodytext" class="form-control" rows="5" required="required"></textarea>
 			<br>
+			</div>
 			<%-- 지도 : 거래장소 설정 --%>
-
+			<div align = center>
 			<div id="map" style="width: 500px; height: 400px;"></div>
+			</div>
 			<script>
 				// 마커가 표시될 위치입니다 
 				var position = new kakao.maps.LatLng($("#latitude").val(), $(
@@ -107,11 +115,12 @@
 						});
 			</script>
 			<div id="dealingSpot"></div>
-
-			<button type="button" onclick="location.href='list.do'">목록으로</button>
-			&nbsp;&nbsp;&nbsp; <input id="buyBtn" type="button" value="등록" />
+			<div align = center style = "margin-top:20px;margin-bottom: 20px;">
+			<button type="button" class = "btn btn-success btn-lg" onclick="location.href='list.do'">목록으로</button>
+			&nbsp;&nbsp;&nbsp; <input id="buyBtn"  class = "btn btn-primary btn-lg" type="button" value="등록" />
+			</div>
 		</form>
-
+		</div>	
 	</div>
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
 </body>
@@ -130,7 +139,7 @@
 	var i = 0;
 	$("#btnAdd").click(function(){
 		if(i < 5){
-			$("#files").append("<div><input type='file' name='upfile" + i + "'/><button type='button' id='deleteBtn' onclick='$(this).parent().remove(); cntdown()'>삭제</button></div>");
+			$("#files").append("<div><input type='file' style = 'background:#BDBDBD' name='upfile" + i + "'/><button type='button' style = 'margin-top:-3px;' class = 'btn btn-danger btn-sm' id='deleteBtn' onclick='$(this).parent().remove(); cntdown()'>삭제</button></div>");
 			i++;
 			console.log('현제:' + i);
 		}		
