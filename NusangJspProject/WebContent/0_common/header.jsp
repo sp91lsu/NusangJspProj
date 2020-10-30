@@ -13,8 +13,8 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light" style = "background: #FFF; ; border-bottom: 3px solid #333">
-	<a class="navbar-brand col-4" style="box-sizing: border-box; margin: 0;" href="/main/chk"><img src="../img/ㄴㄱㅁㅋ-logo (16).png" style="width:100px; height:100px;" /></a> 
-	<a class="navbar-brand col-4 text-center" style="box-sizing: border-box; margin: 0;" href="/main/chk"><h1 style = "font-family: 'Do Hyeon', sans-serif;font-size:60px; color: #00B700">너근 마켓</h1></a>
+	<a class="navbar-brand col-4" style="box-sizing: border-box; margin: 0;" href="/main"><img src="../img/ㄴㄱㅁㅋ-logo (16).png" style="width:100px; height:100px;" /></a> 
+	<a class="navbar-brand col-4 text-center" style="box-sizing: border-box; margin: 0;" href="/main"><h1 style = "font-family: 'Do Hyeon', sans-serif;font-size:60px; color: #00B700">너근 마켓</h1></a>
 	<div class="navbar-brand col-4 text-right " style="box-sizing: border-box; margin: 0;" >
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>

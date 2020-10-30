@@ -13,7 +13,7 @@ import com.nusang.action.ActionForward;
 import com.nusang.action.main.MainAction;
 import com.nusang.controller.assistance.ConAsist;
 
-@WebServlet("/main/*")
+@WebServlet({ "/main","/index" })
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -23,15 +23,20 @@ public class MainController extends HttpServlet {
 		Action action = null;
 		ActionForward actionForward = null;
 		String requestPage = ConAsist.getRequestName(request);
-
+		
+		/*
+		 * if (request.getParameter("longitude") == null &&
+		 * request.getParameter("latitude") == null) { requestPage = "index"; }
+		 */
+	
 		try {
 			switch (requestPage) {
-			case "index":
+			case "main":
 				action = new MainAction();
 				actionForward = action.execute(request, response);
-				
+
 				break;
-			case "chk":
+			case "index":
 				actionForward = new ActionForward();
 				actionForward.setNextPath(ConAsist.URL_CHKLOCATION);
 				break;

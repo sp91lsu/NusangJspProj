@@ -48,7 +48,7 @@
 			success : function(data) {
 				/* $("#titleAddress").html(data + " 근처 판매 목록"); */
 
-				location.href = "/main/index";
+				location.href = "/main";
 			},
 			error : function(request, status, error) {
 				alert(status);
