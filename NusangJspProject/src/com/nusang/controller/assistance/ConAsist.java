@@ -22,7 +22,7 @@ public class ConAsist {
 	public static final String SERVLET_UPDATEPOST = "/post/updatePost";
 	public static final String SERVLET_DELETEPOST = "/post/deletePost";
 	public static final String SERVLET_MYINFODISTANCE = "/myinfo/distance";
-	
+
 	public static final String URL_CHKLOCATION = "/1_main/index.jsp";
 	public static final String URL_MAIN = "/1_main/main.jsp";
 	public static final String URL_MAIN2 = "/1_main/main2.jsp";
@@ -77,8 +77,8 @@ public class ConAsist {
 			location = user.getLocation();
 		} else if (location == null) {
 			System.out.println("sessionLocation");
-			longtitude = Float.parseFloat(request.getParameter("longitude"));
-			latitude = Float.parseFloat(request.getParameter("latitude"));
+			longtitude = Double.parseDouble(request.getParameter("longitude"));
+			latitude = Double.parseDouble(request.getParameter("latitude"));
 			location = KakaoBO.getInstance().reqLocation(longtitude, latitude);
 		}
 
