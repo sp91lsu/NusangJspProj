@@ -27,12 +27,16 @@
 	margin-bottom: 5px;
 }
 
-.cHeader>div:nth-child(1) {
-	margin: 0px 420px 0px 10px;
+.cHeader>div {
+	width: 70px;
+}
+
+.cHeader>div:nth-child(1) {/*닉네임*/
+	margin: 0px 370px 0px 10px;
 	font-weight: bold;
 }
 
-.cHeader>div:nth-child(2) {
+.cHeader>div:nth-child(2) {/*댓글내용*/
 	margin-right: 20px;
 }
 

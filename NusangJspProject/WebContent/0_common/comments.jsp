@@ -9,19 +9,47 @@
 	댓글
 	<div class="addComments">
 		 <c:forEach var="reply" items="${post.replyList}">
-			<div class='d-flex'>
-				<div style='width:70px'>
-					<img src='/img/logo.png' style='width: 70px; height: 70px'>
+		 
+		 <hr style='margin: 3px 0px 3px 0px'>
+			<div class='d-flex comment'>
+				<div class='cProfile'>
+					<img src='/img/logo.png'>
 				</div>
+							
+				<div class='cContent'>
+					<div class='cHeader d-flex'>
+						<div>
+							${reply.user.nickname}					
+						</div>
 						
-				<div style='width: 630px'>
-					<div>
-						닉네임 ${reply.user.nickname}
+				<c:choose>
+					<c:when test='${user.userno==post.user.userno}'><!--내가 쓴 댓글이면-->
+						<div>
+							댓글 수정
+						</div>
+				
+						<div>
+							댓글 삭제
+						</div>
+					</c:when>
+					
+					<c:otherwise><!--내 댓글이 아니면-->
+						<div>
+							
+						</div>
+							
+						<div>
+							
+						</div>
+					</c:otherwise>
+				</c:choose>
 					</div>
 							
-					<div>
+					<div class='cSection'>
 						${reply.textbody}
-						<br>
+					</div>
+					
+					<div class='cFooter'>
 						${reply.regdate}
 					</div>
 				</div>
@@ -29,7 +57,7 @@
 		</c:forEach>
 	</div>
 
-	<div>
+	<div class="writeComments">
 		<textarea rows="3" id= "replyComments"cols="70" placeholder="댓글을 입력하세요"><c:out value="${content}"/></textarea>
 		<input type="button" id="addComments" value="등록">
 	</div>
@@ -55,23 +83,36 @@
 					let time = year+'.'+month+"."+date+" "+hours+":"+minutes;
 					
 					$(".addComments").append(
-							"<div class='d-flex'>" +
-							"<div style='width:70px'>" +
-							"<img src='/img/logo.png' style='width: 70px; height: 70px'>" +
-						"</div>" +
-						
-						"<div style='width: 630px'>" +
-							"<div>" +
-								"${user.nickname} " +
-							"</div>" +
-							
-							"<div>" +
-								$("#replyComments").val() + 
-								"<br>" +
-				      			time +
-							"</div>" +
-						"</div>" +
-					"</div>"
+							"<hr style='margin: 3px 0px 3px 0px'>" +
+							"<div class='d-flex comment'>" +
+								"<div class='cProfile'>" +
+									"<img src='/img/logo.png'>" +
+								"</div>" +
+											
+								"<div class='cContent'>" +
+									"<div class='cHeader d-flex'>" +
+										"<div>" +
+											"${user.nickname}" +
+										"</div>" +
+										
+										"<div>" +
+											"댓글 수정" +
+										"</div>" +
+								
+										"<div>" +
+											"댓글 삭제" +
+										"</div>" +
+									"</div>" +
+											
+									"<div class='cSection'>" +
+									$("#replyComments").val() +
+									"</div>" +
+									
+									"<div class='cFooter'>" +
+										time +
+									"</div>" +
+								"</div>" +
+							"</div>"
 					);
 					$("#replyComments").val("");
 				}
