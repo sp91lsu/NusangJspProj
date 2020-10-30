@@ -26,7 +26,7 @@ public class ReplyDao extends BasicDao<Payment_Market> {
 	}
 
 	private ReplyDao(String namespace) {
-		super(namespace,"ph_userno");
+		super(namespace,"replyno");
 	}
 	
 	

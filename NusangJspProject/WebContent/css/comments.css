@@ -5,6 +5,10 @@
 	padding: 0px;
 }
 
+li {
+	list-style: none;
+}
+
 .addComments {
 	margin-bottom: 30px;
 }
@@ -25,18 +29,23 @@
 /*----------------------------------------------------------------------------------*/
 .cHeader {
 	margin-bottom: 5px;
+	height: 25px;
 }
 
 .cHeader>div {
 	width: 70px;
 }
 
-.cHeader>div:nth-child(1) {/*닉네임*/
+.cHeader>div:nth-child(1) { /*닉네임*/
 	margin: 0px 370px 0px 10px;
 	font-weight: bold;
 }
 
-.cHeader>div:nth-child(2) {/*댓글내용*/
+.c_update {
+	margin-right: 30px;
+}
+
+.cHeader>div:nth-child(2) { /*댓글내용*/
 	margin-right: 20px;
 }
 

@@ -30,7 +30,7 @@ function get_korean_money(strNo){
   return retNo;
  }
 
-(function(){
+/*(function(){
 	$('#resvBtn')
 	.click(
 		function(){ 
@@ -45,4 +45,4 @@ function get_korean_money(strNo){
 		var moneyResult = get_korean_money(moneyValue);
 		$('span').html(moneyResult);
 	})
-})()
+})()*/
