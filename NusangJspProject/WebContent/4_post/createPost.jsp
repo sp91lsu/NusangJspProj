@@ -17,7 +17,8 @@
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
 	<div id="body" class="d-flex justify-content-center">
-		<form name="createPostForm" action="/post/createPost" method="post" onsubmit="return chkSubmit()" enctype="Multipart/form-data">
+		<form name="createPostForm" action="/post/createPost" method="post" onsubmit="return chkSubmit()" enctype="Multipart/form-data"
+		style = "width: 800px;background: #EAEAEA;margin-top: 30px;border-radius: 10px 10px 10px 10px;padding: 0 20px 0 20px;">
 
 			<input type="hidden" name="map_latitude" id="latitude" value="${location.latitude }"> <input type="hidden" name="map_longtitude" id="longtitude" value="${location.longtitude }">
 			<%-- 결제관련 인풋 --%>
