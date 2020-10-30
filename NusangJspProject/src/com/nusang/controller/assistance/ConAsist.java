@@ -17,7 +17,7 @@ import com.nusang.dto.User;
 
 //controller를 도와주는 클래스
 public class ConAsist {
-
+	public static final String SERVLET_MAIN = "/main/index";
 	public static final String SERVLET_READPOST = "/post/readPost";
 	public static final String SERVLET_UPDATEPOST = "/post/updatePost";
 	public static final String SERVLET_DELETEPOST = "/post/deletePost";

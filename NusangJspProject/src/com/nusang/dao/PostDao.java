@@ -86,12 +86,4 @@ public class PostDao extends BasicDao<Post> {
 		return (ArrayList<Post>) postList;
 	}
 	
-	public void deletePost(String postno) {
-		SqlSession session = sqlSessionFactory.openSession();
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("postno", postno);
-		session.delete(namespace + "deletePost", map);
-		session.commit();
-		session.close();
-	}
 }

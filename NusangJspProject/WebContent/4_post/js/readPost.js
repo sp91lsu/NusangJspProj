@@ -28,7 +28,7 @@
 })()
 
 function chkDelete(postno) {
-	location.href='<%= ConAsist.SERVLET_DELETEPOST %>?postno='+postno;
+	location.href='/post/deletePost?postno='+postno;
 }
 
 

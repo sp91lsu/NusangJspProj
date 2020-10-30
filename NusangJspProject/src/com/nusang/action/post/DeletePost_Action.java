@@ -14,11 +14,11 @@ public class DeletePost_Action implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		String postNo = request.getParameter("postno");
-		PostDao.getInstance().deletePost(postNo);
+
+		int postNo = Integer.parseInt(request.getParameter("postno"));
+		PostDao.getInstance().deleteBy(postNo);
 		ActionForward acf = new ActionForward();
-		acf.setNextPath(ConAsist.URL_MAIN);
+		acf.setNextPath(ConAsist.SERVLET_MAIN);
 		return acf;
 	}
 

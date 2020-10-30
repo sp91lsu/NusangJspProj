@@ -113,4 +113,14 @@
 	<select id="selectReplyList" resultMap="replyMapper.replyMap">
     SELECT * FROM reply WHERE postno = #{postno} ORDER BY regdate ASC
 </select>
+
+
+	<delete id="deleteBy"> 
+         
+         DELETE SELLPOST 
+WHERE
+ postno = #{postno}
+    </delete>
+
+
 </mapper>
