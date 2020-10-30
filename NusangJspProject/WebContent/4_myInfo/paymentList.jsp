@@ -5,8 +5,7 @@
 <%@page import="com.nusang.dao.UserDao"%>
 <%@page import="com.nusang.dto.User"%>
 <%@page import="lombok.val"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <c:set var="list" value="${user.payment_MarketList}" />
 
 <%
@@ -37,19 +36,18 @@ ArrayList selectList = new ArrayList();
 getList(curPage, fromRow, pageRows, list, selectList);
 %>
 
-<%!
-
-	public void getList(int curPage, int fromRow, int pageRows, ArrayList list, ArrayList selectList) {
+<%!public void getList(int curPage, int fromRow, int pageRows, ArrayList list, ArrayList selectList) {
 
 		System.out.println(">>전체 리스트: " + list);
 
 		for (int i = fromRow; i < fromRow + pageRows; i++) {
-			if(list == null) break;
+			if (list.size() <= i) {
+				break;
+			}
 			selectList.add(list.get(i));
 		}
 		System.out.println(">>페이지에 해당하는 리스트:  " + selectList);
-	}
-%>
+	}%>
 
 
 
