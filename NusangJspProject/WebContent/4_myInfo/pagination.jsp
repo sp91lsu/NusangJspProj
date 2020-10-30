@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 	
 <%
+
 	// 한 [페이징]에 표시될 '페이지' 수  --> writePages
 // 총 '페이지' 수 --> totalPage
 // 현재 페이지 --> curPage
@@ -17,9 +18,11 @@ int curPage = Integer.parseInt(request.getParameter("curPage"));
 	}
 	
 	// 페이징 버튼 링크 url 주소에 넣을 문자열 준비
+
+	//페이징할 페이지의 이름을 가져옴(다른 메뉴에서 재사용을 위해)
+	String pageName = request.getParameter("pageName");
 	//String url = request.getRequestURL().toString() + "?page=";
-	String url = "/myinfo/paymentList?page=";
-	
+	String url = "/myinfo/"+pageName+"?page=";
 	String str = ""; // 최종적으로 페이징에 나타날 HTML 문자열 <li> 태그로 구성
 	
 	// 페이징에 보여질 숫자들 (시작숫자 start_page ~ 끝숫자 end_page)
