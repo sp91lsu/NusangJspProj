@@ -101,7 +101,7 @@
 						<h6 id="card_price">${post.price }원</h6>
 						<h7 id="card_addr" style = "font-family: 'Noto Sans KR', sans-serif; font-size:12px; ">${post.location.getAddress()}</h6>
 						<br>
-						<h8 id="post_comment">댓글 [cnt]</h8> <h8>·</h8> <h8
+						<h8 id="post_comment">댓글 [${post.replyList.size()}]</h8> <h8>·</h8> <h8
 							id="post_interest">관심 [cnt]</h8> <h8>·</h8> <h8 id="post_view">조회
 						[cnt]</h8>
 						<button id="viewBtn" class="btn btn-success"
