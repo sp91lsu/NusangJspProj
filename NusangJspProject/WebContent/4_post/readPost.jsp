@@ -15,8 +15,11 @@
 <link rel="stylesheet" type="text/css" href="../css/comments.css">
 </head>
 <body>
+	<input type="hidden" id="postno" value="${post.postno }">
+
+
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
-	<script type="text/javascript" src="/4_post/js/readPost2.js"></script>
+	
 
 	<div id="body" class="d-flex justify-content-center">
 		<div id="content">
@@ -52,11 +55,18 @@
 								</button>
 								<ul id="resvList" class="dropdown-menu">
 									<c:forEach var="resv" items="${post.reservationList}">
-										<li class="dropdown-item" href="#" ><!-- nclick="mkResv()" -->
-										
-											<input type="hidden" value="${resv.reser_price}">
-											${resv.user.nickname} : <span></span>원 
-											<button class="resvBtn btn btn-primary">예약</button>
+										<li class="dropdown-item">
+											<!-- nclick="mkResv()" --> <input type="hidden" value="${resv.reser_price}"> ${resv.user.nickname} : <span>${resv.reser_price}</span>원 <c:choose>
+
+												<c:when test="${resv.state == 0}">
+													<button class="resvBtn btn btn-primary" value="${resv.reserno }">구매자 등록</button>
+
+												</c:when>
+												<c:when test="${resv.state == 1}">
+													예약됨<button class="cancel_reser btn btn-danger" value="${resv.reserno }">등록취소</button>
+												</c:when>
+											</c:choose>
+
 										</li>
 									</c:forEach>
 								</ul>
@@ -80,7 +90,7 @@
 								<%
 									request.setAttribute("post", request.getAttribute("post"));
 								%>
-								<input type="number" id="reser_price"> <input type="hidden" id="reser_postno" value="${post.postno }">
+								<input type="number" id="reser_price">
 								<button id="buy_reservationBtn" class="btn btn-primary"">가격 제시</button>
 
 							</div>
@@ -105,10 +115,10 @@
 					</div>
 					<!-- 가격 -->
 					<h5 id="post_price">${post.price}원</h5>
-	
+
 					<!-- 글 내용 -->
 					<p id="post_writing">${post.bodytext}</p>
-	
+
 					<!-- 댓글,관심,조회 -->
 					<div id="post_co&in&vi" class="d-flex">
 						<h8 id="post_comment">댓글 [cnt]</h8>
@@ -118,9 +128,9 @@
 						<h8 id="post_view">조회 [cnt]</h8>
 					</div>
 				</div>
-				
+
 				<!-- 찜하기 버튼 -->
-				<div id="wishitem" style="padding-top:135px;">
+				<div id="wishitem" style="padding-top: 135px;">
 					찜하기
 					<button>
 						<i class="fas fa-heart"></i>
@@ -230,5 +240,6 @@
 	</div>
 
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
+	<script type="text/javascript" src="/4_post/js/readPost2.js"></script>
 </body>
 </html>

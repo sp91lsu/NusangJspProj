@@ -82,7 +82,7 @@ public class CreatePost_Action implements Action {
 		double map_longtitude = Double.parseDouble(multi.getParameter("map_longtitude"));
 		
 		System.out.println("Payment_Market 유저 아이디 : " + user.getUserno());
-		Payment_Market pm = Payment_Market.builder().name("게시글 등록 ").imp_uid(imp_uid).paymenttype("card").state("결제")
+		Payment_Market pm = Payment_Market.builder().name("게시글 등록 ").imp_uid(imp_uid).paymenttype("card").state(1)
 				.userno(user.getUserno()).price(pm_paid_amount).build();
 
 		Payment_MarketDao.getInstance().insert(pm);

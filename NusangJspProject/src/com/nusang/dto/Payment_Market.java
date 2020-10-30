@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class Payment_Market {
 	private Integer ph_marketno;
 	private String paymenttype;// 카카오,네이버,카드
-	private String state;// 결제 환불
+	private int state;// 결제 환불
 	private String name;// 판매 or 등록
 	private Integer userno;
 	private Date regdate;// 날짜

@@ -12,10 +12,12 @@ import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
 import com.nusang.action.post.AddComments_Aciton;
 import com.nusang.action.post.Buy_ReservationAction;
+import com.nusang.action.post.CancelReserVationAction;
 import com.nusang.action.post.CreatePost_Action;
 import com.nusang.action.post.DeleteComment_Action;
 import com.nusang.action.post.DeletePost_Action;
 import com.nusang.action.post.ReadPost_Action;
+import com.nusang.action.post.SetReservationAction;
 import com.nusang.action.post.UpdatePostOK_Action;
 import com.nusang.action.post.UpdatePost_Action;
 import com.nusang.controller.assistance.ConAsist;
@@ -71,6 +73,15 @@ public class PostController extends HttpServlet {
 					action = new Buy_ReservationAction();
 					actionForward = action.execute(request, response);
 					break;
+				case "setReservation":
+					action = new SetReservationAction();
+					actionForward = action.execute(request, response);
+					break;
+				case "cancel_reservation":
+					action = new CancelReserVationAction();
+					actionForward = action.execute(request, response);
+					break;
+					
 				}
 			} catch (Exception e) {
 				e.printStackTrace();

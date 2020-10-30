@@ -28,7 +28,7 @@ public class Buy_ReservationDao extends BasicDao<Payment_Market> {
 	}
 
 	private Buy_ReservationDao(String namespace) {
-		super(namespace, "ph_userno");
+		super(namespace, "reserno");
 	}
 
 	public int insertReser(Buy_Reservation br, int postno) {
@@ -56,4 +56,28 @@ public class Buy_ReservationDao extends BasicDao<Payment_Market> {
 		return result;
 	}
 
+	public int setReservation(int postno, int reserno) {
+
+		SqlSession session = sqlSessionFactory.openSession();
+		int result = 0;
+		try {
+
+			Map<String, Object> map = new HashMap<String, Object>();
+
+			map.put("sellpostno", postno);
+			map.put("reserno", reserno);
+			session.update(namespace + "initReservation",map);
+			result = updateBy(session, reserno, "state",1);
+
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.rollback();
+		} finally {
+			session.close();
+		}
+
+		return result;
+
+	}
 }

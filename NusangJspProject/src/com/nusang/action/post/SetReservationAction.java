@@ -12,18 +12,15 @@ import com.nusang.dto.Buy_Reservation;
 import com.nusang.dto.Post;
 import com.nusang.dto.User;
 
-public class Buy_ReservationAction implements Action {
+public class SetReservationAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		Buy_Reservation br = new Buy_Reservation();
-		User user = ConAsist.getSessionUser(request);
-		int postno = Integer.parseInt(request.getParameter("reser_postno"));
-		long reser_price = Long.parseLong(request.getParameter("reser_price"));
-		br = Buy_Reservation.builder().user(user).reser_price(reser_price).state(0).build();
-		Integer result = Buy_ReservationDao.getInstance().insertReser(br,postno);
+		int reserno = Integer.parseInt(request.getParameter("reserno"));
+		int postno = Integer.parseInt(request.getParameter("postno"));
 
+		Integer result = Buy_ReservationDao.getInstance().setReservation(postno,reserno);
 		ActionForward af = new ActionForward();
 
 		af.setAsyncData(result.toString());

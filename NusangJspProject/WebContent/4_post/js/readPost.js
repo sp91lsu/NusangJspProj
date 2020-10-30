@@ -7,8 +7,8 @@
 			url : "/post/buy_reservation",
 			type : "POST",
 			data : {
-				reser_price : $(reser_price).val(),
-				reser_postno : $(reser_postno).val()
+				reser_price : $("#reser_price").val(),
+				reser_postno : $("#postno").val()
 			},
 			success : function(data) {
 

@@ -94,12 +94,12 @@ public class BasicDao<T> {
 		return result;
 	}
 
-	protected void updateBy(SqlSession session, int primeryNo, String colum, Object value) {
+	protected int updateBy(SqlSession session, int primeryNo, String colum, Object value) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put(uidName, primeryNo);
 		map.put("colum", colum);
 		map.put("value", value);
-		session.update(namespace + "updateBy", map);
+		return session.update(namespace + "updateBy", map);
 	}
 
 	public int update(T t) {
