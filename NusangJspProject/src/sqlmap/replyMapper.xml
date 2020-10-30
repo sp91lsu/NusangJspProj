@@ -55,6 +55,9 @@
 
 
 	<insert id="insert" parameterType="Map"> 
+	<selectKey keyProperty="postno" resultType="int" order="AFTER">			   
+    	SELECT SEQ_SELLPOST_POSTNO.CURRVAL FROM DUAL
+ 		</selectKey>
         INSERT INTO REPLY (userno,postno,textbody,state,child_replyno)
          VALUES (#{userno}, #{postno}, #{textbody},#{state},#{child_replyno}) 
     </insert>

@@ -7,49 +7,52 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div>
 	댓글
-	<div class="addComments">
-		<c:forEach var="reply" items="${post.replyList}">
-
-			<hr style='margin: 3px 0px 3px 0px'>
-			<div class='d-flex comment'>
-				<div class='cProfile'>
-					<img src='/img/logo.png'>
-				</div>
-				
-				<input type="hidden" id="replyno" value="${reply.replyno}">
-				<div class='cContent'>
-					<div class='cHeader d-flex'>
-						<div>${reply.user.nickname}</div>
-
-						<c:choose>
-							<c:when test='${user.userno==post.user.userno}'>
-								<!--내가 쓴 댓글이면-->
-								<ul class="d-flex c_ud">
-									<div>
-										<li class="c_update">댓글 수정</li>
-									</div>
-
-									<div id="c_delete">
-										<li>댓글 삭제</li>
-									</div>
-								</ul>
-							</c:when>
-
-							<c:otherwise>
-								<!--내 댓글이 아니면-->
-								<div></div>
-
-								<div></div>
-							</c:otherwise>
-						</c:choose>
+	<div class='addComments'>
+		<c:forEach var='reply' items='${post.replyList}'>
+			<div class='comment'>
+				<hr>
+				<div class = 'commentSection d-flex'>
+					<div class='cProfile'>
+						<img src='/img/logo.png'>
 					</div>
-
-					<div class='cSection'>
-						${reply.textbody}
-					</div>
-
-					<div class='cFooter'>
-						${reply.regdate}
+					
+					<input type='hidden' id='replyno' value='${reply.replyno}'>
+					<div class='cContent'>
+						<div class='cHeader d-flex'>
+							<div>
+								${reply.user.nickname}
+							</div>
+	
+							<c:choose>
+								<c:when test='${user.userno==post.user.userno}'>
+									<!--내가 쓴 댓글이면-->
+									<ul class='d-flex c_ud'>
+										<div>
+											<li class='c_update'>댓글 수정</li>
+										</div>
+	
+										<div id='c_delete'>
+											<li>댓글 삭제</li>
+										</div>
+									</ul>
+								</c:when>
+	
+								<c:otherwise>
+									<!--내 댓글이 아니면-->
+									<div></div>
+	
+									<div></div>
+								</c:otherwise>
+							</c:choose>
+						</div>
+	
+						<div class='cSection'>
+							${reply.textbody}
+						</div>
+	
+						<div class='cFooter'>
+							${reply.regdate}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -72,7 +75,8 @@ function ud(){
 	
 	$(".comment #c_delete").click(function () {
 		var comment =$(this).closest(".comment");
-		var replyno = comment.children("#replyno");
+		var replyno = comment.children(".commentSection").children("#replyno");
+		console.log(replyno.val());
 		
 		 $.ajax({
 			url : "/post/deleteComment",
@@ -112,41 +116,40 @@ ud();
 					let time = year+'.'+month+"."+date+" "+hours+":"+minutes;
 					
 					$(".addComments").append(
-							"<hr style='margin: 3px 0px 3px 0px'>" +
-							"<div class='d-flex comment'>" +
-								"<div class='cProfile'>" +
-									"<img src='/img/logo.png'>" +
-								"</div>" +
-											
-								"<div class='cContent'>" +
-									"<div class='cHeader d-flex'>" +
-										"<div>" +
-											"${user.nickname}" +
-										"</div>" +
-										
-										"<ul class='d-flex c_ud'>" +
-										"<div>" +
-											"<li class='c_update'>" +
-											"댓글 수정" +
-											"</li>" +
-										"</div>" +
-								
-										"<div>" +
-											"<li class='c_delete'>" +
-											"댓글 삭제" +
-											"</li>" +
-										"</div>" +
-										"</ul>" +
-									"</div>" +
-											
-									"<div class='cSection'>" +
-									$("#replyComments").val() +
-									"</div>" +
-									
-									"<div class='cFooter'>" +
-										time +
-									"</div>" +
-								"</div>" +
+							"<div class='comment'>" + 
+								"<hr>" + 
+								"<div class = 'commentSection d-flex'>" + 
+									"<div class='cProfile'>" + 
+										"<img src='/img/logo.png'>" + 
+									"</div>" + 
+							
+									"<input type='hidden' id='replyno' value='${reply.replyno}'>" + 
+									"<div class='cContent'>" + 
+										"<div class='cHeader d-flex'>" + 
+											"<div>" + 
+												"${user.nickname}" + 
+											"</div>" + 
+							
+													"<ul class='d-flex c_ud'>" + 
+														"<div>" + 
+															"<li class='c_update'>댓글 수정</li>" + 
+														"</div>" + 
+							
+														"<div id='c_delete'>" + 
+															"<li>댓글 삭제</li>" + 
+														"</div>" + 
+													"</ul>" + 
+										"</div>" + 
+							
+										"<div class='cSection'>" + 
+											$("#replyComments").val() +
+										"</div>" + 
+							
+										"<div class='cFooter'>" + 
+											time +
+										"</div>\r\n" + 
+									"</div>" + 
+								"</div>" + 
 							"</div>"
 					);
 					$("#replyComments").val("");

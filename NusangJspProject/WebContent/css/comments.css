@@ -13,16 +13,20 @@ li {
 	margin-bottom: 30px;
 }
 
-.addComments>.comment>.cProfile {
+.addComments>.comment>hr {
+	margin: 3px 0px 3px 0px;
+}
+
+.cProfile {
 	width: 70px;
 }
 
-.addComments>.comment>.cProfile>img {
+.cProfile>img {
 	width: 70px;
 	height: 70px;
 }
 
-.addComments>.comment>.cContent {
+.cContent {
 	width: 630px;
 }
 
