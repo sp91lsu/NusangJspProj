@@ -20,8 +20,7 @@
 		<association property="location" column="locationno" javaType="Location" select="selectLocation" />
 		<collection property="payment_MarketList" column="userno" javaType="java.util.ArrayList" ofType="Payment_Market" select="getPMListById" />
 		<collection property="payment_UserList" column="userno" javaType="java.util.ArrayList" ofType="Payment_User" select="getPUListById" />
-	<!--	<collection property="reservationList" column="userno" javaType="java.util.ArrayList" ofType="Buy_Reservation" select="buy_reservationMapper.userReserList" />
--->
+		<collection property="reservationList" column="userno" javaType="java.util.ArrayList" ofType="Buy_Reservation" select="buy_reservationMapper.userReserList" />
 	</resultMap>
 
 
@@ -87,7 +86,7 @@
        email = #{email}
        
     </select>
-	
+
 	<insert id="insert" useGeneratedKeys="true" keyProperty="userno" parameterType="User">
 		<selectKey keyProperty="userno" resultType="int" order="AFTER">			   
     	SELECT SEQ_NUSER_USERNO.CURRVAL FROM DUAL

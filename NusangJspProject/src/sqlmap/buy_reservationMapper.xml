@@ -15,14 +15,15 @@
 
 
 	<select id="userReserList" resultMap="reservationMap">
-     SELECT BUY_RESERVATION.reser_price ,BUY_RESERVATION.state
-		from BUY_RESERVATION , NUSER, SELLPOST 
+		 SELECT BR.reser_price ,BR.state,BR.sellpostno,BR.userno
+	
+		from BUY_RESERVATION BR, NUSER U, SELLPOST 
 		where 
-		userno = #{userno}
+		U.userno = #{userno}
 		and 
-		BUY_RESERVATION.sellpostno = SELLPOST.POSTNO
+		BR.sellpostno = SELLPOST.POSTNO
 		and 
-		BUY_RESERVATION.userno = NUSER.userno
+		BR.userno = U.userno
     </select>
 
 	<select id="postReserList" resultMap="reservationMap">
