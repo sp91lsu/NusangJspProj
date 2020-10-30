@@ -23,13 +23,17 @@ public class AddComments_Aciton implements Action {
 		User user = (User) request.getSession().getAttribute("user");
 		int userno = user.getUserno();
 
+		System.out.println("댓글 등록");
 		System.out.println("replyText : " + request.getParameter("replyText"));
+		System.out.println(request.getParameter("postno"));
+		System.out.println(userno);
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("postno", Integer.parseInt(request.getParameter("postno")));
 		map.put("textbody", request.getParameter("replyText"));
 		map.put("userno", userno);
 		map.put("state", 1);
-		map.put("child_replyno", 0);
+		map.put("child_replyno", null);
 		ReplyDao.getInstance().insert(map);
 		return actionForward;
 	}
