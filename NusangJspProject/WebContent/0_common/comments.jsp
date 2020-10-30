@@ -106,7 +106,7 @@ ud();
 				"replyText" : $("#replyComments").val()
 			},
 			success : function(data) {
-				if (data != -1) {//성공일때
+				if (data > 0) {//성공일때
 					let today = new Date();
 					let year = today.getFullYear(); // 년도
 					let month = today.getMonth() + 1;  // 월
@@ -123,7 +123,7 @@ ud();
 										"<img src='/img/logo.png'>" + 
 									"</div>" + 
 							
-									"<input type='hidden' id='replyno' value='${reply.replyno}'>" + 
+									"<input type='hidden' id='replyno' value="+ data+">" + 
 									"<div class='cContent'>" + 
 										"<div class='cHeader d-flex'>" + 
 											"<div>" + 

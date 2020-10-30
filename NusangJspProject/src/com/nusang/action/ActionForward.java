@@ -52,8 +52,6 @@ public class ActionForward {
 		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
 			ip = request.getRemoteAddr();
 		}
-		ip = ip + ":8787";
-		System.out.println(ip + getNextPath());
 		switch (getActionType()) {
 		case FORWARD:
 			request.getRequestDispatcher( getNextPath()).forward(request, response);

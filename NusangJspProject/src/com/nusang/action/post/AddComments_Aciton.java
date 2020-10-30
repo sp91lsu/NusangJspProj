@@ -17,9 +17,7 @@ public class AddComments_Aciton implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("UTF-8");
-		ActionForward actionForward = new ActionForward();
-		actionForward.setAsyncData("");
-
+		
 		User user = (User) request.getSession().getAttribute("user");
 		int userno = user.getUserno();
 
@@ -27,7 +25,7 @@ public class AddComments_Aciton implements Action {
 		System.out.println("replyText : " + request.getParameter("replyText"));
 		System.out.println(request.getParameter("postno"));
 		System.out.println(userno);
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("postno", Integer.parseInt(request.getParameter("postno")));
 		map.put("textbody", request.getParameter("replyText"));
@@ -35,6 +33,11 @@ public class AddComments_Aciton implements Action {
 		map.put("state", 1);
 		map.put("child_replyno", null);
 		ReplyDao.getInstance().insert(map);
+		Integer replyno = (int) map.get("replyno");
+		
+		ActionForward actionForward = new ActionForward();
+		actionForward.setAsyncData(replyno.toString());
+
 		return actionForward;
 	}
 }
