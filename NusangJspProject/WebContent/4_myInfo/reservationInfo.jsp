@@ -24,7 +24,16 @@
 		      <th scope="row"><%= cnt++ %></th>
 		      <td>${reservation.post.productname }</td>
 		      <td>${reservation.reser_price}</td>
-		      <td>${reservation.state}</td>
+		      <td>
+		      <c:choose>
+		      	<c:when test="${reservation.state == 0}">
+		      	구매신청중
+		      	</c:when>
+		      	<c:otherwise>
+		      	예약완료
+		      	</c:otherwise>
+		      </c:choose>
+		      </td>
 		      <td>${reservation.regdate}</td>
 		    </tr>
 		</c:forEach>
