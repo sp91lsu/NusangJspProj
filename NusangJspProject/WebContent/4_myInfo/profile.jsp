@@ -25,14 +25,29 @@
 
 	<!-- 닉네임 & 닉네임변경버튼 -->
 	<div class="nicknameSec">
-		<form action="/myinfo/nickname_change">
-			<input class="nickName" name="nickName" type="text"
+		<form>
+			<input class="nickName" name="nickName" type="text" id = "userNickname"
 				value=${user.nickname } />
 
-			<button type="submit" class="btn btn-primary btn-sm">닉네임 변경</button>
+			<button type="button" id = "nicknameChange" class="btn btn-primary btn-sm">닉네임 변경</button>
 		</form>
 	</div>
-	
+	<script>
+	$("#nicknameChange").click(function(){
+		var userNickname = $("#userNickname").val();
+		$.ajax({
+			url : "/myinfo/nickname_change?nickName=" + userNickname,
+			success: function(data){
+				if(data == "success"){
+					alert("닉네임이 변경 되었습니다.")
+				}else{
+					alert("이미 사용중인 닉네임 입니다.")
+				}
+				location.href="/myinfo/profile"
+			}
+		})
+	})
+	</script>
 	<!-- 사진변경 & 저장 & 지우기 버튼 -->
 	<div class="btnSec">
 		<form action="/myinfo/image_change" method="post"
