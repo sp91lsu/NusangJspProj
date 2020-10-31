@@ -25,7 +25,6 @@
 				<tr>
 						<th scope="row"><%=listCnt++ %></th>
 						<td>${sale.productname}</td>
-						<td>${sale.price}</td>
 						<td>${sale.regdate}</td>
 						<td>${sale.business_partner.nickname}</td>
 				</tr>
