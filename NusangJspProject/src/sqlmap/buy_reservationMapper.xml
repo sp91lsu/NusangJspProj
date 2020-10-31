@@ -15,7 +15,7 @@
 
 
 	<select id="userReserList" resultMap="reservationMap">
-		 SELECT  BR.reserno ,BR.reser_price ,BR.state,BR.sellpostno,BR.userno
+		 SELECT  BR.reserno ,BR.reser_price ,BR.state,BR.sellpostno,BR.userno,BR.regdate
 	
 		from BUY_RESERVATION BR, NUSER U, SELLPOST 
 		where 
@@ -27,7 +27,7 @@
     </select>
 
 	<select id="postReserList" resultMap="reservationMap">
-     SELECT BR.reserno ,BR.reser_price ,BR.state,BR.sellpostno,BR.userno
+     SELECT BR.reserno ,BR.reser_price ,BR.state,BR.sellpostno,BR.userno,BR.regdate
 		
 		from BUY_RESERVATION BR, NUSER, SELLPOST 
 		where 
