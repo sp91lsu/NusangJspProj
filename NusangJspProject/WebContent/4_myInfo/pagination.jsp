@@ -1,79 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<!-- 페이징처리 코드  -->
 <%
+	int curPage = 1; // 현재 페이지 (디폴트는 1 page)
 
-	// 한 [페이징]에 표시될 '페이지' 수  --> writePages
-// 총 '페이지' 수 --> totalPage
-// 현재 페이지 --> curPage
-int writePages = Integer.parseInt(request.getParameter("writePages"));
-int totalPage = Integer.parseInt(request.getParameter("totalPage"));
-int curPage = Integer.parseInt(request.getParameter("curPage"));
-// ※ 사실 위 단계에서도 파라미터 검증 필요하다
+// 현재 몇 페이지 인지 parameter 받아오기
+String pageParam = request.getParameter("page");
+if (pageParam != null && !pageParam.trim().equals("")) {
+	try {
+		curPage = Integer.parseInt(pageParam);
+	} catch (NumberFormatException e) {
+		// ※ page parameter 에러 처리
+	}
+}
 
-	// 위 url에 추가로 붙어야 할 것들.  (옵션)
-	String add = request.getParameter("add");
-		if (add == null) {
-			add = "";
-	}
-	
-	// 페이징 버튼 링크 url 주소에 넣을 문자열 준비
+int writePages = 3; // 한 [페이징] 에 몇개의 '페이지' 를 표현할 것인가?
+int pageRows = 5; // 한 '페이지' 에 몇개의 글을 리스트 할 것인가?
+int totalPage = 0; // 총 몇 '페이지' 분량인가?
 
-	//페이징할 페이지의 이름을 가져옴(다른 메뉴에서 재사용을 위해)
-	String pageName = request.getParameter("pageName");
-	//String url = request.getRequestURL().toString() + "?page=";
-	String url = "/myinfo/"+pageName+"?page=";
-	String str = ""; // 최종적으로 페이징에 나타날 HTML 문자열 <li> 태그로 구성
-	
-	// 페이징에 보여질 숫자들 (시작숫자 start_page ~ 끝숫자 end_page)
-	int start_page = (((int) ((curPage - 1) / writePages)) * writePages) + 1;
-	int end_page = start_page + writePages - 1;
-	
-	if (end_page >= totalPage) {
-		end_page = totalPage;
-	}
-	
-	//■ << 표시 여부
-/* 	if (curPage > 1) {
-		str += "<li class='age-item'><a href='" + url + "1" + add
-		+ "'  class='page-link text-secondary' title='처음' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>\n";
-	} */
-	
-	//■  < 표시 여부
-	if (start_page > 1)
-		str += "<li class='age-item'><a href='" + url + (start_page - 1) + add
-		+ "' class='page-link text-secondary' title='이전' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>\n";
-	
-	//■  페이징 안의 '숫자' 표시	
-	if (totalPage > 1) {
-		for (int k = start_page; k <= end_page; k++) {
-			if (curPage != k)
-		str += "<li class='page-item'><a class='page-link text-secondary' href='" + url + k + add + "'>" + k
-				+ "</a></li>\n";
-			else
-		str += "<li class='page-item'><a href='#' class='page-link text-secondary' title='현재페이지'>" + k
-				+ "</a></li>\n";
-		}
-	}
-	
-	//■ > 표시
-	if (totalPage > end_page) {
-		str += "<li class='page-item'><a class='page-link text-secondary' href='" + url + (end_page + 1) + add
-		+ "' aria-label='Next' title='다음'><span aria-hidden='true'>&raquo;</span></a></li>\n";
-	}
-	
-	//■ >> 표시
-/* 	if (curPage < totalPage) {
-		str += "<li class='page-item'><a class='page-link text-secondary' href='" + url + totalPage + add
-		+ "'  aria-label='Next' title='맨끝'><span aria-hidden='true'>&raquo;</span></i></a></li>\n";
-	} */
+
+ArrayList list = (ArrayList) pageContext.getAttribute("list");
+int cnt = list.size(); //글의 총 갯수
+System.out.println(">>총 몇개 있는가: " + cnt);
+
+totalPage = (int) Math.ceil(cnt / (double) pageRows); // 총 몇 페이지 분량인가?
+int fromRow = (curPage - 1) * pageRows; // 몇번째  row 부터?
+
+ArrayList selectList = new ArrayList();
+getList(curPage, fromRow, pageRows, list, selectList);
 %>
-	
-<!-- top nav -->
-<nav aria-label="Page navigation example">
-	<ul class="pagination justify-content-center">
-		<%=str%>
-	</ul>
-</nav>
-	
+
+<%!public void getList(int curPage, int fromRow, int pageRows, ArrayList list, ArrayList selectList) {
+
+		System.out.println(">>전체 리스트: " + list);
+		for (int i = fromRow; i < fromRow + pageRows; i++) {
+			if (list.size() <= i) {
+				break;
+			}
+			selectList.add(list.get(i));
+		}
+		System.out.println(">>페이지에 해당하는 리스트:  " + selectList);
+	}%>
+
+
+
+
+
 
