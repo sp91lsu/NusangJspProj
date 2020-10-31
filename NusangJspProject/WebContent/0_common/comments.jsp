@@ -59,20 +59,48 @@
 		</c:forEach>
 	</div>
 
-	<div class="writeComments">
-		<textarea rows="3" id="replyComments" cols="70"
-			placeholder="댓글을 입력하세요"><c:out value="${content}" /></textarea>
-		<input type="button" id="addComments" value="등록">
+	<div class='writeComments'>
+		<textarea  rows='3' cols='95' id='replyComments' placeholder='댓글을 입력하세요'></textarea>
+		<input type='button' id='addComments' value='등록' style='float: right'>
 	</div>
 </div>
 
 <script>
-/*댓글 수정,삭제*/
 function ud(){
+	/*댓글 수정*/
+	var commentdetach;
+	var commentlocation;
 	$(".c_update").click(function(){
-		console.log("댓글수정 클릭!!");
+		var textcopy =$(this).closest(".cContent").children(".cSection").text().trim();
+		 commentlocation = $(this).closest(".comment");
+		var updatecomment = commentlocation.append(
+				"<div>" +
+					"<textarea rows='3' cols='95' id='replyComments'" +
+						"placeholder='댓글을 입력하세요'>" +
+					"</textarea>" +
+					"<div style='height: 30px' >" +
+						"<input type='button' id='cancleComment' value='취소'>" + 
+						"<input type='button' id='updateComment' value='수정'>" +
+					"</div>" +
+				"<div>"
+				);
+		$("#replyComments").val(textcopy);
+		
+		commentdetach= $(this).closest(".commentSection").detach();
+		
+		
+		/*수정 버튼*/
+		$("#updateComment").click(function(){
+			console.log("수정버튼 클릭!!");
+		})
+		
+		/*취소 버튼*/
+		$("#cancleComment").click(function(){
+			var cancle = $(this).closest(".comment").children("div").remove();
+			commentlocation.append(commentdetach);
+		})
 	})
-	
+	/*댓글 삭제*/
 	$(".comment #c_delete").click(function () {
 		var comment =$(this).closest(".comment");
 		var replyno = comment.children(".commentSection").children("#replyno");
@@ -87,7 +115,6 @@ function ud(){
 			success : function(data){
 				if (data != -1) {//성공일때
 					console.log(replyno.val()+"번 댓글 삭제");
-					alert("댓글을 삭제하시겠습니까?");
 					comment.remove();
 				}
 			}
