@@ -17,6 +17,7 @@ import com.nusang.action.post.CreatePost_Action;
 import com.nusang.action.post.DeleteComment_Action;
 import com.nusang.action.post.DeletePost_Action;
 import com.nusang.action.post.ReadPost_Action;
+import com.nusang.action.post.SellPostAction;
 import com.nusang.action.post.SetReservationAction;
 import com.nusang.action.post.UpdatePostOK_Action;
 import com.nusang.action.post.UpdatePost_Action;
@@ -79,6 +80,10 @@ public class PostController extends HttpServlet {
 					break;
 				case "cancel_reservation":
 					action = new CancelReserVationAction();
+					actionForward = action.execute(request, response);
+					break;
+				case "sell_post":
+					action = new SellPostAction();
 					actionForward = action.execute(request, response);
 					break;
 					

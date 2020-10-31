@@ -28,10 +28,10 @@ public class User {
 	private Date regdate;
 	private String picture;
 	private Location location;
-	private ArrayList<Payment_Market> payment_MarketList;//결제내역
-	private ArrayList<Payment_User> payment_UserList;//구매내역,판매내역
-	private ArrayList<Buy_Reservation> reservationList;//구매신청현황
-	
+	private ArrayList<Payment_Market> payment_MarketList;// 결제내역
+	private ArrayList<Payment_User> payment_UserList;// 구매내역,판매내역
+	private ArrayList<Buy_Reservation> reservationList;// 구매신청현황
+
 	public boolean isLocationNull() {
 
 		if (location != null) {
@@ -40,5 +40,23 @@ public class User {
 			}
 		}
 		return true;
+	}
+
+	public ArrayList<Payment_User> getSellList() {
+		return findStateList(2);
+	}
+
+	public ArrayList<Payment_User> getBuyList() {
+		return findStateList(1);
+	}
+
+	public ArrayList<Payment_User> findStateList(int state) {
+		ArrayList<Payment_User> list = new ArrayList<Payment_User>();
+		for (Payment_User payment_User : payment_UserList) {
+			if (payment_User.getSellstate() == state) {
+				list.add(payment_User);
+			}
+		}
+		return list;
 	}
 }

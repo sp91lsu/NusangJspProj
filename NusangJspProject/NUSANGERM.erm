@@ -11,8 +11,8 @@
 	</page_setting>
 	<category_index>0</category_index>
 	<zoom>0.75</zoom>
-	<x>443</x>
-	<y>208</y>
+	<x>436</x>
+	<y>363</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2020-10-24 20:37:14</creation_date>
-			<updated_date>2020-10-31 05:16:09</updated_date>
+			<updated_date>2020-10-31 16:55:26</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -2286,7 +2286,7 @@
 					<physical_name></physical_name>
 					<type>date</type>
 					<constraint></constraint>
-					<default_value></default_value>
+					<default_value>SYSDATE</default_value>
 					<auto_increment>false</auto_increment>
 					<foreign_key>false</foreign_key>
 					<not_null>true</not_null>

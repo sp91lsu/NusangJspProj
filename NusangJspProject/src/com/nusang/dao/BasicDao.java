@@ -64,6 +64,14 @@ public class BasicDao<T> {
 		return object;
 	}
 
+	protected T findByNo(SqlSession session, int keyword) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("search", uidName);
+		map.put("keyword", keyword);
+		T object = session.selectOne(namespace + "findBy", map);
+		return object;
+	}
+
 	protected T findBy(SqlSession session, String search, Object keyword) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("search", search);

@@ -18,7 +18,7 @@
 		</thead>
 		
 		<tbody>
-			<c:forEach var="buyinfo" items="${user.payment_UserList}">
+			<c:forEach var="buyinfo" items="${user.getBuyList()}">
 				<tr>
 					<th scope="row">1</th>
 					<td>${buyinfo.productname}</td>

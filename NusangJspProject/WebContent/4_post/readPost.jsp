@@ -49,65 +49,67 @@
 				</c:when>
 					<c:when test="${post.sellstate == 1 }">
 					구매 예약 중 예약자 : ${post.getReserUser().nickname }
+					<button class="btn btn-primary" id="sellPostBtn" value="${post.getCurReservation().reserno }">판매하기</button>
 				</c:when>
 					<c:when test="${post.sellstate == 2 }">
 					판매 완료
 				</c:when>
 				</c:choose>
 				<!-- 버튼 영역 as 구매자or판매자 -->
-				<div id="buyer_seller" class="d-flex align-items-center">
-					<c:choose>
-						<c:when test="${user.userid == post.user.getUserid()}">
-							<!--내 글이면(판매자)-->
-							<div class="dropdown">
-								<!-- 거래신청 현황 드롭다운메뉴 -->
-								<button id="status" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
-									거래신청 현황 <span class="caret"></span>
-								</button>
-								<ul id="resvList" class="dropdown-menu">
-									<c:forEach var="resv" items="${post.reservationList}">
-										<li class="dropdown-item">
-											<!-- nclick="mkResv()" --> <input type="hidden" value="${resv.reser_price}"> ${resv.user.nickname} : <span>${resv.reser_price}</span>원 <c:choose>
+				<c:if test="${post.sellstate != 2}">
+					<div id="buyer_seller" class="d-flex align-items-center">
+						<c:choose>
+							<c:when test="${user.userno == post.user.userno}">
+								<!--내 글이면(판매자)-->
+								<div class="dropdown">
+									<!-- 거래신청 현황 드롭다운메뉴 -->
+									<button id="status" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+										거래신청 현황 <span class="caret"></span>
+									</button>
+									<ul id="resvList" class="dropdown-menu">
+										<c:forEach var="resv" items="${post.reservationList}">
+											<li class="dropdown-item">
+												<!-- nclick="mkResv()" --> <input type="hidden" value="${resv.reser_price}"> ${resv.user.nickname} : <span>${resv.reser_price}</span>원 <c:choose>
 
-												<c:when test="${resv.state == 0}">
-													<button class="resvBtn btn btn-primary" value="${resv.reserno }">구매자 등록</button>
+													<c:when test="${resv.state == 0}">
+														<button class="resvBtn btn btn-primary" value="${resv.reserno }">구매자 등록</button>
 
-												</c:when>
-												<c:when test="${resv.state == 1}">
+													</c:when>
+													<c:when test="${resv.state == 1}">
 													예약됨<button class="cancel_reser btn btn-danger" value="${resv.reserno }">등록취소</button>
-												</c:when>
-											</c:choose>
+													</c:when>
+												</c:choose>
 
-										</li>
-									</c:forEach>
-								</ul>
-							</div>
-
-							<div id="btnArea">
-								<!-- 글 수정,삭제버튼 -->
-								<button id="uptPost" class="btn btn-primary" onclick="location.href='<%= ConAsist.SERVLET_UPDATEPOST %>?postno=${post.postno}'">글 수정</button>
-								<button id="delPost" class="btn btn-primary" onclick="chkDelete('${post.postno}')">글 삭제</button>
-
-							</div>
-						</c:when>
-
-
-						<c:otherwise>
-							<!-- 구매자 -->
-							<div id="buyerBtn" class="d-flex flex-column">
-								<div>
-									거래상태 현황 <br> :${post.sellstate}
+											</li>
+										</c:forEach>
+									</ul>
 								</div>
-								<%
-									request.setAttribute("post", request.getAttribute("post"));
-								%>
-								<input type="number" id="reser_price">
-								<button id="buy_reservationBtn" class="btn btn-primary"">가격 제시</button>
 
-							</div>
-						</c:otherwise>
-					</c:choose>
-				</div>
+								<div id="btnArea">
+									<!-- 글 수정,삭제버튼 -->
+									<button id="uptPost" class="btn btn-primary" onclick="location.href='<%= ConAsist.SERVLET_UPDATEPOST %>?postno=${post.postno}'">글 수정</button>
+									<button id="delPost" class="btn btn-primary" onclick="chkDelete('${post.postno}')">글 삭제</button>
+
+								</div>
+							</c:when>
+
+							<c:otherwise>
+								<!-- 구매자 -->
+								<div id="buyerBtn" class="d-flex flex-column">
+									<div>
+										거래상태 현황 <br> :${post.sellstate}
+									</div>
+									<%
+										request.setAttribute("post", request.getAttribute("post"));
+									%>
+									<input type="number" id="reser_price">
+									<button id="buy_reservationBtn" class="btn btn-primary"">가격 제시</button>
+
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</div>
+				</c:if>
 			</div>
 
 			<hr class="m-0">

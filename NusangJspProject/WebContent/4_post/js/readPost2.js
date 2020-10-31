@@ -14,15 +14,19 @@
 														url : "/post/cancel_reservation",
 														type : "POST",
 														data : {
-															"reserno" : $(this).val(),
-															"postno" : $("#postno").val()
+															"reserno" : $(this)
+																	.val(),
+															"postno" : $(
+																	"#postno")
+																	.val()
 														},
 														success : function(data) {
 
 															if (data > 0) {
 																alert('구매 예약이 취소되었습니다.');
 																location.href = "/post/readPost?postno="
-																		+ $("#postno")
+																		+ $(
+																				"#postno")
 																				.val()
 															} else {
 																alert('예약 취소실패.');
@@ -77,6 +81,39 @@
 															"disabled");
 
 										});
+
+						$("#sellPostBtn")
+								.click(
+										function() {
+
+											$
+													.ajax({
+
+														url : "/post/sell_post",
+														type : "POST",
+														data : {
+															"reserno" : $(this)
+																	.val(),
+															"postno" : $(
+																	"#postno")
+																	.val()
+														},
+														success : function(data) {
+
+															if (data > 0) {
+																alert('판매가 완료되었습니다.');
+																location.href = "/post/readPost?postno="
+																		+ $(
+																				"#postno")
+																				.val()
+															} else {
+																alert('판매 실패.');
+															}
+
+														}
+
+													})
+										})
 
 						$("#resvList li").each(function() {
 							var moneyValue = $(this).children('input').val();

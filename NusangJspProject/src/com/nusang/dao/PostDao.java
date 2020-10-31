@@ -8,7 +8,9 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.nusang.dto.Buy_Reservation;
 import com.nusang.dto.Location;
+import com.nusang.dto.Payment_User;
 import com.nusang.dto.Post;
 import com.nusang.dto.Post_Picture;
 import com.nusang.dto.User;
@@ -66,10 +68,10 @@ public class PostDao extends BasicDao<Post> {
 		SqlSession session = sqlSessionFactory.openSession();
 		int result = 0;
 		try {
-			
+
 			LocationDao.getInstance().update(session, post.getLocation());
 			Post_PictureDao.getInstance().update(session, post.getPost_picture());
-			
+
 			result = update(session, post);
 
 			session.commit();
@@ -105,4 +107,37 @@ public class PostDao extends BasicDao<Post> {
 		return (ArrayList<Post>) postList;
 	}
 
+	public int sellPost(int postno, int reserno) {
+
+		SqlSession session = sqlSessionFactory.openSession();
+		int result = 0;
+		try {
+			Post post = findByNo(session, postno);
+			Buy_Reservation cur_Br = post.getCurReservation();
+
+			// 판매자 판매목록 저장
+			Payment_User pu_bySeller = Payment_User.builder().price(cur_Br.getReser_price())
+					.userno(post.getUser().getUserno()).business_partner(cur_Br.getUser().getUserno())
+					.productname(post.getProductname()).sellstate(2).build();
+
+			// 구매자 구매목록 저장
+			Payment_User pu_byBuyer = Payment_User.builder().price(cur_Br.getReser_price())
+					.userno(cur_Br.getUser().getUserno()).business_partner(post.getUser().getUserno())
+					.productname(post.getProductname()).sellstate(1).build();
+
+			Payment_UserDao.getInstance().insert(session, pu_bySeller);
+			Payment_UserDao.getInstance().insert(session, pu_byBuyer);
+
+			// 게시글 상태 변경
+			result = updateBy(session, postno, "sellstate", 2);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.rollback();
+		} finally {
+			session.close();
+		}
+
+		return result;
+	}
 }

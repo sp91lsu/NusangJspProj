@@ -17,7 +17,7 @@
 		</thead>
 		
 		<tbody>
-			<c:forEach var="sale" items="${user.payment_UserList}">
+			<c:forEach var="sale" items="${user.getSellList()}">
 				<tr>
 					<th scope="row">1</th>
 					<td>Mark</td>

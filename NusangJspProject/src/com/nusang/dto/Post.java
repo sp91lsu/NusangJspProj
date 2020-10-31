@@ -31,9 +31,13 @@ public class Post {
 	private ArrayList<Buy_Reservation> reservationList;// 구매신청현황
 
 	public User getReserUser() {
+		return getCurReservation().getUser();
+	}
+
+	public Buy_Reservation getCurReservation() {
 		for (Buy_Reservation br : reservationList) {
 			if (br.getState() == 1) {
-				return br.getUser();
+				return br;
 			}
 		}
 		return null;
