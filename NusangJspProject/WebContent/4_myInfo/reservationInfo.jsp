@@ -18,10 +18,11 @@
 	  </thead>
 	  
 	  <tbody>
+	  <% int cnt = 1; %>
 	  	<c:forEach var="reservation" items="${user.reservationList}">
 		    <tr>
-		      <th scope="row">1</th>
-		      <td>1</td>
+		      <th scope="row"><%= cnt++ %></th>
+		      <td>${reservation.post.productname }</td>
 		      <td>${reservation.reser_price}</td>
 		      <td>${reservation.state}</td>
 		      <td>${reservation.regdate}</td>
