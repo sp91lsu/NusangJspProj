@@ -102,7 +102,7 @@ public class CreatePost_Action implements Action {
 		post.setPost_picture(pp);
 		int postno = PostDao.getInstance().insertPost(post, fileSystemNames,pm);
 		// 데이터 확인
-		post = PostDao.getInstance().findBy("postno", postno,);
+		post = PostDao.getInstance().findBy("postno", postno);
 
 		ActionForward acf = new ActionForward();
 		if (post != null) {
