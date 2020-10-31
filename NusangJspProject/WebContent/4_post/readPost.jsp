@@ -45,10 +45,10 @@
 				<!-- <button id="button11">버튼</button> -->
 				<c:choose>
 					<c:when test="${post.sellstate == 0 }">
-					예약자 없음
+					판매중
 				</c:when>
 					<c:when test="${post.sellstate == 1 }">
-					구매 예약 중 예약자 : ${post.getReserUser().nickname }
+					구매 예약자 : ${post.getReserUser().nickname }
 					<c:if test="${user.userno == post.user.userno }">
 							<button class="btn btn-primary" id="sellPostBtn" value="${post.getCurReservation().reserno }">판매하기</button>
 							<button class="cancel_reser btn btn-danger" value="${post.getCurReservation().reserno }">등록취소</button>

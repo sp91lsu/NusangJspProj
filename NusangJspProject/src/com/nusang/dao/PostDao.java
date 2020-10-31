@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.nusang.dto.Buy_Reservation;
 import com.nusang.dto.Location;
+import com.nusang.dto.Payment_Market;
 import com.nusang.dto.Payment_User;
 import com.nusang.dto.Post;
 import com.nusang.dto.Post_Picture;
@@ -32,13 +33,13 @@ public class PostDao extends BasicDao<Post> {
 		super(namespace, "postno");
 	}
 
-	public int insertPost(Post post, List<String> fileSystemNames) {
+	public int insertPost(Post post, List<String> fileSystemNames, Payment_Market pm) {
 		SqlSession session = sqlSessionFactory.openSession();
 		int postno = 0;
 		try {
+			Payment_MarketDao.getInstance().insert(session, pm);
 			LocationDao.getInstance().insert(session, post.getLocation());
 			Post_PictureDao.getInstance().insert(session, post.getPost_picture()); // 1
-
 			Map<String, Object> map = new HashMap<String, Object>();
 			System.out.println("post getPost_picno 값 : " + post.getPost_picture().getPost_picno());
 			System.out.println("post location 값 : " + post.getLocation().getLocationno());

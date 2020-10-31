@@ -85,7 +85,7 @@ public class CreatePost_Action implements Action {
 		Payment_Market pm = Payment_Market.builder().name("게시글 등록 ").imp_uid(imp_uid).paymenttype("card").state(1)
 				.userno(user.getUserno()).price(pm_paid_amount).build();
 
-		Payment_MarketDao.getInstance().insert(pm);
+		
 
 		Location location = KakaoBO.getInstance().reqLocation(map_longtitude, map_latitude);
 		location.setTabletype("POST");
@@ -100,9 +100,9 @@ public class CreatePost_Action implements Action {
 		Post_Picture pp = new Post_Picture();
 		pp.setPicture(fileSystemNames);
 		post.setPost_picture(pp);
-		int postno = PostDao.getInstance().insertPost(post, fileSystemNames);
+		int postno = PostDao.getInstance().insertPost(post, fileSystemNames,pm);
 		// 데이터 확인
-		post = PostDao.getInstance().findBy("postno", postno);
+		post = PostDao.getInstance().findBy("postno", postno,);
 
 		ActionForward acf = new ActionForward();
 		if (post != null) {
