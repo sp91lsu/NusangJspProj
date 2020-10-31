@@ -59,4 +59,13 @@ public class User {
 		}
 		return list;
 	}
+
+	public Buy_Reservation getReservation(int postno) {
+		for (Buy_Reservation br : reservationList) {
+			if (br.getPost().getPostno() == postno) {
+				return br;
+			}
+		}
+		return null;
+	}
 }

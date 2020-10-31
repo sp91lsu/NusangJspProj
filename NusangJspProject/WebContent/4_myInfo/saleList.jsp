@@ -20,9 +20,10 @@
 			<c:forEach var="sale" items="${user.getSellList()}">
 				<tr>
 					<th scope="row">1</th>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td>@mdo</td>
+					<td>${sale.productname}</td>
+					<td>${sale.price}</td>
+					<td>${sale.regdate}</td>
+					<td>${sale.business_partner.nickname}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

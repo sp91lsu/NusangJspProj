@@ -24,7 +24,7 @@
 					<td>${buyinfo.productname}</td>
 					<td>${buyinfo.price}</td>
 					<td>${buyinfo.regdate}</td>
-					<td>${buyinfo.business_partner}</td>
+					<td>${buyinfo.business_partner.nickname}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

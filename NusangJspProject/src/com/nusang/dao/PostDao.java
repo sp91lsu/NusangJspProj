@@ -117,12 +117,12 @@ public class PostDao extends BasicDao<Post> {
 
 			// 판매자 판매목록 저장
 			Payment_User pu_bySeller = Payment_User.builder().price(cur_Br.getReser_price())
-					.userno(post.getUser().getUserno()).business_partner(cur_Br.getUser().getUserno())
+					.userno(post.getUser().getUserno()).business_partner(cur_Br.getUser())
 					.productname(post.getProductname()).sellstate(2).build();
 
 			// 구매자 구매목록 저장
 			Payment_User pu_byBuyer = Payment_User.builder().price(cur_Br.getReser_price())
-					.userno(cur_Br.getUser().getUserno()).business_partner(post.getUser().getUserno())
+					.userno(cur_Br.getUser().getUserno()).business_partner(post.getUser())
 					.productname(post.getProductname()).sellstate(1).build();
 
 			Payment_UserDao.getInstance().insert(session, pu_bySeller);
