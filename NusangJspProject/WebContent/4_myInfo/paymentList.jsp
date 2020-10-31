@@ -56,7 +56,7 @@ getList(curPage, fromRow, pageRows, list, selectList);
 	<br> <br>
 
 	<table class="table" style = "text-align: center;">
-		<thead class="thead-dark" style = "text-align: center;">
+		<thead class="thead" style = "text-align: center; background :#003E00; color: white;">
 			<tr>
 				<th scope="col" style = "text-align: center;">no.</th>
 				<th scope="col" style = "text-align: center;">결제번호</th>

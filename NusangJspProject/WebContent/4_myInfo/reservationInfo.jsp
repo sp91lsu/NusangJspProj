@@ -7,7 +7,7 @@
 	<br><br>
 
 	<table class="table" style = "text-align: center;">
-	  <thead class="thead-dark">
+	  <thead class="thead" style = "background: #003E00; color: white;">
 	    <tr>
 	      <th scope="col" style = "text-align: center;">no.</th>
 	      <th scope="col" style = "text-align: center;">구매품목</th>
