@@ -70,11 +70,17 @@ function ud(){
 	/*댓글 수정*/
 	var commentdetach;
 	var commentlocation;
+	var updateText;
+	var replyno;
+	var updateText_Location;
+	
 	$(".c_update").click(function(){
+		replyno = $(this).closest(".comment").children(".commentSection").children("#replyno");
 		var textcopy =$(this).closest(".cContent").children(".cSection").text().trim();
-		 commentlocation = $(this).closest(".comment");
+		commentlocation = $(this).closest(".comment");
+		
 		var updatecomment = commentlocation.append(
-				"<div>" +
+				"<div class='upcomment'>" +
 					"<textarea rows='3' cols='95' id='replyComments'" +
 						"placeholder='댓글을 입력하세요'>" +
 					"</textarea>" +
@@ -91,7 +97,24 @@ function ud(){
 		
 		/*수정 버튼*/
 		$("#updateComment").click(function(){
-			console.log("수정버튼 클릭!!");
+			updateText =$(this).closest(".comment").children("div").children("textarea").val();
+			updateText_Location=
+			commentdetach.children(".cContent").children(".cSection");
+			$.ajax({
+				url: "/post/updateComment",
+				type: "POST",
+				data:{
+					"updateText" : updateText,
+					"replyno" : replyno.val()
+				},
+				success : function name(data) {
+					if(data > 0){
+						commentlocation.append(commentdetach);
+						commentlocation.children(".upcomment").remove();
+						$(updateText_Location).html(updateText);
+					}
+				}
+			})
 		})
 		
 		/*취소 버튼*/
@@ -102,8 +125,6 @@ function ud(){
 	})
 	/*댓글 삭제*/
 	$(".comment #c_delete").click(function () {
-		var comment =$(this).closest(".comment");
-		var replyno = comment.children(".commentSection").children("#replyno");
 		console.log(replyno.val());
 		
 		 $.ajax({

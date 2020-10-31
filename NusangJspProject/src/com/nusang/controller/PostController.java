@@ -20,6 +20,7 @@ import com.nusang.action.post.DeleteReserVationAction;
 import com.nusang.action.post.ReadPost_Action;
 import com.nusang.action.post.SellPostAction;
 import com.nusang.action.post.SetReservationAction;
+import com.nusang.action.post.UpdateComment_Action;
 import com.nusang.action.post.UpdatePostOK_Action;
 import com.nusang.action.post.UpdatePost_Action;
 import com.nusang.controller.assistance.ConAsist;
@@ -68,6 +69,10 @@ public class PostController extends HttpServlet {
 				case "addComments":
 					AddComments_Aciton A_A = new AddComments_Aciton();
 					actionForward = A_A.execute(request, response);
+					break;
+				case "updateComment":
+					UpdateComment_Action U_A = new UpdateComment_Action();
+					actionForward = U_A.execute(request, response);
 					break;
 				case "deleteComment":
 					DeleteComment_Action D_A = new DeleteComment_Action();

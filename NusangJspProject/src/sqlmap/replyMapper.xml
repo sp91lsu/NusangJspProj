@@ -32,23 +32,15 @@
         SELECT
             *
         FROM
-            NUSER
+            REPLY
     </select>
 
-	<select id="selectLocation" resultType="Location">
-        SELECT
-            *
-        FROM
-            LOCATION
-            WHERE
-            LOCATIONNO = #{location}
-    </select>
 
 	<select id="findBy" resultMap="replyMap">
         SELECT
             *
         FROM
-            NUSER
+            REPLY
         WHERE 
         ${search} = #{keyword}
     </select>
@@ -64,11 +56,11 @@
 
 	<update id="updateBy"> 
          
-         UPDATE NUSER
+         UPDATE REPLY
 SET 
 ${colum} = #{value}
 WHERE
- userno = #{userno}
+ replyno = #{replyno}
     </update>
 
 	<delete id="deleteBy"> 
