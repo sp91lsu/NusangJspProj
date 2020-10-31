@@ -21,6 +21,8 @@
 		<association property="location" column="locationno" javaType="Location" select="selectLocation" />
 		<collection property="replyList" column="postno" javaType="java.util.ArrayList" ofType="Reply" select="selectReplyList" />
 		<collection property="reservationList" column="postno" javaType="java.util.ArrayList" ofType="Buy_Reservation" select="buy_reservationMapper.postReserList" />
+		<collection property="watchList" column="postno" javaType="java.util.ArrayList" ofType="WatchList" select="getWatchListById" />
+
 	</resultMap>
 
 	<select id="selectLocation" resultType="Location">
@@ -129,7 +131,9 @@
 	<select id="selectReplyList" resultMap="replyMapper.replyMap">
     SELECT * FROM reply WHERE postno = #{postno} ORDER BY regdate ASC
 </select>
-
+	<select id="getWatchListById" resultMap="watchListMapper.watchListMap">
+    SELECT * FROM WatchList WHERE postno = #{postno}  ORDER BY regdate DESC
+</select>
 
 	<delete id="deleteBy"> 
          

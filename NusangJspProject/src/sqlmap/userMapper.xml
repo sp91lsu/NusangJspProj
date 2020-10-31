@@ -21,6 +21,8 @@
 		<collection property="payment_MarketList" column="userno" javaType="java.util.ArrayList" ofType="Payment_Market" select="getPMListById" />
 		<collection property="payment_UserList" column="userno" javaType="java.util.ArrayList" ofType="Payment_User" select="getPUListById" />
 		<collection property="reservationList" column="userno" javaType="java.util.ArrayList" ofType="Buy_Reservation" select="buy_reservationMapper.userReserList" />
+		<collection property="watchList" column="userno" javaType="java.util.ArrayList" ofType="WatchList" select="getWatchListById" />
+
 	</resultMap>
 
 
@@ -112,6 +114,8 @@ WHERE
 	<select id="getPUListById" resultMap="payment_UserMapper.payment_UserResultMap">
     SELECT * FROM Payment_User WHERE userno = #{userno}  ORDER BY regdate DESC
 </select>
-
-
+	<select id="getWatchListById" resultMap="watchListMapper.watchListMap">
+    SELECT * FROM WatchList WHERE userno = #{userno}  ORDER BY regdate DESC
+</select>
+	
 </mapper>

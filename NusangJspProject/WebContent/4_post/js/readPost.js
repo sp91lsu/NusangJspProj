@@ -53,6 +53,56 @@
 
 			})
 
+	var sendUrl;
+	var toggleWatch;
+	console.log($("#isWatchPost").val());
+	console.log($("#isWatchPost").val());
+	console.log($("#isWatchPost").val());
+	function toggleWatchList(isWatchlist) {
+		if (isWatchlist == true) {
+			console.log("찜하기상태")
+			sendUrl = "post/delete_watchlist"
+			$("#heart_icon").attr('class', 'fas fa-heart');
+			$("#heart_icon").css("color", "red");
+			toggleWatch = true;
+		} else {
+			console.log("찜하기X")
+			sendUrl = "post/set_watchlist"
+			$("#heart_icon").attr('class', 'far fa-heart');
+			$("#heart_icon").css("color", "black");
+			toggleWatch = false;
+		}
+	}
+
+	toggleWatchList($("#isWatchPost").val() == "true");
+
+	$("#heart_icon").click(function() {
+
+		$.ajax({
+
+			url : sendUrl,
+			type : "POST",
+			data : {
+				postno : $("#postno").val()
+			},
+			success : function(data) {
+
+				if (data > 0) {
+					if (toggleWatch == true) {
+						toggleWatchList(false);
+					} else {
+						alert("관심목록에 추가되었습니다.");
+						toggleWatchList(true);
+					}
+				} else {
+					alert("관심목록 수정 실패.");
+				}
+
+			}
+
+		})
+
+	})
 })()
 
 function chkDelete(postno) {

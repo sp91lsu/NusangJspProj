@@ -31,6 +31,7 @@ public class User {
 	private ArrayList<Payment_Market> payment_MarketList;// 결제내역
 	private ArrayList<Payment_User> payment_UserList;// 구매내역,판매내역
 	private ArrayList<Buy_Reservation> reservationList;// 구매신청현황
+	private ArrayList<WatchList> watchList;
 
 	public boolean isLocationNull() {
 
@@ -64,6 +65,15 @@ public class User {
 		for (Buy_Reservation br : reservationList) {
 			if (br.getPost().getPostno() == postno) {
 				return br;
+			}
+		}
+		return null;
+	}
+
+	public WatchList findWatch(int postno) {
+		for (WatchList watch : watchList) {
+			if (postno == watch.getPost().getPostno()) {
+				return watch;
 			}
 		}
 		return null;

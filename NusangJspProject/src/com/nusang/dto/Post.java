@@ -29,6 +29,7 @@ public class Post {
 	private Post_Picture post_picture;
 	private ArrayList<Reply> replyList;
 	private ArrayList<Buy_Reservation> reservationList;// 구매신청현황
+	private ArrayList<WatchList> watchList;
 
 	public User getReserUser() {
 		return getCurReservation().getUser();

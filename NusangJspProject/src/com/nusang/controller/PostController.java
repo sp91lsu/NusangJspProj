@@ -17,9 +17,11 @@ import com.nusang.action.post.CreatePost_Action;
 import com.nusang.action.post.DeleteComment_Action;
 import com.nusang.action.post.DeletePost_Action;
 import com.nusang.action.post.DeleteReserVationAction;
+import com.nusang.action.post.DeleteWatchListAction;
 import com.nusang.action.post.ReadPost_Action;
 import com.nusang.action.post.SellPostAction;
 import com.nusang.action.post.SetReservationAction;
+import com.nusang.action.post.SetWatchListAction;
 import com.nusang.action.post.UpdateComment_Action;
 import com.nusang.action.post.UpdatePostOK_Action;
 import com.nusang.action.post.UpdatePost_Action;
@@ -40,7 +42,7 @@ public class PostController extends HttpServlet {
 
 			try {
 				switch (requestPage) {
-				
+
 				case "createPost":
 					action = new CreatePost_Action();
 					actionForward = action.execute(request, response);
@@ -98,8 +100,17 @@ public class PostController extends HttpServlet {
 					action = new DeleteReserVationAction();
 					actionForward = action.execute(request, response);
 					break;
-					
+				case "delete_watchlist":
+					action = new DeleteWatchListAction();
+					actionForward = action.execute(request, response);
+					break;
+				case "set_watchlist":
+					action = new SetWatchListAction();
+					actionForward = action.execute(request, response);
+					break;
 				}
+
+				ConAsist.updateMyUser(request);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

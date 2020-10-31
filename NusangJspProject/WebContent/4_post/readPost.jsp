@@ -15,7 +15,7 @@
 <link rel="stylesheet" type="text/css" href="../css/comments.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
-<body style = " font-family: 'Noto Sans KR', sans-serif;">
+<body style="font-family: 'Noto Sans KR', sans-serif;">
 	<input type="hidden" id="postno" value="${post.postno }">
 
 
@@ -153,14 +153,10 @@
 				</div>
 
 				<!-- 찜하기 버튼 -->
-				<div id="wishitem" style="padding-top: 135px;">
-					찜하기
-					<button>
-						<i class="fas fa-heart"></i>
-					</button>
-				</div>
-
-				<br>
+				<input type="hidden" id="isWatchPost" value="${ user.findWatch(post.postno) != null }">
+				<input type="hidden" id="watchno" value="${ user.findWatch(post.postno) != null }">
+				
+				찜하기 <i  id="heart_icon" style="cursor:pointer" ></i> <br>
 				<hr class="m-0">
 				<br>
 			</div>

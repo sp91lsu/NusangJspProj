@@ -26,7 +26,7 @@ public class WatchListDao extends BasicDao<Payment_Market> {
 	}
 
 	private WatchListDao(String namespace) {
-		super(namespace,"ph_userno");
+		super(namespace,"watchlistno");
 	}
 
 	

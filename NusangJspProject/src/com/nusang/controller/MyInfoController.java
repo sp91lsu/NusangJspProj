@@ -39,7 +39,6 @@ public class MyInfoController extends HttpServlet {
 		if (actionForward == null) { // http://localhost:8787/myinfo/profile
 			String requestPage = ConAsist.getRequestName(request);
 			// profile
-			ConAsist.updateMyUser(request);
 			try {
 				switch (requestPage) {
 				case "profile":
@@ -91,6 +90,8 @@ public class MyInfoController extends HttpServlet {
 					actionForward = D_A2.execute(request, response);
 					break;
 				}
+				
+				ConAsist.updateMyUser(request);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

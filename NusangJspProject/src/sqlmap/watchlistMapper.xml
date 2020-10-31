@@ -5,69 +5,37 @@
  
 <mapper namespace="watchListMapper">
 
-	
-	<resultMap id="userResultMap" type="User">
-	
-	 <id  property="userno"  column="userno"/>
-	<result property="username" column="username"/>
-	<result property="userid" column="userid"/>
-	<result property="password" column="password"/>
-	<result property="logintype" column="logintype"/>
-	<result property="email" column="email"/>
-	<result property="regdate" column="regdate"/>
-	<result property="picture" column="picture"/>
-	<result property="role" column="role"/>
-	<association property="location" column="locationno" javaType="Location"   select="selectLocation"/>						
-	
+
+	<resultMap id="watchListMap" type="WatchList">
+		<id property="userno" column="userno" />
+		<result property="watchlistno" column="watchlistno" />
+		<association property="post" column="postno" select="securityMapper.selectScPost" />
 	</resultMap>
 	
 	
-      <select id="selectAll" resultMap="userResultMap">
-        SELECT
-            *
-        FROM
-            NUSER
-    </select>
      
-      <select id="selectLocation"  resultType="Location">
+       <select id="findBy" resultMap="watchListMap">
         SELECT
             *
         FROM
-            LOCATION
-            WHERE
-            LOCATIONNO = #{location}
-    </select>
-     
-       <select id="findBy" resultMap="userResultMap">
-        SELECT
-            *
-        FROM
-            NUSER
+            WATCHLIST
         WHERE 
         ${search} = #{keyword}
     </select>
     
-       <select id="loginCheck" resultMap="userResultMap">
-        SELECT
-            *
-        FROM
-            NUSER
-        WHERE 
-        userid = #{userid} 
-       AND 
-       password = #{password}
-       
-    </select>
     
-     <insert id="insert" useGeneratedKeys="true"  keyProperty="userno" parameterType="Map" > 
-        INSERT INTO NUSER (userid,username,password,role,logintype,email,picture)
-         VALUES (#{userid}, #{username}, #{password}, #{role},#{logintype},#{email},#{picture, jdbcType=BLOB}) 
+     <insert id="insert" useGeneratedKeys="true"  keyProperty="watchlistno" parameterType="WatchList" > 
+     <selectKey keyProperty="userno" resultType="int" order="AFTER">			   
+    	SELECT SEQ_WATCHLIST_WATCHLISTNO.CURRVAL FROM DUAL
+ 		</selectKey>
+        INSERT INTO WATCHLIST (userno,watchlistno,postno)
+         VALUES (#{userno},#{watchlistno},#{post.postno} ) 
     </insert>
     
     
     <update id="updateBy"  > 
          
-         UPDATE NUSER
+         UPDATE WATCHLIST
 SET 
 ${colum} = #{value}
 WHERE
@@ -75,6 +43,11 @@ WHERE
     </update>
     
     
-    
+    <delete id="deleteBy"> 
+         
+         DELETE WATCHLIST 
+WHERE
+ watchlistno = #{watchlistno}
+    </delete>
 </mapper>
 

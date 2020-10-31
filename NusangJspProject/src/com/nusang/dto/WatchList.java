@@ -1,6 +1,7 @@
 package com.nusang.dto;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -13,7 +14,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class WatchList {
-	private User user;
+	private int userno;
 	private int watchlistno;
-	private List<Post> post;
+	private Post post;
+	private Date regdate;
+
 }
