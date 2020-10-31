@@ -6,8 +6,9 @@
 <%@page import="com.nusang.dto.User"%>
 <%@page import="lombok.val"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<c:set var="list" value="${user.payment_MarketList}" />
 
+<!-- 페이징처리 코드  -->
+<c:set var="list" value="${user.payment_MarketList}" />
 <%
 	String pageName = "paymentList";
 	int curPage = 1; // 현재 페이지 (디폴트는 1 page)
@@ -65,7 +66,7 @@ getList(curPage, fromRow, pageRows, list, selectList);
 				<th scope="col" style = "text-align: center;">날짜</th>
 			</tr>
 		</thead>
-	<% int listCnt = 1; %>
+	<% int listCnt = fromRow+1; %>
 		<tbody>
 			<c:forEach var="payment" items="<%=selectList%>">
 				<tr>
