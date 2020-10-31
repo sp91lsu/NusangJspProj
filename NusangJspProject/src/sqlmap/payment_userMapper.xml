@@ -5,6 +5,16 @@
  
 <mapper namespace="payment_UserMapper">
 
+	<resultMap id="payment_UserResultMap" type="Payment_User">
+
+		<id property="ph_userno" column="ph_userno" />
+		<result property="productname" column="productname" />
+		<result property="price" column="price" />
+		<result property="sellstate" column="sellstate" />
+		<result property="regdate" column="regdate" />
+		<result property="userno" column="userno" />
+		<association property="business_partner" column="business_partner"  select="securityMapper.selectScBusiness_partner" />
+	</resultMap>
 	
 	
       <select id="selectAll" resultType="Payment_User">
@@ -28,7 +38,7 @@
     	SELECT SEQ_PAYMENT_USER_PH_USERNO.CURRVAL FROM DUAL
  		</selectKey>
         INSERT INTO PAYMENT_USER (productname,price,business_partner,sellstate,userno)
-         VALUES (#{productname}, #{price}, #{business_partner}, #{sellstate},#{userno}) 
+         VALUES (#{productname}, #{price}, #{business_partner.userno}, #{sellstate},#{userno}) 
     </insert>
     
     

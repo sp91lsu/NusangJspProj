@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.nusang.dto.Location;
 import com.nusang.dto.Payment_Market;
+import com.nusang.dto.Payment_User;
 import com.nusang.dto.User;
 
 public class Payment_UserDao extends BasicDao<Payment_Market> {
@@ -29,7 +30,5 @@ public class Payment_UserDao extends BasicDao<Payment_Market> {
 		super(namespace,"ph_userno");
 	}
 
-	
-	
 	
 }

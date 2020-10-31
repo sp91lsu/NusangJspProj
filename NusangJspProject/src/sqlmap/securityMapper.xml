@@ -23,7 +23,12 @@
        WHERE userno = #{userno}
     </select>
 
-	<select id="selectScPost"  resultMap="postMap">
+	<select id="selectScBusiness_partner" resultMap="userMap">
+       SELECT U.userno,U.regdate,U.picture,U.nickname FROM NUSER U
+       WHERE userno = #{business_partner}
+    </select>
+
+	<select id="selectScPost" resultMap="postMap">
        SELECT P.postno,P.title,P.price,P.productname FROM SELLPOST P 
        WHERE postno = #{postno}
     </select>
