@@ -16,6 +16,7 @@ import com.nusang.action.post.CancelReserVationAction;
 import com.nusang.action.post.CreatePost_Action;
 import com.nusang.action.post.DeleteComment_Action;
 import com.nusang.action.post.DeletePost_Action;
+import com.nusang.action.post.DeleteReserVationAction;
 import com.nusang.action.post.ReadPost_Action;
 import com.nusang.action.post.SellPostAction;
 import com.nusang.action.post.SetReservationAction;
@@ -38,11 +39,13 @@ public class PostController extends HttpServlet {
 
 			try {
 				switch (requestPage) {
+				
 				case "createPost":
 					action = new CreatePost_Action();
 					actionForward = action.execute(request, response);
 					break;
 				case "readPost":
+					ConAsist.updateMyUser(request);
 					action = new ReadPost_Action();
 					actionForward = action.execute(request, response);
 					break;
@@ -84,6 +87,10 @@ public class PostController extends HttpServlet {
 					break;
 				case "sell_post":
 					action = new SellPostAction();
+					actionForward = action.execute(request, response);
+					break;
+				case "delete_reservation":
+					action = new DeleteReserVationAction();
 					actionForward = action.execute(request, response);
 					break;
 					

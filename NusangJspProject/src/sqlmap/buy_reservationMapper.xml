@@ -9,8 +9,8 @@
 		<result property="reser_price" column="reser_price" />
 		<result property="state" column="state" />
 		<result property="regdate" column="regdate" />
-		<association property="user" column="userno"  select="securityMapper.selectScUser" />
-		<association property="post" column="sellpostno"  select="securityMapper.selectScPost" />
+		<association property="user" column="userno" select="securityMapper.selectScUser" />
+		<association property="post" column="sellpostno" select="securityMapper.selectScPost" />
 	</resultMap>
 
 
@@ -56,7 +56,7 @@
          VALUES (#{sellpostno}, #{userno}, #{reser_price}, #{state}) 
     </insert>
 
-<update id="updateBy">
+	<update id="updateBy">
 
 		UPDATE BUY_RESERVATION
 		SET
@@ -65,7 +65,7 @@
 		reserno =#{reserno}
 		
 	</update>
-	
+
 	<update id="initReservation">
 
 		UPDATE BUY_RESERVATION
@@ -75,8 +75,13 @@
 		sellpostno = #{sellpostno}
 		
 	</update>
-	
 
 
+	<delete id="deleteBy"> 
+         
+         DELETE BUY_RESERVATION 
+WHERE
+ reserno = #{reserno}
+    </delete>
 
 </mapper>

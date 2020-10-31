@@ -51,6 +51,7 @@
 					구매 예약 중 예약자 : ${post.getReserUser().nickname }
 					<c:if test="${user.userno == post.user.userno }">
 							<button class="btn btn-primary" id="sellPostBtn" value="${post.getCurReservation().reserno }">판매하기</button>
+							<button class="cancel_reser btn btn-danger" value="${post.getCurReservation().reserno }">등록취소</button>
 						</c:if>
 					</c:when>
 					<c:when test="${post.sellstate == 2 }">
@@ -78,7 +79,7 @@
 
 													</c:when>
 													<c:when test="${resv.state == 1}">
-													예약됨<button class="cancel_reser btn btn-danger" value="${resv.reserno }">등록취소</button>
+													예약됨
 													</c:when>
 												</c:choose>
 
@@ -105,11 +106,11 @@
 									<c:choose>
 										<c:when test="${user.getReservation(post.postno) != null }">
 											나의 예약신청 금액 : ${user.getReservation(post.postno).reser_price}
-											<button id="cancel_reservationBtn" class="btn btn-primary"">예약 취소</button>
+											<button id="delete_reservation" class="btn btn-primary" value="${user.getReservation(post.postno).reserno }">예약 취소</button>
 										</c:when>
 										<c:otherwise>
 											<input type="number" id="reser_price">
-											<button id="buy_reservationBtn" class="btn btn-primary"">가격 제시</button>
+											<button id="buy_reservationBtn" class="btn btn-primary">가격 제시</button>
 										</c:otherwise>
 
 									</c:choose>
