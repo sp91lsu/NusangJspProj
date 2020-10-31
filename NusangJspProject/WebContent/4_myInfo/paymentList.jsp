@@ -55,20 +55,22 @@ getList(curPage, fromRow, pageRows, list, selectList);
 	<h2>결제내역</h2>
 	<br> <br>
 
-	<table class="table">
-		<thead class="thead-dark">
+	<table class="table" style = "text-align: center;">
+		<thead class="thead-dark" style = "text-align: center;">
 			<tr>
-				<th scope="col">결제번호</th>
-				<th scope="col">no.</th>
-				<th scope="col">결제금액</th>
-				<th scope="col">날짜</th>
+				<th scope="col" style = "text-align: center;">no.</th>
+				<th scope="col" style = "text-align: center;">결제번호</th>
+				<th scope="col" style = "text-align: center;">결제내용</th>
+				<th scope="col" style = "text-align: center;">결제금액</th>
+				<th scope="col" style = "text-align: center;">날짜</th>
 			</tr>
 		</thead>
-
+	<% int listCnt = 1; %>
 		<tbody>
 			<c:forEach var="payment" items="<%=selectList%>">
 				<tr>
-					<th scope="row">${payment.imp_uid}</th>
+					<th scope="row" style = "text-align: center;"><%= listCnt++ %></th>
+					<td>${payment.imp_uid}</td>
 					<td>${payment.name}</td>
 					<td>${payment.price}</td>
 					<td>${payment.regdate}</td>

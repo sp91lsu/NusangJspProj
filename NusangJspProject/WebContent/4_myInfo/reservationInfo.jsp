@@ -6,14 +6,14 @@
 	<h2>구매신청 현황</h2>
 	<br><br>
 
-	<table class="table">
+	<table class="table" style = "text-align: center;">
 	  <thead class="thead-dark">
 	    <tr>
-	      <th scope="col">no.</th>
-	      <th scope="col">구매품목</th>
-	      <th scope="col">가격</th>
-	      <th scope="col">진행상태</th>
-	      <th scope="col">날짜</th>
+	      <th scope="col" style = "text-align: center;">no.</th>
+	      <th scope="col" style = "text-align: center;">구매품목</th>
+	      <th scope="col" style = "text-align: center;">가격</th>
+	      <th scope="col" style = "text-align: center;">진행상태</th>
+	      <th scope="col" style = "text-align: center;">날짜</th>
 	    </tr>
 	  </thead>
 	  
@@ -21,7 +21,7 @@
 	  <% int cnt = 1; %>
 	  	<c:forEach var="reservation" items="${user.reservationList}">
 		    <tr>
-		      <th scope="row"><%= cnt++ %></th>
+		      <th scope="row" style = "text-align: center;"><%= cnt++ %></th>
 		      <td>${reservation.post.productname }</td>
 		      <td>${reservation.reser_price}</td>
 		      <td>
