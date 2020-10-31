@@ -1,9 +1,11 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.Import"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.nusang.controller.assistance.ConAsist"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -14,22 +16,24 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Single+Day&display=swap"
 	rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
 </head>
 <script>
-				/* 	 	$("#1km").click(function(){
-							var onekm = $("#1km").val();
-							$.ajax({
-								url : "/myinfo/distance",
-							
-								
-							})
-						})
-						 */
-			
+	/* 	 	$("#1km").click(function(){
+				var onekm = $("#1km").val();
+				$.ajax({
+					url : "/myinfo/distance",
+				
+					
+				})
+			})
+	 */
+
 	function func1(number) {
-		$("#dropdownMenu2").text(number+"km");
-		location.href="/myinfo/distance?num="+ number;
+		$("#dropdownMenu2").text(number + "km");
+		location.href = "/myinfo/distance?num=" + number;
 
 	}
 </script>
@@ -53,9 +57,9 @@
 			<c:if test="${user != null }">
 				<div class="dropdown">
 
-					<button class="btn btn-outline-success dropdown-toggle" type="button"
-						id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false">${user.view_distance  }km</button>
+					<button class="btn btn-outline-success dropdown-toggle"
+						type="button" id="dropdownMenu2" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">${user.view_distance  }km</button>
 					<c:set var="arr" value='<%=new String[] { "1", "3", "5", "10" }%>' />
 					<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
 						<c:forEach items="${arr}" var="num">
@@ -83,36 +87,44 @@
 			class="d-flex flex-wrap align-content-start justify-content-center"
 			style="padding-top: 50px;">
 			<c:forEach var="post" items="${postList}">
+
 				<div id="postCard">
 					<c:choose>
 						<c:when test="${!empty post.post_picture.getList()[0]}">
 							<img id="card_img" alt="product image"
 								src="/upload/${post.post_picture.getList()[0]}"
 								class="rounded-bottom"
-								style="height: 150px; margin-bottom: 0px;">
+								style="height: 150px; margin-bottom: 0px; box-shadow: 0px 0px 7px 1px #EAEAEA;">
 						</c:when>
 						<c:otherwise>
 							<img id="card_img" alt="default image" src="/img/noImg.png"
 								class="rounded-bottom"
-								style="height: 150px; margin-bottom: 0px;">
+								style="height: 150px; margin-bottom: 0px; box-shadow: 0px 0px 7px 1px #EAEAEA">
 						</c:otherwise>
 					</c:choose>
-					<div style="box-shadow: 0px 0px 3px 1px #EAEAEA">
-						<h6 id="card_title" style="padding-top: 20px;padding-bottom:5px; font-family: 'Noto Sans KR', sans-serif; font-size:15px;">
-						<c:choose>
-							<c:when test="${post.title.length() > 12 }">${fn:substring(post.title,0,12)}<span style = "font-weight: bold">...</span></c:when>
-							<c:otherwise>${post.title }</c:otherwise>
-						</c:choose>
-						
-					</h6>
-						<h6 id="card_price">${post.price }원</h6>
-						<h7 id="card_addr" style = "font-family: 'Noto Sans KR', sans-serif; font-size:12px; ">${post.location.getAddress()}</h6>
+					<div style="box-shadow: 0px 0px 3px 1px #EAEAEA;">
+						<h6 id="card_title"
+							style="padding-top: 20px; padding-bottom: 5px; font-family: 'Noto Sans KR', sans-serif; font-size: 15px; padding-left: 7px;">
+							<c:choose>
+								<c:when test="${post.title.length() > 12 }">${fn:substring(post.title,0,12)}<span
+										style="font-weight: bold">...</span>
+								</c:when>
+								<c:otherwise>${post.title }</c:otherwise>
+							</c:choose>
+
+						</h6>
+						<h6 id="card_price" style="padding-left: 7px;">${post.productname }
+							|
+							<fmt:formatNumber value="${post.price }" pattern="#,###" />원
+						</h6>
+						<h7 id="card_addr"
+							style="font-family: 'Noto Sans KR', sans-serif; font-size:12px; padding-left:7px; ">${post.location.getAddress()}</h6>
 						<br>
-						<h8 id="post_comment">댓글 [${post.replyList.size()}]</h8> <h8>·</h8> <h8
-							id="post_interest">관심 [cnt]</h8> <h8>·</h8> <h8 id="post_view">조회
-						[cnt]</h8>
+						<h8 id="post_comment" style=" padding-left:7px;">댓글
+						[${post.replyList.size()}]</h8> <h8>·</h8> <h8 id="post_interest">관심
+						[cnt]</h8> <h8>·</h8> <h8 id="post_view">조회 [cnt]</h8>
 						<button id="viewBtn" class="btn btn-success"
-							style="width: 190px; margin-top: 10px; background: #23A41A;"
+							style="width: 190px; margin-top: 10px; background: #23A41A; padding-left: 0px;"
 							onclick="location.href='/post/readPost?postno=${post.postno}'">
 							글보기</button>
 					</div>

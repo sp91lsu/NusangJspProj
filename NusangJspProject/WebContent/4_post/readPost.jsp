@@ -13,8 +13,9 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="/4_post/css/readPost.css">
 <link rel="stylesheet" type="text/css" href="../css/comments.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
-<body>
+<body style = " font-family: 'Noto Sans KR', sans-serif;">
 	<input type="hidden" id="postno" value="${post.postno }">
 
 

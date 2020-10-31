@@ -10,10 +10,10 @@
 	<!-- 프로필 사진 영역 -->
 	<c:choose>
 		<c:when test="${empty user.picture}">
-			<img src="/img/프로필 기본이미지.jpg" alt="..." id="profileImg">
+			<img src="/img/ㄴㄱㅁㅋ-logo.png" alt="..." id="profileImg">
 		</c:when>
 		<c:when test="${user.picture == '프로필 기본이미지.jpg'}">
-			<img src="/img/프로필 기본이미지.jpg" alt="..." id="profileImg">
+			<img src="/img/ㄴㄱㅁㅋ-logo.png" alt="..." id="profileImg">
 		</c:when>
 		<c:otherwise>
 			<img src="/upload/${user.picture}" alt="..." id="profileImg">
@@ -29,7 +29,7 @@
 			<input class="nickName" name="nickName" type="text" id = "userNickname"
 				value=${user.nickname } />
 
-			<button type="button" id = "nicknameChange" class="btn btn-primary btn-sm">닉네임 변경</button>
+			<button type="button" id = "nicknameChange" class="btn btn-success btn-sm" style= "background:#095000;">닉네임 변경</button>
 		</form>
 	</div>
 	<script>
@@ -61,7 +61,7 @@
 			<button type="button" class="btn btn-sm btn-secondary"
 				id="btn-upload">사진 변경</button>
 
-			<button type="submit" class="btn btn-sm btn-primary">저장하기</button>
+			<button type="submit" class="btn btn-success btn-sm" style= "background:#095000;">저장하기</button>
 		</form>
 
 		<form action="/myinfo/image_delete">
