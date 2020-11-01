@@ -141,10 +141,10 @@ public class BasicDao<T> {
 		return result;
 	}
 
-	protected void deleteBy(SqlSession session, int primeryNo) {
+	protected int deleteBy(SqlSession session, int primeryNo) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put(uidName, primeryNo);
-		session.delete(namespace + "deleteBy", map);
+		return session.delete(namespace + "deleteBy", map);
 	}
 
 	public int deleteBy(int primeryNo) {

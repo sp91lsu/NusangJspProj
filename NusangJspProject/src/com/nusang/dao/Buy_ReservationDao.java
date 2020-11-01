@@ -98,15 +98,17 @@ public class Buy_ReservationDao extends BasicDao<Payment_Market> {
 		return result;
 
 	}
-	
+
 	public int deleteReservation(int postno, int reserno) {
 
 		SqlSession session = sqlSessionFactory.openSession();
 		int result = 0;
 		try {
-
-			deleteBy(session, reserno);
-			result = PostDao.getInstance().updateBy(session, postno, "sellstate", 0);
+			Post post = PostDao.getInstance().findByNo(postno);
+			result = deleteBy(session, reserno);
+			if (post.getCurReservation().getReserno() == reserno) {
+				result = PostDao.getInstance().updateBy(session, postno, "sellstate", 0);
+			}
 			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -118,6 +120,5 @@ public class Buy_ReservationDao extends BasicDao<Payment_Market> {
 		return result;
 
 	}
-	
-	
+
 }
