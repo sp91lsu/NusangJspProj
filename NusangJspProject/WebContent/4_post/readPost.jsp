@@ -1,7 +1,8 @@
 <%@page import="com.nusang.dto.User"%>
 <%@page import="com.nusang.dto.Post"%>
 <%@page import="com.nusang.controller.assistance.*"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
@@ -10,10 +11,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+	integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="/4_post/css/readPost.css">
 <link rel="stylesheet" type="text/css" href="../css/comments.css">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
 </head>
 <body style="font-family: 'Noto Sans KR', sans-serif;">
 	<input type="hidden" id="postno" value="${post.postno }">
@@ -23,7 +29,7 @@
 
 
 	<div id="body" class="d-flex justify-content-center">
-		<div id="content">
+		<div id="content" style="width: 800px;">
 
 			<!-- 유저 섹션 -->
 			<div id="Section-sellerInfo" class="d-flex ">
@@ -46,13 +52,19 @@
 				<!-- <button id="button11">버튼</button> -->
 				<c:choose>
 					<c:when test="${post.sellstate == 0 }">
-					판매중
-				</c:when>
+						<div class="d-flex mr-auto" style = "font-size: 30px;">판매중</div>
+					</c:when>
 					<c:when test="${post.sellstate == 1 }">
-					구매 예약자 : ${post.getReserUser().nickname }
-					<c:if test="${user.userno == post.user.userno }">
-							<button class="btn btn-primary" id="sellPostBtn" value="${post.getCurReservation().reserno }">판매하기</button>
-							<button class="cancel_reser btn btn-danger" value="${post.getCurReservation().reserno }">등록취소</button>
+						<div align="center" style="margin-top: 23px; margin-right: 10px;">
+							<span style="font-weight: bold; font-size: 20px;">구매 예약자 </span><br>
+							<span style="color: #22741C; font-size: 20px;">
+								${post.getReserUser().nickname }</span>
+						</div>
+						<c:if test="${user.userno == post.user.userno }">
+							<button class="btn btn-primary" id="sellPostBtn"
+								value="${post.getCurReservation().reserno }">판매하기</button>
+							<button class="cancel_reser btn btn-danger"
+								value="${post.getCurReservation().reserno }">등록취소</button>
 						</c:if>
 					</c:when>
 					<c:when test="${post.sellstate == 2 }">
@@ -67,16 +79,22 @@
 								<!--내 글이면(판매자)-->
 								<div class="dropdown">
 									<!-- 거래신청 현황 드롭다운메뉴 -->
-									<button id="status" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+									<button id="status" class="btn dropdown-toggle" type="button"
+										data-toggle="dropdown">
 										거래신청 현황 <span class="caret"></span>
 									</button>
-									<ul id="resvList" class="dropdown-menu">
+									<ul id="resvList" class="dropdown-menu"
+										style="background: #F6F6F6;">
 										<c:forEach var="resv" items="${post.reservationList}">
 											<li class="dropdown-item">
-												<!-- nclick="mkResv()" --> <input type="hidden" value="${resv.reser_price}"> ${resv.user.nickname} : <span>${resv.reser_price}</span>원 <c:choose>
+												<!-- nclick="mkResv()" --> <input type="hidden"
+												value="${resv.reser_price}"> ${resv.user.nickname} :
+												<span>${resv.reser_price}</span>원 <c:choose>
 
 													<c:when test="${resv.state == 0}">
-														<button class="resvBtn btn btn-primary" value="${resv.reserno }">구매자 등록</button>
+														<button class="resvBtn btn btn-warning btn-sm"
+															style="margin: 0 0 5px 10px" value="${resv.reserno }">구매자
+															등록</button>
 
 													</c:when>
 													<c:when test="${resv.state == 1}">
@@ -91,8 +109,11 @@
 
 								<div id="btnArea">
 									<!-- 글 수정,삭제버튼 -->
-									<button id="uptPost" class="btn btn-primary" onclick="location.href='<%= ConAsist.SERVLET_UPDATEPOST %>?postno=${post.postno}'">글 수정</button>
-									<button id="delPost" class="btn btn-primary" onclick="chkDelete('${post.postno}')">글 삭제</button>
+									<button id="uptPost" class="btn btn-primary btn-sm"
+										onclick="location.href='<%= ConAsist.SERVLET_UPDATEPOST %>?postno=${post.postno}'">글
+										수정</button>
+									<button id="delPost" class="btn btn-secondary btn-sm"
+										onclick="chkDelete('${post.postno}')">글 삭제</button>
 
 								</div>
 							</c:when>
@@ -107,11 +128,14 @@
 									<c:choose>
 										<c:when test="${user.getReservation(post.postno) != null }">
 											나의 예약신청 금액 : ${user.getReservation(post.postno).reser_price}
-											<button id="delete_reservation" class="btn btn-primary" value="${user.getReservation(post.postno).reserno }">예약 취소</button>
+											<button id="delete_reservation" class="btn btn-primary"
+												value="${user.getReservation(post.postno).reserno }">예약
+												취소</button>
 										</c:when>
 										<c:otherwise>
 											<input type="number" id="reser_price">
-											<button id="buy_reservationBtn" class="btn btn-primary">가격 제시</button>
+											<button id="buy_reservationBtn" class="btn btn-primary">가격
+												제시</button>
 										</c:otherwise>
 
 									</c:choose>
@@ -144,16 +168,20 @@
 
 					<!-- 댓글,관심,조회 -->
 					<div id="post_co&in&vi" class="d-flex">
-						<h8 id="post_comment">댓글 [cnt]</h8>
+						<h8 id="post_comment">댓글 [${post.replyList.size() }]</h8>
 						<h8>·</h8>
-						<h8 id="post_interest">관심 [cnt]</h8>
+						<h8 id="post_interest">관심 [${post.watchList.size() }]</h8>
 						<h8>·</h8>
-						<h8 id="post_view">조회 [cnt]</h8>
+						<h8 id="post_view">조회 [${post.viewcnt }]</h8>
 					</div>
 				</div>
 
 				<!-- 찜하기 버튼 -->
-				<input type="hidden" id="isWatchPost" value="${ user.findWatch(post.postno) != null }"> <input type="hidden" id="watchno" value="${ user.findWatch(post.postno) != null }"> 찜하기 <i id="heart_icon" style="cursor: pointer"></i> <br>
+				<input type="hidden" id="isWatchPost"
+					value="${ user.findWatch(post.postno) != null }"> <input
+					type="hidden" id="watchno"
+					value="${ user.findWatch(post.postno) != null }"> 찜하기 <i
+					id="heart_icon" style="cursor: pointer"></i> <br>
 				<hr class="m-0">
 				<br>
 			</div>
@@ -164,7 +192,8 @@
 
 					<!-- Indicators -->
 					<ul class="carousel-indicators">
-						<c:forEach var="name" items="${post.post_picture.getList()}" varStatus="status">
+						<c:forEach var="name" items="${post.post_picture.getList()}"
+							varStatus="status">
 							<c:if test="${!empty name && status.count == 1}">
 								<li class="item${status.count} active"></li>
 							</c:if>
@@ -177,7 +206,8 @@
 					<!-- The slideshow -->
 					<div class="carousel-inner">
 						<c:set var="imgCkh" value="0" />
-						<c:forEach var="name" items="${post.post_picture.getList()}" varStatus="status">
+						<c:forEach var="name" items="${post.post_picture.getList()}"
+							varStatus="status">
 							<c:if test="${!empty name && status.count == 1}">
 								<div class="carousel-item active">
 									<img src="/upload/${name }" alt="..">
@@ -197,12 +227,13 @@
 								</c:if>
 							</c:if>
 						</c:forEach>
-
 					</div>
 
 					<!-- Left and right controls -->
-					<a class="carousel-control-prev" href="#myCarousel"> <span class="carousel-control-prev-icon"></span>
-					</a> <a class="carousel-control-next" href="#myCarousel"> <span class="carousel-control-next-icon"></span>
+					<a class="carousel-control-prev" href="#myCarousel"> <span
+						class="carousel-control-prev-icon"></span>
+					</a> <a class="carousel-control-next" href="#myCarousel"> <span
+						class="carousel-control-next-icon"></span>
 					</a>
 				</div>
 
@@ -244,10 +275,15 @@
 			<!-- 지도 -->
 			<div id="map" style="width: 100%; height: 350px;"></div>
 
-			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1db6aaded4b028f19067fca5394bb829"></script>
-			<input type="hidden" id="latitude" value="${post.location.latitude }"> <input type="hidden" id="longtitude" value="${post.location.longtitude }">
-			<script src="/4_post/js/readPost_Map.js?v=<%=System.currentTimeMillis()%>"></script>
-			<script src="/4_post/js/readPost.js?v=<%=System.currentTimeMillis()%>"></script>
+			<script type="text/javascript"
+				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1db6aaded4b028f19067fca5394bb829"></script>
+			<input type="hidden" id="latitude" value="${post.location.latitude }">
+			<input type="hidden" id="longtitude"
+				value="${post.location.longtitude }">
+			<script
+				src="/4_post/js/readPost_Map.js?v=<%=System.currentTimeMillis()%>"></script>
+			<script
+				src="/4_post/js/readPost.js?v=<%=System.currentTimeMillis()%>"></script>
 			<br>
 
 			<!-- 댓글 섹션 -->
