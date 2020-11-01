@@ -153,10 +153,7 @@
 				</div>
 
 				<!-- 찜하기 버튼 -->
-				<input type="hidden" id="isWatchPost" value="${ user.findWatch(post.postno) != null }">
-				<input type="hidden" id="watchno" value="${ user.findWatch(post.postno) != null }">
-				
-				찜하기 <i  id="heart_icon" style="cursor:pointer" ></i> <br>
+				<input type="hidden" id="isWatchPost" value="${ user.findWatch(post.postno) != null }"> <input type="hidden" id="watchno" value="${ user.findWatch(post.postno) != null }"> 찜하기 <i id="heart_icon" style="cursor: pointer"></i> <br>
 				<hr class="m-0">
 				<br>
 			</div>

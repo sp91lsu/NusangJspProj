@@ -48,7 +48,6 @@ public class PostController extends HttpServlet {
 					actionForward = action.execute(request, response);
 					break;
 				case "readPost":
-					ConAsist.updateMyUser(request);
 					action = new ReadPost_Action();
 					actionForward = action.execute(request, response);
 					break;

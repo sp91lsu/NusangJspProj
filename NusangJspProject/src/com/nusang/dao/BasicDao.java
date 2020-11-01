@@ -127,11 +127,11 @@ public class BasicDao<T> {
 		return result;
 	}
 
-	public int updateBy(int userNo, String colum, Object value) {
+	public int updateBy(int primeryNo, String colum, Object value) {
 		int result = 0;
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put(uidName, userNo);
+		map.put(uidName, primeryNo);
 		map.put("colum", colum);
 		map.put("value", value);
 		result = session.update(namespace + "updateBy", map);
