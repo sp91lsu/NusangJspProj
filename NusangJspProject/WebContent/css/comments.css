@@ -27,7 +27,7 @@ li {
 }
 
 .cContent {
-	width: 630px;
+	width: 730px;
 }
 
 /*----------------------------------------------------------------------------------*/
@@ -41,7 +41,7 @@ li {
 }
 
 .cHeader>div:nth-child(1) { /*닉네임*/
-	margin: 0px 370px 0px 10px;
+	margin: 0px 470px 0px 10px;
 	font-weight: bold;
 }
 
@@ -50,7 +50,8 @@ li {
 }
 
 .c_update:hover, .c_delete:hover {
-	background-color: gray;
+	background-color: #D5D5D5;
+	cursor: pointer;
 }
 
 .cHeader>div:nth-child(2) { /*댓글내용*/
