@@ -15,6 +15,7 @@ import com.nusang.action.myinfo.BuyInfo_Action;
 import com.nusang.action.myinfo.Distance_Action;
 import com.nusang.action.myinfo.ImageChange_Action;
 import com.nusang.action.myinfo.ImageDelete_Action;
+import com.nusang.action.myinfo.MyPostInfoAction;
 import com.nusang.action.myinfo.NicknameChange_Action;
 import com.nusang.action.myinfo.PaymentList_Action;
 import com.nusang.action.myinfo.ReservationInfo_Action;
@@ -89,6 +90,11 @@ public class MyInfoController extends HttpServlet {
 					Distance_Action D_A2 = new Distance_Action();
 					actionForward = D_A2.execute(request, response);
 					break;
+				case "mypostlist" :
+					action = new MyPostInfoAction();
+					actionForward = action.execute(request, response);
+					break;
+					
 				}
 				
 				ConAsist.updateMyUser(request);

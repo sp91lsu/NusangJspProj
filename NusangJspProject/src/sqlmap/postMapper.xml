@@ -24,7 +24,8 @@
 		<collection property="watchList" column="postno" javaType="java.util.ArrayList" ofType="WatchList" select="getWatchListById" />
 
 	</resultMap>
-
+	
+	
 	<select id="selectLocation" resultType="Location">
 		SELECT
 		*
@@ -109,12 +110,6 @@
 	</update>
 
 
-	<delete id="deletePost">
-		DELETE FROM SELLPOST
-		WHERE
-		POSTNO = ${postno}
-	</delete>
-
 	<select id="findPostByLocation" resultMap="postResultMap" statementType="CALLABLE">
 		SELECT *
 			FROM sellpost  
@@ -141,6 +136,12 @@
 WHERE
  postno = #{postno}
     </delete>
+
+	<delete id="deletePost">
+		DELETE FROM SELLPOST
+		WHERE
+		POSTNO = ${postno}
+	</delete>
 
 
 </mapper>
