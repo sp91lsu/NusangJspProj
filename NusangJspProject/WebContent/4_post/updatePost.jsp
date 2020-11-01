@@ -12,27 +12,33 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/4_post/css/updatePost.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
 	<div id="body" class="d-flex justify-content-center">
-		<form name="createPostForm" action="/post/updatePostOk" method="post" onsubmit="return chkSubmit()" enctype="Multipart/form-data">
+		<form name="createPostForm" action="/post/updatePostOk" method="post" onsubmit="return chkSubmit()" enctype="Multipart/form-data"
+		style = "width: 800px;background: #EAEAEA;margin-top: 30px; margin-left :20px; border-radius: 20px 20px 20px 20px;padding: 0 20px 0 20px;">
 
 			<input type="hidden" name="map_latitude" id="latitude" value="${post.location.latitude }"> 
 			<input type="hidden" name="map_longtitude" id="longtitude" value="${post.location.longtitude }"> 
 			<input type="hidden" name="locationno" value="${post.location.locationno }">
 			<input type="hidden" name="postno" value="${post.postno }">
 			<input type="hidden" name="post_picno" value="${post.post_picture.post_picno }">
-			
+			<div style = " font-family: 'Noto Sans KR', sans-serif; margin-top:25px;">
 			<%-- 이미지 --%>
-			이미지:
-			<button type="button" id="btnAdd">이미지 추가</button>
+			상품 사진
+			<button class = "btn btn-secondary btn-sm" type="button" id="btnAdd">사진 추가</button>
 			<div id="files"></div>
 			<br>
 			<%-- 글제목 --%>
+			<div style = "margin-top:-5px;">
 			제목: <input id="post_title" type="text" name="title" required="required" value="${post.title }" /><br>
+			</div>
 			<!-- 상품명 -->
+			<div style = "margin-top:20px;">
 			상품명: <input id="post_prodname" type="text" name="productName" value="${post.productname }" required="required" />
+			</div>
 			<%-- 카테고리 --%>
 			<%
 				String cate[] = new String[]{"디지털/가전", "가구/인테리어", "유아동/유아도서", "생활/가공식품", "스포츠/레저", "여성잡화", "여성의류", "남성패션/잡화", "게임/취미",
@@ -41,7 +47,7 @@
 
 			<br> 카테고리:
 			<div class="dropdown">
-				<button id="cateDrop" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+				<button id="cateDrop" class="btn btn-outline-dark btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
 					${post.category }<span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
@@ -60,15 +66,20 @@
 			</script>
 
 			<%-- 가격 --%>
+			<div style = "margin-top: 20px;">
 			가격: <input type="number" name="price" value="${post.price }" required="required" /><br>
+			</div>
 			<%-- 글내용 --%>
+			<div style = "margin-top: 20px;">
 			<label for="bodytext">내용:</label><br>
 			<textarea name="bodytext" class="form-control" rows="5" required="required">${post.bodytext } </textarea>
 			<br>
-
+			</div>
 
 			<%-- 지도 : 거래장소 설정 --%>
+			<div align = center>
 			<div id="map" style="width: 500px; height: 400px;"></div>
+			</div>
 			<script>
 				// 마커가 표시될 위치입니다 
 				var position = new kakao.maps.LatLng($("#latitude").val(), $(
@@ -110,26 +121,16 @@
 			</script>
 			<div id="dealingSpot"></div>
 
+			<div align = center style = "margin-top:20px;margin-bottom: 20px;">
 			<!-- 목록으로 버튼 -->
-			<button type="button" onclick="location.href='list.do'">목록으로</button>
+			<button type="button" class = "btn btn-success btn-lg" onclick="history.back()">목록으로</button>
 			&nbsp;&nbsp;&nbsp;
 			<!-- 수정 버튼 -->
-			<input id="buyBtn" type="button" value="수정완료" />
-			<!-- 거래 희망자 결정 드롭다운-->
-			<div class="dropdown">
-				<button id="cateDrop" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
-					거래 희망자 결정<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu">
-					<c:forEach var="resv" items="${buy_ReservationList }">
-						<li class="dropdown-item" href="#">${resv.user}|${resv.reser_price }
-							<button type="radio"></button>
-						</li>
-					</c:forEach>
-				</ul>
+			<input id="buyBtn" class = "btn btn-primary btn-lg"  type="button" value="수정완료" />
 			</div>
 		</form>
 
+	</div>
 	</div>
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
 </body>
@@ -151,7 +152,7 @@
 						if (i < 5) {
 							$("#files")
 									.append(
-											"<div><input type='file' name='upfile" + i + "'/><button type='button' id='deleteBtn' onclick='$(this).parent().remove(); cntdown()'>삭제</button></div>");
+											"<div><input type='file' style = 'background:#BDBDBD' name='upfile" + i + "'/><button type='button' style = 'margin-top:-3px;' class = 'btn btn-danger btn-sm' id='deleteBtn' onclick='$(this).parent().remove(); cntdown()'>삭제</button></div>");
 							i++;
 							console.log('현제:' + i);
 						}

@@ -34,8 +34,11 @@
 			<br>
 			<%-- 글제목 --%>
 			<div style = "margin-top:-5px;">
-			제목 <input type="text" name="title" required="required" /> 상품명 <input type="text" name="productName" required="required" />
+			제목 <input type="text" name="title" style = "width: 300px;" required="required" />
 			</div>
+			<div style = "margin-top:20px;">
+			 상품명 <input type="text" name="productName" required="required" />
+			 </div>
 			<%-- 카테고리 --%>
 			<%
 				String cate[] = new String[]{"디지털/가전", "가구/인테리어", "유아동/유아도서", "생활/가공식품", "스포츠/레저", "여성잡화", "여성의류", "남성패션/잡화", "게임/취미",
@@ -122,7 +125,7 @@
 			</div>
 		</form>
 		</div>	
-	</div>
+		</div>
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
 </body>
 <script type="text/javascript">

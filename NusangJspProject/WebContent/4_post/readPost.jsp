@@ -5,7 +5,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -34,7 +34,7 @@
 			<!-- 유저 섹션 -->
 			<div id="Section-sellerInfo" class="d-flex ">
 				<!-- 프로필 -->
-				<div id="profile" class="d-flex mr-auto">
+				<div id="profile" class="d-flex mr-auto" style = "width:240px; border-right: 1px solid lightgray;">
 					<div id="profile_left">
 						<i id="profile_img" class="fas fa-user-circle fa-4x"></i>
 					</div>
@@ -55,15 +55,15 @@
 						<div class="d-flex mr-auto" style = "font-size: 30px;">판매중</div>
 					</c:when>
 					<c:when test="${post.sellstate == 1 }">
-						<div align="center" style="margin-top: 23px; margin-right: 10px;">
+						<div align="center" style="margin-top: 23px; margin-right: 30px;">
 							<span style="font-weight: bold; font-size: 20px;">구매 예약자 </span><br>
 							<span style="color: #22741C; font-size: 20px;">
 								${post.getReserUser().nickname }</span>
 						</div>
 						<c:if test="${user.userno == post.user.userno }">
-							<button class="btn btn-primary" id="sellPostBtn"
+							<button class="btn btn-dark btn-sm" id="sellPostBtn"
 								value="${post.getCurReservation().reserno }">판매하기</button>
-							<button class="cancel_reser btn btn-danger"
+							<button class="cancel_reser btn btn-danger btn-sm"
 								value="${post.getCurReservation().reserno }">등록취소</button>
 						</c:if>
 					</c:when>
@@ -98,7 +98,7 @@
 
 													</c:when>
 													<c:when test="${resv.state == 1}">
-													예약됨
+													 예약됨
 													</c:when>
 												</c:choose>
 
@@ -128,13 +128,13 @@
 									<c:choose>
 										<c:when test="${user.getReservation(post.postno) != null }">
 											나의 예약신청 금액 : ${user.getReservation(post.postno).reser_price}
-											<button id="delete_reservation" class="btn btn-primary"
+											<button id="delete_reservation" class="btn btn-danger" style = "margin-top : 10px;"
 												value="${user.getReservation(post.postno).reserno }">예약
 												취소</button>
 										</c:when>
 										<c:otherwise>
 											<input type="number" id="reser_price">
-											<button id="buy_reservationBtn" class="btn btn-primary">가격
+											<button id="buy_reservationBtn" class="btn btn-primary btn-sm" style = "margin-top:3px;">가격
 												제시</button>
 										</c:otherwise>
 
@@ -155,14 +155,15 @@
 					<!-- 글제목 -->
 					<h4 id="post_title">${post.title}</h4>
 					<!-- 카테고리 & 시간 -->
-					<div id="post_cate-time" class="d-flex">
+					<div id="post_cate-time" class="d-flex" style = "margin-top: 10px;">
 						<h6 id="post_category">${post.category}</h6>
 						<h6>·</h6>
 						<h6 id="post_time">시간정보</h6>
 					</div>
 					<!-- 가격 -->
-					<h5 id="post_price">${post.price}원</h5>
-
+					<div style = "padding-top: 5px; padding-bottom: 5px;">
+					<h5 id="post_price" style = " font-weight: bold;"><fmt:formatNumber value="${post.price }" pattern="#,###" />원</h5>
+					</div>
 					<!-- 글 내용 -->
 					<p id="post_writing">${post.bodytext}</p>
 
@@ -181,7 +182,7 @@
 					value="${ user.findWatch(post.postno) != null }"> <input
 					type="hidden" id="watchno"
 					value="${ user.findWatch(post.postno) != null }"> 찜하기 <i
-					id="heart_icon" style="cursor: pointer"></i> <br>
+					id="heart_icon" style="cursor: pointer; margin:5px 0 0 5px;"></i> <br>
 				<hr class="m-0">
 				<br>
 			</div>

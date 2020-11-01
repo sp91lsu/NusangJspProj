@@ -2,10 +2,6 @@
 .dropdown{
 	display: inline-block;
 }
-form{
-	width: 600px;
-	border: 1px solid black;
-}
 
 #post_title{
 	width: 500px;
