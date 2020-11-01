@@ -46,12 +46,12 @@
     </select>
 
 
-	<insert id="insert" useGeneratedKeys="true"  keyProperty="replyno" parameterType="Map"> 
+	<insert id="insert" useGeneratedKeys="true"  keyProperty="replyno" parameterType="Reply"> 
 	<selectKey keyProperty="replyno" resultType="int" order="AFTER">			   
     	SELECT SEQ_REPLY_REPLYNO.CURRVAL FROM DUAL
  		</selectKey>
         INSERT INTO REPLY (userno,postno,textbody,state,child_replyno)
-         VALUES (#{userno}, #{postno}, #{textbody},#{state},#{child_replyno}) 
+         VALUES (#{user.userno}, #{postno}, #{textbody},#{state},#{child_replyno}) 
     </insert>
 
 	<update id="updateBy"> 

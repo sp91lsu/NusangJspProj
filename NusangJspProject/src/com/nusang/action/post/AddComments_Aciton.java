@@ -17,24 +17,24 @@ public class AddComments_Aciton implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("UTF-8");
-		
-		User user = (User) request.getSession().getAttribute("user");
-		int userno = user.getUserno();
 
+		int state = request.getParameter("secretmode").equals("on") ? 0 : 1;
 		System.out.println("댓글 등록");
 		System.out.println("replyText : " + request.getParameter("replyText"));
 		System.out.println(request.getParameter("postno"));
-		System.out.println(userno);
+		System.out.println("secretmode" + request.getParameter("secretmode"));
 
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("postno", Integer.parseInt(request.getParameter("postno")));
-		map.put("textbody", request.getParameter("replyText"));
-		map.put("userno", userno);
-		map.put("state", 1);
-		map.put("child_replyno", null);
-		ReplyDao.getInstance().insert(map);
-		Integer replyno = (int) map.get("replyno");
-		
+		Reply reply = Reply.builder().postno(Integer.parseInt(request.getParameter("postno")))
+				.textbody(request.getParameter("replyText")).state(state)
+				.user((User) request.getSession().getAttribute("user")).child_replyno(null).build();
+		/*
+		 * Map<String, Object> map = new HashMap<String, Object>(); map.put("postno",
+		 * )); map.put("textbody", ); map.put("state", state); map.put("userno",
+		 * userno); map.put("state", 1); map.put("child_replyno", null);
+		 */
+		ReplyDao.getInstance().insert(reply);
+		Integer replyno = (int) reply.getReplyno();
+
 		ActionForward actionForward = new ActionForward();
 		actionForward.setAsyncData(replyno.toString());
 

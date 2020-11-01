@@ -68,9 +68,15 @@
 		</c:forEach>
 	</div>
 
-	<div class='writeComments'>
-		<textarea  rows='3' cols='85' id='replyComments' placeholder='댓글을 입력하세요'></textarea>
-		<input type='button' id='addComments' value='등록' style='float: right'>
+	<div class='writeComments d-flex'>
+		<div class = 'text'>
+			<textarea  rows='3' cols='85' id='replyComments' placeholder='댓글을 입력하세요'></textarea>
+		</div>
+		
+		<div class = 'chk_btn'>
+			<input type='checkbox' id='secretmode' >비밀댓글
+			<input type='button' id='addComments' value='등록'>
+		</div>
 	</div>
 </div>
 
@@ -159,7 +165,8 @@ ud();
 			type : "POST",
 			data : {
 				"postno" : <%=request.getParameter("postno")%>,
-				"replyText" : $("#replyComments").val()
+				"replyText" : $("#replyComments").val(),
+				"secretmode" : $("#secretmode").val()
 			},
 			success : function(data) {
 				if (data > 0) {//성공일때
@@ -171,6 +178,7 @@ ud();
 					let minutes = today.getMinutes();  // 분
 					let time = year+'.'+month+"."+date+" "+hours+":"+minutes;
 					
+					console.log("시크릿넘버 : " + $("#secretmode").val());
 					$(".addComments").append(
 							"<div class='comment'>" +
 							"<hr>" +

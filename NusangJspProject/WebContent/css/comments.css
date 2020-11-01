@@ -71,7 +71,7 @@ li {
 	margin-bottom: 30px;
 }
 
-.writeComments>textarea, .addComments textarea {
+.writeComments>.text>textarea, .addComments textarea {
 	border-radius: 7px 7px 7px 7px;
 }
 
