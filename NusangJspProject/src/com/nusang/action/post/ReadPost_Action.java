@@ -38,10 +38,10 @@ public class ReadPost_Action implements Action {
 		} else {
 			System.out.println("VIEWCOOKIE 있음");
 			String value = viewCookie.getValue();
-			int viewCnt = post.getViewcnt() + 1;
-			int result = PostDao.getInstance().updateBy(post.getPostno(), "viewcnt", viewCnt);
 
-			if (result > 0 && value.indexOf("|" + postNo + "|") < 0) { // 입력한 번화와 일치하는 번호가 없으면 추가한다.
+			if (value.indexOf("|" + postNo + "|") < 0) { // 입력한 번화와 일치하는 번호가 없으면 추가한다.
+				int viewCnt = post.getViewcnt() + 1;
+				int result = PostDao.getInstance().updateBy(post.getPostno(), "viewcnt", viewCnt);
 				value = value + "|" + postNo + "|";
 				viewCookie.setValue(value);
 				viewCookie.setMaxAge(60 * 60 * 12);
