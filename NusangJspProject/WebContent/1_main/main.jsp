@@ -62,7 +62,7 @@
 			<!-- 상세검색 -->
 			<c:if test="${user != null }">
 			
-				<%-- <div class="dropdown">
+				<div class="dropdown">
 
 					<button class="btn btn-outline-success dropdown-toggle"
 						type="button" id="dropdownMenu2" data-toggle="dropdown"
@@ -74,7 +74,7 @@
 								value="${num }" onclick="func1('${num }')">${num }km</button>
 						</c:forEach>
 					</div>
-				</div> --%>
+				</div>
 				
 				<!-- <div class="dropdown"> -->
 					<!-- 상세검색 버튼 -->
@@ -84,20 +84,72 @@
 					</button>
 					
 					<!-- 상세검색 팝업창 -->
-					<div id="detailSearch-pop" class="">
-					<!-- d-flex justify-content-center align-items-center -->
-						wwwwww <br>
-						hhhhhhhhhhhhh <br>
-						cccccccccc <br>
-						cccccccccc <br>
-						cccccccccc <br>
-						cccccccccc <br>
-						cccccccccc <br>
-						cccccccccc <br>
-						cccccccccc <br>
-						cccccccccc <br>
-						cccccccccc <br>
-						ssssss
+					<div id="detailSearch-pop">
+						<!-- 헤더 -->
+						<div id="popHeader" class="d-flex">
+							<span id="popHtext" class="mr-auto">상세검색</span>
+							<i class="fas fa-times"></i>
+						</div>
+						
+						<form name="detailSearchForm" action="">
+							<!-- 카테고리 -->
+							<%
+								String cate[] = new String[]{"디지털/가전", "가구/인테리어", "유아동/유아도서", "생활/가공식품", "스포츠/레저", "여성잡화", "여성의류", "남성패션/잡화", "게임/취미",
+									"뷰티/미용", "반려동물용품", "도서/티켓/음반", "기타 중고물품"};
+							%>
+							<span class="popIndex ">카테고리</span>
+							<div class="d-flex flex-wrap">
+								<c:forEach var="ct" items="<%=cate%>">
+									<div class="form-check">
+									  <label class="form-check-label">
+									    <input type="checkbox" class="form-check-input" value="">${ct }
+									  </label>
+									</div>
+								</c:forEach>
+							</div>
+							<hr>
+							<!-- 정렬 -->
+							<span class="popIndex">정렬</span>
+							<div>
+								<div class="form-check-inline">
+								  <label class="form-check-label">
+								    <input type="radio" class="form-check-input" name="optradio">최신 순
+								  </label>
+								</div>
+								<div class="form-check-inline">
+								  <label class="form-check-label">
+								    <input type="radio" class="form-check-input" name="optradio">관심 순
+								  </label>
+								</div>
+							</div>
+							<hr>
+							<!-- 가격범위 -->
+							<span class="popIndex">가격범위</span>
+								<div class="form-group d-flex ml-3 mr-3 align-items-center">
+									<input type="text" class="form-control" id="price_min">&nbsp;&nbsp;~&nbsp;&nbsp;
+									<input type="text" class="form-control" id="price_max">
+								</div>
+							<hr>
+							<!-- 동네범위 -->
+							<span class="popIndex">동네범위</span>
+							<c:set var="arr" value='<%=new String[] { "1", "3", "5", "10" }%>' />
+							<div>
+								<c:forEach items="${arr}" var="num">
+									<div class="form-check-inline">
+									  <label class="form-check-label">
+									    <input type="radio" class="form-check-input" name="optradio">${num }km
+									  </label>
+									</div>
+								</c:forEach>
+							</div>
+							<hr>
+							<div class="d-flex justify-content-end">
+								<button>기본값</button>
+								<button></button>
+								<button></button>
+								<button></button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</c:if>

@@ -17,11 +17,36 @@
 #detailSearch-pop{
 	display: none;
 	position: absolute;
+	right:0;
 	z-index: 1;
-	width: 100%;
+	width: 500px;
 	height: auto;
 	border: 1px solid black;
-	background-color: #EAEAEA;
+	background-color: #fff;
+	border-radius: 10px;
+}
+
+#detailSearch-pop #popHeader{
+	background-color: #1DDB16;
+}
+
+#detailSearch-pop #popHtext{
+	font-size: 20px;
+	margin-left: 5px;
+	font-weight: bold;
+}
+#detailSearch-pop .popIndex{
+	display: block;
+	font-weight: bold;
+}
+#detailSearch-pop .form-check{
+	width: 166px;
+}
+
+.fa-times{
+	margin-top: 3px;
+	margin-right: 8px;
+	font-size: 25px;
 }
 
 
