@@ -49,6 +49,10 @@ li {
 	margin-right: 30px;
 }
 
+.c_update:hover, .c_delete:hover {
+	background-color: gray;
+}
+
 .cHeader>div:nth-child(2) { /*댓글내용*/
 	margin-right: 20px;
 }
@@ -66,7 +70,7 @@ li {
 	margin-bottom: 30px;
 }
 
-.writeComments>textarea,.addComments textarea{
+.writeComments>textarea, .addComments textarea {
 	border-radius: 7px 7px 7px 7px;
 }
 

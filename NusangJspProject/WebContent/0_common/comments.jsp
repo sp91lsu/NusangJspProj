@@ -31,8 +31,8 @@
 											<li class='c_update'>댓글 수정</li>
 										</div>
 	
-										<div id='c_delete'>
-											<li>댓글 삭제</li>
+										<div>
+											<li class='c_delete'>댓글 삭제</li>
 										</div>
 									</ul>
 								</c:when>
@@ -60,7 +60,7 @@
 	</div>
 
 	<div class='writeComments'>
-		<textarea  rows='3' cols='95' id='replyComments' placeholder='댓글을 입력하세요'></textarea>
+		<textarea  rows='3' cols='85' id='replyComments' placeholder='댓글을 입력하세요'></textarea>
 		<input type='button' id='addComments' value='등록' style='float: right'>
 	</div>
 </div>
@@ -70,9 +70,7 @@ function ud(){
 	/*댓글 수정*/
 	var commentdetach;
 	var commentlocation;
-	var updateText;
 	var replyno;
-	var updateText_Location;
 	
 	$(".c_update").click(function(){
 		replyno = $(this).closest(".comment").children(".commentSection").children("#replyno");
@@ -81,7 +79,7 @@ function ud(){
 		
 		var updatecomment = commentlocation.append(
 				"<div class='upcomment'>" +
-					"<textarea rows='3' cols='95' id='replyComments'" +
+					"<textarea rows='3' cols='85' id='replyComments'" +
 						"placeholder='댓글을 입력하세요'>" +
 					"</textarea>" +
 					"<div style='height: 30px' >" +
@@ -97,8 +95,8 @@ function ud(){
 		
 		/*수정 버튼*/
 		$("#updateComment").click(function(){
-			updateText =$(this).closest(".comment").children("div").children("textarea").val();
-			updateText_Location=
+			var updateText =$(this).closest(".comment").children("div").children("textarea").val();
+			var updateText_Location =
 			commentdetach.children(".cContent").children(".cSection");
 			$.ajax({
 				url: "/post/updateComment",
@@ -124,8 +122,9 @@ function ud(){
 		})
 	})
 	/*댓글 삭제*/
-	$(".comment #c_delete").click(function () {
-		console.log(replyno.val());
+	$(".comment .c_delete").click(function () {
+		commentlocation = $(this).closest(".comment");
+		replyno = commentlocation.children(".commentSection").children("#replyno");
 		
 		 $.ajax({
 			url : "/post/deleteComment",
@@ -136,7 +135,7 @@ function ud(){
 			success : function(data){
 				if (data != -1) {//성공일때
 					console.log(replyno.val()+"번 댓글 삭제");
-					comment.remove();
+					commentlocation.remove();
 				}
 			}
 		}) 
@@ -164,41 +163,40 @@ ud();
 					let time = year+'.'+month+"."+date+" "+hours+":"+minutes;
 					
 					$(".addComments").append(
-							"<div class='comment'>" + 
-								"<hr>" + 
-								"<div class = 'commentSection d-flex'>" + 
-									"<div class='cProfile'>" + 
-										"<img src='/img/logo.png'>" + 
-									"</div>" + 
-							
-									"<input type='hidden' id='replyno' value="+ data+">" + 
-									"<div class='cContent'>" + 
-										"<div class='cHeader d-flex'>" + 
-											"<div>" + 
-												"${user.nickname}" + 
-											"</div>" + 
-							
-													"<ul class='d-flex c_ud'>" + 
-														"<div>" + 
-															"<li class='c_update'>댓글 수정</li>" + 
-														"</div>" + 
-							
-														"<div id='c_delete'>" + 
-															"<li>댓글 삭제</li>" + 
-														"</div>" + 
-													"</ul>" + 
-										"</div>" + 
-							
-										"<div class='cSection'>" + 
-											$("#replyComments").val() +
-										"</div>" + 
-							
-										"<div class='cFooter'>" + 
-											time +
-										"</div>\r\n" + 
-									"</div>" + 
-								"</div>" + 
-							"</div>"
+							"<div class='comment'>" +
+							"<hr>" +
+							"<div class = 'commentSection d-flex'>" +
+								"<div class='cProfile'>" +
+									"<img src='/img/logo.png'>" +
+								"</div>" +
+								
+								"<input type='hidden' id='replyno' value="+ data +">" +
+								"<div class='cContent'>" +
+									"<div class='cHeader d-flex'>" +
+										"<div>" +
+											"${user.nickname}" +
+										"</div>" +
+												"<ul class='d-flex c_ud'>" +
+													"<div>" +
+														"<li class='c_update'>댓글 수정</li>" +
+													"</div>" +
+				
+													"<div>" +
+														"<li class='c_delete'>댓글 삭제</li>" +
+													"</div>" +
+												"</ul>" +
+									"</div>"+
+				
+									"<div class='cSection'>" +
+										$("#replyComments").val() +
+									"</div>" +
+				
+									"<div class='cFooter'>" +
+										time +
+									"</div>" +
+								"</div>" +
+							"</div>" +
+						"</div>"
 					);
 					$("#replyComments").val("");
 					ud();
