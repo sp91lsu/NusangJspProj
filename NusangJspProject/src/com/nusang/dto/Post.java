@@ -22,7 +22,7 @@ public class Post {
 	private User user;
 	private String regdate;
 	private String category;
-	private String sellstate;
+	private int sellstate;
 	private int viewcnt;
 	private int visible;
 	private Location location;
@@ -42,6 +42,19 @@ public class Post {
 			}
 		}
 		return null;
+	}
+
+	public String getStateStr() {
+
+		switch (sellstate) {
+		case 0:
+			return "판매중";
+		case 1:
+			return "구매 예약중";
+		case 2:
+			return "판매 완료";
+		}
+		return "";
 	}
 
 }
