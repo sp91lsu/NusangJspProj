@@ -80,7 +80,7 @@ public class BasicDao<T> {
 		return object;
 	}
 
-	public List<T> findByList(String search, String keyword) {
+	public List<T> findByList(String search, Object keyword) {
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("search", search);
