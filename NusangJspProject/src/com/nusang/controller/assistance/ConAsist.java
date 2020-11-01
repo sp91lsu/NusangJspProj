@@ -11,8 +11,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nusang.action.ActionForward;
 import com.nusang.action.EActionType;
 import com.nusang.bo.KakaoBO;
+import com.nusang.dao.PostDao;
 import com.nusang.dao.UserDao;
 import com.nusang.dto.Location;
+import com.nusang.dto.Post;
 import com.nusang.dto.User;
 
 //controller를 도와주는 클래스
@@ -32,7 +34,7 @@ public class ConAsist {
 	public static final String URL_MKPOST = "/4_post/createPost.jsp";
 	public static final String URL_UPDATEPOST = "/4_post/updatePost.jsp";
 	public static final String URL_PROFILE = "/4_myInfo/myInfoMain.jsp";
-
+	public static final String URL_ERROR = "/0_common/error.jsp";
 	// 요청 마지막 경로
 	public static String getRequestName(HttpServletRequest request) {
 		String requestURI = request.getRequestURI();
@@ -95,4 +97,20 @@ public class ConAsist {
 		request.getSession().setAttribute("user", user);
 		return user;
 	}
+
+	public static ActionForward isMyPost(HttpServletRequest request) {
+		
+		int postno = Integer.parseInt(request.getParameter("postno"));
+		Post post = PostDao.getInstance().findByNo(postno);
+		User user = getSessionUser(request);
+		ActionForward actionForward = null;
+		
+		if(post.getUser().getUserno() != user.getUserno()) {
+			actionForward = new ActionForward();
+			actionForward.setNextPath(URL_ERROR);
+			request.setAttribute("error", "잘못된 접근입니다.");
+		}
+		return actionForward;
+	}
+
 }

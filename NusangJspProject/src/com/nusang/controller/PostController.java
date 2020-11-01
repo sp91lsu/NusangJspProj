@@ -51,18 +51,6 @@ public class PostController extends HttpServlet {
 					action = new ReadPost_Action();
 					actionForward = action.execute(request, response);
 					break;
-				case "updatePost":
-					action = new UpdatePost_Action();
-					actionForward = action.execute(request, response);
-					break;
-				case "updatePostOk":
-					action = new UpdatePostOK_Action();
-					actionForward = action.execute(request, response);
-					break;
-				case "deletePost":
-					action = new DeletePost_Action();
-					actionForward = action.execute(request, response);
-					break;
 				case "moveMkPost":
 					actionForward = new ActionForward();
 					actionForward.setNextPath(ConAsist.URL_MKPOST);
@@ -83,18 +71,6 @@ public class PostController extends HttpServlet {
 					action = new Buy_ReservationAction();
 					actionForward = action.execute(request, response);
 					break;
-				case "setReservation":
-					action = new SetReservationAction();
-					actionForward = action.execute(request, response);
-					break;
-				case "cancel_reservation":
-					action = new CancelReserVationAction();
-					actionForward = action.execute(request, response);
-					break;
-				case "sell_post":
-					action = new SellPostAction();
-					actionForward = action.execute(request, response);
-					break;
 				case "delete_reservation":
 					action = new DeleteReserVationAction();
 					actionForward = action.execute(request, response);
@@ -107,6 +83,39 @@ public class PostController extends HttpServlet {
 					action = new SetWatchListAction();
 					actionForward = action.execute(request, response);
 					break;
+				case "updatePostOk":
+					action = new UpdatePostOK_Action();
+					actionForward = action.execute(request, response);
+					break;
+				// 수정에 대한 보안 검사
+				default:
+					actionForward = ConAsist.isMyPost(request);
+					if (actionForward == null) {
+						switch (requestPage) {
+
+						case "updatePost":
+							action = new UpdatePost_Action();
+							actionForward = action.execute(request, response);
+							break;
+						case "deletePost":
+							action = new DeletePost_Action();
+							actionForward = action.execute(request, response);
+							break;
+						case "sell_post":
+							action = new SellPostAction();
+							actionForward = action.execute(request, response);
+							break;
+						case "cancel_reservation":
+							action = new CancelReserVationAction();
+							actionForward = action.execute(request, response);
+							break;
+						case "setReservation":
+							action = new SetReservationAction();
+							actionForward = action.execute(request, response);
+							break;
+						}
+						break;
+					}
 				}
 
 				ConAsist.updateMyUser(request);
