@@ -114,15 +114,15 @@
 
 						</h6>
 						<h6 id="card_price" style="padding-left: 7px;">${post.productname }
-							|
+							<br>
+							<div style = "padding-top: 10px; padding-bottom: 5px;">
 							<fmt:formatNumber value="${post.price }" pattern="#,###" />원
+							</div>
 						</h6>
-						<h7 id="card_addr"
-							style="font-family: 'Noto Sans KR', sans-serif; font-size:12px; padding-left:7px; ">${post.location.getAddress()}</h6>
-						<br>
+						<h6 id="card_addr" style="font-family: 'Noto Sans KR', sans-serif; font-size:12px; padding-left:7px; ">${post.location.getAddress()}</h6>
 						<h8 id="post_comment" style=" padding-left:7px;">댓글
 						[${post.replyList.size()}]</h8> <h8>·</h8> <h8 id="post_interest">관심
-						[cnt]</h8> <h8>·</h8> <h8 id="post_view">조회 [cnt]</h8>
+						[${post.watchList.size() }]</h8> <h8>·</h8> <h8 id="post_view">조회 [${post.viewcnt }]</h8>
 						<button id="viewBtn" class="btn btn-success"
 							style="width: 190px; margin-top: 10px; background: #23A41A; padding-left: 0px;"
 							onclick="location.href='/post/readPost?postno=${post.postno}'">
