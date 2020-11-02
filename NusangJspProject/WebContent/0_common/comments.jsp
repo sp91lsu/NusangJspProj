@@ -24,7 +24,7 @@ a<%@page import="com.nusang.dao.PostDao"%>
 							</div>
 	
 							<c:choose>
-								<c:when test='${user.userno==post.user.userno}'> <!--내가 쓴 댓글이면-->
+								<c:when test='${user.userno==reply.user.userno}'> <!--내가 쓴 댓글이면-->
 									<ul class='d-flex c_ud'>
 										<div>
 											<li class='c_update'>댓글 수정</li>
