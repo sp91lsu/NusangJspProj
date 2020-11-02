@@ -47,9 +47,12 @@
 				<!-- <button id="button11">버튼</button> -->
 				<c:choose>
 					<c:when test="${post.sellstate == 0 }">
-						<div class="d-flex mr-auto" style="font-size: 30px;">판매중</div>
+						<div class="d-flex mr-auto" style="font-size: 30px;margin-top: 30px;">판매중</div>
 					</c:when>
 					<c:when test="${post.sellstate == 1 }">
+					<c:if test="${user.userno != post.user.userno }">
+					<div class="d-flex mr-auto" style="font-size: 30px;margin-top: 30px;">예약중</div>
+					</c:if>
 						<div align="center" style="margin-top: 23px; margin-right: 30px;">
 							<span style="font-weight: bold; font-size: 20px;">구매 예약자 </span><br> <span style="color: #22741C; font-size: 20px;"> ${post.getReserUser().nickname }</span>
 						</div>
@@ -59,7 +62,7 @@
 						</c:if>
 					</c:when>
 					<c:when test="${post.sellstate == 2 }">
-					판매 완료
+					<div style="font-size: 30px;margin-right:340px;margin-top: 30px;">판매 완료</div>
 				</c:when>
 				</c:choose>
 				<!-- 버튼 영역 as 구매자or판매자 -->
