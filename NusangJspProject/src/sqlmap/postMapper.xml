@@ -136,10 +136,10 @@
 						#{distance}
 						) 
 			AND
-			category in #{categories}
+			category in ${categories}
 			AND
-			REGEXP_LIKE(title||bodytext||productname, #{searchWord}, 'i')
-			ORDER BY #{order} DESC
+			REGEXP_LIKE(title||bodytext||productname, ${searchWord}, 'i')
+			ORDER BY ${order} DESC
 	</select>
 
 	<select id="selectReplyList" resultMap="replyMapper.replyMap">
