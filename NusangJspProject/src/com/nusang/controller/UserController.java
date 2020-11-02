@@ -14,6 +14,7 @@ import com.nusang.action.EActionType;
 import com.nusang.action.account.IdChk_Action;
 import com.nusang.action.account.LoginAction;
 import com.nusang.action.account.SetLocationAction;
+import com.nusang.action.account.nameChk_Action;
 import com.nusang.action.user.FindId_Action;
 import com.nusang.action.user.FindPw_Action;
 import com.nusang.action.user.SignUp_Action;
@@ -59,6 +60,10 @@ public class UserController extends HttpServlet {
 			case "findPw":
 				FindPw_Action F_A2 = new FindPw_Action();
 				actionForward = F_A2.execute(request, response);
+				break;
+			case "nameChk" :
+				nameChk_Action N_A = new nameChk_Action();
+				actionForward = N_A.execute(request, response);
 				break;
 			}
 		} catch (Exception e) {

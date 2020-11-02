@@ -16,10 +16,12 @@
 		<form name="joinForm" action = "/user/signup" method="post" onsubmit = "return joinSubmit();">
 			<div class="form-group w-50 container">
 				<label for="username">아이디</label>
-				<div class="d-flex flex-row bg-secondary">
+				<div class="d-flex flex-row">
 					<input name="userid" type="text" class="form-control "
 						placeholder="첫글자는 영어  6글자 이상" id="userid">
+						<div style = "margin-left: 10px;">
 					<button type="button" id="idChkBtn" class="btn btn-primary">중복확인</button>
+					</div>
 				</div>
 			</div>
 			<div class="form-group w-50 container">
@@ -34,8 +36,14 @@
 			</div>
 
 			<div class="form-group w-50 container">
-				<label for="username">닉네임</label> <input name="username" type="text"
+				<label for="username">닉네임</label>
+				<div class="d-flex flex-row">
+				 <input name="username" type="text"
 					class="form-control" placeholder="한글만 2~5자" id="username">
+					<div style = "margin-left: 10px;">
+					<button type="button" id="nameChkBtn" class="btn btn-primary">중복확인</button>
+					</div>
+					</div>
 			</div>
 
 			<div class="form-group w-50 container">
@@ -43,9 +51,9 @@
 					class="form-control" placeholder="중간에@섞어서" id="email">
 			</div>
 
-			<div class="form-group w-50 container">
+			<div class="form-group w-50 container" align = "center">
 				<button type="submit" id="btn-login" 
-					class="btn btn-primary">회원가입</button>
+					class="btn btn-success btn-lg">회원가입</button>
 			</div>
 		</form>
 	</div>
@@ -91,21 +99,28 @@
 			alert("이메일을 형식에 맞게 입력하세요.");
 			return false;
 		}
-	    if(chk == false){
+	    if(idchk == false){
 	    	alert("아이디 중복확인 하세요.");
+	    	return false;
+	    }
+	    if(nameChk == false){
+	    	alert("닉네임 중복확인 하세요.");
 	    	return false;
 	    }
 	    if(userid != useridchk){
 	    	alert("아이디 중복확인 하세요.")
 	    	return false;
 	    }
+	    if(username != userNameChk){
+	    	alert("닉네임 중복확인 하세요.")
+	    	return false;
+	    }
 	    alert("회원가입을 축하드립니다♥");
 	    return true;
 	}
 	
-	var chk = false;
+	var idchk = false;
 	let useridchk = "";
-
 	$("#idChkBtn").click(function() {
 		useridchk = $("#userid").val();
 		$.ajax({
@@ -113,14 +128,35 @@
 			success : function(data) {
 				if(data == "0"){
 					alert("아이디를 입력해 주세요.");
-					chk = false;
+					idchk = false;
 				}else if(data == "1"){
 					alert("사용가능한 아이디 입니다.");
-					chk = true;
+					idchk = true;
 				}		
 				else{
 					alert("중복된 아이디 입니다.");
-					chk = false;
+					idchk = false;
+				}
+			}
+		})
+	})
+	
+	var nameChk = false;
+	let userNameChk = "";
+	$("#nameChkBtn").click(function(){
+		userNameChk = $("#username").val();
+		$.ajax({
+			url : "/user/nameChk?uName=" + userNameChk,
+			success : function(data){
+				if(data == "0"){
+					alert("닉네임을 입력해주세요");
+					nameChk = false;
+				}else if(data == "1"){
+					alert("사용가능한 닉네임 입니다.");
+					nameChk = true;
+				}else{
+					alert("중복된 닉네임 입니다.")
+					nameChk = false;
 				}
 			}
 		})
