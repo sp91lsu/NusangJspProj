@@ -75,7 +75,7 @@
 		
 		<div class = 'chk_btn'>
 			<input type='checkbox' id='secretmode' >비밀댓글
-			<input type='button' id='addComments' value='등록'>
+			<input type='button' id='addComments' class = "btn btn-secondary btn-sm" value='등록'>
 		</div>
 	</div>
 </div>
