@@ -14,7 +14,6 @@ public class CustomDateHandler extends BaseTypeHandler<Date>{
 
 	@Override
 	public Date getNullableResult(ResultSet rs, String columnName) throws SQLException {
-		System.out.println("------=====================================fd");
 		Timestamp sqlTimestamp = rs.getTimestamp(columnName);
 		if (sqlTimestamp != null) {
 			return new Date(sqlTimestamp.getTime());
