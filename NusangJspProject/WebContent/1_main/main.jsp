@@ -22,23 +22,6 @@
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/1_main/css/main_detailSearch.css">
 </head>
-<script>
-	/* 	 	$("#1km").click(function(){
-				var onekm = $("#1km").val();
-				$.ajax({
-					url : "/myinfo/distance",
-				
-					
-				})
-			})
-	 */
-
-	function func1(number) {
-		$("#dropdownMenu2").text(number + "km");
-		location.href = "/myinfo/distance?num=" + number;
-
-	}
-</script>
 
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
@@ -63,21 +46,6 @@
 			
 			<!-- 상세검색 -->
 			<c:if test="${user != null }">
-			
-				<%-- <div class="dropdown">
-
-					<button class="btn btn-outline-success dropdown-toggle"
-						type="button" id="dropdownMenu2" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">${user.view_distance  }km</button>
-					<c:set var="arr" value='<%=new String[] { "1", "3", "5", "10" }%>' />
-					<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-						<c:forEach items="${arr}" var="num">
-							<button class="dropdown-item" type="button" id="${num }km"
-								value="${num }" onclick="func1('${num }')">${num }km</button>
-						</c:forEach>
-					</div>
-				</div> --%>
-				
 				<!-- 상세검색 버튼 -->
 				<button id="detailSearchBtn" class="btn btn-success" onclick="doDisplay()">상세검색
 					<i id="caretdown" class="fas fa-caret-down"></i>
@@ -85,13 +53,13 @@
 				</button>
 				
 				<!-- 폼 시작 -->
-				<form name="detailSearchForm" id="detailSearchForm" action="/1_main/mainGetParamTest.jsp" method="post"> <!-- /1_main/mainGetParamTest.jsp    /search-->
+				<form name="detailSearchForm" id="detailSearchForm" action="/search" method="post"> <!-- /1_main/mainGetParamTest.jsp    /search-->
 				<!-- 상세검색 팝업창 -->
-				<div id="detailSearch-pop">
+				<div id="detailSearch-pop" class="detailSearch-pop">
 						<!-- 헤더 -->
 						<div id="popHeader" class="d-flex">
 							<span id="popHtext" class="mr-auto">상세검색</span>
-							<i class="fas fa-times"></i>
+							<i id="closeBtn" class="fas fa-times"></i>
 						</div>
 							<!-- 검색어 -->
 							<input type="hidden" class="form-group" id="searchWord" name="searchWord">
@@ -156,9 +124,7 @@
 					</div>
 					</form>
 			</c:if>
-			
-			
-		
+		</div>
 	</div>
 	
 	<!-- 포스트 섹션 -->
@@ -178,7 +144,7 @@
 			style="padding-top: 50px;">
 			<c:forEach var="post" items="${postList}">
 
-				<div id="postCard">
+				<div id="postCard" style = "margin-bottom: 30px;">
 					<c:choose>
 						<c:when test="${!empty post.post_picture.getList()[0]}">
 							<img id="card_img" alt="product image"
