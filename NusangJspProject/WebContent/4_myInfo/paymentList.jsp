@@ -6,6 +6,7 @@
 <%@page import="com.nusang.dto.User"%>
 <%@page import="lombok.val"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- 페이징처리 코드  -->
 <c:set var="list" value="${user.payment_MarketList}" />
@@ -33,7 +34,7 @@
 					<th scope="row" style = "text-align: center;"><%= listCnt++ %></th>
 					<td>${payment.imp_uid}</td>
 					<td>${payment.name}</td>
-					<td>${payment.price}</td>
+					<td><fmt:formatNumber value="${payment.price }" pattern="#,###" />원</td>
 					<td>${payment.regdate}</td>
 				</tr>
 			</c:forEach>

@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
       
 <!-- 페이징처리 코드  -->
 <c:set var="list" value="${user.reservationList}" />
@@ -30,7 +31,7 @@
 		    <tr>
 		      <th scope="row" style = "text-align: center;"><%= listCnt++ %></th>
 		      <td>${reservation.post.productname }</td>
-		      <td>${reservation.reser_price}</td>
+		      <td><fmt:formatNumber value="${reservation.reser_price }" pattern="#,###" />원</td>
 			  <td>
 			      <c:choose>
 			      	<c:when test="${reservation.state == 0}">

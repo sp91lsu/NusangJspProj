@@ -1,6 +1,7 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- 페이징처리 코드  -->
 <c:set var="list" value="${user.payment_UserList}" />
@@ -25,9 +26,9 @@
 		<tbody>
 			<c:forEach var="buyinfo" items="<%=selectList %>">
 				<tr>
-					<th scope="row"><%=listCnt++ %></th>
+					<th scope="row" style = "text-align: center;"><%=listCnt++ %></th>
 					<td>${buyinfo.productname}</td>
-					<td>${buyinfo.price}</td>
+					<td><fmt:formatNumber value="${buyinfo.price }" pattern="#,###" />원 </td>
 					<td>${buyinfo.regdate}</td>
 					<td>${buyinfo.business_partner.nickname}</td>
 				</tr>

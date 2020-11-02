@@ -23,7 +23,7 @@
 		<tbody>
 			<c:forEach var="sale" items="<%=selectList %>">
 				<tr>
-						<th scope="row"><%=listCnt++ %></th>
+						<th scope="row" style = "text-align: center;"><%=listCnt++ %></th>
 						<td>${sale.productname}</td>
 						<td>${sale.regdate}</td>
 						<td>${sale.business_partner.nickname}</td>
