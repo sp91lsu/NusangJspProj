@@ -42,7 +42,7 @@
 			      	</c:otherwise>
 			      </c:choose>
 		      </td>
-              <td>${reservation.regdate}</td>
+              <td><fmt:formatDate value="${reservation.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 				    </tr>
 		</c:forEach>
 	  </tbody>

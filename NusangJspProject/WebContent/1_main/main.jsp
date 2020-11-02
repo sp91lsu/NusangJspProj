@@ -180,7 +180,7 @@
 						<c:choose>
 							<%-- <c:when test="${post.sellstate == 0 }"><input type = "button" value = "판매중" style = "margin-left: 30px;"></c:when> --%>
 							<c:when test="${post.sellstate == 0 }"><button style = "margin-left: 28px; cursor: default;">판매중</button></c:when>
-							<c:when test="${post.sellstate == 1 }"><button style = "margin-left: 28px; cursor: default; background: #1DDB16;">예약중</button></c:when>
+							<c:when test="${post.sellstate == 1 }"><button style = "margin-left: 28px; cursor: default; background: #FFBB00;">예약중</button></c:when>
 							<c:when test="${post.sellstate == 2 }"><button style = "margin-left: 15px; cursor: default; background: black;color: white;">판매 완료</button></c:when>
 						</c:choose>
 						

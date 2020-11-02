@@ -18,8 +18,8 @@
 				<th scope="col" style = "text-align: center;">no.</th>
 				<th scope="col" style = "text-align: center;">구매품목</th>
 				<th scope="col" style = "text-align: center;">금액</th>
-				<th scope="col" style = "text-align: center;">날짜</th>
 				<th scope="col" style = "text-align: center;">판매자명</th>
+				<th scope="col" style = "text-align: center;">날짜</th>
 			</tr>
 		</thead>
 		<% int listCnt = fromRow+1; %>
@@ -29,8 +29,8 @@
 					<th scope="row" style = "text-align: center;"><%=listCnt++ %></th>
 					<td>${buyinfo.productname}</td>
 					<td><fmt:formatNumber value="${buyinfo.price }" pattern="#,###" />원 </td>
-					<td>${buyinfo.regdate}</td>
 					<td>${buyinfo.business_partner.nickname}</td>
+					<td><fmt:formatDate value="${buyinfo.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 				</tr>
 			</c:forEach>
 		</tbody>

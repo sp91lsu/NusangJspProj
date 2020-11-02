@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- 페이징처리 코드  -->
 <c:set var="list" value="${user.payment_UserList}" />
@@ -15,8 +16,8 @@
 			<tr>
 				<th scope="col" style = "text-align: center;">no.</th>
 				<th scope="col" style = "text-align: center;">게시글</th>
-				<th scope="col" style = "text-align: center;">날짜</th>
 				<th scope="col" style = "text-align: center;">구매자명</th>
+				<th scope="col" style = "text-align: center;">날짜</th>
 			</tr>
 		</thead>
 		<% int listCnt = fromRow+1; %>
@@ -25,8 +26,8 @@
 				<tr>
 						<th scope="row" style = "text-align: center;"><%=listCnt++ %></th>
 						<td>${sale.productname}</td>
-						<td>${sale.regdate}</td>
 						<td>${sale.business_partner.nickname}</td>
+						<td><fmt:formatDate value="${sale.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 				</tr>
 			</c:forEach>
 		</tbody>
