@@ -127,7 +127,7 @@
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
-	$("#buyBtn").click(testBuyProduct);
+	/* $("#buyBtn").click(testBuyProduct);
 
 	function testBuyProduct() {
 		$("#pm_merchant_uid").val("merach");
@@ -135,7 +135,7 @@
 		$("#pm_paid_amount").val(123123);
 		document.createPostForm.submit();
 	}
-	
+	 */
 	
 	/* 이미지추가 관련 스크립트  */
 	var i = 0;
@@ -151,9 +151,9 @@
 		i--;
 	}
 </script>
-<!-- <script type="text/javascript" src="/4_post/createPost.js">
+<script type="text/javascript" src="/4_post/createPost.js">
 	
-</script> -->
+</script> 
 
 </html>
 

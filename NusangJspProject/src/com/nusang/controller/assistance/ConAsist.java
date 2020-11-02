@@ -24,6 +24,7 @@ public class ConAsist {
 	public static final String SERVLET_UPDATEPOST = "/post/updatePost";
 	public static final String SERVLET_DELETEPOST = "/post/deletePost";
 	public static final String SERVLET_MYINFODISTANCE = "/myinfo/distance";
+	public static final String SERVLET_REFUND = "/payment/refund";
 
 	public static final String URL_CHKLOCATION = "/1_main/index.jsp";
 	public static final String URL_MAIN = "/1_main/main.jsp";
@@ -35,6 +36,7 @@ public class ConAsist {
 	public static final String URL_UPDATEPOST = "/4_post/updatePost.jsp";
 	public static final String URL_PROFILE = "/4_myInfo/myInfoMain.jsp";
 	public static final String URL_ERROR = "/0_common/error.jsp";
+
 	// 요청 마지막 경로
 	public static String getRequestName(HttpServletRequest request) {
 		String requestURI = request.getRequestURI();
@@ -99,13 +101,13 @@ public class ConAsist {
 	}
 
 	public static ActionForward isMyPost(HttpServletRequest request) {
-		
+
 		int postno = Integer.parseInt(request.getParameter("postno"));
 		Post post = PostDao.getInstance().findByNo(postno);
 		User user = getSessionUser(request);
 		ActionForward actionForward = null;
-		
-		if(post.getUser().getUserno() != user.getUserno()) {
+
+		if (post.getUser().getUserno() != user.getUserno()) {
 			actionForward = new ActionForward();
 			actionForward.setNextPath(URL_ERROR);
 			request.setAttribute("error", "잘못된 접근입니다.");

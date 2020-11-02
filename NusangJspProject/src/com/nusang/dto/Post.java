@@ -1,6 +1,7 @@
 package com.nusang.dto;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,7 +21,7 @@ public class Post {
 	private long price;
 	private String productname;
 	private User user;
-	private String regdate;
+	private Date regdate;
 	private String category;
 	private int sellstate;
 	private int viewcnt;

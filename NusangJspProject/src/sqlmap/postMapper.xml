@@ -11,7 +11,7 @@
 		<result property="bodytext" column="bodytext" />
 		<result property="price" column="price" />
 		<result property="productname" column="productname" />
-		<result property="regdate" column="regdate" />
+		<result property="regdate" column="regdate" typeHandler="com.nusang.handler.CustomDateHandler"/>
 		<result property="category" column="category" />
 		<result property="sellstate" column="sellstate" />
 		<result property="viewcnt" column="viewcnt" />

@@ -36,7 +36,7 @@ public class PostDao extends BasicDao<Post> {
 	public int insertPost(Post post, List<String> fileSystemNames, Payment_Market pm) {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			
+
 			LocationDao.getInstance().insert(session, post.getLocation());
 			Post_PictureDao.getInstance().insert(session, post.getPost_picture()); // 1
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -55,6 +55,24 @@ public class PostDao extends BasicDao<Post> {
 		}
 
 		return post.getPostno();
+	}
+
+	public int deletetPost_CreatePM(Payment_Market pm) {
+		SqlSession session = sqlSessionFactory.openSession();
+		int result = 0;
+		try {
+
+			deleteBy(session, pm.getPost().getPostno());
+			result=  Payment_MarketDao.getInstance().insert(session, pm);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.rollback();
+		} finally {
+			session.close();
+		}
+
+		return result;
 	}
 
 	public int updatePost(Post post, List<String> fileSystemNames) {
@@ -99,8 +117,9 @@ public class PostDao extends BasicDao<Post> {
 
 		return (ArrayList<Post>) postList;
 	}
-	
-	public ArrayList<Post> findPostByDetailSearch(String searchWord, String categories, String order, int distance, Location userLocation) {
+
+	public ArrayList<Post> findPostByDetailSearch(String searchWord, String categories, String order, int distance,
+			Location userLocation) {
 		SqlSession session = sqlSessionFactory.openSession();
 		List<Post> postList = new ArrayList<Post>();
 		try {
@@ -121,7 +140,7 @@ public class PostDao extends BasicDao<Post> {
 		} finally {
 			session.close();
 		}
-		
+
 		return (ArrayList<Post>) postList;
 	}
 

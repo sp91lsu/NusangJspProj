@@ -14,6 +14,9 @@ import com.nusang.action.ActionForward;
 import com.nusang.action.assistance.EContentType;
 import com.nusang.action.assistance.MyHttpPost;
 import com.nusang.controller.assistance.ConAsist;
+import com.nusang.dao.PostDao;
+import com.nusang.dto.Payment_Market;
+import com.nusang.dto.Post;
 
 public class RefundAction implements Action {
 
@@ -24,6 +27,8 @@ public class RefundAction implements Action {
 //		"reason" : "테스트 결제 환불", // 환불사유
 		// {"imp_uid":"imp_670663832422","merchant_uid":"mid_123","status":"paid"}
 		////////////////////////////////////////////// 토큰발행
+
+		Payment_Market pm = (Payment_Market) request.getAttribute("payment_market");
 		System.out.println();
 		System.out.println();
 		System.out.println();
@@ -31,8 +36,7 @@ public class RefundAction implements Action {
 		ObjectMapper m = new ObjectMapper();
 		ObjectNode tokenBody = m.createObjectNode();
 		tokenBody.put("imp_key", "0642725073895705");
-		tokenBody.put("imp_secret",
-				"Qg0L7Sv9zZnhgYl2id0SY4s9dM460CdRTdC167aG6yYnwkpPxpHvuaEHWINXl1Offqgmxr2EZ11wlqlS");
+		tokenBody.put("imp_secret", "Qg0L7Sv9zZnhgYl2id0SY4s9dM460CdRTdC167aG6yYnwkpPxpHvuaEHWINXl1Offqgmxr2EZ11wlqlS");
 
 		MyHttpPost client = new MyHttpPost("https://api.iamport.kr/users/getToken", EContentType.JSON);
 
@@ -48,7 +52,7 @@ public class RefundAction implements Action {
 		System.out.println("환불요청");
 		Map<String, String> header = new HashMap<String, String>();
 
-		String accessToken =  resNode.get("response").get("access_token").asText();
+		String accessToken = resNode.get("response").get("access_token").asText();
 
 		System.out.println("resString = " + accessToken);
 
@@ -57,13 +61,20 @@ public class RefundAction implements Action {
 		client.setHeader(header);
 		ObjectNode reqBodyNode = m.createObjectNode();
 		reqBodyNode.put("reason", "10분 내 판매 게시글 삭제");
-		reqBodyNode.put("imp_uid",  request.getParameter("imp_uid"));
+		reqBodyNode.put("imp_uid", pm.getImp_uid());
 		client.setBody(reqBodyNode);
 		resNode = client.request();
 
+		ActionForward acf = new ActionForward();
 		System.out.println(resNode.asText());
-		////////////////////////////////// 토큰 가지고 아임포트에 환불요청
-		return null;
+
+		pm.setName("게시글 삭제");
+		pm.setState(0);
+		
+		PostDao.getInstance().deletetPost_CreatePM(pm);
+		acf.setNextPath(ConAsist.SERVLET_MAIN);
+
+		return acf;
 	}
 
 }

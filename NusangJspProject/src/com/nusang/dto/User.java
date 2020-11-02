@@ -78,4 +78,17 @@ public class User {
 		}
 		return null;
 	}
+
+	//게시글 번호를 통해서 결제 내역 찾기 
+	public Payment_Market findPMByPost(int postno) {
+
+		for (Payment_Market payment_Market : payment_MarketList) {
+			Post post = payment_Market.getPost();
+
+			if (post != null && post.getPostno() == postno) {
+				return payment_Market;
+			}
+		}
+		return null;
+	}
 }
