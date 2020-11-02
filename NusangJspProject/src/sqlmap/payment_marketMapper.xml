@@ -12,7 +12,7 @@
 		<result property="state" column="state" />
 		<result property="name" column="name" />
 		<result property="userno" column="userno" />
-		<result property="regdate" column="regdate" />
+		<result property="regdate" column="regdate" typeHandler="com.nusang.handler.CustomDateHandler" />
 		<result property="imp_uid" column="imp_uid" />
 		<result property="price" column="price" />
 		<association property="post" column="postno" javaType="Post" select="securityMapper.selectScPost" />

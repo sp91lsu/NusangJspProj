@@ -34,8 +34,13 @@
 					<th scope="row" style = "text-align: center;"><%= listCnt++ %></th>
 					<td>${payment.imp_uid}</td>
 					<td>${payment.name}</td>
-					<td><fmt:formatNumber value="${payment.price }" pattern="#,###" />원</td>
-					<td>${payment.regdate}</td>
+					<td><fmt:formatNumber value="${payment.price }" pattern="#,###" />원
+					<c:choose>
+						<c:when test="${payment.state == 0 }">환불</c:when>
+						<c:when test="${payment.state == 1 }">결제</c:when>
+					</c:choose>
+					</td>
+					<td><fmt:formatDate value="${payment.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 				</tr>
 			</c:forEach>
 		</tbody>
