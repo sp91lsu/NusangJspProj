@@ -47,7 +47,7 @@
 
 		<c:choose>
 			<c:when test="${user != null}">
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-family: 'Noto Sans KR', sans-serif;">
 					<div class="navbar-nav pull-right" style="margin-left: 5%">
 
 						<li class="nav-item"><a class="nav-link"
@@ -87,7 +87,7 @@
 			</c:when>
 
 			<c:otherwise>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-family: 'Noto Sans KR', sans-serif;">
 					<div class="navbar-nav pull-right" style="margin-left: 35%">
 						<li class="nav-item p-2"><button type="button"
 								class="btn btn-success btn-sm" style="background: #10620A;"
