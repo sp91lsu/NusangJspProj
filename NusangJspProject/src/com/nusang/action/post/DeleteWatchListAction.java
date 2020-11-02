@@ -3,6 +3,8 @@ package com.nusang.action.post;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
 import com.nusang.controller.assistance.ConAsist;
@@ -29,7 +31,11 @@ public class DeleteWatchListAction implements Action {
 			result = WatchListDao.getInstance().deleteBy(watch.getWatchlistno());
 		}
 		ActionForward af = new ActionForward();
-		af.setAsyncData(result.toString());
+		ObjectMapper m = new ObjectMapper();
+		ObjectNode objNode = m.createObjectNode();
+		
+		objNode.put("result", result);
+		af.setAsyncData(objNode.toString());
 		return af;
 
 	}

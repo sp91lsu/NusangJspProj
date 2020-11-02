@@ -47,12 +47,12 @@
 				<!-- <button id="button11">버튼</button> -->
 				<c:choose>
 					<c:when test="${post.sellstate == 0 }">
-						<div class="d-flex mr-auto" style="font-size: 30px;margin-top: 30px;">판매중</div>
+						<div class="d-flex mr-auto" style="font-size: 30px; margin-top: 30px;">판매중</div>
 					</c:when>
 					<c:when test="${post.sellstate == 1 }">
-					<c:if test="${user.userno != post.user.userno }">
-					<div class="d-flex mr-auto" style="font-size: 30px;margin-top: 30px;">예약중</div>
-					</c:if>
+						<c:if test="${user.userno != post.user.userno }">
+							<div class="d-flex mr-auto" style="font-size: 30px; margin-top: 30px;">예약중</div>
+						</c:if>
 						<div align="center" style="margin-top: 23px; margin-right: 30px;">
 							<span style="font-weight: bold; font-size: 20px;">구매 예약자 </span><br> <span style="color: #22741C; font-size: 20px;"> ${post.getReserUser().nickname }</span>
 						</div>
@@ -62,8 +62,8 @@
 						</c:if>
 					</c:when>
 					<c:when test="${post.sellstate == 2 }">
-					<div style="font-size: 30px;margin-right:340px;margin-top: 30px;">판매 완료</div>
-				</c:when>
+						<div style="font-size: 30px; margin-right: 340px; margin-top: 30px;">판매 완료</div>
+					</c:when>
 				</c:choose>
 				<!-- 버튼 영역 as 구매자or판매자 -->
 				<c:if test="${post.sellstate != 2}">
@@ -154,8 +154,9 @@
 
 					<!-- 댓글,관심,조회 -->
 					<div id="post_co&in&vi" class="d-flex">
-						<h8 id="post_comment">댓글 [${post.replyList.size() }]</h8>
-						<h8>·</h8>
+						<%-- <h8 id="post_comment">댓글 [${post.replyList.size() }]</h8> --%>
+					<!-- 	<h8>·</h8> -->
+						<input type="hidden" id="watchCnt" value="${post.watchList.size() }">
 						<h8 id="post_interest">관심 [${post.watchList.size() }]</h8>
 						<h8>·</h8>
 						<h8 id="post_view">조회 [${post.viewcnt }]</h8>
@@ -254,24 +255,35 @@
 			<div id="map" style="width: 100%; height: 350px;"></div>
 
 			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1db6aaded4b028f19067fca5394bb829"></script>
-			<input type="hidden" id="latitude" value="${post.location.latitude }"> <input type="hidden" id="longtitude" value="${post.location.longtitude }">
-			<script src="/4_post/js/readPost_Map.js?v=<%=System.currentTimeMillis()%>"></script>
-			<script src="/4_post/js/readPost.js?v=<%=System.currentTimeMillis()%>"></script>
-			<br>
+			<input type="hidden" id="latitude" value="${post.location.latitude }"> <input type="hidden" id="longtitude" value="${post.location.longtitude }"> <br>
 
 			<!-- 댓글 섹션 -->
 			<jsp:include page="../0_common/comments.jsp?postno=${post.postno}"></jsp:include>
 		</div>
 	</div>
 
-	<jsp:include page="../0_common/modalOneBtn.jsp" flush="true">
+	<jsp:include page="../0_common/modal.jsp" flush="true">
 		<jsp:param name="modalId" value='<%=URLEncoder.encode("modal_refund", "UTF-8")%>' />
 		<jsp:param name="title" value='<%=URLEncoder.encode("환불", "UTF-8")%>' />
-		<jsp:param name="body" value='<%=URLEncoder.encode("10분 이내 게시글 삭제시 환불처리됩니다.", "UTF-8")%>' />
+		<jsp:param name="body" value='<%=URLEncoder.encode("10분 이내 게시글 삭제시 환불처리됩니다. 삭제하시겠습니까?", "UTF-8")%>' />
+	</jsp:include>
+
+	<jsp:include page="../0_common/modal.jsp" flush="true">
+		<jsp:param name="modalId" value='<%=URLEncoder.encode("modal_reservation", "UTF-8")%>' />
+		<jsp:param name="title" value='<%=URLEncoder.encode("구매 예약 신청", "UTF-8")%>' />
+		<jsp:param name="body" value='<%=URLEncoder.encode("구매 예약 신청하시겠습니까?", "UTF-8")%>' />
+	</jsp:include>
+	
+	<jsp:include page="../0_common/modal.jsp" flush="true">
+		<jsp:param name="modalId" value='<%=URLEncoder.encode("modal_delete_reservation", "UTF-8")%>' />
+		<jsp:param name="title" value='<%=URLEncoder.encode("구매 예약 취소", "UTF-8")%>' />
+		<jsp:param name="body" value='<%=URLEncoder.encode("구매 예약을 취소하시겠습니까?", "UTF-8")%>' />
 	</jsp:include>
 
 
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
 	<script type="text/javascript" src="/4_post/js/readPost2.js"></script>
+	<script src="/4_post/js/readPost_Map.js?v=<%=System.currentTimeMillis()%>"></script>
+	<script src="/4_post/js/readPost.js?v=<%=System.currentTimeMillis()%>"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-a<%@page import="com.nusang.dao.PostDao"%>
+<%@page import="com.nusang.dao.PostDao"%>
 <%@page import="com.nusang.dto.Post"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>

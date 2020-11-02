@@ -1,34 +1,68 @@
 (function() {
 
-	$("#buy_reservationBtn").click(
-			function() {
-				console.log("buy_reservationBtn")
-				$.ajax({
+	var modal;
 
-					url : "/post/buy_reservation",
-					type : "POST",
-					data : {
-						reser_price : $("#reser_price").val(),
-						reser_postno : $("#postno").val()
-					},
-					success : function(data) {
+	$("#buy_reservationBtn").click(function() {
+		console.log("buy_reservationBtn");
 
-						if (data == 1) {
-							alert("구매신청이 완료되었습니다.");
-							location.href = "/post/readPost?postno="
-									+ $("#postno").val();
-						} else {
-							alert("구매신청에 실패하였습니다.");
-						}
+		modal = $('#modal_reservation');
+		$(modal).modal("show");
+	})
 
-					}
+	var modalreserY = $('#modal_reservation #modalY');
+	$(modalreserY)
+			.click(
+					function(e) {
 
-				})
+						$(modal).modal('hide').data('bs.modal', null);
 
-			})
+						$('#modal_reservation')
+								.on(
+										'hidden.bs.modal',
+										function() {
+											$
+													.ajax({
 
-	$("#delete_reservation").click(
-			function() {
+														url : "/post/buy_reservation",
+														type : "POST",
+														data : {
+															reser_price : $(
+																	"#reser_price")
+																	.val(),
+															reser_postno : $(
+																	"#postno")
+																	.val()
+														},
+														success : function(data) {
+
+															if (data == 1) {
+																alert("구매신청이 완료되었습니다.");
+																location.href = "/post/readPost?postno="
+																		+ $(
+																				"#postno")
+																				.val();
+															} else {
+																alert("구매신청에 실패하였습니다.");
+															}
+
+														}
+
+													})
+										})
+					});
+
+	$("#delete_reservation").click(function() {
+
+		modal = $('#modal_delete_reservation');
+
+		$(modal).modal("show");
+
+	});
+
+	var modalY_delete_reser = $('#modal_delete_reservation #modalY');
+	$(modalY_delete_reser).click(
+			function(e) {
+
 				$.ajax({
 
 					url : "/post/delete_reservation",
@@ -51,7 +85,8 @@
 
 				})
 
-			})
+				$(modal).modal('hide').data('bs.modal', null);
+			});
 
 	var sendUrl;
 	var toggleWatch;
@@ -75,7 +110,7 @@
 	}
 
 	toggleWatchList($("#isWatchPost").val() == "true");
-
+	var watchCnt = Number($("#watchCnt").val());
 	$("#heart_icon").click(function() {
 
 		$.ajax({
@@ -87,13 +122,19 @@
 			},
 			success : function(data) {
 
-				if (data > 0) {
+				var jData = JSON.parse(data);
+				console.log(data);
+
+				if (jData.result > 0) {
 					if (toggleWatch == true) {
 						toggleWatchList(false);
+						watchCnt -= 1;
 					} else {
 						alert("관심목록에 추가되었습니다.");
+						watchCnt += 1;
 						toggleWatchList(true);
 					}
+					$("#post_interest").text("관심 [" + watchCnt + "]");
 				} else {
 					alert("관심목록 수정 실패.");
 				}

@@ -20,11 +20,12 @@ String body = URLDecoder.decode(request.getParameter("body"), "UTF-8");
 			<div class="modal-body"><%=body%></div>
 			<div class="modal-footer">
 				<a class="btn" id="modalY">예</a>
-				<button class="btn" type="button" data-dismiss="modal">아니요</button>
+				<button class="btn" id="modal_noBtn" type="button" data-dismiss="modal">아니요</button>
 			</div>
 		</div>
 	</div>
 </div>
+
 
 <%-- 
 	다른 스크립트에서 이 창을 불러오고 싶을 때 
