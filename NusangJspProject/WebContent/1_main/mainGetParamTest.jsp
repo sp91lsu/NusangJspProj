@@ -18,15 +18,23 @@
     /* Map params = request.getParameterMap(); */
  
     /* String[] categorys = (String[])params.get("category"); */
-    String searchWord = request.getParameter("searchWord");
+    String searchWord0 = request.getParameter("searchWord");
+    searchWord0 = searchWord0.trim();
+    String searchWord = "'"+searchWord0;
+    searchWord = searchWord.replaceAll("( )+", "|");
+    searchWord += "'";
     out.println("<h2>검색어</h2>");
     out.println(searchWord+"<br/>");
     
-    String[] categorys = request.getParameterValues("category");
+    String[] arr_categories = request.getParameterValues("category");
+	String categories = "(";
+	for (String ct : arr_categories) {
+		categories += "'" + ct + "',";
+	}
+	categories = categories.substring(0, categories.length()-1);
+	categories += ")";
     out.println("<h2>카테고리</h2>");
-    for(int i=0 ;i< categorys.length;i++){
-        out.println(categorys[i]+"<br/>");
-    }
+    out.println(categories+"<br/>");
     
     /* String[] order = (String[])params.get("order"); */
     String order = request.getParameter("order");

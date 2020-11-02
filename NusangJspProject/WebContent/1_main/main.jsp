@@ -84,7 +84,8 @@
 					<i id="caretup" class="fas fa-caret-up"></i>
 				</button>
 				
-				<form name="detailSearchForm" id="detailSearchForm" action="/1_main/mainGetParamTest.jsp" method="post">
+				<!-- 폼 시작 -->
+				<form name="detailSearchForm" id="detailSearchForm" action="/1_main/mainGetParamTest.jsp" method="post"> <!-- /1_main/mainGetParamTest.jsp    /search-->
 				<!-- 상세검색 팝업창 -->
 				<div id="detailSearch-pop">
 						<!-- 헤더 -->
@@ -98,7 +99,8 @@
 							<!-- 카테고리 -->
 							<jsp:include page="/0_common/data.jsp"></jsp:include>
 							<% String cate[] = (String[])request.getAttribute("arr_cate"); %>
-							<span class="popIndex ">카테고리</span>
+							<span class="popIndex ">카테고리</span>&nbsp;&nbsp;&nbsp;
+							<label><input id="chooseAll" type="checkbox" checked="checked">모두선택</label>
 							<div class="d-flex flex-wrap">
 								<c:forEach var="ct" items="<%=cate%>">
 									<div class="form-group form-check">
@@ -119,7 +121,7 @@
 								</div>
 								<div class="form-group form-check-inline">
 								  <label class="form-check-label">
-								    <input type="radio" class="form-check-input" name="order" value="관심 순">관심 순
+								    <input type="radio" class="form-check-input" name="order" value="heartcnt">관심 순
 								  </label>
 								</div>
 							</div>

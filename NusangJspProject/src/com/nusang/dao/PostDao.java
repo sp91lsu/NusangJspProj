@@ -108,7 +108,7 @@ public class PostDao extends BasicDao<Post> {
 		return (ArrayList<Post>) postList;
 	}
 	
-	public ArrayList<Post> findPostByDetailSearch(String categories, String order, int distance, Location userLocation) {
+	public ArrayList<Post> findPostByDetailSearch(String searchWord, String categories, String order, int distance, Location userLocation) {
 		SqlSession session = sqlSessionFactory.openSession();
 		List<Post> postList = new ArrayList<Post>();
 		try {
@@ -117,6 +117,9 @@ public class PostDao extends BasicDao<Post> {
 			System.out.println("long : " + userLocation.getLongtitude());
 			map.put("latitude", userLocation.getLatitude());
 			map.put("longtitude", userLocation.getLongtitude());
+			map.put("searchWord", searchWord);
+			map.put("categories", categories);
+			map.put("order", order);
 			map.put("distance", distance);
 			postList = session.selectList(namespace + "findPostByDetailSearch", map);
 			session.commit();

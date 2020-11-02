@@ -1,16 +1,23 @@
 $(function(){
+	//초기 프론트 세팅
 	var h1 = $("#searchBar").css("height");
 	var int_h1 = parseInt(h1);
 	var h1px = int_h1+10+"px";
-	
 	$("#detailSearch-pop").css("top",h1px);
 	
+	$('input[value="5"]').attr("checked","checked");
+	
+	//함수 세팅
 	$("#searchBtn").click(function(){
 		doSearch();
 	});
 	
 	$("#detailSearchForm").submit(function(){
 		doSearch();
+	});
+	
+	$("#chooseAll").click(function(){
+		chooseAll();
 	});
 });
 
@@ -33,6 +40,19 @@ function doDisplay(){
 		cd.css("display","inline-block");
 		cu.css("display","none");
 		pop.css("display","none");
+	}
+}
+
+function chooseAll(){
+	var allBtn = $("#chooseAll");
+	var categories = $("input[name='category']");
+	
+	if(allBtn.is(":checked") == false) {
+		console.log("선택->해제");
+		categories.prop("checked",false);
+	}else{
+		console.log("해제->선택");
+		categories.prop("checked",true);
 	}
 }
 

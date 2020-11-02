@@ -138,8 +138,8 @@
 			AND
 			category in #{categories}
 			AND
-			REGEXP_LIKE(title||bodytext||productname, '10|불|전 ','i')
-			ORDER BY regdate DESC
+			REGEXP_LIKE(title||bodytext||productname, #{searchWord}, 'i')
+			ORDER BY #{order} DESC
 	</select>
 
 	<select id="selectReplyList" resultMap="replyMapper.replyMap">
