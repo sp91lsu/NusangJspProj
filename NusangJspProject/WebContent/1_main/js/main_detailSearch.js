@@ -19,6 +19,31 @@ $(function(){
 	$("#chooseAll").click(function(){
 		chooseAll();
 	});
+	
+	$("#closeBtn").click(function(){
+		$("#detailSearch-pop").hide();
+	});
+	
+	
+	/*$(document).click(function(e){ 
+ 		if(e.target.className =="detailSearch-pop"
+			//|| e.target.className =="form-check-input"
+			//|| e.target.className =="form-check-label"
+			|| e.target.id =="detailSearchBtn"
+			) {return false}
+			
+ 		$("#detailSearch-pop").stop().fadeOut(0);
+	
+		var cd = $("#caretdown");
+		var cu = $("#caretup");
+		if(cu.css("display")=="inline-block"){
+			cd.css("display","inline-block");
+			cu.css("display","none");
+		}
+ 	});*/
+
+
+
 });
 
 

@@ -26,9 +26,19 @@
 	border-radius: 10px;
 }
 
+#detailSearch-pop input{
+	cursor: pointer;
+}
+#detailSearch-pop label{
+	cursor: pointer;
+}
+
 #detailSearch-pop #popHeader{
 	background-color: #1DDB16;
 	border-radius: 10px 10px 0px 0px;
+}
+#detailSearch-pop #closeBtn{
+	cursor: pointer;
 }
 
 #detailSearch-pop #popHtext{
@@ -49,10 +59,3 @@
 	margin-right: 8px;
 	font-size: 25px;
 }
-
-
-
-
-/* .dropdown {
-  overflow: hidden;
-} */

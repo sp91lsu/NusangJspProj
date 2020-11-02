@@ -33,6 +33,17 @@
 									<a class="dropdown-item" href="/myinfo/search">위치 설정</a>
 								</div>
 							</div></li>
+						<li class="nav-item">
+							<div class="dropdown">
+								<button class="btn btn-outline-dark dropdown-toggle btn-sm" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">검색반경: ${user.view_distance}km</button>
+								<c:set var="numbers" value='<%= new String[]{"1","3","5","10"} %>'/>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									<c:forEach var="num" items="${numbers }">
+										<a class="dropdown-item" onclick="location.href='/myinfo/distance?num=${num}'">${num}km</a>
+									</c:forEach>
+								</div>
+							</div>
+						</li>
 						
 					</c:when>
 				
@@ -46,3 +57,4 @@
 		</div>
 	</div>
 </nav>
+
