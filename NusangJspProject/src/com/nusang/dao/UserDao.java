@@ -34,6 +34,7 @@ public class UserDao extends BasicDao<User> {
 		int userno = 0;
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
+			user.setPicture("profile.png");
 			userno = insert(session, user);
 			session.commit();
 			session.close();
