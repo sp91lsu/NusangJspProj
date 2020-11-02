@@ -10,13 +10,13 @@
 	<h2>판매목록</h2>
 	<br><br>
 	
-	<table class="table">
-		<thead class="thead-dark">
+	<table class="table" style = "text-align: center;">
+		<thead class="thead" style = "background: #003E00; color: white;">
 			<tr>
-				<th scope="col">no.</th>
-				<th scope="col">게시글</th>
-				<th scope="col">날짜</th>
-				<th scope="col">구매자명</th>
+				<th scope="col" style = "text-align: center;">no.</th>
+				<th scope="col" style = "text-align: center;">게시글</th>
+				<th scope="col" style = "text-align: center;">날짜</th>
+				<th scope="col" style = "text-align: center;">구매자명</th>
 			</tr>
 		</thead>
 		<% int listCnt = fromRow+1; %>
