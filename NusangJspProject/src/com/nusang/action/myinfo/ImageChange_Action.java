@@ -88,7 +88,7 @@ public class ImageChange_Action implements Action {
 		System.out.println("파일이름 이 뭐야?? --" + user.getPicture());
 		actionForward.setActionType(EActionType.REDIRECT);
 		request.getSession().setAttribute("user", user);
-
+		System.out.println("저장경로" + savePath);
 		return actionForward;
 	}
 
