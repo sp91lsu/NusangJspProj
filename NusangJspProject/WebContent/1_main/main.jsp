@@ -27,7 +27,7 @@
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
 
 	<!-- 검색 섹션 -->
-	<div style="background: #EEE; width: 100%; margin-top: -50px; min-width:1000px;">
+	<div style="background: #EEE; width: 100%; margin-top: -50px;padding-bottom:30px; min-width:1000px;">
 		<!-- 타이틀 -->
 		<h1 class="mt-5" id="titleAddress" align="center"
 			style="padding-top: 50px;">
