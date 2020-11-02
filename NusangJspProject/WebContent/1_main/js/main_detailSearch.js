@@ -4,8 +4,22 @@ $(function(){
 	var h1px = int_h1+10+"px";
 	
 	$("#detailSearch-pop").css("top",h1px);
+	
+	$("#searchBtn").click(function(){
+		doSearch();
+	});
+	
+	$("#detailSearchForm").submit(function(){
+		doSearch();
+	});
 });
 
+
+function doSearch(){
+	var vv = $("#searchBar").val();
+	$("#searchWord").val(vv);
+	$("#submitBtn").trigger("click");
+}
 
 function doDisplay(){
 	var cd = $("#caretdown");

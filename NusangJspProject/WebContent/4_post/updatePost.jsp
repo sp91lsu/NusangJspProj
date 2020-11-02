@@ -40,10 +40,8 @@
 			상품명: <input id="post_prodname" type="text" name="productName" value="${post.productname }" required="required" />
 			</div>
 			<%-- 카테고리 --%>
-			<%
-				String cate[] = new String[]{"디지털/가전", "가구/인테리어", "유아동/유아도서", "생활/가공식품", "스포츠/레저", "여성잡화", "여성의류", "남성패션/잡화", "게임/취미",
-					"뷰티/미용", "반려동물용품", "도서/티켓/음반", "기타 중고물품"};
-			%>
+			<jsp:include page="/0_common/data.jsp"></jsp:include>
+			<% String cate[] = (String[])request.getAttribute("arr_cate"); %>
 
 			<br> 카테고리:
 			<div class="dropdown">

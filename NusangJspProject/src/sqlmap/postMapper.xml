@@ -16,6 +16,7 @@
 		<result property="sellstate" column="sellstate" />
 		<result property="viewcnt" column="viewcnt" />
 		<result property="visible" column="visible" />
+		<result property="heartcnt" column="heartcnt" />
 		<association property="post_picture" column="post_picno" javaType="Post_Picture" select="selectPostPicture" />
 		<association property="user" column="userno" javaType="User" select="selectUser" />
 		<association property="location" column="locationno" javaType="Location" select="selectLocation" />
@@ -121,6 +122,24 @@
 		#{distance}  	
 				  	  
 				  ) ORDER BY regdate DESC
+	</select>
+	
+	<select id="findPostByDetailSearch" resultMap="postResultMap" statementType="CALLABLE">
+		SELECT *
+			FROM sellpost  
+			WHERE 
+				locationno IN
+					(SELECT  loc.locationno FROM location loc 
+						WHERE 
+		 				calc_distance( #{latitude,jdbcType=NUMERIC  , mode=IN}, #{longtitude,jdbcType=NUMERIC  , mode=IN}, loc.latitude, loc.longtitude )
+						<![CDATA[<]]>
+						#{distance}
+						) 
+			AND
+			category in #{categories}
+			AND
+			REGEXP_LIKE(title||bodytext||productname, '10|불|전 ','i')
+			ORDER BY regdate DESC
 	</select>
 
 	<select id="selectReplyList" resultMap="replyMapper.replyMap">

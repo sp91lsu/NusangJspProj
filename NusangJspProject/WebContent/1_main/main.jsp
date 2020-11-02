@@ -43,26 +43,28 @@
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
 
-	
-	<div style="background: #EEE; width: 100%; margin-top: -50px;">
+	<!-- 검색 섹션 -->
+	<div style="background: #EEE; width: 100%; margin-top: -50px; min-width:1000px;">
+		<!-- 타이틀 -->
 		<h1 class="mt-5" id="titleAddress" align="center"
 			style="padding-top: 50px;">
 			<span
 				style="font-family: 'Do Hyeon', sans-serif; font-size: 50px; color: #1DDB16">너의
 				근처</span> ${location.getAddress() } 판매목록
 		</h1>
+		
+		<!-- 검색 존 -->
 		<div id="searchZone" class="input-group w-50 container mt-4">
 			<!-- 검색 바 -->
 			<input id="searchBar" type="text" class="form-control" placeholder="검색 키워드를 입력하세요!">
-			<span class="input-group-btn">
-				<!-- 찾기버튼 -->
-				<button id="searchBtn" class="btn btn-dark " type="button" style="background: #10620A;">찾기</button>
-			</span>
+			<!-- 찾기버튼 -->
+			<button id="searchBtn" class="btn btn-dark " type="button" style="background: #10620A;">찾기</button>
+			<!-- <span class="input-group-btn"></span> -->
 			
 			<!-- 상세검색 -->
 			<c:if test="${user != null }">
 			
-				<div class="dropdown">
+				<%-- <div class="dropdown">
 
 					<button class="btn btn-outline-success dropdown-toggle"
 						type="button" id="dropdownMenu2" data-toggle="dropdown"
@@ -74,35 +76,34 @@
 								value="${num }" onclick="func1('${num }')">${num }km</button>
 						</c:forEach>
 					</div>
-				</div>
+				</div> --%>
 				
-				<!-- <div class="dropdown"> -->
-					<!-- 상세검색 버튼 -->
-					<button id="detailSearchBtn" class="btn btn-success" onclick="doDisplay()">상세검색
-						<i id="caretdown" class="fas fa-caret-down"></i>
-						<i id="caretup" class="fas fa-caret-up"></i>
-					</button>
-					
-					<!-- 상세검색 팝업창 -->
-					<div id="detailSearch-pop">
+				<!-- 상세검색 버튼 -->
+				<button id="detailSearchBtn" class="btn btn-success" onclick="doDisplay()">상세검색
+					<i id="caretdown" class="fas fa-caret-down"></i>
+					<i id="caretup" class="fas fa-caret-up"></i>
+				</button>
+				
+				<form name="detailSearchForm" id="detailSearchForm" action="/1_main/mainGetParamTest.jsp" method="post">
+				<!-- 상세검색 팝업창 -->
+				<div id="detailSearch-pop">
 						<!-- 헤더 -->
 						<div id="popHeader" class="d-flex">
 							<span id="popHtext" class="mr-auto">상세검색</span>
 							<i class="fas fa-times"></i>
 						</div>
-						
-						<form name="detailSearchForm" action="">
+							<!-- 검색어 -->
+							<input type="hidden" class="form-group" id="searchWord" name="searchWord">
+							
 							<!-- 카테고리 -->
-							<%
-								String cate[] = new String[]{"디지털/가전", "가구/인테리어", "유아동/유아도서", "생활/가공식품", "스포츠/레저", "여성잡화", "여성의류", "남성패션/잡화", "게임/취미",
-									"뷰티/미용", "반려동물용품", "도서/티켓/음반", "기타 중고물품"};
-							%>
+							<jsp:include page="/0_common/data.jsp"></jsp:include>
+							<% String cate[] = (String[])request.getAttribute("arr_cate"); %>
 							<span class="popIndex ">카테고리</span>
 							<div class="d-flex flex-wrap">
 								<c:forEach var="ct" items="<%=cate%>">
-									<div class="form-check">
+									<div class="form-group form-check">
 									  <label class="form-check-label">
-									    <input type="checkbox" class="form-check-input" value="">${ct }
+									    <input type="checkbox" class="form-check-input" name="category" value="${ct }" checked="checked">${ct }
 									  </label>
 									</div>
 								</c:forEach>
@@ -111,14 +112,14 @@
 							<!-- 정렬 -->
 							<span class="popIndex">정렬</span>
 							<div>
-								<div class="form-check-inline">
+								<div class="form-group form-check-inline">
 								  <label class="form-check-label">
-								    <input type="radio" class="form-check-input" name="optradio">최신 순
+								    <input type="radio" class="form-check-input" name="order" value="postno" checked="checked">최신 순
 								  </label>
 								</div>
-								<div class="form-check-inline">
+								<div class="form-group form-check-inline">
 								  <label class="form-check-label">
-								    <input type="radio" class="form-check-input" name="optradio">관심 순
+								    <input type="radio" class="form-check-input" name="order" value="관심 순">관심 순
 								  </label>
 								</div>
 							</div>
@@ -126,8 +127,8 @@
 							<!-- 가격범위 -->
 							<span class="popIndex">가격범위</span>
 								<div class="form-group d-flex ml-3 mr-3 align-items-center">
-									<input type="text" class="form-control" id="price_min">&nbsp;&nbsp;~&nbsp;&nbsp;
-									<input type="text" class="form-control" id="price_max">
+									<input type="text" class="form-control" name="price_min">&nbsp;&nbsp;~&nbsp;&nbsp;
+									<input type="text" class="form-control" name="price_max">
 								</div>
 							<hr>
 							<!-- 동네범위 -->
@@ -135,38 +136,41 @@
 							<c:set var="arr" value='<%=new String[] { "1", "3", "5", "10" }%>' />
 							<div>
 								<c:forEach items="${arr}" var="num">
-									<div class="form-check-inline">
+									<div class="form-group form-check-inline">
 									  <label class="form-check-label">
-									    <input type="radio" class="form-check-input" name="optradio">${num }km
+									    <input type="radio" class="form-check-input" name="view_distance" value="${num }">${num }km
 									  </label>
 									</div>
 								</c:forEach>
 							</div>
 							<hr>
+							<!-- 버튼들 -->
 							<div class="d-flex justify-content-end">
 								<button>기본값</button>
 								<button></button>
 								<button></button>
-								<button></button>
+								<button id="submitBtn" type="submit">검색</button>
 							</div>
-						</form>
 					</div>
-				</div>
+					</form>
 			</c:if>
-			<script type="text/javascript" src="/1_main/js/main_detailSearch.js"></script>
-		<!-- </div> -->
+			
+			
 		
-		<div id="cate-post" class="d-flex">
-			<div id="cate" class="mr-auto"></div>
+	</div>
+	
+	<!-- 포스트 섹션 -->
+	<div class="container" style="min-height: 1000px; min-width:1000px;">
+
+		<!-- 글쓰기버튼 -->
+		<div class="d-flex justify-content-end">
 			<button type="button" class="btn btn-dark" id="btnPost"
 				style="background: #10620A;"
-				onclick="location.href='/post/moveMkPost'">글쓰기</button>
+				onclick="location.href='/post/moveMkPost'">글쓰기
+			</button>
 		</div>
-	</div>
-	<div class="container" style="min-height: 1000px;">
 
-		<!-- 카테고리, 글쓰기버튼 -->
-
+		<!-- 포스트 리스트 -->
 		<div id="postListSection"
 			class="d-flex flex-wrap align-content-start justify-content-center"
 			style="padding-top: 50px;">
@@ -217,6 +221,9 @@
 		</div>
 	</div>
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
+	
+	
+	<script type="text/javascript" src="/1_main/js/main_detailSearch.js"></script>
 </body>
 </html>
 

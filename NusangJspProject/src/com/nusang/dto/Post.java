@@ -24,6 +24,7 @@ public class Post {
 	private String category;
 	private int sellstate;
 	private int viewcnt;
+	private int heartcnt;
 	private int visible;
 	private Location location;
 	private Post_Picture post_picture;

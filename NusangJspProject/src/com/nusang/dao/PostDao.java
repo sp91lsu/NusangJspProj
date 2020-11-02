@@ -107,6 +107,28 @@ public class PostDao extends BasicDao<Post> {
 
 		return (ArrayList<Post>) postList;
 	}
+	
+	public ArrayList<Post> findPostByDetailSearch(String categories, String order, int distance, Location userLocation) {
+		SqlSession session = sqlSessionFactory.openSession();
+		List<Post> postList = new ArrayList<Post>();
+		try {
+			Map<String, Object> map = new HashMap<String, Object>();
+			System.out.println("lat : " + userLocation.getLatitude());
+			System.out.println("long : " + userLocation.getLongtitude());
+			map.put("latitude", userLocation.getLatitude());
+			map.put("longtitude", userLocation.getLongtitude());
+			map.put("distance", distance);
+			postList = session.selectList(namespace + "findPostByDetailSearch", map);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.rollback();
+		} finally {
+			session.close();
+		}
+		
+		return (ArrayList<Post>) postList;
+	}
 
 	public int sellPost(int postno, int reserno) {
 

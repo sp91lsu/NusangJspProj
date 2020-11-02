@@ -21,6 +21,12 @@ public class SetWatchListAction implements Action {
 		User user = ConAsist.getSessionUser(request);
 		int postno = Integer.parseInt(request.getParameter("postno"));
 		Post post = PostDao.getInstance().findByNo(postno);
+		
+		//dto post.java와 table SELLPOST 에 heartcnt +1
+		int newheartcnt = post.getHeartcnt()+1;
+		post.setHeartcnt(newheartcnt);
+		PostDao.getInstance().updateBy(postno, "heartcnt", newheartcnt);
+		
 		WatchList wl = WatchList.builder().post(post).userno(user.getUserno()).build();
 		Integer result = WatchListDao.getInstance().insert(wl);
 		ActionForward af = new ActionForward();
