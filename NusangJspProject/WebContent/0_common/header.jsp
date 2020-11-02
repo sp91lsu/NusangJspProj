@@ -48,7 +48,7 @@
 		<c:choose>
 			<c:when test="${user != null}">
 				<div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-family: 'Noto Sans KR', sans-serif;">
-					<div class="navbar-nav pull-right" style="margin-left: 5%">
+					<div class="navbar-nav pull-right" style="margin-left: -10%">
 
 						<li class="nav-item"><a class="nav-link"
 							href="/myinfo/profile" style="color: #22741C">${user.nickname}
