@@ -12,7 +12,7 @@
 		<c:when test="${empty user.picture}">
 			<img src="/img/profile.png" alt="..." id="profileImg">
 		</c:when>
-		<c:when test="${user.picture == '프로필 기본이미지.jpg'}">
+		<c:when test="${user.picture == 'profile.png'}">
 			<img src="/img/profile.png" alt="..." id="profileImg">
 		</c:when>
 		<c:otherwise>

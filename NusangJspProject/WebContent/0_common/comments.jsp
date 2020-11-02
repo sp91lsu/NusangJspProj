@@ -14,7 +14,6 @@ a<%@page import="com.nusang.dao.PostDao"%>
 				<div class = 'commentSection d-flex'>
 					<div class='cProfile'>
 						<img src='/upload/${reply.user.picture}'>
-						${reply.user.picture}
 					</div>
 					
 					<input type='hidden' id='replyno' value='${reply.replyno}'>
@@ -25,8 +24,7 @@ a<%@page import="com.nusang.dao.PostDao"%>
 							</div>
 	
 							<c:choose>
-								<c:when test='${user.userno==post.user.userno}'>
-									<!--내가 쓴 댓글이면-->
+								<c:when test='${user.userno==post.user.userno}'> <!--내가 쓴 댓글이면-->
 									<ul class='d-flex c_ud'>
 										<div>
 											<li class='c_update'>댓글 수정</li>
@@ -38,8 +36,7 @@ a<%@page import="com.nusang.dao.PostDao"%>
 									</ul>
 								</c:when>
 	
-								<c:otherwise>
-									<!--내 댓글이 아니면-->
+								<c:otherwise><!--내 댓글이 아니면-->
 									<div></div>
 	
 									<div></div>
@@ -48,7 +45,17 @@ a<%@page import="com.nusang.dao.PostDao"%>
 						</div>
 	
 						<div class='cSection'>
-							${reply.textbody}
+							<c:choose>
+								<c:when test="${reply.state==0 || 
+								post.user.userno == user.userno || 
+								user.userno == reply.user.userno}">
+									${reply.textbody}
+								</c:when>
+								
+								<c:otherwise>
+									비밀댓글입니다
+								</c:otherwise>
+							</c:choose>
 						</div>
 	
 						<div class='cFooter'>
@@ -152,65 +159,68 @@ ud();
 
 /*댓글 추가*/
 	$("#addComments").click(function(){
-		$.ajax({
-			url : "/post/addComments",
-			type : "POST",
-			data : {
-				"postno" : <%=request.getParameter("postno")%>,
-				"replyText" : $("#replyComments").val(),
-				"secretmode" : $("#secretmode").val()
-			},
-			success : function(data) {
-				if (data > 0) {//성공일때
-					let today = new Date();
-					let year = today.getFullYear(); // 년도
-					let month = today.getMonth() + 1;  // 월
-					let date = today.getDate();  // 날짜
-					let hours = today.getHours(); // 시
-					let minutes = today.getMinutes();  // 분
-					let time = year+'.'+month+"."+date+" "+hours+":"+minutes;
+		if ($("#replyComments").val() == "") {
+			alert("댓글을 입력해 주세요");
+		}else{
+			$.ajax({
+				url : "/post/addComments",
+				type : "POST",
+				data : {
+					"postno" : <%=request.getParameter("postno")%>,
+					"replyText" : $("#replyComments").val(),
+					"secretmode" : $("input[id='secretmode']:checked").length
+				},
+				success : function(data) {
+					if (data > 0) {//성공일때
+						let today = new Date();
+						let year = today.getFullYear(); // 년도
+						let month = today.getMonth() + 1;  // 월
+						let date = today.getDate();  // 날짜
+						let hours = today.getHours(); // 시
+						let minutes = today.getMinutes();  // 분
+						let time = year+'.'+month+"."+date+" "+hours+":"+minutes;
+						
+						$(".addComments").append(
+								"<div class='comment'>" +
+								"<hr>" +
+								"<div class = 'commentSection d-flex'>" +
+									"<div class='cProfile'>" +
+										"<img src='/upload/${user.picture}'>" +
+									"</div>" +
+									
+									"<input type='hidden' id='replyno' value="+ data +">" +
+									"<div class='cContent'>" +
+										"<div class='cHeader d-flex'>" +
+											"<div>" +
+												"${user.nickname}" +
+											"</div>" +
+													"<ul class='d-flex c_ud'>" +
+														"<div>" +
+															"<li class='c_update'>댓글 수정</li>" +
+														"</div>" +
 					
-					console.log("시크릿넘버 : " + $("#secretmode").val());
-					$(".addComments").append(
-							"<div class='comment'>" +
-							"<hr>" +
-							"<div class = 'commentSection d-flex'>" +
-								"<div class='cProfile'>" +
-									"<img src='/upload/${user.picture}'>" +
-								"</div>" +
-								
-								"<input type='hidden' id='replyno' value="+ data +">" +
-								"<div class='cContent'>" +
-									"<div class='cHeader d-flex'>" +
-										"<div>" +
-											"${user.nickname}" +
+														"<div>" +
+															"<li class='c_delete'>댓글 삭제</li>" +
+														"</div>" +
+													"</ul>" +
+										"</div>"+
+					
+										"<div class='cSection'>" +
+											$("#replyComments").val() +
 										"</div>" +
-												"<ul class='d-flex c_ud'>" +
-													"<div>" +
-														"<li class='c_update'>댓글 수정</li>" +
-													"</div>" +
-				
-													"<div>" +
-														"<li class='c_delete'>댓글 삭제</li>" +
-													"</div>" +
-												"</ul>" +
-									"</div>"+
-				
-									"<div class='cSection'>" +
-										$("#replyComments").val() +
-									"</div>" +
-				
-									"<div class='cFooter'>" +
-										time +
+					
+										"<div class='cFooter'>" +
+											time +
+										"</div>" +
 									"</div>" +
 								"</div>" +
-							"</div>" +
-						"</div>"
-					);
-					$("#replyComments").val("");
-					ud();
+							"</div>"
+						);
+						$("#replyComments").val("");
+						ud();
+					}
 				}
-			}
-		});
+			});
+		}
 	})
 </script>

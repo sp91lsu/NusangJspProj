@@ -18,20 +18,14 @@ public class AddComments_Aciton implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("UTF-8");
 
-		int state = request.getParameter("secretmode").equals("on") ? 0 : 1;
-		System.out.println("댓글 등록");
+		int state = Integer.parseInt(request.getParameter("secretmode"));
+		System.out.println("댓글 등록" + "스테이트:" + state);
+		System.out.println("postno:" + request.getParameter("postno"));
 		System.out.println("replyText : " + request.getParameter("replyText"));
-		System.out.println(request.getParameter("postno"));
-		System.out.println("secretmode" + request.getParameter("secretmode"));
 
 		Reply reply = Reply.builder().postno(Integer.parseInt(request.getParameter("postno")))
 				.textbody(request.getParameter("replyText")).state(state)
 				.user((User) request.getSession().getAttribute("user")).child_replyno(null).build();
-		/*
-		 * Map<String, Object> map = new HashMap<String, Object>(); map.put("postno",
-		 * )); map.put("textbody", ); map.put("state", state); map.put("userno",
-		 * userno); map.put("state", 1); map.put("child_replyno", null);
-		 */
 		ReplyDao.getInstance().insert(reply);
 		Integer replyno = (int) reply.getReplyno();
 
