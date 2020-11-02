@@ -103,8 +103,19 @@
 		})
 
 	})
+
 })()
 
 function chkDelete(postno) {
-	location.href = '/post/deletePost?postno=' + postno;
+
+	var modal = $('#modal_refund');
+
+	$(modal).modal("show");
+
+	var modalY = $('#modal_refund #modalY');
+	console.log($(modalY).text());
+	$(modalY).click(function(e) {
+		$(modal).modal('hide').data('bs.modal', null);
+		location.href = '/post/deletePost?postno=' + postno;
+	})
 }

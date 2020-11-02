@@ -20,4 +20,5 @@ public class Payment_Market {
 	private Date regdate;// 날짜
 	private String imp_uid;// 등록 아이디. 제일 앞에 띄우기
 	private long price;
+	private Post post;
 }

@@ -108,7 +108,7 @@ WHERE
     </update>
 
 
-	<select id="getPMListById" resultType="Payment_Market">
+	<select id="getPMListById" resultMap="payment_MarketMapper.payment_MarketMap">
     SELECT * FROM Payment_Market WHERE userno = #{userno}  ORDER BY regdate DESC
 </select>
 	<select id="getPUListById" resultMap="payment_UserMapper.payment_UserResultMap">

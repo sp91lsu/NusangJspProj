@@ -22,7 +22,6 @@ public class RefundAction implements Action {
 //		"merchant_uid" : "mid_mermer", // 주문번호
 //		"cancel_request_amount" : 100, // 환불금액
 //		"reason" : "테스트 결제 환불", // 환불사유
-		JsonNode refundNode = ConAsist.getJSON(request);
 		// {"imp_uid":"imp_670663832422","merchant_uid":"mid_123","status":"paid"}
 		////////////////////////////////////////////// 토큰발행
 		System.out.println();
@@ -55,11 +54,10 @@ public class RefundAction implements Action {
 
 		header.put("Authorization", "Bearer " + accessToken);
 		client = new MyHttpPost("https://api.iamport.kr/payments/cancel", EContentType.JSON);
-
 		client.setHeader(header);
 		ObjectNode reqBodyNode = m.createObjectNode();
-		reqBodyNode.put("reason", "5분 내 판매 게시글 삭제");
-		reqBodyNode.put("merchant_uid",  request.getParameter("merchant_uid"));
+		reqBodyNode.put("reason", "10분 내 판매 게시글 삭제");
+		reqBodyNode.put("imp_uid",  request.getParameter("imp_uid"));
 		client.setBody(reqBodyNode);
 		resNode = client.request();
 

@@ -79,7 +79,7 @@
  		</selectKey>
 		INSERT INTO SELLPOST
 		(title,bodytext,price,category,userno,productname,locationno,post_picno)
-		VALUES (#{title}, #{bodytext}, #{price},#{category},#{userno},#{productname},#{locationno},#{post_picno}
+		VALUES (#{title}, #{bodytext}, #{price},#{category},#{user.userno},#{productname},#{location.locationno},#{post_picture.post_picno}
 		)
 	</insert>
 	<!-- ,#{picture, jdbcType=BLOB},#{latitude, jdbcType=FLOAT},#{longtitude, 

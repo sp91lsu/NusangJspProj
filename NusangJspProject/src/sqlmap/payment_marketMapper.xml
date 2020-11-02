@@ -5,7 +5,19 @@
  
 <mapper namespace="payment_MarketMapper">
 
-	
+	<resultMap id="payment_MarketMap" type="Payment_Market">
+
+		<id property="ph_marketno" column="ph_marketno" />
+		<result property="paymenttype" column="paymenttype" />
+		<result property="state" column="state" />
+		<result property="name" column="name" />
+		<result property="userno" column="userno" />
+		<result property="regdate" column="regdate" />
+		<result property="imp_uid" column="imp_uid" />
+		<result property="price" column="price" />
+		<association property="post" column="postno" javaType="Post" select="securityMapper.selectScPost" />
+
+	</resultMap>
 	
       <select id="selectAll" resultType="Payment_Market">
         SELECT
@@ -27,8 +39,8 @@
        <selectKey keyProperty="ph_marketno" resultType="int" order="AFTER">			   
     	SELECT SEQ_PAYMENT_MARKET_PH_MARKETNO.CURRVAL FROM DUAL
  		</selectKey>
-        INSERT INTO PAYMENT_MARKET (paymenttype,state,name,userno,imp_uid,price)
-         VALUES (#{paymenttype}, #{state}, #{name}, #{userno},#{imp_uid},#{price}) 
+        INSERT INTO PAYMENT_MARKET (paymenttype,state,name,userno,imp_uid,price,postno)
+         VALUES (#{paymenttype}, #{state}, #{name}, #{userno},#{imp_uid},#{price},#{post.postno}) 
     </insert>
     
     

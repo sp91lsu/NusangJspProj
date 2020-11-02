@@ -35,24 +35,16 @@ public class PostDao extends BasicDao<Post> {
 
 	public int insertPost(Post post, List<String> fileSystemNames, Payment_Market pm) {
 		SqlSession session = sqlSessionFactory.openSession();
-		int postno = 0;
 		try {
-			Payment_MarketDao.getInstance().insert(session, pm);
+			
 			LocationDao.getInstance().insert(session, post.getLocation());
 			Post_PictureDao.getInstance().insert(session, post.getPost_picture()); // 1
 			Map<String, Object> map = new HashMap<String, Object>();
 			System.out.println("post getPost_picno 값 : " + post.getPost_picture().getPost_picno());
 			System.out.println("post location 값 : " + post.getLocation().getLocationno());
-			map.put("title", post.getTitle());
-			map.put("bodytext", post.getBodytext());
-			map.put("price", post.getPrice());
-			map.put("category", post.getCategory());
-			map.put("userno", post.getUser().getUserno());
-			map.put("productname", post.getProductname());
-			map.put("locationno", post.getLocation().getLocationno());
-			map.put("post_picno", post.getPost_picture().getPost_picno());
-			insert(session, map);
-			postno = (int) map.get("postno");
+			insert(session, post);
+			pm.setPost(post);
+			Payment_MarketDao.getInstance().insert(session, pm);
 
 			session.commit();
 		} catch (Exception e) {
@@ -62,7 +54,7 @@ public class PostDao extends BasicDao<Post> {
 			session.close();
 		}
 
-		return postno;
+		return post.getPostno();
 	}
 
 	public int updatePost(Post post, List<String> fileSystemNames) {
