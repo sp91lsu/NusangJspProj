@@ -209,7 +209,16 @@
 							<fmt:formatNumber value="${post.price }" pattern="#,###" />원
 							</div>
 						</h6>
-						<h6 id="card_addr" style="font-family: 'Noto Sans KR', sans-serif; font-size:12px; padding-left:7px; ">${post.location.getAddress()}</h6>
+						<h6 id="card_addr" style="font-family: 'Noto Sans KR', sans-serif; font-size:12px; padding-left:7px; ">${post.location.getAddress()}
+						
+						<c:choose>
+							<%-- <c:when test="${post.sellstate == 0 }"><input type = "button" value = "판매중" style = "margin-left: 30px;"></c:when> --%>
+							<c:when test="${post.sellstate == 0 }"><button style = "margin-left: 28px; cursor: default;">판매중</button></c:when>
+							<c:when test="${post.sellstate == 1 }"><button style = "margin-left: 28px; cursor: default; background: #1DDB16;">예약중</button></c:when>
+							<c:when test="${post.sellstate == 2 }"><button style = "margin-left: 15px; cursor: default; background: black;color: white;">판매 완료</button></c:when>
+						</c:choose>
+						
+						</h6> 
 						<h8 id="post_comment" style=" padding-left:7px;">댓글
 						[${post.replyList.size()}]</h8> <h8>·</h8> <h8 id="post_interest">관심
 						[${post.watchList.size() }]</h8> <h8>·</h8> <h8 id="post_view">조회 [${post.viewcnt }]</h8>
