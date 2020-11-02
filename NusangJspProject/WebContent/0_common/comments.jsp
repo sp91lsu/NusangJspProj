@@ -53,7 +53,7 @@ a<%@page import="com.nusang.dao.PostDao"%>
 								</c:when>
 								
 								<c:otherwise>
-									비밀댓글입니다
+									비밀댓글입니다.
 								</c:otherwise>
 							</c:choose>
 						</div>
@@ -180,6 +180,12 @@ ud();
 						let minutes = today.getMinutes();  // 분
 						let time = year+'.'+month+"."+date+" "+hours+":"+minutes;
 						
+						var comment= "";
+						if($("input[id='secretmode']:checked").length==0){/*공개댓글*/
+							comment += $("#replyComments").val();
+						}else{/*비공개 댓글*/
+							comment += "(비밀댓글입니다.)" + $("#replyComments").val();
+						}
 						$(".addComments").append(
 								"<div class='comment'>" +
 								"<hr>" +
@@ -206,7 +212,7 @@ ud();
 										"</div>"+
 					
 										"<div class='cSection'>" +
-											$("#replyComments").val() +
+											comment +
 										"</div>" +
 					
 										"<div class='cFooter'>" +
