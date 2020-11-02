@@ -39,7 +39,7 @@ public class PostController extends HttpServlet {
 		String requestPage = ConAsist.getRequestName(request);
 		actionForward = ConAsist.checkLogin(request);
 		if (actionForward == null) {
-
+			
 			try {
 				switch (requestPage) {
 

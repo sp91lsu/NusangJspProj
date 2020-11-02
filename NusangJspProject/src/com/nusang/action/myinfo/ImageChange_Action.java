@@ -47,15 +47,6 @@ public class ImageChange_Action implements Action {
 		int read = 0;
 		byte[] buf = new byte[1024];
 
-		// upload할 경로가 없을때 생성
-		File mkFile = new File(savePath );
-		// !표를 붙여주어 파일이 존재하지 않는 경우의 조건을 걸어줌
-		if (!mkFile.exists()) {
-			// 디렉토리 생성 메서드
-			mkFile.mkdirs();
-			System.out.println("created directory successfully!");
-		}
-
 		try {
 			MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, format,
 					new DefaultFileRenamePolicy());

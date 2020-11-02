@@ -1,4 +1,4 @@
-<%@page import="com.nusang.dao.PostDao"%>
+a<%@page import="com.nusang.dao.PostDao"%>
 <%@page import="com.nusang.dto.Post"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -13,16 +13,8 @@
 				<hr>
 				<div class = 'commentSection d-flex'>
 					<div class='cProfile'>
-						<c:choose>
-							<c:when test="${reply.user.picture == '프로필 기본이미지.jpg'}">
-								<img src='/img/ㄴㄱㅁㅋ-logo.png'>
-							</c:when>
-							
-							<c:otherwise>
-								<img src='/upload/${reply.user.picture}'>
-							</c:otherwise>
-						</c:choose>
-						
+						<img src='/upload/${reply.user.picture}'>
+						${reply.user.picture}
 					</div>
 					
 					<input type='hidden' id='replyno' value='${reply.replyno}'>
@@ -184,7 +176,7 @@ ud();
 							"<hr>" +
 							"<div class = 'commentSection d-flex'>" +
 								"<div class='cProfile'>" +
-									"<img src='/img/logo.png'>" +
+									"<img src='/upload/${user.picture}'>" +
 								"</div>" +
 								
 								"<input type='hidden' id='replyno' value="+ data +">" +
