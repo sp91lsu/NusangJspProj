@@ -10,10 +10,10 @@
 	<!-- 프로필 사진 영역 -->
 	<c:choose>
 		<c:when test="${empty user.picture}">
-			<img src="/img/ㄴㄱㅁㅋ-logo.png" alt="..." id="profileImg">
+			<img src="/img/profile.png" alt="..." id="profileImg">
 		</c:when>
 		<c:when test="${user.picture == '프로필 기본이미지.jpg'}">
-			<img src="/img/ㄴㄱㅁㅋ-logo.png" alt="..." id="profileImg">
+			<img src="/img/profile.png" alt="..." id="profileImg">
 		</c:when>
 		<c:otherwise>
 			<img src="/upload/${user.picture}" alt="..." id="profileImg">

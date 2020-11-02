@@ -11,14 +11,14 @@
 	<h2>구매내역</h2>
 	<br><br>
 	
-	<table class="table">
-		<thead class="thead-dark">
+	<table class="table" style = "text-align: center;">
+		<thead class="thead" style = "background: #003E00; color: white;">
 			<tr>
-				<th scope="col">no.</th>
-				<th scope="col">구매품목</th>
-				<th scope="col">금액</th>
-				<th scope="col">날짜</th>
-				<th scope="col">판매자명</th>
+				<th scope="col" style = "text-align: center;">no.</th>
+				<th scope="col" style = "text-align: center;">구매품목</th>
+				<th scope="col" style = "text-align: center;">금액</th>
+				<th scope="col" style = "text-align: center;">날짜</th>
+				<th scope="col" style = "text-align: center;">판매자명</th>
 			</tr>
 		</thead>
 		<% int listCnt = fromRow+1; %>
