@@ -184,9 +184,9 @@
 						</c:choose>
 						
 						</h6> 
-						<h8 id="post_comment" style=" padding-left:7px;">댓글
-						[${post.replyList.size()}]</h8> <h8>·</h8> <h8 id="post_interest">관심
-						[${post.watchList.size() }]</h8> <h8>·</h8> <h8 id="post_view">조회 [${post.viewcnt }]</h8>
+						<h8 id="post_comment" style=" padding-left:7px;font-size: 2px;">댓글
+						[${post.replyList.size()}]</h8> <h8>·</h8> <h8 id="post_interest" style = "font-size: 2px;">관심
+						[${post.watchList.size() }]</h8> <h8>·</h8> <h8 id="post_view" style = "font-size: 2px;">조회 [${post.viewcnt }] · </h8><span style = "font-size: 10px;font-weight: bold;">${post.calcTime() }</span>
 						<button id="viewBtn" class="btn btn-success"
 							style="width: 190px; margin-top: 10px; background: #23A41A; padding-left: 0px;"
 							onclick="location.href='/post/readPost?postno=${post.postno}'">
