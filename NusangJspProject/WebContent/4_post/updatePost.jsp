@@ -54,7 +54,7 @@
 					</c:forEach>
 				</ul>
 			</div>
-			<span></span> <input type="hidden" name="category" value="" required="required"> <br>
+			<span></span> <input type="hidden" name="category" value="${post.category }" required="required"> <br>
 
 			<script type="text/javascript">
 				function changeCateName(choice) {
@@ -133,14 +133,6 @@
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
-	$("#buyBtn").click(testBuyProduct);
-
-	function testBuyProduct() {
-		$("#pm_merchant_uid").val("merach");
-		$("#pm_imp_uid").val("uiduid");
-		$("#pm_paid_amount").val(123123);
-		document.createPostForm.submit();
-	}
 
 	/* 이미지추가 관련 스크립트  */
 	var i = 0;
@@ -159,7 +151,44 @@
 		console.log('현제:' + i);
 		i--;
 	}
+
+	
+	//createPost 유효성 검사
+	$("#buyBtn").click(function(){
+
+	 	var title = createPostForm.title.value;
+	 	var productName = createPostForm.productName.value;
+		var category = createPostForm.category.value;
+		var price = createPostForm.price.value;
+		var bodytext = createPostForm.bodytext.value;
+	
+		if(!title){
+			alert('제목을 입력해 주세요.');
+			return;
+		} else if(!productName){
+			alert('상품명을 입력해 주세요.' );
+			return;
+		} else if(!category){
+			alert('카테고리를 입력해 주세요.' );
+			return;
+		} else if(!price){
+			alert('가격을 입력해 주세요.' );
+			return;
+		} else if(!bodytext){
+			alert('내용을 입력해 주세요.' );
+			return;
+		}
+		
+		document.createPostForm.submit();
+	});
+ 
+
 </script>
+
+
+
+
+
 <!-- <script type="text/javascript" src="/4_post/createPost.js">
 	
 </script> -->
