@@ -71,9 +71,9 @@ public class KakaoBO extends BasicBO {
 		// 토큰 발급받을 수 있는 코드
 
 		MyHttpPost httpPost = new MyHttpPost("https://kapi.kakao.com/v1/user/unlink", EContentType.FORM);
-		ObjectNode createTokenNode = m.createObjectNode();
-		createTokenNode.put("Authorization", "Bearer " + oAuthToken.getAccess_token());
-		httpPost.setBody(createTokenNode);
+		Map<String, String> reqUserInfoMap = new HashMap<String, String>();
+		reqUserInfoMap.put("Authorization", "Bearer " + oAuthToken.getAccess_token());
+		httpPost.setHeader(reqUserInfoMap);
 
 		JsonNode resObject = httpPost.request();
 
