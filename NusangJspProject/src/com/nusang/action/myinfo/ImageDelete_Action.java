@@ -33,7 +33,7 @@ public class ImageDelete_Action implements Action {
 //		String fileSystemName = "";
 //		String originalFileName = "";
 //		
-		String initImg = "프로필 기본이미지.jpg";
+		String initImg = "profile.png";
 
 //		System.out.println("request getContentType : " + request.getContentType());
 //		// ---> request getContentType : multipart/form-data;
