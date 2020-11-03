@@ -62,7 +62,7 @@
 	
 	function getTimeHTML(distance) {
 
-		distance = Math.floor(distance);
+		distance = Math.floor(distance) + 50;
 	    // 도보의 시속은 평균 4km/h 이고 도보의 분속은 67m/min입니다
 	    var walkkTime = distance / 67 | 0;
 	    var walkHour = '', walkMin = '';
