@@ -8,6 +8,36 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
+<style>
+.info {
+	position: relative;
+	top: 5px;
+	left: 5px;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	border-bottom: 2px solid #ddd;
+	font-size: 12px;
+	padding: 5px;
+	background: #fff;
+	list-style: none;
+	margin: 0;
+}
+
+.info:nth-of-type(n) {
+	border: 0;
+	box-shadow: 0px 1px 2px #888;
+}
+
+.info .label {
+	display: inline-block;
+	width: 50px;
+}
+
+.number {
+	font-weight: bold;
+	color: #00a0e9;
+}
+</style>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -31,9 +61,9 @@
 				<!-- 프로필 -->
 				<div id="profile" class="d-flex mr-auto" style="width: 240px; border-right: 1px solid lightgray;">
 					<div id="profile_left">
-					  
-    
-						<img  style="border-radius: 70%; overflow: hidden; height: 70px; width: 70px;" src='/upload/${post.user.picture}'>
+
+
+						<img style="border-radius: 70%; overflow: hidden; height: 70px; width: 70px;" src='/upload/${post.user.picture}'>
 					</div>
 
 					<div id="profile_right">
@@ -254,7 +284,9 @@
 			<br>
 
 			<!-- 지도 -->
-			<h3 style="margin-bottom: 5px;"><img id="l_icon" src="/img/location_icon.png">여기에서 만나요</h3>
+			<h3 style="margin-bottom: 5px;">
+				<img id="l_icon" src="/img/location_icon.png">여기에서 만나요
+			</h3>
 			<div id="map" style="width: 100%; height: 350px;"></div>
 
 			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1db6aaded4b028f19067fca5394bb829"></script>
@@ -283,7 +315,8 @@
 		<jsp:param name="body" value='<%=URLEncoder.encode("구매 예약을 취소하시겠습니까?", "UTF-8")%>' />
 	</jsp:include>
 
-
+	<input id="userLongtitude" value="${user.location.longtitude }">
+	<input id="userLatitude" value="${user.location.latitude }">
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
 	<script type="text/javascript" src="/4_post/js/readPost2.js"></script>
 	<script src="/4_post/js/readPost_Map.js?v=<%=System.currentTimeMillis()%>"></script>
