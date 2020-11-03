@@ -12,8 +12,8 @@
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
 
-	<div class="container">
-
+	<div class="container" style="min-height: 500px;">
+		<br>
 		<div id="body">${error}</div>
 	</div>
 
