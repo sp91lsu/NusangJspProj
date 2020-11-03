@@ -103,3 +103,4 @@
 	</div>
 </nav>
 
+<script type="text/javascript" src="/0_common/js/header.js"></script>
