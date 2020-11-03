@@ -18,16 +18,17 @@ li {
 }
 
 .cProfile {
-	width: 70px;
+	width: 75px;
 }
 
 .cProfile>img {
-	width: 70px;
-	height: 70px;
+	width: 75px;
+	height: 75px;
 }
 
 .cContent {
-	width: 730px;
+	width: 710px;
+	margin-left: 20px;
 }
 
 /*----------------------------------------------------------------------------------*/
@@ -41,7 +42,8 @@ li {
 }
 
 .cHeader>div:nth-child(1) { /*닉네임*/
-	margin: 0px 470px 0px 10px;
+	width: 130px;
+	margin: 0px 400px 0px 10px;
 	font-weight: bold;
 }
 

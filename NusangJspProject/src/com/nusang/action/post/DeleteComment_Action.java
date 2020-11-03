@@ -15,8 +15,9 @@ public class DeleteComment_Action implements Action {
 		ActionForward actionForward = new ActionForward();
 		int replyno = Integer.parseInt(request.getParameter("replyno"));
 		ReplyDao.getInstance().deleteBy(replyno);
-		
-		actionForward.setAsyncData(""+replyno);
+
+		actionForward.setAsyncData("" + replyno);
+		System.out.println(replyno + "번 댓글 삭제");
 		return actionForward;
 	}
 

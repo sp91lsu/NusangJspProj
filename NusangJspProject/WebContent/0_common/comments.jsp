@@ -53,11 +53,16 @@
 								<c:when test="${(reply.state==1) && 
 								(post.user.userno == user.userno || 
 								reply.user.userno == user.userno)}"><!--비공개글 && (글 작성자 || 댓글작성자)-->
-									(비밀댓글입니다) ${reply.textbody}
+									<span style = 'color: lightgray;'>
+										(비밀댓글입니다)
+									</span>
+									${reply.textbody}
 								</c:when>
 								
 								<c:otherwise>
-									비밀댓글입니다.
+									<span style = 'color: lightgray;'>
+										비밀댓글입니다.
+									</span>
 								</c:otherwise>
 							</c:choose>
 						</div>
@@ -152,7 +157,6 @@ function ud(){
 			},
 			success : function(data){
 				if (data != -1) {//성공일때
-					console.log(replyno.val()+"번 댓글 삭제");
 					commentlocation.remove();
 				}
 			}
@@ -163,7 +167,8 @@ ud();
 
 /*댓글 추가*/
 	$("#addComments").click(function(){
-		if ($("#replyComments").val() == "") {
+		if ($("#replyComments").val().trim() == "") {
+			$("#replyComments").val("");
 			alert("댓글을 입력해 주세요");
 		}else{
 			$.ajax({
@@ -188,7 +193,10 @@ ud();
 						if($("input[id='secretmode']:checked").length==0){/*공개댓글*/
 							comment += $("#replyComments").val();
 						}else{/*비공개 댓글*/
-							comment += "(비밀댓글입니다.)" + $("#replyComments").val();
+							comment += "<span style = 'color: lightgray;'>" +
+											"(비밀댓글입니다)" +
+										"</span>" + 
+										$("#replyComments").val();
 						}
 						$(".addComments").append(
 								"<div class='comment'>" +
@@ -226,7 +234,8 @@ ud();
 								"</div>" +
 							"</div>"
 						);
-						$("#replyComments").val("");
+						$("#replyComments").val("");/*입력내용 삭제*/
+						$("input[id='secretmode']").prop("checked",false);/*체크박스 해제*/
 						ud();
 					}
 				}
