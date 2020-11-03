@@ -22,6 +22,13 @@ $(function(){
 	
 	$("#closeBtn").click(function(){
 		$("#detailSearch-pop").hide();
+		
+		var cd = $("#caretdown");
+		var cu = $("#caretup");
+		if(cu.css("display")=="inline-block"){
+			cd.css("display","inline-block");
+			cu.css("display","none");
+		}
 	});
 	
 	

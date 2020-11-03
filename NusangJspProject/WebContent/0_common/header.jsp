@@ -76,7 +76,7 @@
 								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 									<c:forEach var="num" items="${numbers }">
 										<a class="dropdown-item"
-											onclick="location.href='/myinfo/distance?num=${num}'">${num}km</a>
+                                            onclick="sendNum('${num}')">${num}km</a>
 									</c:forEach>
 								</div>
 							</div>
@@ -100,8 +100,6 @@
 			</c:otherwise>
 
 		</c:choose>
-	</div>
-	</div>
 	</div>
 </nav>
 
