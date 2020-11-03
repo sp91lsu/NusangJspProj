@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Buy_Reservation {
-	private Post post;// 게시글
+	private Post post;// 게시글 /post/readPost?postno=
 	private User user;// 구매신청한 유저
 	private long reser_price;// 구매금액
 	private int state;// 진행 상태  구매신청, 구매등록 list 1 구매등록 else 구매신청

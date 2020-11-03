@@ -32,9 +32,9 @@
 			<div class="form-group w-50 container">
 				<button id="btn-login" class="btn btn-primary">로그인</button>
 				<a
-					href="https://kauth.kakao.com/oauth/authorize?client_id=7ac03576a3ef2b30b8b6545b6b0daf1c&redirect_uri=http://localhost:8787/user/kakaologin&response_type=code"><img
+					href="https://kauth.kakao.com/oauth/authorize?client_id=7ac03576a3ef2b30b8b6545b6b0daf1c&redirect_uri=http://192.168.0.100:8787/user/kakaologin&response_type=code"><img
 					height="38px" src="../img/kakaoLoginBtn.png"></a> <a
-					href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=h3YOPfhFkTcn5ls8RX3g&state=STATE_STRING&redirect_uri=http://localhost:8787/user/naverlogin"><img
+					href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=h3YOPfhFkTcn5ls8RX3g&state=STATE_STRING&redirect_uri=http://192.168.0.100:8787/user/naverlogin"><img
 					height="38px" src="../img/naverLoginBtn.PNG"></a>
 					<a href="find_id.jsp" style = "margin-left: 40px; font-size:small; border-right: 1px solid skyblue; padding-right: 20px;">아이디 찾기</a>
 					<a href="find_pw.jsp" style = "margin-left: 15px; font-size:small;">비밀번호 찾기</a>
