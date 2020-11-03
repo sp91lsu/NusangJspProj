@@ -8,11 +8,6 @@
 	display: none;
 }
 
-#searchZone{
-	padding: 0;
-	width: auto;
-}
-
 /* 상세검색 팝업창 */
 #detailSearch-pop{
 	display: none;

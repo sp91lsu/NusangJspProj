@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+#searchZone{
+	width:1000px;
+	position: relative;
+}
+
+#searchZone #searchMid{
+	width: 600px;
+}
+
+#searchZone #searchRight{
+	margin-right: 30px;
+	position: absolute;
+	right: 0;
+}
