@@ -31,7 +31,9 @@
 				<!-- 프로필 -->
 				<div id="profile" class="d-flex mr-auto" style="width: 240px; border-right: 1px solid lightgray;">
 					<div id="profile_left">
-						<i id="profile_img" class="fas fa-user-circle fa-4x"></i>
+					  
+    
+						<img  style="border-radius: 70%; overflow: hidden; height: 70px; width: 70px;" src='/upload/${post.user.picture}'>
 					</div>
 
 					<div id="profile_right">
@@ -155,7 +157,7 @@
 					<!-- 댓글,관심,조회 -->
 					<div id="post_co&in&vi" class="d-flex">
 						<%-- <h8 id="post_comment">댓글 [${post.replyList.size() }]</h8> --%>
-					<!-- 	<h8>·</h8> -->
+						<!-- 	<h8>·</h8> -->
 						<input type="hidden" id="watchCnt" value="${post.watchList.size() }">
 						<h8 id="post_interest">관심 [${post.watchList.size() }]</h8>
 						<h8>·</h8>
@@ -273,7 +275,7 @@
 		<jsp:param name="title" value='<%=URLEncoder.encode("구매 예약 신청", "UTF-8")%>' />
 		<jsp:param name="body" value='<%=URLEncoder.encode("구매 예약 신청하시겠습니까?", "UTF-8")%>' />
 	</jsp:include>
-	
+
 	<jsp:include page="../0_common/modal.jsp" flush="true">
 		<jsp:param name="modalId" value='<%=URLEncoder.encode("modal_delete_reservation", "UTF-8")%>' />
 		<jsp:param name="title" value='<%=URLEncoder.encode("구매 예약 취소", "UTF-8")%>' />
