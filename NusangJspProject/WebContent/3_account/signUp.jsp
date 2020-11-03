@@ -39,7 +39,7 @@
 				<label for="username">닉네임</label>
 				<div class="d-flex flex-row">
 				 <input name="username" type="text"
-					class="form-control" placeholder="한글만 2~5자" id="username">
+					class="form-control" placeholder="한글만 2~7자" id="username">
 					<div style = "margin-left: 10px;">
 					<button type="button" id="nameChkBtn" class="btn btn-primary">중복확인</button>
 					</div>
@@ -75,7 +75,7 @@
 		  var idPattern = /^[A-Za-z]{1}[A-Za-z0-9]{5,19}$/; //첫글자는 영어 6글자 이상
 	      var pwPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/; //영어+특수문자+숫자를 섞어서 (8~16)자리
 	      var emailPattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-	      var namePattern = /[가-힣]{2,5}/; //한글만 2~5자
+	      var namePattern = /^[가-힣]{2,7}$/; //한글만 2~7자
 	
 		if(!idPattern.test(userid)){
 			alert("아이디를 형식에 맞게 입력하세요.");
@@ -154,8 +154,11 @@
 				}else if(data == "1"){
 					alert("사용가능한 닉네임 입니다.");
 					nameChk = true;
-				}else{
+				}else if(data == "2"){
 					alert("중복된 닉네임 입니다.")
+					nameChk = false;
+				}else{
+					alert("닉네임은 한글만 2자 이상 7자 이하로 사용 가능합니다.")
 					nameChk = false;
 				}
 			}

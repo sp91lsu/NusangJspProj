@@ -1,5 +1,7 @@
 package com.nusang.action.myinfo;
 
+import java.util.regex.Pattern;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,7 +25,9 @@ public class NicknameChange_Action implements Action {
 		
 		User serverNickname = UserDao.getInstance().findBy("nickname", nickName);
 		System.out.println("서버에 이 이름이 있어???  " + serverNickname);
-		if(serverNickname == null) {
+		String namePattern = "^[가-힣]{2,7}$"; //한글만 2~7자
+		boolean chk = Pattern.matches(namePattern, nickName);
+		if((serverNickname == null) && (chk == true)) {
 			
 			UserDao.getInstance().updateBy(user.getUserno(), "nickname", nickName); 
 			//유저 고유값 가져옴    ,  바꿀 컬럼 명 ,    바꿀 컬럼 값
@@ -33,11 +37,13 @@ public class NicknameChange_Action implements Action {
 			
 			request.getSession().setAttribute("user", user);
 			actionForward.setAsyncData("success");
+		}else if((serverNickname == null) && (chk == false)){
+			actionForward.setAsyncData("fail1");
 		}else {
 			System.out.println(user.getNickname());
 			user.setNickname(user.getNickname());
 			
-			actionForward.setAsyncData("fail");
+			actionForward.setAsyncData("fail2");
 		}
 		return actionForward;
 	}

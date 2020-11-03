@@ -18,9 +18,10 @@
 	    <tr>
 	      <th scope="col" style = "text-align: center;">no.</th>
 	      <th scope="col" style = "text-align: center;">구매품목</th>
-	      <th scope="col" style = "text-align: center;">가격</th>
+	      <th scope="col" style = "text-align: center;">예약가격</th>
 	      <th scope="col" style = "text-align: center;">진행상태</th>
 	      <th scope="col" style = "text-align: center;">날짜</th>
+	      <th scope="col" style = "text-align: center;"></th>
 	    </tr>
 	  </thead>
 	  
@@ -28,23 +29,23 @@
 	  
 	  <% int listCnt = fromRow+1; %>
 	  	<c:forEach var="reservation" items="<%=selectList %>">
-		    <tr>
-		      <th scope="row" style = "text-align: center;"><%= listCnt++ %></th>
-		      <td>${reservation.post.productname }</td>
-		      <td><fmt:formatNumber value="${reservation.reser_price }" pattern="#,###" />원</td>
-			  <td>
-			      <c:choose>
-			      	<c:when test="${reservation.state == 0}">
+				<tr>
+					<th scope="row" style="text-align: center;"><%=listCnt++%></th>
+					<td>${reservation.post.productname }</td>
+					<td><fmt:formatNumber value="${reservation.reser_price }"
+							pattern="#,###" />원</td>
+					<td><c:choose>
+							<c:when test="${reservation.state == 0}">
 			      	구매신청중
 			      	</c:when>
-			      	<c:otherwise>
+							<c:otherwise>
 			      	예약완료
 			      	</c:otherwise>
-			      </c:choose>
-		      </td>
-              <td><fmt:formatDate value="${reservation.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-				    </tr>
-		</c:forEach>
+						</c:choose></td>
+					<td><fmt:formatDate value="${reservation.regdate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+					<td><button class="btn btn-warning btn-sm" onclick="location.href = '/post/readPost?postno=${reservation.post.postno}'">상품보기</button></td>
+				</tr>
+			</c:forEach>
 	  </tbody>
 	</table>
 	

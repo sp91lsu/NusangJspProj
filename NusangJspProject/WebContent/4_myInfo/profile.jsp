@@ -37,6 +37,8 @@
 			success: function(data){
 				if(data == "success"){
 					alert("닉네임이 변경 되었습니다.")
+				}else if(data == "fail1"){
+					alert("닉네임은 한글만 2자 이상 7자 이하로 변경 가능합니다.")
 				}else{
 					alert("이미 사용중인 닉네임 입니다.")
 				}
