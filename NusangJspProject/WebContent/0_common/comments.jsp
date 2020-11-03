@@ -128,24 +128,29 @@ function ud(){
 		
 		/*수정 버튼*/
 		$("#updateComment").click(function(){
-			var updateText =$(this).closest(".upcomment").children("textarea").val();
+			var updateText =$(this).closest(".upcomment").children("textarea");
 			var updateText_Location =
 			commentdetach.children(".cContent").children(".cSection").children(".text");
-			$.ajax({
-				url: "/post/updateComment",
-				type: "POST",
-				data:{
-					"updateText" : updateText,
-					"replyno" : replyno.val()
-				},
-				success : function name(data) {
-					if(data > 0){
- 						commentlocation.append(commentdetach);
-						commentlocation.children(".upcomment").remove();
-						$(updateText_Location).html(updateText);
+			
+			if(updateText.val().trim()==""){
+				alert("댓글 내용을 입력해 주세요");
+			}else{
+				$.ajax({
+					url: "/post/updateComment",
+					type: "POST",
+					data:{
+						"updateText" : updateText.val(),
+						"replyno" : replyno.val()
+					},
+					success : function name(data) {
+						if(data > 0){
+	 						commentlocation.append(commentdetach);
+							commentlocation.children(".upcomment").remove();
+							$(updateText_Location).html(updateText.val());
+						}
 					}
-				}
-			})
+				})
+			}
 		})
 		
 		/*취소 버튼*/
