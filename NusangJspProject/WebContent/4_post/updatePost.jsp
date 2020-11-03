@@ -28,23 +28,23 @@
 			<div style = " font-family: 'Noto Sans KR', sans-serif; margin-top:25px;">
 			<%-- 이미지 --%>
 			상품 사진
-			<button class = "btn btn-secondary btn-sm" type="button" id="btnAdd">사진 추가</button>
+			<button class = "btn btn-secondary btn-sm" type="button" id="btnAdd" style = "margin-left: 10px; margin-top: -4px;">사진 추가</button>
 			<div id="files"></div>
 			<br>
 			<%-- 글제목 --%>
 			<div style = "margin-top:-5px;">
-			제목 <input id="post_title" type="text" name="title" required="required" value="${post.title }" /><br>
+			제목 <input id="post_title" type="text" name="title" required="required" value="${post.title }" style = "margin-left:10px;border-radius: 4px;" /><br>
 			</div>
 			<!-- 상품명 -->
 			<div style = "margin-top:20px;">
-			상품명 <input id="post_prodname" type="text" name="productName" value="${post.productname }" required="required" />
+			상품명 <input id="post_prodname" type="text" name="productName" value="${post.productname }" required="required" style = "margin-left: 10px;" />
 			</div>
 			<%-- 카테고리 --%>
 			<jsp:include page="/0_common/data.jsp"></jsp:include>
 			<% String cate[] = (String[])request.getAttribute("arr_cate"); %>
 
 			<br> 카테고리
-			<div class="dropdown">
+			<div class="dropdown" style = "margin-left: 10px; margin-top: -4px;">
 				<button id="cateDrop" class="btn btn-outline-dark btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
 					${post.category }<span class="caret"></span>
 				</button>
@@ -65,7 +65,7 @@
 
 			<%-- 가격 --%>
 			<div style = "margin-top: 20px;">
-			가격 <input type="number" name="price" value="${post.price }" required="required" /><br>
+			가격 <input type="number" name="price" value="${post.price }" required="required"  style = "margin-left: 10px;"/><br>
 			</div>
 			<%-- 글내용 --%>
 			<div style = "margin-top: 20px;">

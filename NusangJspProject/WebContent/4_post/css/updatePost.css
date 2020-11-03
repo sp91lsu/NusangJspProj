@@ -6,3 +6,8 @@
 #post_title{
 	width: 500px;
 }
+
+input{
+	margin-left: 10px;
+	border-radius: 4px;
+}
