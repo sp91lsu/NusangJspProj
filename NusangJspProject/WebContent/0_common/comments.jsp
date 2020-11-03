@@ -126,7 +126,7 @@ function ud(){
 		$("#replyComments").val(textcopy);
 		commentdetach= $(this).closest(".commentSection").detach();
 		
-		/*수정 버튼*/
+		/*수정 완료*/
 		$("#updateComment").click(function(){
 			var updateText =$(this).closest(".upcomment").children("textarea");
 			var updateText_Location =
@@ -134,6 +134,7 @@ function ud(){
 			
 			if(updateText.val().trim()==""){
 				alert("댓글 내용을 입력해 주세요");
+				updateText.val("");
 			}else{
 				$.ajax({
 					url: "/post/updateComment",
