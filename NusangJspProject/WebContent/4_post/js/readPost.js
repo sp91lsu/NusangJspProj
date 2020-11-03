@@ -2,8 +2,8 @@
 
 	var modal;
 
-	$("#buy_reservationBtn").click(function() {
-		console.log("buy_reservationBtn");
+	$("#buy_reservationBtn_submit").click(function() {
+		console.log("buy_reservationBtn_submit");
 
 		modal = $('#modal_reservation');
 		$(modal).modal("show");
@@ -160,3 +160,17 @@ function chkDelete(postno) {
 		location.href = '/post/deletePost?postno=' + postno;
 	})
 }
+
+
+//가격제시 폼검사(빈칸x)
+$("#buy_reservationBtn").click(function(){
+	
+	 var reser_price = document.getElementById('reser_price').value;
+	
+	 if(!reser_price){
+		alert('제시가격을 입력해 주세요.');
+		return;
+	} 
+	$("#buy_reservationBtn_submit").click();
+	 
+});

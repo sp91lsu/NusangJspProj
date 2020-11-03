@@ -150,6 +150,7 @@
 										<c:otherwise>
 											<input type="number" id="reser_price">
 											<button id="buy_reservationBtn" class="btn btn-primary btn-sm" style="margin-top: 3px;">가격 제시</button>
+											<button id="buy_reservationBtn_submit" style="display:none;"></button>
 										</c:otherwise>
 
 									</c:choose>
