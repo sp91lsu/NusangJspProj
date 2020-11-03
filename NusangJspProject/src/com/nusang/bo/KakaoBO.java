@@ -67,6 +67,18 @@ public class KakaoBO extends BasicBO {
 
 	}
 
+	public void reqUnlink() {
+		// 토큰 발급받을 수 있는 코드
+
+		MyHttpPost httpPost = new MyHttpPost("https://kapi.kakao.com/v1/user/unlink", EContentType.FORM);
+		ObjectNode createTokenNode = m.createObjectNode();
+		createTokenNode.put("Authorization", "Bearer " + oAuthToken);
+		httpPost.setBody(createTokenNode);
+
+		JsonNode resObject = httpPost.request();
+
+	}
+
 	public User reqUserInfo() {
 		// 사용자 정보 요청 token은 헤더에 담아서 보내야함
 		MyHttpGet httpGet = new MyHttpGet(reqUserInfoURL, EContentType.FORM);
@@ -81,14 +93,20 @@ public class KakaoBO extends BasicBO {
 		String id = resNode.get("id").asText();
 		System.out.println(id);
 		JsonNode accountNode = resNode.get("kakao_account");
-		String email = accountNode.get("email").asText();
-		System.out.println("email : " + email);
-		JsonNode profileNode = accountNode.get("profile");
+		String email = "";
+		User user = null;
+		if (accountNode.get("email") != null) {
 
-		String userId = "kakao_" + id;
-		String name = profileNode.get("nickname").asText();
-		User user = User.builder().userid(userId).username(name).password(NData.security).password(NData.security)
-				.email(email).logintype("KAKAO").nickname(name).build();
+			email = accountNode.get("email").asText();
+			System.out.println("email : " + email);
+			JsonNode profileNode = accountNode.get("profile");
+
+			String userId = "kakao_" + id;
+			String name = profileNode.get("nickname").asText();
+			user = User.builder().userid(userId).username(name).password(NData.security).password(NData.security)
+					.email(email).logintype("KAKAO").nickname(name).build();
+		}
+
 		return user;
 	}
 
@@ -144,7 +162,7 @@ public class KakaoBO extends BasicBO {
 
 		JsonNode resNode = httpGet.request();
 
-		//System.out.println("위치 정보 : " + resNode.toPrettyString());
+		// System.out.println("위치 정보 : " + resNode.toPrettyString());
 
 		return resNode;
 	}
@@ -160,7 +178,7 @@ public class KakaoBO extends BasicBO {
 		ArrayNode documentsNode = m.createArrayNode();
 
 		documentsNode = (ArrayNode) resNode.get("documents");
-		//System.out.println("위치 정보 : " + documentsNode.toPrettyString());
+		// System.out.println("위치 정보 : " + documentsNode.toPrettyString());
 		JsonNode addressNode = documentsNode.get(0).get("address");
 		Location location = new Location();
 

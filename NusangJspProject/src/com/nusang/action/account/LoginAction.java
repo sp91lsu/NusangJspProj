@@ -34,7 +34,14 @@ public class LoginAction implements Action {
 		switch (ConAsist.getRequestName(request)) {
 		case "kakaologin":
 			user = kakaoLogin(request);
-			user = sosialLogin(session, user);
+			if (user != null) {
+				user = sosialLogin(session, user);
+			}else {
+				KakaoBO.getInstance().reqUnlink();
+				request.setAttribute("error", "동의항목 체크를 하지 않았습니다. 다시 시도해주세요.");
+				actionForward.setNextPath("/0_common/error.jsp");
+			}
+
 			break;
 		case "naverlogin":
 			user = naverLogin(request);
@@ -42,6 +49,11 @@ public class LoginAction implements Action {
 			break;
 		case "login":
 			user = login(request);
+			if (user == null) {
+				request.setAttribute("error", "아이디 혹은 패스워드가 다릅니다. 다시 시도해주세요.");
+				actionForward.setNextPath("/0_common/error.jsp");
+				return actionForward;
+			}
 			break;
 		}
 
@@ -53,9 +65,9 @@ public class LoginAction implements Action {
 			actionForward.setActionType(EActionType.REDIRECT);
 			actionForward.setNextPath("/1_main/index.jsp");
 		} else {
-			System.out.println("여기로빠졌다");
-			request.setAttribute("error", "아이디 혹은 패스워드가 다릅니다. 다시 시도해주세요.");
-			actionForward.setNextPath("/0_common/error.jsp");
+			System.out.println("여기로빠졌다 카카오시 메일 동의 안함");
+			
+
 		}
 
 		return actionForward;
