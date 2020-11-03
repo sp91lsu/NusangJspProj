@@ -47,21 +47,34 @@
 						<div class='cSection'>
 							<c:choose>
 								<c:when test="${reply.state==0}"><!--공개글-->
-									${reply.textbody}
+									<span class = 'cSecret'>
+										
+									</span>
+									
+									<span class = 'text'>
+										${reply.textbody}
+									</span>
 								</c:when>
 								
 								<c:when test="${(reply.state==1) && 
 								(post.user.userno == user.userno || 
 								reply.user.userno == user.userno)}"><!--비공개글 && (글 작성자 || 댓글작성자)-->
-									<span style = 'color: lightgray;'>
+									<span class = 'cSecret'>
 										(비밀댓글입니다)
 									</span>
-									${reply.textbody}
+									
+									<span class = 'text'>
+										${reply.textbody}
+									</span>
 								</c:when>
 								
-								<c:otherwise>
-									<span style = 'color: lightgray;'>
+								<c:otherwise><!--내 글, 내 댓글이 아닐때-->
+									<span class = 'cSecret'>
 										비밀댓글입니다.
+									</span>
+									
+									<span class = 'text'>
+									
 									</span>
 								</c:otherwise>
 							</c:choose>
@@ -90,15 +103,14 @@
 
 <script>
 function ud(){
-	/*댓글 수정*/
 	var commentdetach;
 	var commentlocation;
 	var replyno;
 	
-	$(".c_update").click(function(){
-		replyno = $(this).closest(".comment").children(".commentSection").children("#replyno");
-		var textcopy =$(this).closest(".cContent").children(".cSection").text().trim();
+	$(".c_update").click(function(){ /*댓글 수정*/
 		commentlocation = $(this).closest(".comment");
+		replyno = $(this).closest(".comment").children(".commentSection").children("#replyno");
+		var textcopy =$(this).closest(".cContent").children(".cSection").children(".text").text().trim();
 		
 		var updatecomment = commentlocation.append(
 				"<div class='upcomment'>" +
@@ -112,15 +124,13 @@ function ud(){
 				"<div>"
 				);
 		$("#replyComments").val(textcopy);
-		
 		commentdetach= $(this).closest(".commentSection").detach();
-		
 		
 		/*수정 버튼*/
 		$("#updateComment").click(function(){
-			var updateText =$(this).closest(".comment").children("div").children("textarea").val();
+			var updateText =$(this).closest(".upcomment").children("textarea").val();
 			var updateText_Location =
-			commentdetach.children(".cContent").children(".cSection");
+			commentdetach.children(".cContent").children(".cSection").children(".text");
 			$.ajax({
 				url: "/post/updateComment",
 				type: "POST",
@@ -130,7 +140,7 @@ function ud(){
 				},
 				success : function name(data) {
 					if(data > 0){
-						commentlocation.append(commentdetach);
+ 						commentlocation.append(commentdetach);
 						commentlocation.children(".upcomment").remove();
 						$(updateText_Location).html(updateText);
 					}
@@ -189,14 +199,11 @@ ud();
 						let minutes = today.getMinutes();  // 분
 						let time = year+'.'+month+"."+date+" "+hours+":"+minutes;
 						
-						var comment= "";
+						var secret= "";
 						if($("input[id='secretmode']:checked").length==0){/*공개댓글*/
-							comment += $("#replyComments").val();
+							secret="";
 						}else{/*비공개 댓글*/
-							comment += "<span style = 'color: lightgray;'>" +
-											"(비밀댓글입니다)" +
-										"</span>" + 
-										$("#replyComments").val();
+							secret= "(비밀댓글입니다)"
 						}
 						$(".addComments").append(
 								"<div class='comment'>" +
@@ -224,7 +231,14 @@ ud();
 										"</div>"+
 					
 										"<div class='cSection'>" +
-											comment +
+											
+											"<span class = 'cSecret'>" +
+												secret +
+											"</span>" +
+									
+											"<span class = 'text'>" +
+												$("#replyComments").val() +
+											"</span>" +
 										"</div>" +
 					
 										"<div class='cFooter'>" +

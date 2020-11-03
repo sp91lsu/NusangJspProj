@@ -6,8 +6,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
 import com.nusang.dao.ReplyDao;
-import com.nusang.dto.Post;
-import com.nusang.dto.User;
 
 public class UpdateComment_Action implements Action {
 

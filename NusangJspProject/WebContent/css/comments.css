@@ -91,3 +91,7 @@ li {
 	width: 80px;
 	display: block;
 }
+
+.cSecret {
+	color: lightgray;
+}
