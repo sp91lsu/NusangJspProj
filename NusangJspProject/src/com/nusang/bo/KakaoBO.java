@@ -72,7 +72,7 @@ public class KakaoBO extends BasicBO {
 
 		MyHttpPost httpPost = new MyHttpPost("https://kapi.kakao.com/v1/user/unlink", EContentType.FORM);
 		ObjectNode createTokenNode = m.createObjectNode();
-		createTokenNode.put("Authorization", "Bearer " + oAuthToken);
+		createTokenNode.put("Authorization", "Bearer " + oAuthToken.getAccess_token());
 		httpPost.setBody(createTokenNode);
 
 		JsonNode resObject = httpPost.request();
