@@ -254,6 +254,7 @@
 			<br>
 
 			<!-- 지도 -->
+			<h3 style="margin-bottom: 5px;"><img id="l_icon" src="/img/location_icon.png">여기에서 만나요</h3>
 			<div id="map" style="width: 100%; height: 350px;"></div>
 
 			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1db6aaded4b028f19067fca5394bb829"></script>

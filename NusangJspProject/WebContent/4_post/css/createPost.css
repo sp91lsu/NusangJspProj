@@ -3,6 +3,10 @@
 	display: inline-block;
 }
 
+#l_icon {
+	height: 48px;
+}
+
 /* #body>form{
 	width: 800px;
 	background: #EAEAEA;

@@ -11,3 +11,7 @@ input{
 	margin-left: 10px;
 	border-radius: 4px;
 }
+
+#l_icon {
+	height: 48px;
+}

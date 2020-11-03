@@ -63,6 +63,11 @@
 	padding-top:135px;
 }
 
+#l_icon {
+	height: 48px;
+}
+
+
 /* 지도 */
 #map{
 	width:500px; 

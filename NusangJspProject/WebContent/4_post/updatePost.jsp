@@ -75,8 +75,9 @@
 			</div>
 
 			<%-- 지도 : 거래장소 설정 --%>
+			<h4 style="margin-bottom: 10px;"><img id="l_icon" src="/img/location_icon.png">만날 장소를 지정해 주세요</h4>
 			<div align = center>
-			<div id="map" style="width: 500px; height: 400px;"></div>
+			<div id="map" style="width: 650px; height: 400px;"></div>
 			</div>
 			<script>
 				// 마커가 표시될 위치입니다 
