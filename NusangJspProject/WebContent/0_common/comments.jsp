@@ -46,10 +46,14 @@
 	
 						<div class='cSection'>
 							<c:choose>
-								<c:when test="${reply.state==0 || 
-								post.user.userno == user.userno || 
-								user.userno == reply.user.userno}">
+								<c:when test="${reply.state==0}"><!--공개글-->
 									${reply.textbody}
+								</c:when>
+								
+								<c:when test="${(reply.state==1) && 
+								(post.user.userno == user.userno || 
+								reply.user.userno == user.userno)}"><!--비공개글 && (글 작성자 || 댓글작성자)-->
+									(비밀댓글입니다) ${reply.textbody}
 								</c:when>
 								
 								<c:otherwise>
