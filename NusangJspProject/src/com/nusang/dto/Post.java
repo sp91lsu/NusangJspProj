@@ -2,6 +2,7 @@ package com.nusang.dto;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -59,4 +60,21 @@ public class Post {
 		return "";
 	}
 
+	public String calcTime() {
+		Date current = new Date(System.currentTimeMillis());
+
+		long betweenTime = current.getTime() - regdate.getTime();
+		long time = 0;
+
+		if ((time = TimeUnit.MILLISECONDS.toDays(betweenTime)) > 0) {
+			return time + "일 전";
+		} else if ((time = TimeUnit.MILLISECONDS.toHours(betweenTime)) > 0) {
+			return time + "시간 전";
+		} else if ((time = TimeUnit.MILLISECONDS.toMinutes(betweenTime)) > 0) {
+			return time + "분 전";
+		} else if ((time = TimeUnit.MILLISECONDS.toSeconds(betweenTime)) > 0) {
+			return time + "초 전";
+		}
+		return "";
+	}
 }
