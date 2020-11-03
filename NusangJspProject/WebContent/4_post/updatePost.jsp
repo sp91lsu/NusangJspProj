@@ -33,17 +33,17 @@
 			<br>
 			<%-- 글제목 --%>
 			<div style = "margin-top:-5px;">
-			제목: <input id="post_title" type="text" name="title" required="required" value="${post.title }" /><br>
+			제목 <input id="post_title" type="text" name="title" required="required" value="${post.title }" /><br>
 			</div>
 			<!-- 상품명 -->
 			<div style = "margin-top:20px;">
-			상품명: <input id="post_prodname" type="text" name="productName" value="${post.productname }" required="required" />
+			상품명 <input id="post_prodname" type="text" name="productName" value="${post.productname }" required="required" />
 			</div>
 			<%-- 카테고리 --%>
 			<jsp:include page="/0_common/data.jsp"></jsp:include>
 			<% String cate[] = (String[])request.getAttribute("arr_cate"); %>
 
-			<br> 카테고리:
+			<br> 카테고리
 			<div class="dropdown">
 				<button id="cateDrop" class="btn btn-outline-dark btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
 					${post.category }<span class="caret"></span>
@@ -65,11 +65,11 @@
 
 			<%-- 가격 --%>
 			<div style = "margin-top: 20px;">
-			가격: <input type="number" name="price" value="${post.price }" required="required" /><br>
+			가격 <input type="number" name="price" value="${post.price }" required="required" /><br>
 			</div>
 			<%-- 글내용 --%>
 			<div style = "margin-top: 20px;">
-			<label for="bodytext">내용:</label><br>
+			<label for="bodytext">내용</label><br>
 			<textarea name="bodytext" class="form-control" rows="5" required="required">${post.bodytext } </textarea>
 			<br>
 			</div>
@@ -120,11 +120,11 @@
 			<div id="dealingSpot"></div>
 
 			<div align = center style = "margin-top:20px;margin-bottom: 20px;">
-			<!-- 목록으로 버튼 -->
-			<button type="button" class = "btn btn-success btn-lg" onclick="history.back()">목록으로</button>
-			&nbsp;&nbsp;&nbsp;
 			<!-- 수정 버튼 -->
 			<input id="buyBtn" class = "btn btn-primary btn-lg"  type="button" value="수정완료" />
+			&nbsp;&nbsp;&nbsp;
+			<!-- 목록으로 버튼 -->
+			<button type="button" class = "btn btn-success btn-lg" onclick="history.back()">돌아가기</button>
 			</div>
 		</form>
 

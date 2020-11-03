@@ -178,10 +178,9 @@
 						<h6 id="card_addr" style="font-family: 'Noto Sans KR', sans-serif; font-size:12px; padding-left:7px; ">${post.location.getAddress()}
 						
 						<c:choose>
-							<%-- <c:when test="${post.sellstate == 0 }"><input type = "button" value = "판매중" style = "margin-left: 30px;"></c:when> --%>
-							<c:when test="${post.sellstate == 0 }"><button style = "margin-left: 28px; cursor: default;">판매중</button></c:when>
-							<c:when test="${post.sellstate == 1 }"><button style = "margin-left: 28px; cursor: default; background: #FFBB00;">예약중</button></c:when>
-							<c:when test="${post.sellstate == 2 }"><button style = "margin-left: 15px; cursor: default; background: black;color: white;">판매 완료</button></c:when>
+							<c:when test="${post.sellstate == 0 }"><input type = "button" value = "판매중" style = "margin-left: 30px; height:20px; cursor:default;border-radius:3px;border:0;outline:0;background: #D5D5D5; "></c:when>
+							<c:when test="${post.sellstate == 1 }"><input type = "button" value = "예약중" style = "margin-left: 30px; height:20px; cursor:default;border-radius:3px;border:0;outline:0;background: #FFBB00;"></c:when>
+							<c:when test="${post.sellstate == 2 }"><input type = "button" value = "판매완료" style = "margin-left: 19px; height:20px;cursor:default;border-radius:3px;border:0;outline:0;background: black;color: white;"></c:when>
 						</c:choose>
 						
 						</h6> 
