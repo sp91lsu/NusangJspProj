@@ -2,7 +2,34 @@
 	var IMP = window.IMP; // 생략가능
 	IMP.init('imp11398251'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 
-	$("#buyBtn").click(testBuyProduct);
+		//createPost 유효성 검사
+		$("#buyBtn").click(function(){
+		
+		 var title = createPostForm.title.value;
+		 var productName = createPostForm.productName.value;
+		 var category = createPostForm.category.value;
+		 var price = createPostForm.price.value;
+		 var bodytext = createPostForm.bodytext.value;
+		
+		 if(!title){
+			alert('제목을 입력해 주세요.');
+			return;
+		} else if(!productName){
+			alert('상품명을 입력해 주세요.' );
+			return;
+		} else if(!category){
+			alert('카테고리를 입력해 주세요.' );
+			return;
+		} else if(!price){
+			alert('가격을 입력해 주세요.' );
+			return;
+		} else if(!bodytext){
+			alert('내용을 입력해 주세요.' );
+			return;
+		}
+		testBuyProduct();
+	});
+
 
 	
 	function testBuyProduct(){
