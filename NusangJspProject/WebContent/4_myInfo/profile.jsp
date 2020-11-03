@@ -26,7 +26,7 @@
 	<!-- 닉네임 & 닉네임변경버튼 -->
 	<div class="nicknameSec">
 		<form>
-			<input class="nickName" name="nickName" type="text" id = "userNickname"
+			<input class="nickName" name="nickName" type="text" id = "userNickname" style = "border-radius: 4px;"
 				value=${user.nickname } />
 
 			<button type="button" id = "nicknameChange" class="btn btn-success btn-sm" style= "background:#095000;">닉네임 변경</button>
