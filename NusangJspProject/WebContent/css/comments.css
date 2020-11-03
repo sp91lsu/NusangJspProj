@@ -17,13 +17,9 @@ li {
 	margin: 3px 0px 3px 0px;
 }
 
+/*/////////////////////////////////////////*/
 .cProfile {
 	width: 75px;
-}
-
-.cProfile>img {
-	width: 75px;
-	height: 75px;
 }
 
 .cContent {
@@ -32,11 +28,25 @@ li {
 }
 
 /*----------------------------------------------------------------------------------*/
-.cHeader {
+.cProfile>img {
+	width: 75px;
+	height: 75px;
+}
+
+.cContent>.cHeader {
 	margin-bottom: 5px;
 	height: 25px;
 }
 
+.cContent>.cSection {
+	margin-bottom: 5px;
+}
+
+.cContent>.cFooter {
+	font-size: 12px;
+}
+
+/*----------------------------------------------------------------------------------*/
 .cHeader>div {
 	width: 70px;
 }
@@ -54,18 +64,6 @@ li {
 .c_update:hover, .c_delete:hover {
 	background-color: #D5D5D5;
 	cursor: pointer;
-}
-
-.cHeader>div:nth-child(2) { /*댓글내용*/
-	margin-right: 20px;
-}
-
-.cSection {
-	margin-bottom: 5px;
-}
-
-.cFooter {
-	font-size: 12px;
 }
 
 /*----------------------------------------------------------------------------------*/
@@ -94,4 +92,13 @@ li {
 
 .cSecret {
 	color: lightgray;
+}
+
+.c_upBtn {
+	height: 30px;
+	margin-top: 50px;
+}
+
+.c_upBtn * {
+	width: 35px;
 }
