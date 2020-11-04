@@ -5,6 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div>
 	댓글
 	<div class='addComments'>
@@ -81,7 +82,7 @@
 						</div>
 	
 						<div class='cFooter'>
-							${reply.regdate}
+							<fmt:formatDate value="${reply.regdate}" pattern="yyyy.MM.dd HH:mm"/>
 						</div>
 					</div>
 				</div>
