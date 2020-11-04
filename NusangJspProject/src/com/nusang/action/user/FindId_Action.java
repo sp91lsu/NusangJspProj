@@ -26,17 +26,15 @@ public class FindId_Action implements Action {
 		System.out.println(username);
 		System.out.println(email);
 		List<User> userList = UserDao.getInstance().idCheck(username, email);
-		String resText = "";
+		Integer res = 0;
 		if (userList != null && userList.size() > 0) {
-			resText = "해당 메일로 아이디를 보냈습니다.";
+			
 			for (User user : userList) {
 				Mail.sendMail(user.getEmail(), "너근마켓 아이디 찾기", "너근마켓 아이디 : " + user.getUserid());
 			}
-		} else {
-			resText = "정보와 일치하는 사용자가 없습니다.";
-		}
-
-		actionForward.setAsyncData(resText);
+			res = 1;
+		} 
+		actionForward.setAsyncData(res.toString());
 		return actionForward;
 	}
 

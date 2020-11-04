@@ -73,7 +73,7 @@
        AND 
        email = #{email}
 	AND 
-	logintype = 'normal'
+	logintype = 'NORMAL'
        
     </select>
 
@@ -89,7 +89,7 @@
 	   AND
        email = #{email}
 AND 
-	logintype = 'normal'
+	logintype = 'NORMAL'
        
     </select>
 

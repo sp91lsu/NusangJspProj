@@ -29,17 +29,16 @@ public class FindPw_Action implements Action {
 
 		List<User> userList = UserDao.getInstance().pwCheck(username, userid, email);
 
-		String resText = "";
+		Integer res = 0;
 		if (userList != null && userList.size() > 0) {
-			resText = "해당 메일로 비밀번호를 보냈습니다.";
+			res = 1;
+			
 			for (User user : userList) {
 				Mail.sendMail(user.getEmail(), "너근마켓 비밀번호 찾기", user.getUserid() + " 너근마켓 비밀번호 : " + user.getPassword());
 			}
-		} else {
-			resText = "정보와 일치하는 사용자가 없습니다.";
-		}
+		} 
 
-		actionForward.setAsyncData(resText);
+		actionForward.setAsyncData(res.toString());
 		return actionForward;
 	}
 
