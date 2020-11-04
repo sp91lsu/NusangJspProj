@@ -25,7 +25,7 @@
 	
 							<c:choose>
 								<c:when test='${user.userno==reply.user.userno}'> <!--내가 쓴 댓글이면-->
-									<ul class='d-flex c_ud'>
+									<ul class='d-flex ud_Btn'>
 										<div>
 											<li class='c_update'>댓글 수정</li>
 										</div>
@@ -225,7 +225,7 @@ ud();
 											"<div>" +
 												"${user.nickname}" +
 											"</div>" +
-													"<ul class='d-flex c_ud'>" +
+													"<ul class='d-flex ud_Btn'>" +
 														"<div>" +
 															"<li class='c_update'>댓글 수정</li>" +
 														"</div>" +
