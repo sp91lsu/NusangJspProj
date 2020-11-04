@@ -16,6 +16,7 @@
 		<result property="title" column="title" />
 		<result property="price" column="price" />
 		<result property="productname" column="productname" />
+		<association property="post_picture" column="post_picno" javaType="Post_Picture" select="postResultMap.selectPostPicture" />
 	</resultMap>
 
 	<select id="selectScUser" resultMap="userMap">
