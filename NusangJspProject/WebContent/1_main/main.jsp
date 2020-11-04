@@ -1,3 +1,4 @@
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.Import"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -105,11 +106,19 @@
 								<!-- 동네범위 -->
 								<span class="popIndex">동네범위</span>
 								<c:set var="arr" value='<%=new String[] { "1", "3", "5", "10" }%>' />
+								<c:set var="presetNum" value="${user.view_distance }"/>
 								<div>
 									<c:forEach items="${arr}" var="num">
 										<div class="form-group form-check-inline">
 										  <label class="form-check-label">
-										    <input type="radio" class="form-check-input" name="view_distance" value="${num }">${num }km
+										  	<c:choose>
+										  		<c:when test="${presetNum==num}">
+											    	<input type="radio" class="form-check-input" name="view_distance" value="${num }" checked="checked">${num }km
+										  		</c:when>
+										  		<c:otherwise>
+											    	<input type="radio" class="form-check-input" name="view_distance" value="${num }">${num }km
+										  		</c:otherwise>
+										  	</c:choose>
 										  </label>
 										</div>
 									</c:forEach>
