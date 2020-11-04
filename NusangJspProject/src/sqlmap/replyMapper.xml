@@ -8,7 +8,7 @@
 		<id property="replyno" column="replyno" />
 		<result property="postno" column="postno" />
 		<result property="textbody" column="textbody" />
-		<result property="regdate" column="regdate" />
+		<result property="regdate" column="regdate" typeHandler="com.nusang.handler.CustomDateHandler"/>
 		<result property="state" column="state" />
 		<result property="child_replyno" column="child_replyno" />
 		<association property="user" column="userno" javaType="User" select="findUser">
