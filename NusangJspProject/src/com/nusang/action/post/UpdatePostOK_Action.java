@@ -86,7 +86,7 @@ public class UpdatePostOK_Action implements Action {
 		post.setPostno(postno);
 		post.setTitle(multi.getParameter("title"));
 		post.setCategory(multi.getParameter("category"));
-		post.setPrice(Long.parseLong(multi.getParameter("price")));
+		post.setPrice(Integer.parseInt(multi.getParameter("price")));
 		post.setBodytext(multi.getParameter("bodytext"));
 		post.setProductname(multi.getParameter("productName"));
 		post.setLocation(location);

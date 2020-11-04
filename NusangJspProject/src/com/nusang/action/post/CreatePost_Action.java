@@ -85,7 +85,7 @@ public class CreatePost_Action implements Action {
 		Post post = new Post();
 		post.setTitle(multi.getParameter("title"));
 		post.setCategory(multi.getParameter("category"));
-		post.setPrice(Long.parseLong(multi.getParameter("price")));
+		post.setPrice(Integer.parseInt(multi.getParameter("price")));
 		post.setBodytext(multi.getParameter("bodytext"));
 		post.setProductname(multi.getParameter("productName"));
 		post.setUser(user);

@@ -61,7 +61,7 @@ public class SearchAction implements Action {
 		UserDao.getInstance().updateBy(user.getUserno(), "view_distance", view_distance);
 
 		// 근방의 게시글 가지고 오기
-		List<Post> postList = PostDao.getInstance().findPostByDetailSearch(searchWord,categories,order,view_distance,location);
+		List<Post> postList = PostDao.getInstance().findPostByDetailSearch(searchWord,categories,order,price_min,price_max,view_distance,location);
 		System.out.println("이 근처 " + view_distance + "km의 게시글 갯수 : "+ postList.size());
 		request.setAttribute("postList", postList);
 

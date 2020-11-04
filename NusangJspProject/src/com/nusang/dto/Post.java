@@ -19,7 +19,7 @@ public class Post {
 	/* private byte[] picture; */
 	private String title;
 	private String bodytext;
-	private long price;
+	private int price;
 	private String productname;
 	private User user;
 	private Date regdate;

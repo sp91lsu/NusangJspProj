@@ -3,6 +3,7 @@ package com.nusang.dto;
 
 import java.util.Date;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +21,6 @@ public class Payment_Market {
 	private Integer userno;
 	private Date regdate;// 날짜
 	private String imp_uid;// 등록 아이디. 제일 앞에 띄우기
-	private long price;
+	private int price;
 	private Post post;
 }

@@ -139,6 +139,10 @@
 			category in ${categories}
 			AND
 			REGEXP_LIKE(title||bodytext||productname, ${searchWord}, 'i')
+			AND
+			<![CDATA[
+			price >= ${price_min} AND price <= ${price_max}
+			]]>
 			ORDER BY ${order} DESC
 	</select>
 
