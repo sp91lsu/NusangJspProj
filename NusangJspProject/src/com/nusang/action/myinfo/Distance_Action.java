@@ -19,8 +19,9 @@ public class Distance_Action implements Action {
 		System.out.println("반경 설정 세상으로 이동,, 파라미터num:"+dis1km);
 		User user = (User)request.getSession().getAttribute("user");
 		UserDao.getInstance().updateBy(user.getUserno(), "view_distance", dis1km);
-		ConAsist.updateMyUser(request);
+		user = ConAsist.updateMyUser(request);
 		System.out.println(dis1km + "----------------------------------------------------");
+		request.setAttribute("user", user);
 		actionForward.setNextPath(ConAsist.URL_CHKLOCATION);
 		return actionForward;
 	}

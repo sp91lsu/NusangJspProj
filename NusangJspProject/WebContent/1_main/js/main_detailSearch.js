@@ -5,8 +5,6 @@ $(function(){
 	var h1px = int_h1+10+"px";
 	$("#detailSearch-pop").css("top",h1px);
 	
-	$('input[value="5"]').attr("checked","checked");
-	
 	//함수 세팅
 	$("#searchBtn").click(function(){
 		doSearch();
