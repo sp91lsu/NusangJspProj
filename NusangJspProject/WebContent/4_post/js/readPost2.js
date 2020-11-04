@@ -82,7 +82,7 @@
 							location.href = "/post/readPost?postno="
 									+ $("#postno").val()
 						} else {
-							alert('판매 실패.');
+							alert('구매자가 구매를 취소하였습니다.');
 						}
 
 					}
