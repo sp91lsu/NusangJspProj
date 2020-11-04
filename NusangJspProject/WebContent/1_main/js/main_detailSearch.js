@@ -5,6 +5,9 @@ $(function(){
 	var h1px = int_h1+10+"px";
 	$("#detailSearch-pop").css("top",h1px);
 	
+	var distance = $("#distance").val();
+	$("#dong"+distance).attr("checked","checked");
+	
 	//함수 세팅
 	$("#searchBtn").click(function(){
 		doSearch();
@@ -28,27 +31,6 @@ $(function(){
 			cu.css("display","none");
 		}
 	});
-	
-	
-	/*$(document).click(function(e){ 
- 		if(e.target.className =="detailSearch-pop"
-			//|| e.target.className =="form-check-input"
-			//|| e.target.className =="form-check-label"
-			|| e.target.id =="detailSearchBtn"
-			) {return false}
-			
- 		$("#detailSearch-pop").stop().fadeOut(0);
-	
-		var cd = $("#caretdown");
-		var cu = $("#caretup");
-		if(cu.css("display")=="inline-block"){
-			cd.css("display","inline-block");
-			cu.css("display","none");
-		}
- 	});*/
-
-
-
 });
 
 

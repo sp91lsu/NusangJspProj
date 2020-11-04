@@ -114,21 +114,13 @@
 								<!-- 동네범위 -->
 								<span class="popIndex">동네범위</span>
 								<c:set var="arr" value='<%=new String[] { "1", "3", "5", "10" }%>' />
-								<c:set var="presetNum" value="${user.view_distance }"/>
+								<input id="distance" type="hidden" value="${user.view_distance }">
 								<div>
 									<c:forEach items="${arr}" var="num">
 										<div class="form-group form-check-inline">
 										  <label class="form-check-label">
-										  	<c:choose>
-										  		<c:when test="${presetNum==num}">
-											    	<input type="radio" class="form-check-input" id="dong${status.count }" name="view_distance" value="${num }" checked="checked">
-											    	<label for="dong${status.count }"></label>${num }km
-										  		</c:when>
-										  		<c:otherwise>
-											    	<input type="radio" class="form-check-input" id="dong${status.count }" name="view_distance" value="${num }">
-											    	<label for="dong${status.count }"></label>${num }km
-										  		</c:otherwise>
-										  	</c:choose>
+										    	<input type="radio" class="form-check-input" id="dong${num }" name="view_distance" value="${num }">
+										    	<label for="dong${num }">${num }km</label>
 										  </label>
 										</div>
 									</c:forEach>
