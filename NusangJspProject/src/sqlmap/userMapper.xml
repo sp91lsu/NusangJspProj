@@ -72,6 +72,8 @@
         username = #{username} 
        AND 
        email = #{email}
+	AND 
+	logintype = 'normal'
        
     </select>
 
@@ -86,6 +88,8 @@
 		userid = #{userid}
 	   AND
        email = #{email}
+AND 
+	logintype = 'normal'
        
     </select>
 
@@ -117,5 +121,5 @@ WHERE
 	<select id="getWatchListById" resultMap="watchListMapper.watchListMap">
     SELECT * FROM WatchList WHERE userno = #{userno}  ORDER BY regdate DESC
 </select>
-	
+
 </mapper>

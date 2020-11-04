@@ -18,16 +18,16 @@
 			alert('상품명을 입력해 주세요.' );
 			return;
 		} else if(!category){
-			alert('카테고리를 입력해 주세요.' );
+			alert('카테고리를 입력해 주세요.');
 			return;
 		} else if(!price){
-			alert('가격을 입력해 주세요.' );
+			alert('가격을 입력해 주세요.');
 			return;
 		} else if(!bodytext){
-			alert('내용을 입력해 주세요.' );
+			alert('내용을 입력해 주세요.');
 			return;
 		}
-		testBuyProduct();
+		 buyProduct();
 	});
 
 
@@ -46,7 +46,7 @@
 			pg : 'inicis', // version 1.1.0부터 지원.
 			pay_method : 'card',
 			merchant_uid : uuidv4(),
-			name : '주문명:판매게시글 등록',
+			name : '판매게시글 등록',
 			amount : 100,
 			buyer_email : 'iamport@siot.do',
 			buyer_name : '',
