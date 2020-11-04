@@ -4,10 +4,21 @@
 	width: 450px;
 }
 
+.section1 #profile{
+	margin-left: 100px;
+}
 .section2 {
 	padding-top: 100px;
 	text-align: center;
 	width: 450px;
+}
+
+.section2 #userNickname{
+	border-radius: 4px;
+}
+
+#nicknameChange{
+	background:#095000;
 }
 
 .section2 form {
@@ -53,4 +64,16 @@
 	width: 120px;
 	height: 48px;
 	margin: 0 0 10px 5px;
+}
+
+.btnSec #file{
+	display: none;
+}
+
+.btnSec #potoSubmit{
+	display: none;
+}
+
+.btnSec #commit{
+	background:#095000;
 }

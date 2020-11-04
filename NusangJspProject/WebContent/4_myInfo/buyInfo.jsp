@@ -7,26 +7,26 @@
 <c:set var="list" value="${user.payment_UserList}" />
 <%@include file="pagination.jsp"%>
 <%! String pageName = "buyInfo"; %>
-
-<div class="container" style = "margin-left: 100px;">
+<link rel="stylesheet" type="text/css" href="/4_myInfo/css/buyInfo.css">
+<div class="container">
 	<h2>구매내역</h2>
 	<br><br>
 	
-	<table class="table" style = "text-align: center;">
-		<thead class="thead" style = "background: #003E00; color: white;">
+	<table class="table">
+		<thead class="thead">
 			<tr>
-				<th scope="col" style = "text-align: center;">no.</th>
-				<th scope="col" style = "text-align: center;">구매품목</th>
-				<th scope="col" style = "text-align: center;">금액</th>
-				<th scope="col" style = "text-align: center;">판매자명</th>
-				<th scope="col" style = "text-align: center;">날짜</th>
+				<th scope="col">no.</th>
+				<th scope="col">구매품목</th>
+				<th scope="col">금액</th>
+				<th scope="col">판매자명</th>
+				<th scope="col">날짜</th>
 			</tr>
 		</thead>
 		<% int listCnt = fromRow+1; %>
 		<tbody>
 			<c:forEach var="buyinfo" items="<%=selectList %>">
 				<tr>
-					<th scope="row" style = "text-align: center;"><%=listCnt++ %></th>
+					<th scope="row"><%=listCnt++ %></th>
 					<td>${buyinfo.productname}</td>
 					<td><fmt:formatNumber value="${buyinfo.price }" pattern="#,###" />원 </td>
 					<td>${buyinfo.business_partner.nickname}</td>

@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+.container{
+	margin-left: 100px;
+}
+
+.container .cardbox{
+	width:12rem;
+	float:left;
+}
+
+.container .cardbox .card{
+	width: 10rem;
+	margin-bottom: 20px;
+	border-radius: 15px;
+	box-shadow: 0px 0px 7px 1px #EAEAEA;
+}
+
+#card_img{
+	width: 10rem;
+	height: 150px;
+	border-radius:15px; 
+	margin-bottom: 0px;
+	box-shadow: 0px 0px 7px 1px #EAEAEA"
+}
+
+.textBox{
+	font-family: 'Noto Sans KR', sans-serif; 
+	margin-left: 5px;
+}
+
+.textBox .productname{
+	margin-top:10px;
+}
+
+.textBox .price{
+	font-weight: bold;
+}
+.textBox .getStateStr{
+	margin-top:-5px;
+}
+.move{
+	width:10rem;
+	margin-left: -1px;
+}

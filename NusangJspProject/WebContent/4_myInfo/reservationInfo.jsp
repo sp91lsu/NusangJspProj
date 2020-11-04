@@ -3,25 +3,26 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<link rel="stylesheet" type="text/css" href="/4_myInfo/css/reservationInfo.css" />
       
 <!-- 페이징처리 코드  -->
 <c:set var="list" value="${user.reservationList}" />
 <%@include file="pagination.jsp"%>
 <%! String pageName = "reservationInfo"; %>
       
-<div class="container" style = "margin-left: 100px;">
+<div class="container">
 	<h2>구매신청 현황</h2>
 	<br><br>
 
-	<table class="table" style = "text-align: center;">
-	  <thead class="thead" style = "background: #003E00; color: white;">
+	<table class="table">
+	  <thead class="thead">
 	    <tr>
-	      <th scope="col" style = "text-align: center;">no.</th>
-	      <th scope="col" style = "text-align: center;">구매품목</th>
-	      <th scope="col" style = "text-align: center;">예약가격</th>
-	      <th scope="col" style = "text-align: center;">진행상태</th>
-	      <th scope="col" style = "text-align: center;">날짜</th>
-	      <th scope="col" style = "text-align: center;"></th>
+	      <th scope="col">no.</th>
+	      <th scope="col">구매품목</th>
+	      <th scope="col">예약가격</th>
+	      <th scope="col">진행상태</th>
+	      <th scope="col">날짜</th>
+	      <th scope="col"></th>
 	    </tr>
 	  </thead>
 	  
@@ -30,7 +31,7 @@
 	  <% int listCnt = fromRow+1; %>
 	  	<c:forEach var="reservation" items="<%=selectList %>">
 				<tr>
-					<th scope="row" style="text-align: center;"><%=listCnt++%></th>
+					<th scope="row"><%=listCnt++%></th>
 					<td>${reservation.post.productname }</td>
 					<td><fmt:formatNumber value="${reservation.reser_price }"
 							pattern="#,###" />원</td>

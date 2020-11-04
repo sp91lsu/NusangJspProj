@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+.container{
+	margin-left: 100px;
+}
+
+.container .table{
+	text-align: center;
+}
+
+.container .table .thead{
+	text-align: center; 
+	background :#003E00; 
+	color: white;
+}
+
+th{
+	text-align: center;
+}
+
+.blue{
+	color: blue;
+}
+
+.red{
+	color: red;
+}

@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" type="text/css" href="/css/profile.css">
+<link rel="stylesheet" type="text/css" href="/4_myInfo/css/profile.css">
+
 
 <div class="section1">
 	
-	<h2 style = "margin-left:100px;">프로필 수정</h2>
+	<h2 id = "profile">프로필 수정</h2>
 	
 	<!-- 프로필 사진 영역 -->
 	<c:choose>
@@ -23,10 +24,10 @@
 	<!-- 닉네임 & 닉네임변경버튼 -->
 	<div class="nicknameSec">
 		<form>
-			<input class="nickName" name="nickName" type="text" id = "userNickname" style = "border-radius: 4px;"
+			<input class="nickName" name="nickName" type="text" id = "userNickname"
 				value=${user.nickname } />
 
-			<button type="button" id = "nicknameChange" class="btn btn-success btn-sm" style= "background:#095000;">닉네임 변경</button>
+			<button type="button" id = "nicknameChange" class="btn btn-success btn-sm">닉네임 변경</button>
 		</form>
 	</div>
 	<script>
@@ -53,14 +54,14 @@
 			enctype="multipart/form-data" onsubmit="return changeImgChk()">
 
 			<input type="file" id="file" name="file" accept=".gif, .jpg, .png"
-				style="display: none" />
-			<button type="button" id="potoSubmit" style="display: none"></button>
+				 />
+			<button type="button" id="potoSubmit"></button>
 
 			<!--보여지는 버튼 -->
 			<button type="button" class="btn btn-sm btn-secondary"
 				id="btn-upload">사진 변경</button>
 
-			<button type="submit" class="btn btn-success btn-sm" style= "background:#095000;">저장하기</button>
+			<button type="submit" id = "commit" class="btn btn-success btn-sm">저장하기</button>
 		</form>
 
 		<form action="/myinfo/image_delete">

@@ -7,37 +7,38 @@
 <%@page import="lombok.val"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<link rel="stylesheet" type ="text/css" href = "/4_myInfo/css/paymentList.css" />
 
 <!-- 페이징처리 코드  -->
 <c:set var="list" value="${user.payment_MarketList}" />
 <%@include file="pagination.jsp"%>
 <%! String pageName = "paymentList"; %>
 
-<div class="container" style="margin-left: 100px;">
+<div class="container">
 	<h2>결제내역</h2>
 	<br> <br>
 
-	<table class="table" style = "text-align: center;">
-		<thead class="thead" style = "text-align: center; background :#003E00; color: white;">
+	<table class="table">
+		<thead class="thead">
 			<tr>
-				<th scope="col" style = "text-align: center;">no.</th>
-				<th scope="col" style = "text-align: center;">결제번호</th>
-				<th scope="col" style = "text-align: center;">결제내용</th>
-				<th scope="col" style = "text-align: center;">결제금액</th>
-				<th scope="col" style = "text-align: center;">날짜</th>
+				<th scope="col">no.</th>
+				<th scope="col">결제번호</th>
+				<th scope="col">결제내용</th>
+				<th scope="col">결제금액</th>
+				<th scope="col">날짜</th>
 			</tr>
 		</thead>
 		<% int listCnt = fromRow+1; %>
 		<tbody>
 			<c:forEach var="payment" items="<%=selectList%>">
 				<tr>
-					<th scope="row" style = "text-align: center;"><%= listCnt++ %></th>
+					<th scope="row"><%= listCnt++ %></th>
 					<td>${payment.imp_uid}</td>
 					<td>${payment.name}</td>
 					<td><fmt:formatNumber value="${payment.price }" pattern="#,###" />원
 					<c:choose>
-						<c:when test="${payment.state == 0 }"><span style = "color: blue;">환불</span></c:when>
-						<c:when test="${payment.state == 1 }"><span style = "color: red;">결제</span></c:when>
+						<c:when test="${payment.state == 0 }"><span class = "blue">환불</span></c:when>
+						<c:when test="${payment.state == 1 }"><span class = "red">결제</span></c:when>
 					</c:choose>
 					</td>
 					<td><fmt:formatDate value="${payment.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
