@@ -127,24 +127,7 @@
 		</div>
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
 </body>
-<script type="text/javascript">
-	
-	/* 이미지추가 관련 스크립트  */
-	var i = 0;
-	$("#btnAdd").click(function(){
-		if(i < 5){
-			$("#files").append("<div><input type='file' style = 'background:#BDBDBD' name='upfile" + i + "'/><button type='button' style = 'margin-top:-3px;' class = 'btn btn-danger btn-sm' id='deleteBtn' onclick='$(this).parent().remove(); cntdown()'>삭제</button></div>");
-			i++;
-			console.log('현제:' + i);
-		}		
-	});
-	function cntdown() {
-		console.log('현제:' + i);
-		i--;
-	}
-</script>
-
-<script type="text/javascript" src="/4_post/createPost.js">
+<script type="text/javascript" src="/4_post/js/createPost.js">
 	
 </script> 
 
