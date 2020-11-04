@@ -10,8 +10,8 @@
 		<div style="width: 10rem;margin-bottom: 20px; border-radius: 15px;box-shadow: 0px 0px 7px 1px #EAEAEA;">
 
 			<c:choose>
-				<c:when test="${!empty watch.post.post_picture.getList()[0]}">
-					<img id="card_img" alt="product image" src="/upload/${watch.post.post_picture.getList()[0]}" class="rounded-bottom" style="width: 10rem;height: 150px; border-radius:15px;margin-bottom: 0px;box-shadow: 0px 0px 7px 1px #EAEAEA;">
+				<c:when test="${!empty post.post_picture.getList()[0]}">
+					<img id="card_img" alt="product image" src="/upload/${post.post_picture.getList()[0]}" class="rounded-bottom" style="width: 10rem;height: 150px; border-radius:15px;margin-bottom: 0px;box-shadow: 0px 0px 7px 1px #EAEAEA;">
 				</c:when>
 				<c:otherwise>
 					<img id="card_img" alt="default image" src="/img/noImg.png" class="rounded-bottom" style="width: 10rem;height: 150px;border-radius:15px; margin-bottom: 0px;box-shadow: 0px 0px 7px 1px #EAEAEA">
@@ -31,15 +31,5 @@
 	
 	<br> <br>
 
-	<!-- <nav aria-label="Page navigation example">
-		<ul class="pagination justify-content-center">
-			<li class="page-item"><a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-			</a></li>
-			<li class="page-item"><a class="page-link" href="#">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item"><a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-			</a></li>
-		</ul>
-	</nav> -->
+
 </div>
