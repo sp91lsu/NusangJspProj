@@ -161,7 +161,7 @@ function ud(){
 		})
 	})
 	/*댓글 삭제*/
-	$(".comment .c_delete").click(function () {
+	$(".c_delete").click(function () {
 		commentlocation = $(this).closest(".comment");
 		replyno = commentlocation.children(".commentSection").children("#replyno");
 		
@@ -191,7 +191,7 @@ ud();
 				url : "/post/addComments",
 				type : "POST",
 				data : {
-					"postno" : <%=request.getParameter("postno")%>,
+					"postno" : ${"postno"}.value,
 					"replyText" : $("#replyComments").val(),
 					"secretmode" : $("input[id='secretmode']:checked").length
 				},

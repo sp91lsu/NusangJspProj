@@ -18,7 +18,7 @@
 				<label for="username">아이디</label>
 				<div class="d-flex flex-row">
 					<input name="userid" type="text" class="form-control "
-						placeholder="첫글자는 영어  6글자 이상" id="userid">
+						placeholder="첫글자는 영어,  6글자 이상" id="userid">
 						<div style = "margin-left: 10px;">
 					<button type="button" id="idChkBtn" class="btn btn-primary">중복확인</button>
 					</div>
