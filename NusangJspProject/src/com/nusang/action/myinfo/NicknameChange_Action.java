@@ -25,7 +25,7 @@ public class NicknameChange_Action implements Action {
 		
 		User serverNickname = UserDao.getInstance().findBy("nickname", nickName);
 		System.out.println("서버에 이 이름이 있어???  " + serverNickname);
-		String namePattern = "^[가-힣]{2,7}$"; //한글만 2~7자
+		String namePattern = "^[가-힣]{2,6}$"; //한글만 2~6자
 		boolean chk = Pattern.matches(namePattern, nickName);
 		if((serverNickname == null) && (chk == true)) {
 			
