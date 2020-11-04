@@ -62,13 +62,22 @@
 				msg += '결제 금액 : ' + rsp.paid_amount;
 				msg += '카드 승인번호 : ' + rsp.apply_num;
 
-
-				alert(msg);
+				let modal = $('#modal_createPost');
+				 
+				$(modal).modal("show");
 				
-				$("#pm_merchant_uid").val(rsp.merchant_uid);
-				$("#pm_imp_uid").val(rsp.imp_uid);
-				$("#pm_paid_amount").val(rsp.paid_amount);
-				document.createPostForm.submit();
+				let modalY = $('#modal_createPost #modalY');
+				console.log($(modalY).text())
+				$(modalY).click(function(e) {
+					
+					$("#pm_merchant_uid").val(rsp.merchant_uid);
+					$("#pm_imp_uid").val(rsp.imp_uid);
+					$("#pm_paid_amount").val(rsp.paid_amount);
+					document.createPostForm.submit();
+					
+				});
+				
+				
 			} else {
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;

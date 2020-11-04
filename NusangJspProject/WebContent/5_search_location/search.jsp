@@ -16,7 +16,7 @@
 		<h1 class="display-4 text-center mt-5">위치 설정</h1>(최소 동읍까지)
 		 
 		<div class="input-group">
-			<input type="text" name="searchValue" id="searchText" class="form-control container w-50" placeholder="시/도, 시/군/구, 동읍"> 
+			<input type="text" name="searchValue" id="searchText" class="form-control container w-50" placeholder="예:) 서울특별시 강남구 역삼동 601"> 
 			<span class="input-group-btn">
 				<button class="btn btn-dark " id="searchBtn" type="button">찾기</button>
 			</span>
