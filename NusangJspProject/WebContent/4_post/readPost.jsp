@@ -298,6 +298,13 @@
 		</div>
 	</div>
 
+<jsp:include page="../0_common/modal.jsp" flush="true">
+		<jsp:param name="modalId" value='<%=URLEncoder.encode("modal_sell", "UTF-8")%>' />
+		<jsp:param name="title" value='<%=URLEncoder.encode("판매", "UTF-8")%>' />
+		<jsp:param name="body" value='<%=URLEncoder.encode("판매시 되돌릴 수 없습니다. 정말로 판매하시겠습니까?", "UTF-8")%>' />
+	</jsp:include>
+	
+	
 	<jsp:include page="../0_common/modal.jsp" flush="true">
 		<jsp:param name="modalId" value='<%=URLEncoder.encode("modal_refund", "UTF-8")%>' />
 		<jsp:param name="title" value='<%=URLEncoder.encode("환불", "UTF-8")%>' />
