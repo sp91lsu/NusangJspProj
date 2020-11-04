@@ -15,7 +15,8 @@
 		<thead class="thead" style = "background: #003E00; color: white;">
 			<tr>
 				<th scope="col" style = "text-align: center;">no.</th>
-				<th scope="col" style = "text-align: center;">게시글</th>
+				<th scope="col" style = "text-align: center;">판매품목</th>
+				<th scope="col" style = "text-align: center;">금액</th>
 				<th scope="col" style = "text-align: center;">구매자명</th>
 				<th scope="col" style = "text-align: center;">날짜</th>
 			</tr>
@@ -26,6 +27,7 @@
 				<tr>
 						<th scope="row" style = "text-align: center;"><%=listCnt++ %></th>
 						<td>${sale.productname}</td>
+						<td>${sale.price}</td>
 						<td>${sale.business_partner.nickname}</td>
 						<td><fmt:formatDate value="${sale.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 				</tr>
