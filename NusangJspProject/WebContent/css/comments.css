@@ -75,7 +75,7 @@ li {
 	border-radius: 7px 7px 7px 7px;
 }
 
-#updateComment, #cancleComment {
+#updateBtn, #cancleBtn {
 	margin-left: 10px;
 	float: right;
 }
@@ -84,7 +84,7 @@ li {
 	margin: 10px 0px 20px 10px;
 }
 
-#addComments {
+#submitComment {
 	margin-left: 10px;
 	width: 80px;
 	display: block;

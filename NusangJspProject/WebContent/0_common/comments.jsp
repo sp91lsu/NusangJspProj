@@ -6,6 +6,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <div>
 	댓글
 	<div class='addComments'>
@@ -97,7 +98,7 @@
 		
 		<div class = 'chk_btn'>
 			<input type='checkbox' id='secretmode' >비밀댓글
-			<input type='button' id='addComments' class = "btn btn-secondary btn-sm" value='등록'>
+			<input type='button' id='submitComment' class = "btn btn-secondary btn-sm" value='등록'>
 		</div>
 	</div>
 </div>
@@ -108,28 +109,28 @@ function ud(){
 	var commentlocation;
 	var replyno;
 	
-	$(".c_update").click(function(){ /*댓글 수정*/
+	$(".c_update").click(function(){ /*댓글 수정 li*/
 		commentlocation = $(this).closest(".comment");
 		replyno = $(this).closest(".comment").children(".commentSection").children("#replyno");
-		var textcopy =$(this).closest(".cContent").children(".cSection").children(".text").text().trim();
+		var textcopy =$(this).closest(".cContent").children(".cSection").children(".text").text().trim();/*수정전 내용 저장*/
 		
-		var updatecomment = commentlocation.append(
-				"<div class='upcomment'>" +
+		var updatecomment = commentlocation.append(/*수정창 생성*/
+				"<div class='upcomment d-flex'>" +
 					"<textarea rows='3' cols='85' id='replyComments'" +
 						"placeholder='댓글을 입력하세요'>" +
 					"</textarea>" +
-					"<div style='height: 30px' >" +
-						"<input type='button' id='cancleComment' value='취소'>" + 
-						"<input type='button' id='updateComment' value='수정'>" +
+					"<div class = 'c_upBtn'>" +
+						"<input type='button' id='cancleBtn' value='취소'>" + 
+						"<input type='button' id='updateBtn' value='수정'>" +
 					"</div>" +
 				"<div>"
 				);
-		$("#replyComments").val(textcopy);
-		commentdetach= $(this).closest(".commentSection").detach();
+		$("#replyComments").val(textcopy);/*수정창에 내용 복사*/
+		commentdetach= $(this).closest(".commentSection").detach();/*기존 댓글창 떼어놓기*/
 		
-		/*수정 완료*/
-		$("#updateComment").click(function(){
-			var updateText =$(this).closest(".upcomment").children("textarea");
+		
+		$("#updateBtn").click(function(){/*수정 버튼*/
+			var updateText =$(this).closest(".upcomment").children("textarea");/*수정될 텍스트 저장*/
 			var updateText_Location =
 			commentdetach.children(".cContent").children(".cSection").children(".text");
 			
@@ -145,10 +146,10 @@ function ud(){
 						"replyno" : replyno.val()
 					},
 					success : function name(data) {
-						if(data > 0){
-	 						commentlocation.append(commentdetach);
-							commentlocation.children(".upcomment").remove();
-							$(updateText_Location).html(updateText.val());
+						if(data > 0){/*성공일때*/
+	 						commentlocation.append(commentdetach);/*기존 댓글창 붙이기*/
+							commentlocation.children(".upcomment").remove();/*수정창 삭제*/
+							$(updateText_Location).html(updateText.val());/*수정될 내용으로 변경*/
 						}
 					}
 				})
@@ -156,9 +157,9 @@ function ud(){
 		})
 		
 		/*취소 버튼*/
-		$("#cancleComment").click(function(){
-			var cancle = $(this).closest(".comment").children("div").remove();
-			commentlocation.append(commentdetach);
+		$("#cancleBtn").click(function(){
+			var cancle = $(this).closest(".comment").children("div").remove();/*수정창 제거*/
+			commentlocation.append(commentdetach);/*기존댓글창 붙이기*/
 		})
 	})
 	/*댓글 삭제*/
@@ -183,7 +184,7 @@ function ud(){
 ud();
 
 /*댓글 추가*/
-	$("#addComments").click(function(){
+	$("#submitComment").click(function(){
 		if ($("#replyComments").val().trim() == "") {
 			$("#replyComments").val("");
 			alert("댓글을 입력해 주세요");
@@ -210,7 +211,7 @@ ud();
 						if($("input[id='secretmode']:checked").length==0){/*공개댓글*/
 							secret="";
 						}else{/*비공개 댓글*/
-							secret= "(비밀댓글입니다)"
+							secret= "(비밀댓글입니다)";
 						}
 						$(".addComments").append(
 								"<div class='comment'>" +
@@ -255,7 +256,7 @@ ud();
 								"</div>" +
 							"</div>"
 						);
-						$("#replyComments").val("");/*입력내용 삭제*/
+						$("#replyComments").val("");/*칸 비우기*/
 						$("input[id='secretmode']").prop("checked",false);/*체크박스 해제*/
 						ud();
 					}
