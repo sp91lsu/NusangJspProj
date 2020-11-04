@@ -18,7 +18,7 @@ public class nameChk_Action implements Action {
 		String uName = request.getParameter("uName");
 		User serverName = UserDao.getInstance().findBy("username", uName);
 		System.out.println("이 유저닉네임이 서버에 있니??" + serverName);
-		String namePattern = "^[가-힣]{2,7}$"; //한글만 2~7자
+		String namePattern = "^[가-힣]{2,6}$"; //한글만 2~6자
 		boolean chk = Pattern.matches(namePattern, uName);
 		if((uName == "")) {
 			actionForward.setAsyncData("0");
