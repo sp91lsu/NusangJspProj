@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<link rel="stylesheet" href="/3_account/css/signUp.css" />
 </head>
 
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
 
-	<div class="container">
+	<div class="container" id = "container">
 		<h1 class="display-4 text-center mt-5">회원가입</h1>
 		<form name="joinForm" action = "/user/signup" method="post" onsubmit = "return joinSubmit();">
 			<div class="form-group w-50 container">
@@ -19,7 +19,7 @@
 				<div class="d-flex flex-row">
 					<input name="userid" type="text" class="form-control "
 						placeholder="첫글자는 영어,  6글자 이상" id="userid">
-						<div style = "margin-left: 10px;">
+						<div class = "marginLeft">
 					<button type="button" id="idChkBtn" class="btn btn-primary">중복확인</button>
 					</div>
 				</div>
@@ -40,7 +40,7 @@
 				<div class="d-flex flex-row">
 				 <input name="username" type="text"
 					class="form-control" placeholder="한글만 2~6자" id="username">
-					<div style = "margin-left: 10px;">
+					<div class = "marginLeft" >
 					<button type="button" id="nameChkBtn" class="btn btn-primary">중복확인</button>
 					</div>
 					</div>

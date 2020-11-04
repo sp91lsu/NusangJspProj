@@ -1,21 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>loginPage</title>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript"
 	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
 	charset="utf-8"></script>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>loginPage</title>
+	<link rel="stylesheet" href="/3_account/css/login.css" />
 </head>
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
 
-	<div class="container" style="min-height: 400px">
+	<div class="container" id = "container">
 		<h1 class="display-4 text-center mt-5">로그인</h1>
 		<form action="/user/login" method="post">
 			<div class="form-group w-50 container">
@@ -36,8 +37,8 @@
 					height="38px" src="../img/kakaoLoginBtn.png"></a> <a
 					href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=h3YOPfhFkTcn5ls8RX3g&state=STATE_STRING&redirect_uri=http://localhost:8787/user/naverlogin"><img
 					height="38px" src="../img/naverLoginBtn.PNG"></a>
-					<a href="find_id.jsp" style = "margin-left: 40px; font-size:small; border-right: 1px solid skyblue; padding-right: 20px;">아이디 찾기</a>
-					<a href="find_pw.jsp" style = "margin-left: 15px; font-size:small;">비밀번호 찾기</a>
+					<a id = "find_id" href="find_id.jsp">아이디 찾기</a>
+					<a id = "find_pw" href="find_pw.jsp">비밀번호 찾기</a>
 			</div>
 					
 		</form>

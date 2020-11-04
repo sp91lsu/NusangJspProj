@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+#container{
+	min-height: 400px;
+}
+
+#find_id{
+	margin-left: 40px; 
+	font-size:small; 
+	border-right: 1px solid skyblue; 
+	padding-right: 20px;
+}
+
+#find_pw{
+	margin-left: 15px; 
+	font-size:small;
+}

@@ -4,9 +4,8 @@
 <script type="text/javascript"
 	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
 	charset="utf-8"></script>
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../css/find_id.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/3_account/css/find_id.css" />
 
 <!DOCTYPE html>
 <html>
@@ -17,7 +16,7 @@
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
 
-	<div class="container">
+	<div class="container" id = "container">
 		<h1 class="display-4 text-center mt-5">아이디 찾기</h1>
 		<div class="form-group w-50 container">
 			<label for="name">이름 :</label> <input name="username"  type="text"
@@ -31,8 +30,9 @@
 		</div>
 
 		<div class="form-group w-50 container">
-			<input class="w-50 container" type="button" id="findBtn"
-				value="아이디 찾기"><br>
+			<input class="w-50 container btn btn-primary" type="button" id="findBtn"
+				value="아이디 찾기">
+			
 		</div>
 	</div>
 	<script type="text/javascript">

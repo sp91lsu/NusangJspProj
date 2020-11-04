@@ -6,7 +6,7 @@
 	charset="utf-8"></script>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../css/find_pw.css">
+<link rel="stylesheet" type="text/css" href="/3_account/css/find_pw.css">
 
 <!DOCTYPE html>
 <html>
@@ -17,7 +17,7 @@
 <body>
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
 
-	<div class="container">
+	<div class="container" id ="container">
 		<h1 class="display-4 text-center mt-5">비밀번호 찾기</h1>
 		<form action="" method="post"><!-- action값 설정! -->
 			<div class="form-group w-50 container">
@@ -39,7 +39,7 @@
 			</div>
 			
 			<div class="form-group w-50 container">
-			<input class = "w-50 container"type="button" id = "pwfindBtn" value="비밀번호 찾기"><br>			
+			<input class = "w-50 container btn btn-primary"type="button" id = "pwfindBtn" value="비밀번호 찾기"><br>			
 			</div>
 		</form>
 
