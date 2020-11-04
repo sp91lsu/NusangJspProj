@@ -107,8 +107,8 @@
 								<!-- 가격범위 -->
 								<span class="popIndex">가격범위</span>
 									<div class="form-group d-flex ml-3 mr-3 align-items-center">
-										<input type="number" class="form-control" name="price_min" value="0">&nbsp;&nbsp;~&nbsp;&nbsp;
-										<input type="number" class="form-control" name="price_max" value="999999999999">
+										<input type="number" class="form-control" name="price_min" value="0" required="required">&nbsp;&nbsp;~&nbsp;&nbsp;
+										<input type="number" class="form-control" name="price_max" value="999999999999" required="required">
 									</div>
 								<hr>
 								<!-- 동네범위 -->
@@ -135,11 +135,8 @@
 								</div>
 								<hr>
 								<!-- 버튼들 -->
-								<div class="d-flex justify-content-end">
-									<button>기본값</button>
-									<button></button>
-									<button></button>
-									<button id="submitBtn" type="submit">검색</button>
+								<div id="btns" class="d-flex justify-content-end">
+									<button id="submitBtn" type="submit" class="btn btn-success">검색</button>
 								</div>
 						</div>
 						</form>
