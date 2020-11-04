@@ -10,15 +10,15 @@
 	<br>
 
 	<c:forEach var="watch" items="${user.watchList }">
-
-		<div class="card mr-4" style="width: 10rem; float: left; margin-bottom: 10px;">
+	<div style = "width:12rem; float: left; ">
+		<div style="width: 10rem;margin-bottom: 20px; border-radius: 15px;box-shadow: 0px 0px 7px 1px #EAEAEA;">
 
 			<c:choose>
 				<c:when test="${!empty watch.post.post_picture.getList()[0]}">
-					<img id="card_img" alt="product image" src="/upload/${watch.post.post_picture.getList()[0]}" class="rounded-bottom" style="height: 150px; margin-bottom: 0px;box-shadow: 0px 0px 7px 1px #EAEAEA;">
+					<img id="card_img" alt="product image" src="/upload/${watch.post.post_picture.getList()[0]}" class="rounded-bottom" style="width: 10rem;height: 150px; border-radius:15px;margin-bottom: 0px;box-shadow: 0px 0px 7px 1px #EAEAEA;">
 				</c:when>
 				<c:otherwise>
-					<img id="card_img" alt="default image" src="/img/noImg.png" class="rounded-bottom" style="height: 150px; margin-bottom: 0px; box-shadow: 0px 0px 7px 1px #EAEAEA">
+					<img id="card_img" alt="default image" src="/img/noImg.png" class="rounded-bottom" style="width: 10rem;height: 150px;border-radius:15px; margin-bottom: 0px;box-shadow: 0px 0px 7px 1px #EAEAEA">
 				</c:otherwise>
 			</c:choose>
 			<div style = "font-family: 'Noto Sans KR', sans-serif; margin-left: 5px;" >
@@ -26,9 +26,9 @@
 				<p style = "font-weight: bold;"><fmt:formatNumber value="${watch.post.price }" pattern="#,###" />원</p>
 				<p style = "margin-top:-5px;">${watch.post.getStateStr() }</p>
 			</div>
-				<a href="/post/readPost?postno=${watch.post.postno }" class="btn btn-primary" style = "width:160px;margin-left: -1px;">상품보러가기</a>
+				<a href="/post/readPost?postno=${watch.post.postno }" class="btn btn-warning" style = "width:10rem;margin-left: -1px;">상품보러가기</a>
 		</div>
-
+		</div>
 	</c:forEach>
 
 	<br>
