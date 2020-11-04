@@ -60,27 +60,27 @@ public class UserDao extends BasicDao<User> {
 		return user;
 	}
 	
-	public User idCheck(String username, String email) {
+	public List<User> idCheck(String username, String email) {
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("username", username);
 		map.put("email", email);
-		User user = session.selectOne(namespace + "idCheck", map);
+		List<User> userlist = session.selectList(namespace + "idCheck", map);
 		session.commit();
 		session.close();
-		return user;
+		return userlist;
 	}
 	
-	public User pwCheck(String username,String userid, String email) {
+	public List<User> pwCheck(String username,String userid, String email) {
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("username", username);
 		map.put("userid", userid);
 		map.put("email", email);
-		User user = session.selectOne(namespace + "pwCheck", map);
+		List<User> userlist= session.selectList(namespace + "pwCheck", map);
 		session.commit();
 		session.close();
-		return user;
+		return userlist;
 	}
 	
 
