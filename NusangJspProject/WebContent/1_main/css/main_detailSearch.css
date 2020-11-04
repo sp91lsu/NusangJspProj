@@ -14,7 +14,7 @@
 	position: absolute;
 	right:0;
 	z-index: 1;
-	width: 500px;
+	width: 620px;
 	height: auto;
 	border: 1px solid black;
 	background-color: #fff;
@@ -28,29 +28,73 @@
 	cursor: pointer;
 }
 
+/* radio */
+ input[type="radio"] {
+     display: none
+ }
+
+ input[type="radio"]+label:before {
+     content: "";
+     display: inline-block;
+     width: 17px;
+     height: 15px;
+     padding: 2px;
+     margin-right: 3px;
+     background-clip: content-box;
+     border: 2px solid #bbb;
+     background-color: #e7e6e7;
+     border-radius: 50%
+ }
+ input[type="radio"]:checked+label:before {
+     background-color: #93e026;
+ } 
+
+
+
+
+
 #detailSearch-pop #popHeader{
 	background-color: #1DDB16;
 	border-radius: 10px 10px 0px 0px;
 }
 #detailSearch-pop #closeBtn{
 	cursor: pointer;
+	color: #fff;
 }
 
 #detailSearch-pop #popHtext{
 	font-size: 20px;
 	margin-left: 5px;
 	font-weight: bold;
+	color: #fff;
 }
 #detailSearch-pop .popIndex{
 	display: block;
 	font-weight: bold;
 }
 #detailSearch-pop .form-check{
-	width: 166px;
+	width: 200px;
 }
 
 .fa-times{
 	margin-top: 3px;
 	margin-right: 8px;
 	font-size: 25px;
+}
+
+
+
+/* checkbox */
+  /* @keyframes check {0% {height: 0;width: 0;}
+    25% {height: 0;width: 10px;}
+    50% {height: 20px;width: 10px;}
+  } */
+  .checkbox{background-color:#fff; position: relative;}
+  .checkbox span{ display:inline-block;position:relative;height:17px;width:17px;padding:0;border-radius:4px;border:1px solid #ccc;}
+  .checkbox span:after{-moz-transform:scaleX(-1) rotate(135deg);-ms-transform:scaleX(-1) rotate(135deg);-webkit-transform:scaleX(-1) rotate(135deg);transform:scaleX(-1) rotate(135deg);-moz-transform-origin:left top;-ms-transform-origin:left top;-webkit-transform-origin:left top;transform-origin:left top;border-right:4px solid #fff;border-top:4px solid #fff;content:'';display:inherit;height:13px;left:0px;position:absolute;top:8px;width:8px}
+  /* .checkbox span:hover:after{border-color:#999} */
+  .checkbox input{display:none}
+  /* .checkbox input:checked + span:after{-webkit-animation:check .8s;-moz-animation:check .8s;-o-animation:check .8s;animation:check .8s;border-color:#555} */
+.checkbox input:checked + .success:after{border-color:#8bc34a}
+.checkbox label{
 }

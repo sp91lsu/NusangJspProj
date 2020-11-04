@@ -70,12 +70,18 @@
 								<jsp:include page="/0_common/data.jsp"></jsp:include>
 								<% String cate[] = (String[])request.getAttribute("arr_cate"); %>
 								<span class="popIndex ">카테고리</span>&nbsp;&nbsp;&nbsp;
-								<label><input id="chooseAll" type="checkbox" checked="checked">모두선택</label>
+								<label class="checkbox">
+									<input id="chooseAll" type="checkbox" checked="checked">
+									<span class="success" style=""></span>
+									<label for="chooseAll">모두선택</label>
+								</label>
 								<div class="d-flex flex-wrap">
-									<c:forEach var="ct" items="<%=cate%>">
+									<c:forEach var="ct" items="<%=cate%>" varStatus="status">
 										<div class="form-group form-check">
-										  <label class="form-check-label">
-										    <input type="checkbox" class="form-check-input" name="category" value="${ct }" checked="checked">${ct }
+										  <label class="form-check-label checkbox align-items-center" style="padding-left: 0;">
+										    <input type="checkbox"  class="form-check-input" id="chk${status.count }" name="category" value="${ct }" checked="checked">
+										    <span class="success" style=""></span>
+										    <label for="chk${status.count }" style="margin-bottom:0rem;">${ct }</label>
 										  </label>
 										</div>
 									</c:forEach>
@@ -86,12 +92,14 @@
 								<div>
 									<div class="form-group form-check-inline">
 									  <label class="form-check-label">
-									    <input type="radio" class="form-check-input" name="order" value="postno" checked="checked">최신 순
+									    <input type="radio" id="od1" class="form-check-input" name="order" value="postno" checked="checked">
+									    <label for="od1"></label>최신 순
 									  </label>
 									</div>
 									<div class="form-group form-check-inline">
 									  <label class="form-check-label">
-									    <input type="radio" class="form-check-input" name="order" value="heartcnt">관심 순
+									    <input type="radio" id="od2" class="form-check-input" name="order" value="heartcnt">
+									    <label for="od2"></label>관심 순
 									  </label>
 									</div>
 								</div>
@@ -99,8 +107,8 @@
 								<!-- 가격범위 -->
 								<span class="popIndex">가격범위</span>
 									<div class="form-group d-flex ml-3 mr-3 align-items-center">
-										<input type="number" class="form-control" name="price_min">&nbsp;&nbsp;~&nbsp;&nbsp;
-										<input type="number" class="form-control" name="price_max">
+										<input type="number" class="form-control" name="price_min" value="0">&nbsp;&nbsp;~&nbsp;&nbsp;
+										<input type="number" class="form-control" name="price_max" value="999999999999">
 									</div>
 								<hr>
 								<!-- 동네범위 -->
@@ -113,10 +121,12 @@
 										  <label class="form-check-label">
 										  	<c:choose>
 										  		<c:when test="${presetNum==num}">
-											    	<input type="radio" class="form-check-input" name="view_distance" value="${num }" checked="checked">${num }km
+											    	<input type="radio" class="form-check-input" id="dong${status.count }" name="view_distance" value="${num }" checked="checked">
+											    	<label for="dong${status.count }"></label>${num }km
 										  		</c:when>
 										  		<c:otherwise>
-											    	<input type="radio" class="form-check-input" name="view_distance" value="${num }">${num }km
+											    	<input type="radio" class="form-check-input" id="dong${status.count }" name="view_distance" value="${num }">
+											    	<label for="dong${status.count }"></label>${num }km
 										  		</c:otherwise>
 										  	</c:choose>
 										  </label>
