@@ -36,7 +36,7 @@
 			</div>
 
 			<div class="form-group w-50 container">
-				<label for="username">닉네임</label>
+				<label for="username">이름</label>
 				<div class="d-flex flex-row">
 				 <input name="username" type="text"
 					class="form-control" placeholder="한글만 2~6자" id="username">
