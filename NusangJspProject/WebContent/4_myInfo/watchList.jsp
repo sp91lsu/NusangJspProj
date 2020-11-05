@@ -27,7 +27,7 @@
 				<p class = "price" style = "font-weight: bold;"><fmt:formatNumber value="${watch.post.price }" pattern="#,###" />원</p>
 				<p class = "getStateStr" style = "margin-top:-5px;">${watch.post.getStateStr() }</p>
 			</div>
-				<a class = "move" href="/post/readPost?postno=${watch.post.postno }" class="btn btn-warning" style = "width:10rem;margin-left: -1px;">상품보러가기</a>
+				<button class = "move btn btn-warning" onclick = 'location.href="/post/readPost?postno=${watch.post.postno }"'>상품보러가기</button>
 		</div>
 		</div>
 	</c:forEach>
