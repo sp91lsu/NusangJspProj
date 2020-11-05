@@ -14,7 +14,7 @@ import com.nusang.dto.Payment_Market;
 import com.nusang.dto.Post;
 import com.nusang.dto.User;
 
-public class Buy_ReservationDao extends BasicDao<Payment_Market> {
+public class Buy_ReservationDao extends BasicDao<Buy_Reservation> {
 
 	private static Buy_ReservationDao instance;
 
@@ -82,12 +82,15 @@ public class Buy_ReservationDao extends BasicDao<Payment_Market> {
 
 			Map<String, Object> map = new HashMap<String, Object>();
 
-			map.put("sellpostno", postno);
-			map.put("reserno", reserno);
-			session.update(namespace + "initReservation", map);
-			updateBy(session, reserno, "state", 1);
-			result = PostDao.getInstance().updateBy(session, postno, "sellstate", 1);
-			session.commit();
+			Buy_Reservation br = Buy_ReservationDao.getInstance().findByNo(session, reserno);
+			if (br != null) {
+				map.put("sellpostno", postno);
+				map.put("reserno", reserno);
+				session.update(namespace + "initReservation", map);
+				updateBy(session, reserno, "state", 1);
+				result = PostDao.getInstance().updateBy(session, postno, "sellstate", 1);
+				session.commit();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.rollback();

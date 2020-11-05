@@ -43,7 +43,8 @@
 							location.href = "/post/readPost?postno="
 									+ $("#postno").val();
 						} else {
-							alert('구매자등록 실패.');
+							alert('구매자가 구매를 취소하였습니다.');
+							location.reload();
 						}
 
 					}
@@ -83,6 +84,7 @@
 									+ $("#postno").val()
 						} else {
 							alert('구매자가 구매를 취소하였습니다.');
+							location.reload();
 						}
 
 					}
