@@ -108,7 +108,7 @@
 								<span class="popIndex">가격범위</span>
 									<div class="form-group d-flex ml-3 mr-3 align-items-center">
 										<input type="number" class="form-control" name="price_min" value="0" required="required">&nbsp;&nbsp;~&nbsp;&nbsp;
-										<input type="number" class="form-control" name="price_max" value="999999999999" required="required">
+										<input type="number" class="form-control" name="price_max" value="999999999" required="required">
 									</div>
 								<hr>
 								<!-- 동네범위 -->
