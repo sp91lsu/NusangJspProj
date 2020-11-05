@@ -190,8 +190,10 @@
 						<%-- <h8 id="post_comment">댓글 [${post.replyList.size() }]</h8> --%>
 						<!-- 	<h8>·</h8> -->
 						<input type="hidden" id="watchCnt" value="${post.watchList.size() }">
+						<h8 id="post_interest">댓글 [${post.replyList.size() }]</h8>
+						<h8>&nbsp·&nbsp</h8>
 						<h8 id="post_interest">관심 [${post.watchList.size() }]</h8>
-						<h8>·</h8>
+						<h8>&nbsp·&nbsp</h8>
 						<h8 id="post_view">조회 [${post.viewcnt }]</h8>
 					</div>
 				</div>
