@@ -26,6 +26,15 @@
 		BR.userno = U.userno
     </select>
 
+	<select id="findBy" resultMap="reservationMap">
+		SELECT
+		*
+		FROM
+		BUY_RESERVATION
+		WHERE
+		${search} = #{keyword}
+	</select>
+
 	<select id="postReserList" resultMap="reservationMap">
      SELECT BR.reserno ,BR.reser_price ,BR.state,BR.sellpostno,BR.userno,BR.regdate
 		
