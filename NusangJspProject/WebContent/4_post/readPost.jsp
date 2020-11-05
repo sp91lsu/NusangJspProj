@@ -172,8 +172,8 @@
 					<!-- 카테고리 & 시간 -->
 					<div id="post_cate-time" class="d-flex" style="margin-top: 10px;">
 						<h6 id="post_category">${post.category}</h6>
-						<h6>·</h6>
-						<h6 id="post_time">시간정보</h6>
+						<h6>&nbsp·&nbsp</h6>
+						<h6 id="post_time">${post.calcTime() }</h6>
 					</div>
 					<!-- 가격 -->
 					<div style="padding-top: 5px; padding-bottom: 5px;">
