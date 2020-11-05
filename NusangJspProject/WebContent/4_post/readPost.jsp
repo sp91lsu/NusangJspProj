@@ -169,6 +169,8 @@
 				<div class="mr-auto">
 					<!-- 글제목 -->
 					<h4 id="post_title">${post.title}</h4>
+					<!-- 상품명 -->
+					<h4>${post.productname}</h4>
 					<!-- 카테고리 & 시간 -->
 					<div id="post_cate-time" class="d-flex" style="margin-top: 10px;">
 						<h6 id="post_category">${post.category}</h6>
