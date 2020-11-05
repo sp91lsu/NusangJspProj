@@ -2,7 +2,6 @@ package com.nusang.controller;
 
 import java.io.IOException;
 
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +12,7 @@ import com.nusang.action.Action;
 import com.nusang.action.ActionForward;
 import com.nusang.action.main.MainAction;
 import com.nusang.action.main.SearchAction;
+import com.nusang.action.main.SearchLogoutAction;
 import com.nusang.controller.assistance.ConAsist;
 
 @WebServlet({ "/main", "/index", "/" })
@@ -34,6 +34,10 @@ public class MainController extends HttpServlet {
 				break;
 			case "search":
 				action = new SearchAction();
+				actionForward = action.execute(request, response);
+				break;
+			case "search0":
+				action = new SearchLogoutAction();
 				actionForward = action.execute(request, response);
 				break;
 			case "index":
