@@ -132,8 +132,9 @@
 				}else if(data == "1"){
 					alert("사용가능한 아이디 입니다.");
 					idchk = true;
-				}		
-				else{
+				}else if(data == "2"){
+					alert("아이디는 첫 글자는 영어, 6글자 이상입니다.");
+				}else{
 					alert("중복된 아이디 입니다.");
 					idchk = false;
 				}
