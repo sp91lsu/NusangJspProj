@@ -1,3 +1,5 @@
+createPostForm.bodytext.value = createPostForm.bodytext.value.replaceAll('<br>', '\n');
+
 (function() {
 	var IMP = window.IMP; // 생략가능
 	IMP.init('imp11398251'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -27,6 +29,15 @@
 			alert('내용을 입력해 주세요.');
 			return;
 		}
+		
+		//게시판 bodytext(내용) 엔터처리
+		var str = document.getElementById("bodytext").value;
+		str = bodytext.replace(/(?:\r\n|\r|\n)/g, '<br />');
+		document.getElementById("p_text").innerHTML = str;
+		document.getElementById("bodytext").value = document.getElementById("p_text").innerHTML;
+		console.log(document.getElementById("p_text").innerHTML)
+		document.createPostForm.submit();
+		
 		buyProduct();
 	});
 

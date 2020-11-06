@@ -71,7 +71,8 @@
 			<%-- 글내용 --%>
 			<div style = "margin-top: 20px;">
 			<label for="bodytext">내용</label><br>
-			<textarea name="bodytext" class="form-control" rows="5" required="required">${post.bodytext } </textarea>
+			<textarea id="bodytext" name="bodytext" class="form-control" rows="5" required="required">${post.bodytext } </textarea>
+			<p id="p_text"></p>
 			<br>
 			</div>
 

@@ -5,6 +5,7 @@ var btnChk;
 var isSet;
 var imgDiv;
 
+createPostForm.bodytext.value = createPostForm.bodytext.value.replaceAll('<br>', '\n');
 $("#btnAdd")
 		.click(
 				function() {
@@ -67,5 +68,11 @@ function cntdown(me) {
 			return;
 		}
 		
+		//게시판 bodytext(내용) 엔터처리
+		var str = document.getElementById("bodytext").value;
+		str = bodytext.replace(/(?:\r\n|\r|\n)/g, '<br />');
+		document.getElementById("p_text").innerHTML = str;
+		document.getElementById("bodytext").value = document.getElementById("p_text").innerHTML;
+		console.log(document.getElementById("p_text").innerHTML)
 		document.createPostForm.submit();
 	});
