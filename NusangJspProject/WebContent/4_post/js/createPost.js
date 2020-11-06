@@ -37,12 +37,15 @@
 		document.createPostForm.submit();
 	}
 	var modalY = $('#modal_createPost #modalY');
-	
+
+	var merchant_uid;
+	var imp_uid;
+	var paid_amount;
 	$(modalY).click(function(e) {
 
-		$("#pm_merchant_uid").val(rsp.merchant_uid);
-		$("#pm_imp_uid").val(rsp.imp_uid);
-		$("#pm_paid_amount").val(rsp.paid_amount);
+		$("#pm_merchant_uid").val(merchant_uid);
+		$("#pm_imp_uid").val(imp_uid);
+		$("#pm_paid_amount").val(paid_amount);
 		document.createPostForm.submit();
 
 	});
@@ -74,7 +77,10 @@
 
 				$(modal).modal("show");
 
-				
+				merchant_uid = rsp.merchant_uid;
+				imp_uid = rsp.imp_uid;
+				paid_amount = rsp.paid_amount;
+
 			} else {
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;
