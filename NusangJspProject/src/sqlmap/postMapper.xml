@@ -124,6 +124,22 @@
 				  ) ORDER BY regdate DESC
 	</select>
 	
+	<select id="findPostByKeyword" resultMap="postResultMap" statementType="CALLABLE">
+		SELECT *
+			FROM sellpost  
+			WHERE 
+				locationno IN
+					(SELECT  loc.locationno FROM location loc 
+						WHERE 
+		 				calc_distance( #{latitude,jdbcType=NUMERIC  , mode=IN}, #{longtitude,jdbcType=NUMERIC  , mode=IN}, loc.latitude, loc.longtitude )
+						<![CDATA[<]]>
+						5
+						) 
+			AND
+			REGEXP_LIKE(title||bodytext||productname, ${searchWord}, 'i')	
+			ORDER BY postno DESC
+	</select>
+	
 	<select id="findPostByDetailSearch" resultMap="postResultMap" statementType="CALLABLE">
 		SELECT *
 			FROM sellpost  

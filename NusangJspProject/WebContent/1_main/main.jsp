@@ -46,8 +46,10 @@
 				<input id="searchBar" type="text" class="form-control" placeholder="검색 키워드를 입력하세요!">
 				<!-- 찾기버튼 -->
 				<button id="searchBtn" class="btn btn-dark " type="button" style="background: #10620A;">찾기</button>
+				
 				<!-- 상세검색 -->
 				<c:if test="${user != null }">
+					<div id="isUser"></div>
 					<!-- 상세검색 버튼 -->
 					<button id="detailSearchBtn" class="btn btn-success" onclick="doDisplay()">상세검색
 						<i id="caretdown" class="fas fa-caret-down"></i>

@@ -9,12 +9,13 @@ $(function(){
 	$("#dong"+distance).attr("checked","checked");
 	
 	//함수 세팅
+	var isUser = $("#isUser").length;
 	$("#searchBtn").click(function(){
-		doSearch();
+		doSearch(isUser);
 	});
 	
 	$("#detailSearchForm").submit(function(){
-		doSearch();
+		doSearch(isUser);
 	});
 	
 	$("#chooseAll").click(function(){
@@ -31,22 +32,27 @@ $(function(){
 			cu.css("display","none");
 		}
 	});
+	
 });
 
-
-function doSearch(){
+function doSearch(isUserr){
+	var isUser = isUserr;
 	var vv = $("#searchBar").val();
 	if(vv == ""){
 		alert("''에 대한 검색결과가 없습니다. \n검색어를 입력해주세요.");
-		exit;
+		return false;
 	}
-	var checkedCates = $("input[name='category']:checked");
-	if(checkedCates.length == 0){
-		alert("적어도 한 개 이상의 카테고리를 선택해주세요.");
-		exit;
+	if(isUser == 0){
+		location.href="/search0?searchWord="+vv;
+	}else{
+		var checkedCates = $("input[name='category']:checked");
+		if(checkedCates.length == 0){
+			alert("적어도 한 개 이상의 카테고리를 선택해주세요.");
+			return false;
+		}
+		$("#searchWord").val(vv);
+		$("#submitBtn").trigger("click");
 	}
-	$("#searchWord").val(vv);
-	$("#submitBtn").trigger("click");
 }
 
 function doDisplay(){
@@ -75,5 +81,9 @@ function chooseAll(){
 		console.log("해제->선택");
 		categories.prop("checked",true);
 	}
+}
+
+function whenUserNN(){
+	
 }
 
