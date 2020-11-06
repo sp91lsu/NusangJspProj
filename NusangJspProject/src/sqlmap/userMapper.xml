@@ -15,6 +15,7 @@
 		<result property="regdate" column="regdate" />
 		<result property="picture" column="picture" />
 		<result property="role" column="role" />
+		<result property="star_cnt" column="star_cnt" />
 		<result property="nickname" column="nickname" />
 		<result property="view_distance" column="view_distance" />
 		<association property="location" column="locationno" javaType="Location" select="selectLocation" />
