@@ -67,6 +67,10 @@
 	height: 48px;
 }
 
+#btnArea {
+	margin-left: 5px;
+}
+
 
 /* 지도 */
 #map{

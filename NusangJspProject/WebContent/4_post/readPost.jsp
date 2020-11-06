@@ -105,9 +105,18 @@
 								<!--내 글이면(판매자)-->
 								<div class="dropdown">
 									<!-- 거래신청 현황 드롭다운메뉴 -->
-									<button id="status" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
-										거래신청 현황 <span class="caret"></span>
-									</button>
+									<c:choose>
+										<c:when test="${empty post.reservationList}">
+											<button id="status" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+												거래신청 현황 <span class="caret"></span>
+											</button>
+										</c:when>
+										<c:otherwise>
+											<button id="status" class="btn dropdown-toggle reserStatus" type="button" data-toggle="dropdown" style="box-sizing:border-box; border: 2px solid green;">
+												거래신청 현황 <span class="caret"></span>
+											</button>
+										</c:otherwise>
+									</c:choose>
 									<ul id="resvList" class="dropdown-menu" style="background: #F6F6F6;">
 										<c:forEach var="resv" items="${post.reservationList}">
 											<li class="dropdown-item">
