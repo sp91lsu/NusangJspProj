@@ -17,6 +17,7 @@
 		<result property="role" column="role" />
 		<result property="star_cnt" column="star_cnt" />
 		<result property="nickname" column="nickname" />
+		<result property="evaluation_cnt" column="evaluation_cnt" />
 		<result property="view_distance" column="view_distance" />
 		<association property="location" column="locationno" javaType="Location" select="selectLocation" />
 		<collection property="payment_MarketList" column="userno" javaType="java.util.ArrayList" ofType="Payment_Market" select="getPMListById" />

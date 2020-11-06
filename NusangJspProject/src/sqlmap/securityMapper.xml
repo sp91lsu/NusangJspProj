@@ -9,6 +9,9 @@
 		<result property="regdate" column="regdate" />
 		<result property="picture" column="picture" />
 		<result property="nickname" column="nickname" />
+		<result property="star_cnt" column="star_cnt" />
+		<result property="evaluation_cnt" column="evaluation_cnt" />
+		
 	</resultMap>
 
 	<resultMap id="postMap" type="Post">
@@ -20,12 +23,12 @@
 	</resultMap>
 
 	<select id="selectScUser" resultMap="userMap">
-       SELECT U.userno,U.regdate,U.picture,U.nickname FROM NUSER U
+       SELECT U.userno,U.regdate,U.picture,U.nickname,U.star_cnt,U.evaluation_cnt FROM NUSER U
        WHERE userno = #{userno}
     </select>
 
 	<select id="selectScBusiness_partner" resultMap="userMap">
-       SELECT U.userno,U.regdate,U.picture,U.nickname FROM NUSER U
+       SELECT U.userno,U.regdate,U.picture,U.nickname,U.star_cnt,U.evaluation_cnt FROM NUSER U
        WHERE userno = #{business_partner}
     </select>
 

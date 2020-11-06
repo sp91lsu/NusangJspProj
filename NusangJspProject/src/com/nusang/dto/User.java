@@ -22,7 +22,8 @@ public class User {
 	private String role;
 	private String logintype;
 	private String email;
-	private Integer star_cnt;
+	private float star_cnt;
+	private int evaluation_cnt;
 	private String nickname;
 	@Builder.Default
 	private int view_distance = 5;

@@ -13,8 +13,9 @@
 		<result property="sellstate" column="sellstate" />
 		<result property="regdate" column="regdate" />
 		<result property="userno" column="userno" />
+		<result property="star_cnt" column="star_cnt" />
 		<association property="business_partner" column="business_partner"  select="securityMapper.selectScBusiness_partner" />
-	</resultMap>
+	</resultMap>                                           
 	
 	
       <select id="selectAll" resultType="Payment_User">
@@ -24,7 +25,7 @@
             PAYMENT_USER
     </select>
      
-       <select id="findBy" resultType="Payment_User">
+       <select id="findBy" resultMap="payment_UserResultMap">
         SELECT
             *
         FROM
@@ -48,7 +49,7 @@
 SET 
 ${colum} = #{value}
 WHERE
- userno = #{userno}
+ ph_userno = #{ph_userno}
     </update>
     
     

@@ -64,6 +64,7 @@
 
 
 						<img style="border-radius: 70%; overflow: hidden; height: 70px; width: 70px;" src='/upload/${post.user.picture}'>
+
 					</div>
 
 					<div id="profile_right">
@@ -76,6 +77,7 @@
 						</div>
 					</div>
 				</div>
+
 				<!-- <button id="button11">버튼</button> -->
 				<c:choose>
 					<c:when test="${post.sellstate == 0 }">
@@ -112,7 +114,7 @@
 											</button>
 										</c:when>
 										<c:otherwise>
-											<button id="status" class="btn dropdown-toggle reserStatus" type="button" data-toggle="dropdown" style="box-sizing:border-box; border: 2px solid green;">
+											<button id="status" class="btn dropdown-toggle reserStatus" type="button" data-toggle="dropdown" style="box-sizing: border-box; border: 2px solid green;">
 												거래신청 현황 <span class="caret"></span>
 											</button>
 										</c:otherwise>
@@ -159,7 +161,7 @@
 										<c:otherwise>
 											<input type="number" id="reser_price">
 											<button id="buy_reservationBtn" class="btn btn-primary btn-sm" style="margin-top: 3px;">가격 제시</button>
-											<button id="buy_reservationBtn_submit" style="display:none;"></button>
+											<button id="buy_reservationBtn_submit" style="display: none;"></button>
 										</c:otherwise>
 
 									</c:choose>
@@ -171,7 +173,32 @@
 			</div>
 
 			<hr class="m-0">
+			<c:choose>
+				<c:when test="${post.user.evaluation_cnt > 0 }">
+					<div class="star-box">
 
+						<input type="hidden" id="star_cnt" value="${post.user.star_cnt }"> <input type="hidden" id="eval_num" value="${post.user.evaluation_cnt }"> <span class="star star_left"></span> <span class="star star_right"></span> <span class="star star_left"></span> <span class="star star_right"></span> <span class="star star_left"></span> <span class="star star_right"></span> <span class="star star_left"></span> <span class="star star_right"></span> <span class="star star_left"></span> <span
+							class="star star_right"></span>
+					</div>
+				</c:when>
+				<c:otherwise>
+		평가 없음
+		</c:otherwise>
+			</c:choose>
+			<script type="text/javascript">
+				var eval_num = Number($("#eval_num").val());
+				var star_cnt = (Number($("#star_cnt").val()) / eval_num);
+
+				console.log("받은 평가 갯수 : " + eval_num);
+				console.log("총 받은 점수 : " + Number($("#star_cnt").val()));
+				
+				var object_cnt = 0;
+				for (var i = 0.5; i <= star_cnt; i += 0.5) {
+					$(".star").eq(object_cnt).addClass("on");
+					console.log("object_cnt" +object_cnt)
+					object_cnt++;
+				}
+			</script>
 			<!-- 상품 관련 섹션 -->
 			<div id="Section-post" class="d-flex">
 				<!-- 상품 내용 -->
@@ -309,13 +336,13 @@
 		</div>
 	</div>
 
-<jsp:include page="../0_common/modal.jsp" flush="true">
+	<jsp:include page="../0_common/modal.jsp" flush="true">
 		<jsp:param name="modalId" value='<%=URLEncoder.encode("modal_sell", "UTF-8")%>' />
 		<jsp:param name="title" value='<%=URLEncoder.encode("판매", "UTF-8")%>' />
 		<jsp:param name="body" value='<%=URLEncoder.encode("판매시 되돌릴 수 없습니다. 정말로 판매하시겠습니까?", "UTF-8")%>' />
 	</jsp:include>
-	
-	
+
+
 	<jsp:include page="../0_common/modal.jsp" flush="true">
 		<jsp:param name="modalId" value='<%=URLEncoder.encode("modal_refund", "UTF-8")%>' />
 		<jsp:param name="title" value='<%=URLEncoder.encode("환불", "UTF-8")%>' />

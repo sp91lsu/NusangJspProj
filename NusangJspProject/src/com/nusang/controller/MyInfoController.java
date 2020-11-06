@@ -15,6 +15,7 @@ import com.nusang.action.myinfo.BuyInfo_Action;
 import com.nusang.action.myinfo.Distance_Action;
 import com.nusang.action.myinfo.ImageChange_Action;
 import com.nusang.action.myinfo.ImageDelete_Action;
+import com.nusang.action.myinfo.MyInfoEvaluationAction;
 import com.nusang.action.myinfo.MyPostInfoAction;
 import com.nusang.action.myinfo.NicknameChange_Action;
 import com.nusang.action.myinfo.PaymentList_Action;
@@ -92,6 +93,11 @@ public class MyInfoController extends HttpServlet {
 					break;
 				case "mypostlist" :
 					action = new MyPostInfoAction();
+					actionForward = action.execute(request, response);
+					break;
+					
+				case "evaluation" :
+					action = new MyInfoEvaluationAction();
 					actionForward = action.execute(request, response);
 					break;
 					
