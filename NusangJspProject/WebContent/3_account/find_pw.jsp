@@ -18,15 +18,15 @@
 		<form action="" method="post">
 			<!-- action값 설정! -->
 			<div class="form-group w-50 container">
-				<label for="name">이름 </label> <input name="username" type="text" class="form-control" placeholder="찾고자 하는 비밀번호의 이름을 입력해주세요." id="username">
+				<label for="name">이름 </label> <input name="username" type="text" class="form-control" placeholder="찾고자 하는 계정의 이름을 입력해주세요." id="username">
 			</div>
 
 			<div class="form-group w-50 container">
-				<label for="id">아이디</label> <input name="userid" type="text" class="form-control" placeholder="찾고자 하는 비밀번호의 아이디를 입력해주세요." id="userid">
+				<label for="id">아이디</label> <input name="userid" type="text" class="form-control" placeholder="찾고자 하는 계정의 아이디를 입력해주세요." id="userid">
 			</div>
 
 			<div class="form-group w-50 container">
-				<label for="email">이메일</label> <input name="email" type="text" class="form-control" placeholder="찾고자 하는 비밀번호의 이메일을 입력해주세요." id="email">
+				<label for="email">이메일</label> <input name="email" type="text" class="form-control" placeholder="찾고자 하는 계정의 이메일을 입력해주세요." id="email">
 			</div>
 
 			<div class="form-group w-50 container">

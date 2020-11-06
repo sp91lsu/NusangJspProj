@@ -34,9 +34,12 @@
 				<button id="btn-login" class="btn btn-primary">로그인</button>
 				<a
 					href="https://kauth.kakao.com/oauth/authorize?client_id=7ac03576a3ef2b30b8b6545b6b0daf1c&redirect_uri=http://localhost:8787/user/kakaologin&response_type=code"><img
-					height="38px" src="../img/kakaoLoginBtn.png"></a> <a
+					height="38px" src="../img/kakaoLoginBtn.png">
+				</a>
+				 <a
 					href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=h3YOPfhFkTcn5ls8RX3g&state=STATE_STRING&redirect_uri=http://localhost:8787/user/naverlogin"><img
-					height="38px" src="../img/naverLoginBtn.PNG"></a>
+					height="38px" src="../img/naverLoginBtn.PNG">
+				</a>
 					<a id = "find_id" href="find_id.jsp">아이디 찾기</a>
 					<a id = "find_pw" href="find_pw.jsp">비밀번호 찾기</a>
 			</div>
