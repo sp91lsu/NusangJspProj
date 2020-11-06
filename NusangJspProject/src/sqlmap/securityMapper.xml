@@ -19,6 +19,7 @@
 		<result property="title" column="title" />
 		<result property="price" column="price" />
 		<result property="productname" column="productname" />
+		<result property="sellstate" column="sellstate" />
 		<association property="post_picture" column="post_picno" javaType="Post_Picture" select="postMapper.selectPostPicture" />
 	</resultMap>
 
@@ -33,7 +34,7 @@
     </select>
 
 	<select id="selectScPost" resultMap="postMap">
-       SELECT P.postno,P.title,P.price,P.productname,P.post_picno FROM SELLPOST P 
+       SELECT P.postno,P.title,P.price,P.productname,P.post_picno,P.sellstate FROM SELLPOST P 
        WHERE postno = #{postno}
     </select>
 
