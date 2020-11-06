@@ -198,12 +198,12 @@
 										<fmt:formatNumber value="${post.price }" pattern="#,###" />원
 										</div>
 									</h6>
-									<h6 id="card_addr" style="font-family: 'Noto Sans KR', sans-serif; font-size:12px; padding-left:7px; ">${post.location.getAddress()}
+									<h6 id="card_addr" style="font-family: 'Noto Sans KR', sans-serif; font-size:12px; padding-left:7px; ">${post.location.getAddress2()}
 									
 									<c:choose>
-										<c:when test="${post.sellstate == 0 }"><input type = "button" value = "판매중" style = "margin-left: 30px; height:20px; cursor:default;border-radius:3px;border:0;outline:0;background: #D5D5D5; "></c:when>
-										<c:when test="${post.sellstate == 1 }"><input type = "button" value = "예약중" style = "margin-left: 30px; height:20px; cursor:default;border-radius:3px;border:0;outline:0;background: #FFBB00;"></c:when>
-										<c:when test="${post.sellstate == 2 }"><input type = "button" value = "판매완료" style = "margin-left: 19px; height:21px;cursor:default;border-radius:3px;border:0;outline:0;background: black;color: white;"></c:when>
+										<c:when test="${post.sellstate == 0 }"><input type = "button" value = "판매중" style = "float:right; margin-right:7px;height:20px; margin-top:-3px;cursor:default;border-radius:3px;border:0;outline:0;background: #D5D5D5; "></c:when>
+										<c:when test="${post.sellstate == 1 }"><input type = "button" value = "예약중" style = "float:right; margin-right:7px;height:20px; margin-top:-3px; cursor:default;border-radius:3px;border:0;outline:0;background: #FFBB00;"></c:when>
+										<c:when test="${post.sellstate == 2 }"><input type = "button" value = "판매완료" style = "float:right; margin-right:7px;height:21px; margin-top:-3px;cursor:default;border-radius:3px;border:0;outline:0;background: black;color: white;"></c:when>
 									</c:choose>
 									
 									</h6> 
