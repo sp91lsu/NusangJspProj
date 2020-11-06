@@ -170,7 +170,10 @@ $("#buy_reservationBtn").click(function(){
 	 if(!reser_price){
 		alert('제시가격을 입력해 주세요.');
 		return;
-	} 
+	} else if (reser_price <= 0){
+		alert('정확한 가격을 입력해 주세요.');
+		return;
+	}
 	$("#buy_reservationBtn_submit").click();
 	 
 });
