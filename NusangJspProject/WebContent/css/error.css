@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+.container{
+	text-align: center;
+}
+
+#imgDiv {
+	margin-top: -70px;
+}
+
+#errorImg {
+	display:block;
+	margin: 10px 0 10px 0;
+	height: 100px;
+}
+
+#content{
+	display:block;
+	max-width: 400px;
+	font-size: 15px;
+	color: #666;
+	font-weight: bold;
+}
