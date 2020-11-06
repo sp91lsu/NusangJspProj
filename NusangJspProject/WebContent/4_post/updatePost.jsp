@@ -29,6 +29,7 @@
 			<%-- 이미지 --%>
 			상품 사진
 			<button class = "btn btn-secondary btn-sm" type="button" id="btnAdd" style = "margin-left: 10px; margin-top: -4px;">사진 추가</button>
+			※사진을 다시 업로드 해주세요.
 			<div id="files"></div>
 			<br>
 			<%-- 글제목 --%>
@@ -133,66 +134,8 @@
 	</div>
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
 </body>
-<script type="text/javascript">
 
-	/* 이미지추가 관련 스크립트  */
-	var i = 0;
-	$("#btnAdd")
-			.click(
-					function() {
-						if (i < 5) {
-							$("#files")
-									.append(
-											"<div><input type='file' style = 'background:#BDBDBD' name='upfile" + i + "'/><button type='button' style = 'margin-top:-3px;' class = 'btn btn-danger btn-sm' id='deleteBtn' onclick='$(this).parent().remove(); cntdown()'>삭제</button></div>");
-							i++;
-							console.log('현제:' + i);
-						}
-					});
-	function cntdown() {
-		console.log('현제:' + i);
-		i--;
-	}
-
-	
-	//createPost 유효성 검사
-	$("#buyBtn").click(function(){
-
-	 	var title = createPostForm.title.value;
-	 	var productName = createPostForm.productName.value;
-		var category = createPostForm.category.value;
-		var price = createPostForm.price.value;
-		var bodytext = createPostForm.bodytext.value;
-	
-		if(!title){
-			alert('제목을 입력해 주세요.');
-			return;
-		} else if(!productName){
-			alert('상품명을 입력해 주세요.' );
-			return;
-		} else if(!category){
-			alert('카테고리를 입력해 주세요.' );
-			return;
-		} else if(!price){
-			alert('가격을 입력해 주세요.' );
-			return;
-		} else if(!bodytext){
-			alert('내용을 입력해 주세요.' );
-			return;
-		}
-		
-		document.createPostForm.submit();
-	});
- 
-
-</script>
-
-
-
-
-
-<!-- <script type="text/javascript" src="/4_post/createPost.js">
-	
-</script> -->
+ <script type="text/javascript" src="/4_post/js/updatePost.js"></script>
 
 </html>
 
