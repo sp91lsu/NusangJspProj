@@ -2,7 +2,7 @@
 	var IMP = window.IMP; // 생략가능
 	IMP.init('imp11398251'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 
-	//createPost 유효성 검사
+	// createPost 유효성 검사
 	$("#buyBtn").click(function() {
 
 		var title = createPostForm.title.value;
@@ -30,30 +30,37 @@
 		buyProduct();
 	});
 
-
-
 	function testBuyProduct() {
 		$("#pm_merchant_uid").val("merach");
 		$("#pm_imp_uid").val("uiduid");
 		$("#pm_paid_amount").val(123123);
 		document.createPostForm.submit();
 	}
+	var modalY = $('#modal_createPost #modalY');
+	
+	$(modalY).click(function(e) {
 
+		$("#pm_merchant_uid").val(rsp.merchant_uid);
+		$("#pm_imp_uid").val(rsp.imp_uid);
+		$("#pm_paid_amount").val(rsp.paid_amount);
+		document.createPostForm.submit();
+
+	});
 
 	function buyProduct() {
 
 		IMP.request_pay({
-			pg: 'inicis', // version 1.1.0부터 지원.
-			pay_method: 'card',
-			merchant_uid: uuidv4(),
-			name: '판매게시글 등록',
-			amount: 100,
-			buyer_email: $("#Buy_userEmail").val(),
-			buyer_name: '',
-			buyer_tel: '010-1234-5678',
-			buyer_addr: '서울특별시 강남구 삼성동',
-			buyer_postcode: '123-456',
-			m_redirect_url: 'https://www.yourdomain.com/payments/complete'
+			pg : 'inicis', // version 1.1.0부터 지원.
+			pay_method : 'card',
+			merchant_uid : uuidv4(),
+			name : '판매게시글 등록',
+			amount : 100,
+			buyer_email : $("#Buy_userEmail").val(),
+			buyer_name : '',
+			buyer_tel : '010-1234-5678',
+			buyer_addr : '서울특별시 강남구 삼성동',
+			buyer_postcode : '123-456',
+			m_redirect_url : 'https://www.yourdomain.com/payments/complete'
 		}, function(rsp) {
 			if (rsp.success) {
 				var msg = '결제가 완료되었습니다.';
@@ -62,22 +69,12 @@
 				msg += '결제 금액 : ' + rsp.paid_amount;
 				msg += '카드 승인번호 : ' + rsp.apply_num;
 
-				let modal = $('#modal_createPost');
+				let
+				modal = $('#modal_createPost');
 
 				$(modal).modal("show");
 
-				let modalY = $('#modal_createPost #modalY');
-				console.log($(modalY).text())
-				$(modalY).click(function(e) {
-
-					$("#pm_merchant_uid").val(rsp.merchant_uid);
-					$("#pm_imp_uid").val(rsp.imp_uid);
-					$("#pm_paid_amount").val(rsp.paid_amount);
-					document.createPostForm.submit();
-
-				});
-
-
+				
 			} else {
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;
@@ -91,11 +88,11 @@
 	// 랜덤 uuid생성
 	function uuidv4() {
 		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,
-			function(c) {
-				var r = Math.random() * 16 | 0, v = c == 'x' ? r
-					: (r & 0x3 | 0x8);
-				return v.toString(16);
-			});
+				function(c) {
+					var r = Math.random() * 16 | 0, v = c == 'x' ? r
+							: (r & 0x3 | 0x8);
+					return v.toString(16);
+				});
 	}
 
 	// 환불
@@ -103,28 +100,28 @@
 
 		console.log("환불하기");
 		jQuery.ajax({
-			"url": "/payment/refund",
-			"type": "POST",
-			"contentType": "application/json",
-			"charset": "utf-8",
-			"data": JSON.stringify({
-				"merchant_uid": "merchant_1602958478736", // 주문번호
-				"cancel_request_amount": 100, // 환불금액
-				"reason": "결제 환불", // 환불사유
-				// "refund_holder" : "홍길동", // [가상계좌 환불시 필수입력] 환불 수령계좌 예금주
-				// "refund_bank" : "88", // [가상계좌 환불시 필수입력] 환불 수령계좌 은행코드(ex.
-				// // KG이니시스의
-				// // 경우 신한은행은 88번)
-				// "refund_account" : "56211105948400", // [가상계좌 환불시 필수입력] 환불
-				// 수령계좌
-				// 번호
+			"url" : "/payment/refund",
+			"type" : "POST",
+			"contentType" : "application/json",
+			"charset" : "utf-8",
+			"data" : JSON.stringify({
+				"merchant_uid" : "merchant_1602958478736", // 주문번호
+				"cancel_request_amount" : 100, // 환불금액
+				"reason" : "결제 환불", // 환불사유
+			// "refund_holder" : "홍길동", // [가상계좌 환불시 필수입력] 환불 수령계좌 예금주
+			// "refund_bank" : "88", // [가상계좌 환불시 필수입력] 환불 수령계좌 은행코드(ex.
+			// // KG이니시스의
+			// // 경우 신한은행은 88번)
+			// "refund_account" : "56211105948400", // [가상계좌 환불시 필수입력] 환불
+			// 수령계좌
+			// 번호
 			}),
-			"dataType": "json",
-			success: function(data) {
+			"dataType" : "json",
+			success : function(data) {
 				// 서버로부터 정상적으로 응답이 왔을 때 실행
 				console.log("응답 성공 " + data);
 			},
-			error: function(err) {
+			error : function(err) {
 				// 서버로부터 응답이 정상적으로 처리되지 못햇을 때 실행
 				console.log("응답 실패 " + err);
 			}
@@ -137,47 +134,46 @@
 	 * console.log("환불버튼"); cancelBtn.addEventListener("click", cancelPay);
 	 */
 
-
-
 })();
 
-/* 이미지추가 관련 스크립트  */
+/* 이미지추가 관련 스크립트 */
 var i = 0;
 var deleteBtn = $("<button type='button' style = 'margin-top:-3px;' class = 'btn btn-danger btn-sm' id='deleteBtn' onclick='cntdown(this)'>삭제</button>")
 var btnChk;
 var isSet;
 var imgDiv;
 
-$("#btnAdd").click(function() {
+$("#btnAdd")
+		.click(
+				function() {
 
+					imgDiv = $("<div><input type='file' style = 'background:#BDBDBD' id='upfile"
+							+ i + "' name='upfile" + i + "'/></div>")
 
-	imgDiv = $("<div><input type='file' style = 'background:#BDBDBD' id='upfile" + i + "' name='upfile" + i + "'/></div>")
+					btnChk = document.getElementById('upfile' + (i - 1)); // 0
+					if (i == 0) {
+						$("#files").append(imgDiv);
+						imgDiv.append(deleteBtn);
+						i++;
+					} else if (i < 5 && i != 0 && btnChk.value != "") {
 
+						deleteBtn = $(deleteBtn).detach();
+						$("#files").append(imgDiv);
+						imgDiv.append(deleteBtn);
+						i++;
+					} else {
+						btnChk = document.getElementById('upfile' + (i - 2)); // 0
+					}
 
-	btnChk = document.getElementById('upfile' + (i - 1)); // 0
-	if (i == 0) {
-		$("#files").append(imgDiv);
-		imgDiv.append(deleteBtn);
-		i++;
-	} else if (i < 5 && i != 0 && btnChk.value != "") {
-
-		deleteBtn = $(deleteBtn).detach();
-		$("#files").append(imgDiv);
-		imgDiv.append(deleteBtn);
-		i++;
-	} else {
-		btnChk = document.getElementById('upfile' + (i - 2)); // 0
-	}
-
-	console.log('현제:' + i);
-});
+					console.log('현제:' + i);
+				});
 function cntdown(me) {
 	$(me).parent().remove();
-	
+
 	i--;
 	console.log('현제:' + i);
-	btnChk = document.getElementById('upfile' + (i-1 ))
-	console.log("추가해야 하는 삭제 버튼 위치" + (i-1))
+	btnChk = document.getElementById('upfile' + (i - 1))
+	console.log("추가해야 하는 삭제 버튼 위치" + (i - 1))
 	$(btnChk).closest("div").append(deleteBtn)
-	
+
 }
