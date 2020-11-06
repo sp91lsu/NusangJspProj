@@ -140,6 +140,7 @@
 
 
 </body>
+<input type="hidden" id="Buy_userEmail" value="${user.email }">
 <script type="text/javascript" src="/4_post/js/createPost.js">
 	
 </script>

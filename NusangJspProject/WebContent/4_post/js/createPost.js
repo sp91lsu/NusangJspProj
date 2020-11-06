@@ -48,7 +48,7 @@
 			merchant_uid: uuidv4(),
 			name: '판매게시글 등록',
 			amount: 100,
-			buyer_email: 'iamport@siot.do',
+			buyer_email: $("#Buy_userEmail").val(),
 			buyer_name: '',
 			buyer_tel: '010-1234-5678',
 			buyer_addr: '서울특별시 강남구 삼성동',

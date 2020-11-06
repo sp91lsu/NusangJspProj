@@ -1,17 +1,18 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!-- 페이징처리 코드  -->
 <c:set var="list" value="${user.payment_UserList}" />
 <%@include file="pagination.jsp"%>
-<%! String pageName = "buyInfo"; %>
+<%!String pageName = "buyInfo";%>
 <link rel="stylesheet" type="text/css" href="/4_myInfo/css/buyInfo.css">
 <div class="container">
 	<h2>구매내역</h2>
-	<br><br>
-	
+	<br>
+	<br>
+
 	<table class="table">
 		<thead class="thead">
 			<tr>
@@ -22,25 +23,42 @@
 				<th scope="col">날짜</th>
 			</tr>
 		</thead>
-		<% int listCnt = fromRow+1; %>
+		<%
+			int listCnt = fromRow + 1;
+		%>
 		<tbody>
-			<c:forEach var="buyinfo" items="<%=selectList %>">
+			<c:forEach var="buyinfo" items="<%=selectList%>">
 				<tr>
-					<th scope="row"><%=listCnt++ %></th>
+					<th scope="row"><%=listCnt++%></th>
 					<td>${buyinfo.productname}</td>
-					<td><fmt:formatNumber value="${buyinfo.price }" pattern="#,###" />원 </td>
+					<td><fmt:formatNumber value="${buyinfo.price }" pattern="#,###" />원</td>
 					<td>${buyinfo.business_partner.nickname}</td>
-					<td><fmt:formatDate value="${buyinfo.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+					<td><fmt:formatDate value="${buyinfo.regdate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	
+
 	<%-- 페이징 --%>
 	<jsp:include page="pagination_number.jsp">
 		<jsp:param value="<%=writePages%>" name="writePages" />
 		<jsp:param value="<%=totalPage%>" name="totalPage" />
 		<jsp:param value="<%=curPage%>" name="curPage" />
-		<jsp:param value="<%=pageName%>" name="pageName"/>
+		<jsp:param value="<%=pageName%>" name="pageName" />
 	</jsp:include>
 </div>
+
+
+<div class="star-box">
+	<span class="star star_left"></span> <span class="star star_right"></span> <span class="star star_left"></span> <span class="star star_right"></span> <span class="star star_left"></span> <span class="star star_right"></span> <span class="star star_left"></span> <span class="star star_right"></span> <span class="star star_left"></span> <span class="star star_right"></span>
+</div>
+
+<script type="text/javascript">
+	$(".star").on('click', function() {
+		var idx = $(this).index();
+		$(".star").removeClass("on");
+		for (var i = 0; i <= idx; i++) {
+			$(".star").eq(i).addClass("on");
+		}
+	});
+</script>

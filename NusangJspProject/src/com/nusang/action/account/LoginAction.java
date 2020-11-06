@@ -49,9 +49,12 @@ public class LoginAction implements Action {
 			break;
 		case "login":
 			user = login(request);
+			Integer result = 1;
 			if (user == null) {
-				request.setAttribute("error", "아이디 혹은 패스워드가 다릅니다. 다시 시도해주세요.");
-				actionForward.setNextPath("/0_common/error.jsp");
+				
+				
+				result = 0;
+				actionForward.setAsyncData(result.toString());
 				return actionForward;
 			}
 			break;
@@ -66,8 +69,6 @@ public class LoginAction implements Action {
 			actionForward.setNextPath("/1_main/index.jsp");
 		} else {
 			System.out.println("여기로빠졌다 카카오시 메일 동의 안함");
-			
-
 		}
 
 		return actionForward;

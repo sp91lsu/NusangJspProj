@@ -334,8 +334,8 @@
 		<jsp:param name="body" value='<%=URLEncoder.encode("구매 예약을 취소하시겠습니까?", "UTF-8")%>' />
 	</jsp:include>
 
-	<input id="userLongtitude" type="hidden" value="${user.location.longtitude }">
-	<input id="userLatitude" type="hidden" value="${user.location.latitude }">
+	<input id="userLongtitude" type="hidden" value="${user.location != null ? user.location.longtitude : location.longtitude}">
+	<input id="userLatitude" type="hidden" value="${user.location != null ? user.location.latitude : location.latitude}">
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
 	<script type="text/javascript" src="/4_post/js/readPost2.js"></script>
 	<script src="/4_post/js/readPost_Map.js?v=<%=System.currentTimeMillis()%>"></script>
