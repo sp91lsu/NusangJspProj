@@ -44,6 +44,10 @@
 	font-weight: bold;
 }
 
+.dropdown {
+	margin-left: 5px;
+}
+
 /* 포스트 섹션 */
 #Section-post{
 	padding: 30px 0px;
