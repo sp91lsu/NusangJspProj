@@ -33,6 +33,13 @@ $(function(){
 		}
 	});
 	
+	$('#searchBar').keypress(function(event){
+     if ( event.which == 13 ) {
+         $('#searchBtn').click();
+         return false;
+     }
+});
+	
 });
 
 function doSearch(isUserr){
@@ -52,6 +59,8 @@ function doSearch(isUserr){
 		}
 		$("#searchWord").val(vv);
 		$("#submitBtn").trigger("click");
+		
+		
 	}
 }
 

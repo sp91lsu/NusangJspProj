@@ -43,6 +43,14 @@
 				});
 			});
 
+			
+			$('#searchText').keypress(function(event){
+			     if ( event.which == 13 ) {
+			         $('#searchBtn').click();
+			         return false;
+			     }
+			});
+
 	function setLocation(searchTab) {
 
 		let
