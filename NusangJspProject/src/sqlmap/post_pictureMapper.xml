@@ -34,6 +34,16 @@
 		post_picno =
 		#{post_picno}
 	</update>
+	
+	<update id="updateBy">
+		UPDATE 
+		POST_PICTURE
+		SET
+		${colum} = #{value}
+		WHERE
+		post_picno =
+		#{post_picno}
+	</update>
 
 
 	<insert id="insert" useGeneratedKeys="true" keyProperty="post_picno" parameterType="Post_Picture">
