@@ -40,9 +40,9 @@
 				<div class="d-flex flex-row">
 				 <input name="username" type="text"
 					class="form-control" placeholder="한글만 2~6자" id="username">
-					<div class = "marginLeft" >
-					<button type="button" id="nameChkBtn" class="btn btn-primary">중복확인</button>
-					</div>
+					<!-- <div class = "marginLeft" > -->
+					<!-- <button type="button" id="nameChkBtn" class="btn btn-primary">중복확인</button> -->
+					<!-- </div> -->
 					</div>
 			</div>
 
@@ -103,18 +103,18 @@
 	    	alert("아이디 중복확인 하세요.");
 	    	return false;
 	    }
-	    if(nameChk == false){
+	    /* if(nameChk == false){
 	    	alert("닉네임 중복확인 하세요.");
 	    	return false;
-	    }
+	    } */
 	    if(userid != useridchk){
 	    	alert("아이디 중복확인 하세요.")
 	    	return false;
 	    }
-	    if(username != userNameChk){
+	  /*   if(username != userNameChk){
 	    	alert("닉네임 중복확인 하세요.")
 	    	return false;
-	    }
+	    } */
 	    alert("회원가입을 축하드립니다♥");
 	    return true;
 	}
@@ -142,7 +142,7 @@
 		})
 	})
 	
-	var nameChk = false;
+/* 	var nameChk = false;
 	let userNameChk = "";
 	$("#nameChkBtn").click(function(){
 		userNameChk = $("#username").val();
@@ -164,5 +164,5 @@
 				}
 			}
 		})
-	})
+	}) */
 </script>

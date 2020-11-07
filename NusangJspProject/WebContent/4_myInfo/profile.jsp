@@ -68,7 +68,7 @@
 	</script>
 	<!-- 사진변경 & 저장 & 지우기 버튼 -->
 	<div class="btnSec">
-		<form action="/myinfo/image_change" method="post" enctype="multipart/form-data" onsubmit="return changeImgChk()">
+		<form action="/myinfo/image_change" name = "form" method="post" enctype="multipart/form-data" onsubmit="return changeImgChk()">
 
 			<input type="file" id="file" name="file" accept=".gif, .jpg, .png" />
 			<button type="button" id="potoSubmit"></button>
@@ -76,7 +76,7 @@
 			<!--보여지는 버튼 -->
 			<button type="button" class="btn btn-sm btn-secondary" id="btn-upload">사진 변경</button>
 
-			<button type="submit" id="commit" class="btn btn-success btn-sm">저장하기</button>
+			<button type="button" id="commit" class="btn btn-success btn-sm" onclick="saveImg()">저장하기</button>
 		</form>
 
 		<form action="/myinfo/image_delete">
@@ -88,6 +88,17 @@
 </div>
 
 <script type="text/javascript">
+var form = document.forms.form;
+function saveImg(){
+	var result = confirm("변경 된 사진을 저장 하시겠습니다?");
+	
+	if(result== true){
+		form.submit();
+	}else{
+		
+	}
+	
+}
 	var chkE
 	$(function() {
 		$('#btn-upload').click(function(e) {

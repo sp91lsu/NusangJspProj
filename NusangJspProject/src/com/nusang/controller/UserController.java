@@ -61,10 +61,10 @@ public class UserController extends HttpServlet {
 				FindPw_Action F_A2 = new FindPw_Action();
 				actionForward = F_A2.execute(request, response);
 				break;
-			case "nameChk" :
-				nameChk_Action N_A = new nameChk_Action();
-				actionForward = N_A.execute(request, response);
-				break;
+//			case "nameChk" :
+//				nameChk_Action N_A = new nameChk_Action();
+//				actionForward = N_A.execute(request, response);
+//				break;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
