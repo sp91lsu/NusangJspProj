@@ -138,3 +138,35 @@
 		return resultString;
 	}
 })()
+
+
+/* 우측 고정 영역 */
+/*
+$(function(){
+	window.onscroll = function() {myFunction()}
+	
+	var navbar = $('.navbar');
+	var strH0 = navbar.css.height;
+	console.log(strH0);
+	
+	var h0 = strH0.slice(0,-2);
+	var fixed_mt = $("#fixed").css("margin-top");
+	var sticky = fixed_mt;
+	
+	console.log("navbar height: "+ h0);
+	console.log("fixed margin_top: "+ fixed_mt);
+	console.log(" ");
+	
+	function myFunction(){
+		 console.log("window.pageYOffset: "+window.pageYOffset)
+		 console.log("sticky: "+sticky)
+		 console.log(" ")
+		 if(window.pageYOffset >= sticky){
+		    navbar.classList.add("sticky");
+		  } else {
+		    navbar.classList.remove("sticky");
+		  }
+	}
+	
+});
+*/

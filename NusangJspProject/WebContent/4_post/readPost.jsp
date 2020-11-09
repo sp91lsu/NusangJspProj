@@ -52,7 +52,8 @@
 
 	<jsp:include page="../0_common/header.jsp"></jsp:include>
 
-
+	
+	<!-- 센터 영역 -->
 	<div id="body" class="d-flex justify-content-center">
 		<div id="content" style="width: 800px;">
 
@@ -336,6 +337,14 @@
 		</div>
 	</div>
 
+	<!-- 우측 고정 영역 -->
+	<div id="fixed">
+		<div id="f_head">유사 상품</div>
+		<div class="test111"></div>
+		<div class="test111"></div>
+		<div class="test111"></div>
+	</div>
+	
 	<jsp:include page="../0_common/modal.jsp" flush="true">
 		<jsp:param name="modalId" value='<%=URLEncoder.encode("modal_sell", "UTF-8")%>' />
 		<jsp:param name="title" value='<%=URLEncoder.encode("판매", "UTF-8")%>' />

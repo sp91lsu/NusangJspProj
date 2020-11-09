@@ -147,7 +147,8 @@
 				locationno IN
 					(SELECT  loc.locationno FROM location loc 
 						WHERE 
-		 				calc_distance( #{latitude,jdbcType=NUMERIC  , mode=IN}, #{longtitude,jdbcType=NUMERIC  , mode=IN}, loc.latitude, loc.longtitude )
+		 				calc_distance( #{latitude,jdbcType=NUMERIC  , mode=IN}, 
+		 					#{longtitude,jdbcType=NUMERIC  , mode=IN}, loc.latitude, loc.longtitude )
 						<![CDATA[<]]>
 						#{distance}
 						) 

@@ -38,12 +38,23 @@
 				근처</span> ${location.getAddress() } 판매목록
 		</h1>
 		
+		
+		
 		<!-- 검색 존 -->
 		<div id="searchZone" class="d-flex justify-content-center pt-4">
 			<!-- 중앙구역 -->
 			<div id="searchMid" class="input-group">
+				
 				<!-- 검색 바 -->
-				<input id="searchBar" type="text" class="form-control" placeholder="검색 키워드를 입력하세요!">
+				<c:choose>
+					<c:when test="${searchWord == null }">
+						<c:set var="sBarVal" value=""/>
+					</c:when>
+					<c:otherwise>
+						<c:set var="sBarVal" value="${searchWord}"/>
+					</c:otherwise>
+				</c:choose>
+				<input id="searchBar" type="text" class="form-control" placeholder="검색 키워드를 입력하세요!" value="${sBarVal }">
 				<!-- 찾기버튼 -->
 				<button id="searchBtn" class="btn btn-dark " type="button" style="background: #10620A;">찾기</button>
 				
@@ -57,7 +68,7 @@
 					</button>
 					
 					<!-- 폼 시작 -->
-					<form name="detailSearchForm" id="detailSearchForm" action="/search" method="post"> <!-- /1_main/mainGetParamTest.jsp    /search-->
+					<form name="detailSearchForm" id="detailSearchForm" action="/search" method="post">
 					<!-- 상세검색 팝업창 -->
 					<div id="detailSearch-pop" class="detailSearch-pop">
 							<!-- 헤더 -->

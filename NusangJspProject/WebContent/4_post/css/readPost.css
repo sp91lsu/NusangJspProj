@@ -87,3 +87,19 @@ h8{
 	font-size: 12px;
 	color: gray;
 }
+
+/* 유사상품 리스트 */
+.sticky {
+  position: fixed;
+  top: 10px;
+}
+#fixed{
+	display: inline-block;
+	width: 150px;
+	height: auto;
+}
+#test111{
+	width: 100px;
+	height: 200px;
+	background-color: yellow;
+}
