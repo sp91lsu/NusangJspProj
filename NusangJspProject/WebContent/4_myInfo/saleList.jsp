@@ -8,7 +8,7 @@
 <%! String pageName = "saleList"; %>
 
 <div class="container">
-	<h2>판매목록</h2>
+	<h2>판매내역</h2>
 	<br><br>
 	
 	<table class="table">
