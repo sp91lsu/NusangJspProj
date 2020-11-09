@@ -29,6 +29,7 @@ public class SearchAction implements Action {
 		
 		//검색어 정리 
 		String searchWord0 = request.getParameter("searchWord");
+		request.setAttribute("searchWord", searchWord0);
 		
 	    searchWord0 = searchWord0.trim();
 	    String searchWord = "'"+searchWord0;
