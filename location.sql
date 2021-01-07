@@ -4,7 +4,7 @@
 --------------------------------------------------------
 --  DDL for Table LOCATION
 --------------------------------------------------------
-
+drop table "NUSANGUSER"."LOCATION" CASCADE CONSTRAINTS;
   CREATE TABLE "NUSANGUSER"."LOCATION" 
    (	"LOCATIONNO" NUMBER, 
 	"NAME1" VARCHAR2(50 BYTE), 

@@ -4,7 +4,7 @@
 --------------------------------------------------------
 --  DDL for Table NUSER
 --------------------------------------------------------
-
+drop table "NUSANGUSER"."NUSER" CASCADE CONSTRAINTS;
   CREATE TABLE "NUSANGUSER"."NUSER" 
    (	"USERNO" NUMBER DEFAULT 1, 
 	"USERID" VARCHAR2(50 CHAR), 

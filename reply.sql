@@ -4,7 +4,7 @@
 --------------------------------------------------------
 --  DDL for Table REPLY
 --------------------------------------------------------
-
+drop table "NUSANGUSER"."REPLY" CASCADE CONSTRAINTS;
   CREATE TABLE "NUSANGUSER"."REPLY" 
    (	"REPLYNO" NUMBER, 
 	"USERNO" NUMBER DEFAULT 1, 

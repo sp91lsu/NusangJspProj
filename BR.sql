@@ -4,7 +4,7 @@
 --------------------------------------------------------
 --  DDL for Table BUY_RESERVATION
 --------------------------------------------------------
-
+drop table "NUSANGUSER"."BUY_RESERVATION" CASCADE CONSTRAINTS;
   CREATE TABLE "NUSANGUSER"."BUY_RESERVATION" 
    (	"SELLPOSTNO" NUMBER, 
 	"USERNO" NUMBER DEFAULT 1, 

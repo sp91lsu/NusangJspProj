@@ -4,7 +4,7 @@
 --------------------------------------------------------
 --  DDL for Table PAYMENT_USER
 --------------------------------------------------------
-
+drop table "NUSANGUSER"."PAYMENT_USER" CASCADE CONSTRAINTS;
   CREATE TABLE "NUSANGUSER"."PAYMENT_USER" 
    (	"PH_USERNO" NUMBER, 
 	"PRODUCTNAME" VARCHAR2(500 BYTE), 

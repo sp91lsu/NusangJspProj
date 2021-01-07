@@ -4,7 +4,7 @@
 --------------------------------------------------------
 --  DDL for Table WATCHLIST
 --------------------------------------------------------
-
+drop table "NUSANGUSER"."WATCHLIST" CASCADE CONSTRAINTS;
   CREATE TABLE "NUSANGUSER"."WATCHLIST" 
    (	"USERNO" NUMBER DEFAULT 1, 
 	"POSTNO" NUMBER, 

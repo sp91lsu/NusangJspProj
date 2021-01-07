@@ -4,7 +4,7 @@
 --------------------------------------------------------
 --  DDL for Table POST_PICTURE
 --------------------------------------------------------
-
+drop table "NUSANGUSER"."POST_PICTURE" CASCADE CONSTRAINTS;
   CREATE TABLE "NUSANGUSER"."POST_PICTURE" 
    (	"P_1" VARCHAR2(50 BYTE), 
 	"P_2" VARCHAR2(50 BYTE), 

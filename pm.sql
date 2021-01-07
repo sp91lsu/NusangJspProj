@@ -4,7 +4,7 @@
 --------------------------------------------------------
 --  DDL for Table PAYMENT_MARKET
 --------------------------------------------------------
-
+drop table "NUSANGUSER"."PAYMENT_MARKET" CASCADE CONSTRAINTS;
   CREATE TABLE "NUSANGUSER"."PAYMENT_MARKET" 
    (	"PH_MARKETNO" NUMBER, 
 	"PAYMENTTYPE" VARCHAR2(10 BYTE), 
