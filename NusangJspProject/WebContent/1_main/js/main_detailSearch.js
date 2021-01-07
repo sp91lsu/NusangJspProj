@@ -44,20 +44,20 @@ $(function(){
 
 function doSearch(isUserr){
 	var isUser = isUserr;
-	var vv = $("#searchBar").val();
-	if(vv == ""){
+	var keyword = $("#searchBar").val();
+	/*if(keyword == ""){
 		alert("''에 대한 검색결과가 없습니다. \n검색어를 입력해주세요.");
 		return false;
-	}
+	}*/
 	if(isUser == 0){
-		location.href="/search0?searchWord="+vv;
+		location.href="/search0?searchWord="+keyword;
 	}else{
 		var checkedCates = $("input[name='category']:checked");
 		if(checkedCates.length == 0){
 			alert("적어도 한 개 이상의 카테고리를 선택해주세요.");
 			return false;
 		}
-		$("#searchWord").val(vv);
+		$("#searchWord").val(keyword);
 		$("#submitBtn").trigger("click");
 		
 		
@@ -92,7 +92,4 @@ function chooseAll(){
 	}
 }
 
-function whenUserNN(){
-	
-}
 
