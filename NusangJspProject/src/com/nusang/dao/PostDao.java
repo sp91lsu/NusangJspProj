@@ -40,8 +40,8 @@ public class PostDao extends BasicDao<Post> {
 			LocationDao.getInstance().insert(session, post.getLocation());
 			Post_PictureDao.getInstance().insert(session, post.getPost_picture()); // 1
 			Map<String, Object> map = new HashMap<String, Object>();
-			System.out.println("post getPost_picno 값 : " + post.getPost_picture().getPost_picno());
-			System.out.println("post location 값 : " + post.getLocation().getLocationno());
+			System.out.println("Post_picno 값 : " + post.getPost_picture().getPost_picno());
+			System.out.println("locationno 값 : " + post.getLocation().getLocationno());
 			insert(session, post);
 			pm.setPost(post);
 			Payment_MarketDao.getInstance().insert(session, pm);
@@ -156,6 +156,33 @@ public class PostDao extends BasicDao<Post> {
 			map.put("price_max", price_max);
 			map.put("distance", distance);
 			postList = session.selectList(namespace + "findPostByDetailSearch", map);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.rollback();
+		} finally {
+			session.close();
+		}
+		
+		return (ArrayList<Post>) postList;
+	}
+	
+	public ArrayList<Post> findPost_sWordNull(String categories, String order, int price_min, int price_max, int distance,
+			Location userLocation) {
+		SqlSession session = sqlSessionFactory.openSession();
+		List<Post> postList = new ArrayList<Post>();
+		try {
+			Map<String, Object> map = new HashMap<String, Object>();
+			System.out.println("lat : " + userLocation.getLatitude());
+			System.out.println("long : " + userLocation.getLongtitude());
+			map.put("latitude", userLocation.getLatitude());
+			map.put("longtitude", userLocation.getLongtitude());
+			map.put("categories", categories);
+			map.put("order", order);
+			map.put("price_min", price_min);
+			map.put("price_max", price_max);
+			map.put("distance", distance);
+			postList = session.selectList(namespace + "findPostWithoutSearchword", map);
 			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
