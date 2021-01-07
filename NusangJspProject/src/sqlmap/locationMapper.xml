@@ -53,7 +53,24 @@
 SET 
 ${colum} = #{value}
 WHERE
- userno = #{userno}
+ locationno = #{locationno}
     </update>
+    
+    <update id="update">
+
+		UPDATE 
+		LOCATION
+		SET
+		locationno = #{locationno},
+		latitude = #{latitude},
+		longtitude = #{longtitude},
+		name1 = #{name1},
+		name2 = #{name2},
+		name3 = #{name3},
+		 tabletype=#{tabletype}
+		WHERE
+		locationno =
+		#{locationno}
+	</update>
 </mapper>
 
