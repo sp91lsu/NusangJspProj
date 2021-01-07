@@ -6,7 +6,6 @@
 	<resultMap id="postResultMap" type="Post">
 
 		<id property="postno" column="postno" />
-		<result property="picture" column="picture" />
 		<result property="title" column="title" />
 		<result property="bodytext" column="bodytext" />
 		<result property="price" column="price" />
@@ -116,12 +115,13 @@
 			FROM sellpost  
 			WHERE 
 				locationno IN
-					(SELECT  loc.locationno FROM location loc WHERE 
-			 calc_distance( #{latitude,jdbcType=NUMERIC  , mode=IN}, #{longtitude,jdbcType=NUMERIC  , mode=IN}, loc.latitude, loc.longtitude )
-		<![CDATA[<]]>
-		#{distance}  	
-				  	  
-				  ) ORDER BY regdate DESC
+					(SELECT  loc.locationno FROM location loc 
+					WHERE 
+			 		calc_distance( #{latitude,jdbcType=NUMERIC  , mode=IN}, #{longtitude,jdbcType=NUMERIC  , mode=IN}, loc.latitude, loc.longtitude )
+					<![CDATA[<]]>
+					#{distance}  	
+				  	) 
+			ORDER BY regdate DESC
 	</select>
 	
 	<select id="findPostByKeyword" resultMap="postResultMap" statementType="CALLABLE">
@@ -156,6 +156,27 @@
 			category in ${categories}
 			AND
 			REGEXP_LIKE(title||bodytext||productname, ${searchWord}, 'i')
+			AND
+			<![CDATA[
+			price >= ${price_min} AND price <= ${price_max}
+			]]>
+			ORDER BY ${order} DESC
+	</select>
+	
+	<select id="findPostWithoutSearchword" resultMap="postResultMap" statementType="CALLABLE">
+		SELECT *
+			FROM sellpost  
+			WHERE 
+				locationno IN
+					(SELECT  loc.locationno FROM location loc 
+						WHERE 
+		 				calc_distance( #{latitude,jdbcType=NUMERIC  , mode=IN}, 
+		 					#{longtitude,jdbcType=NUMERIC  , mode=IN}, loc.latitude, loc.longtitude )
+						<![CDATA[<]]>
+						#{distance}
+						) 
+			AND
+			category in ${categories}
 			AND
 			<![CDATA[
 			price >= ${price_min} AND price <= ${price_max}

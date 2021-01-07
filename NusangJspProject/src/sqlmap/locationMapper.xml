@@ -5,6 +5,17 @@
  
 <mapper namespace="locationMapper">
      
+     <resultMap id="locationResultMap" type="Location">
+	
+	 <id  property="locationno"  column="locationno"/>
+	<result property="name1" column="name1"/>
+	<result property="name2" column="name2"/>
+	<result property="name3" column="name3"/>
+	<result property="longtitude" column="longtitude"/>
+	<result property="latitude" column="latitude"/>
+	<result property="tabletype" column="tabletype"/>
+	</resultMap>
+     
       <select id="selectAll" resultType="Location">
         SELECT
             *
@@ -26,7 +37,7 @@
 
 
     
-     <insert id="insert"  useGeneratedKeys="true"  keyProperty="locationno" parameterType="Location">
+     <insert id="insert" parameterType="Location" useGeneratedKeys="true" keyColumn="locationno" keyProperty="locationno">
     	<selectKey keyProperty="locationno" resultType="int" order="AFTER">			   
     	SELECT SEQ_LOCATION_LOCATIONNO.CURRVAL FROM DUAL
  		</selectKey>
@@ -35,30 +46,14 @@
          VALUES ( #{name1}, #{name2}, #{name3},#{longtitude},#{latitude},#{tabletype}) 
     </insert>
     
+    
     <update id="updateBy"  > 
          
          UPDATE LOCATION
 SET 
 ${colum} = #{value}
 WHERE
- locationno = #{locationno}
+ userno = #{userno}
     </update>
-    
-    <update id="update">
-
-		UPDATE 
-		LOCATION
-		SET
-		locationno = #{locationno},
-		latitude = #{latitude},
-		longtitude = #{longtitude},
-		name1 = #{name1},
-		name2 = #{name2},
-		name3 = #{name3},
-		 tabletype=#{tabletype}
-		WHERE
-		locationno =
-		#{locationno}
-	</update>
 </mapper>
 

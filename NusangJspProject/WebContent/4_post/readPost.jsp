@@ -1,3 +1,4 @@
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="com.nusang.dto.User"%>
 <%@page import="com.nusang.dto.Post"%>
@@ -329,9 +330,14 @@
 			</h3>
 			<div id="map" style="width: 100%; height: 350px;"></div>
 
-			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1db6aaded4b028f19067fca5394bb829"></script>
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eef850b20845c897933701b883df3a35"></script>
 			<input type="hidden" id="latitude" value="${post.location.latitude }"> <input type="hidden" id="longtitude" value="${post.location.longtitude }"> <br>
-
+			<script type="text/javascript">
+				var la = $('#latitue').val();
+				var lo = $('#longtitude').val();
+				console.log("latitue: "+la);
+				console.log("longtitude: "+lo);
+			</script>
 			<!-- 댓글 섹션 -->
 			<jsp:include page="../0_common/comments.jsp?postno=${post.postno}"></jsp:include>
 		</div>

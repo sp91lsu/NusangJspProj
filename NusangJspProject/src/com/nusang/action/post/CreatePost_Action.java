@@ -14,8 +14,10 @@ import com.nusang.action.ActionForward;
 import com.nusang.action.EActionType;
 import com.nusang.bo.KakaoBO;
 import com.nusang.controller.assistance.ConAsist;
+import com.nusang.dao.LocationDao;
 import com.nusang.dao.Payment_MarketDao;
 import com.nusang.dao.PostDao;
+import com.nusang.dao.Post_PictureDao;
 import com.nusang.dto.Location;
 import com.nusang.dto.Payment_Market;
 import com.nusang.dto.Post;
@@ -73,6 +75,8 @@ public class CreatePost_Action implements Action {
 
 		double map_latitude = Double.parseDouble(multi.getParameter("map_latitude"));
 		double map_longtitude = Double.parseDouble(multi.getParameter("map_longtitude"));
+		System.out.println("map_latitude: "+map_latitude);
+		System.out.println("map_longtitude: "+map_longtitude);
 		
 		System.out.println("Payment_Market 유저 아이디 : " + user.getUserno());
 		Payment_Market pm = Payment_Market.builder().name("게시글 등록 ").imp_uid(imp_uid).paymenttype("card").state(1)
@@ -82,6 +86,7 @@ public class CreatePost_Action implements Action {
 
 		Location location = KakaoBO.getInstance().reqLocation(map_longtitude, map_latitude);
 		location.setTabletype("POST");
+		LocationDao.getInstance().insertLocation(location);
 		Post post = new Post();
 		post.setTitle(multi.getParameter("title"));
 		post.setCategory(multi.getParameter("category"));
@@ -92,6 +97,7 @@ public class CreatePost_Action implements Action {
 		post.setLocation(location);
 		Post_Picture pp = new Post_Picture();
 		pp.setPicture(fileSystemNames);
+		Post_PictureDao.getInstance().insert(pp);
 		post.setPost_picture(pp);
 		int postno = PostDao.getInstance().insertPost(post, fileSystemNames,pm);
 		// 데이터 확인

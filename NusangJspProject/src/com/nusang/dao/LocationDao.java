@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.nusang.dto.Location;
 import com.nusang.dto.Post;
+import com.nusang.dto.User;
 
 public class LocationDao extends BasicDao<Location> {
 
@@ -25,6 +26,24 @@ public class LocationDao extends BasicDao<Location> {
 
 	private LocationDao(String namespace) {
 		super(namespace, "locationno");
+	}
+	
+	public int insertLocation(Location location) {
+		int no = 0;
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			no = insert(session, location);
+			session.commit();
+			session.close();
+			System.out.println("Location Insert 성공 Location no: "+no);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Location Insert 실패");
+			session.rollback();
+		}
+
+		return no;
+
 	}
 
 	public ArrayList<Post> findByLocation(Location location) {

@@ -4,10 +4,9 @@
 --------------------------------------------------------
 --  DDL for Table SELLPOST
 --------------------------------------------------------
-
+drop table "NUSANGUSER"."SELLPOST" CASCADE CONSTRAINTS;
   CREATE TABLE "NUSANGUSER"."SELLPOST" 
    (	"POSTNO" NUMBER, 
-	"PICTURE" VARCHAR2(500 CHAR), 
 	"TITLE" VARCHAR2(100 BYTE), 
 	"BODYTEXT" VARCHAR2(4000 BYTE), 
 	"PRICE" NUMBER, 

@@ -1,6 +1,7 @@
 package com.nusang.dto;
 
 import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -16,7 +17,6 @@ import lombok.NoArgsConstructor;
 public class Post {
 
 	private int postno;
-	/* private byte[] picture; */
 	private String title;
 	private String bodytext;
 	private int price;
