@@ -54,15 +54,16 @@
 						<c:set var="sBarVal" value="${searchWord}"/>
 					</c:otherwise>
 				</c:choose>
+				<!-- 검색 바 -->
 				<input id="searchBar" type="text" class="form-control" placeholder="검색 키워드를 입력하세요!" value="${sBarVal }">
 				<!-- 찾기버튼 -->
 				<button id="searchBtn" class="btn btn-dark " type="button" style="background: #10620A;">찾기</button>
 				
-				<!-- 상세검색 -->
+				<!-- 상세검색(필터) -->
 				<c:if test="${user != null }">
 					<div id="isUser"></div>
 					<!-- 상세검색 버튼 -->
-					<button id="detailSearchBtn" class="btn btn-success" onclick="doDisplay()">상세검색
+					<button id="detailSearchBtn" class="btn btn-success" onclick="doDisplay()">필터
 						<i id="caretdown" class="fas fa-caret-down"></i>
 						<i id="caretup" class="fas fa-caret-up"></i>
 					</button>
