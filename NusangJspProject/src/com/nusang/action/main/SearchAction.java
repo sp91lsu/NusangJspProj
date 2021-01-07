@@ -25,19 +25,19 @@ public class SearchAction implements Action {
 		actionForward.setNextPath(ConAsist.URL_MAIN);
 		
 		request.setCharacterEncoding("UTF-8");
-		Map params = request.getParameterMap();
 		
 		//검색어 정리 
-		String searchWord0 = request.getParameter("searchWord");
-		request.setAttribute("searchWord", searchWord0);
+		String handedSearchWord = request.getParameter("searchWord");
+		request.setAttribute("searchWord", handedSearchWord);
 		
-	    searchWord0 = searchWord0.trim();
-	    String searchWord = "'"+searchWord0;
+	    handedSearchWord = handedSearchWord.trim();
+	    String searchWord = "'"+handedSearchWord;
 	    searchWord = searchWord.replaceAll("( )+", "|");
 	    searchWord += "'";
 		
 		//카테고리 정리 (DB 쿼리문에 들어갈 String 형태로)
 		String[] arr_categories = request.getParameterValues("category");
+		request.setAttribute("categories",arr_categories);
 		String categories = "(";
 		for (String ct : arr_categories) {
 			categories += "'" + ct + "',";
@@ -47,14 +47,17 @@ public class SearchAction implements Action {
 		
 		//정렬
 		String order = request.getParameter("order");
+		request.setAttribute("order", order);
 		//가격
 		String min = request.getParameter("price_min");
 		String max = request.getParameter("price_max");
+		request.setAttribute("price_min", min);
+		request.setAttribute("price_max", max);
 		int price_min = min == "" ? 0 : Integer.parseInt( min );
 		int price_max = max == "" ? 0 : Integer.parseInt( max );
 		//동네범위
 		int view_distance = Integer.parseInt( request.getParameter("view_distance") );
-		
+		request.setAttribute("view_distance", view_distance);
 		
 		
 		Location location = ConAsist.getLocation(request);
@@ -62,7 +65,12 @@ public class SearchAction implements Action {
 		UserDao.getInstance().updateBy(user.getUserno(), "view_distance", view_distance);
 
 		// 근방의 게시글 가지고 오기
-		List<Post> postList = PostDao.getInstance().findPostByDetailSearch(searchWord,categories,order,price_min,price_max,view_distance,location);
+		List<Post> postList = null;
+		if(handedSearchWord.equals("")) {
+			postList = PostDao.getInstance().findPost_sWordNull(categories,order,price_min,price_max,view_distance,location);
+		}else{
+			postList = PostDao.getInstance().findPostByDetailSearch(searchWord,categories,order,price_min,price_max,view_distance,location);
+		}
 		System.out.println("이 근처 " + view_distance + "km의 게시글 갯수 : "+ postList.size());
 		request.setAttribute("postList", postList);
 
