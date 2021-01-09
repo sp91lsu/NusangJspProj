@@ -1,3 +1,4 @@
+//document ready
 $(function(){
 	//초기 프론트 세팅
 	var h1 = $("#searchBar").css("height");
@@ -10,18 +11,26 @@ $(function(){
 	
 	//함수 세팅
 	var isUser = $("#isUser").length;
+		//찾기버튼 -> doSearch
 	$("#searchBtn").click(function(){
 		doSearch(isUser);
 	});
-	
+		//검색버튼 -> doSearch
 	$("#detailSearchForm").submit(function(){
 		doSearch(isUser);
 	});
-	
+		//검색바에서 엔터 -> doSearch
+	$('#searchBar').keypress(function(event){
+     if ( event.which == 13 ) {
+         $('#searchBtn').click();
+         return false;
+		}
+     });
+		//필터창_ChkBox(모두선택) 동작
 	$("#chooseAll").click(function(){
 		chooseAll();
 	});
-	
+		//필터창_X버튼 동작
 	$("#closeBtn").click(function(){
 		$("#detailSearch-pop").hide();
 		
@@ -32,38 +41,11 @@ $(function(){
 			cu.css("display","none");
 		}
 	});
-	
-	$('#searchBar').keypress(function(event){
-     if ( event.which == 13 ) {
-         $('#searchBtn').click();
-         return false;
-     }
-});
-	
 });
 
-function doSearch(isUserr){
-	var isUser = isUserr;
-	var keyword = $("#searchBar").val();
-	/*if(keyword == ""){
-		alert("''에 대한 검색결과가 없습니다. \n검색어를 입력해주세요.");
-		return false;
-	}*/
-	if(isUser == 0){
-		location.href="/search0?searchWord="+keyword;
-	}else{
-		var checkedCates = $("input[name='category']:checked");
-		if(checkedCates.length == 0){
-			alert("적어도 한 개 이상의 카테고리를 선택해주세요.");
-			return false;
-		}
-		$("#searchWord").val(keyword);
-		$("#submitBtn").trigger("click");
-		
-		
-	}
-}
 
+
+//필터 버튼 클릭시 캐럿모양 변화,필터창 on/off
 function doDisplay(){
 	var cd = $("#caretdown");
 	var cu = $("#caretup");
@@ -79,6 +61,7 @@ function doDisplay(){
 	}
 }
 
+//모두선택 클릭시 모든 카테고리 체크박스 체크/체크해제
 function chooseAll(){
 	var allBtn = $("#chooseAll");
 	var categories = $("input[name='category']");
@@ -92,4 +75,23 @@ function chooseAll(){
 	}
 }
 
+//검색함수
+function doSearch(isUserr){
+	var isUser = isUserr;
+	var keyword = $("#searchBar").val();
 
+	//미로그인시 단순키워드검색
+	if(isUser == 0){
+		location.href="/search0?searchWord="+keyword;
+	}
+	//로그인시 필터적용 검색
+	else{
+		var checkedCates = $("input[name='category']:checked");
+		if(checkedCates.length == 0){
+			alert("적어도 한 개 이상의 카테고리를 선택해주세요.");
+			return false;
+		}
+		$("#searchWord").val(keyword);
+		$("#submitBtn").trigger("click");
+	}
+}
