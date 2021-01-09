@@ -61,13 +61,11 @@ public class SearchAction implements Action {
 		
 		
 		Location location = ConAsist.getLocation(request);
-		User user = (User) request.getSession().getAttribute("user");
-		UserDao.getInstance().updateBy(user.getUserno(), "view_distance", view_distance);
 
 		// 근방의 게시글 가지고 오기
 		List<Post> postList = null;
 		if(handedSearchWord.equals("")) {
-			postList = PostDao.getInstance().findPost_sWordNull(categories,order,price_min,price_max,view_distance,location);
+			postList = PostDao.getInstance().findPost_searchWordNull(categories,order,price_min,price_max,view_distance,location);
 		}else{
 			postList = PostDao.getInstance().findPostByDetailSearch(searchWord,categories,order,price_min,price_max,view_distance,location);
 		}

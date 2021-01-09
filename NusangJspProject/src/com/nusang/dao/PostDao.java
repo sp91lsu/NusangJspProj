@@ -167,7 +167,7 @@ public class PostDao extends BasicDao<Post> {
 		return (ArrayList<Post>) postList;
 	}
 	
-	public ArrayList<Post> findPost_sWordNull(String categories, String order, int price_min, int price_max, int distance,
+	public ArrayList<Post> findPost_searchWordNull(String categories, String order, int price_min, int price_max, int distance,
 			Location userLocation) {
 		SqlSession session = sqlSessionFactory.openSession();
 		List<Post> postList = new ArrayList<Post>();
