@@ -172,12 +172,13 @@
 				class="d-flex flex-wrap align-content-start justify-content-center"
 				style="padding-top: 50px;">
 				<c:choose>
-					<c:when test="${fn:length(postList)==0}">
+					
+					<c:when test="${fn:length(postList)==0}"><!-- 검색결과 없을때 -->
 						<div id="whenPostZero" class="d-flex justify-content-center align-items-center">
 							<span>검색결과가 없습니다.</span>				
 						</div>
 					</c:when>
-					<c:otherwise>
+					<c:otherwise><!-- 검색결과 있을때 -->
 						<c:forEach var="post" items="${postList}">
 							<div id="postCard" style = "margin-bottom: 30px;">
 								<c:choose>
