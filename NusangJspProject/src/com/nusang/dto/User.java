@@ -45,11 +45,11 @@ public class User {
 		return true;
 	}
 
-	public ArrayList<Payment_User> getSellList() {
+	public ArrayList<Payment_User> takeSellList() {
 		return findStateList(2);
 	}
 
-	public ArrayList<Payment_User> getBuyList() {
+	public ArrayList<Payment_User> takeBuyList() {
 		return findStateList(1);
 	}
 
@@ -63,7 +63,7 @@ public class User {
 		return list;
 	}
 
-	public Buy_Reservation getReservation(int postno) {
+	public Buy_Reservation takeReservation(int postno) {
 		for (Buy_Reservation br : reservationList) {
 			if (br.getPost().getPostno() == postno) {
 				return br;

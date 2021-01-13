@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,11 +36,11 @@ public class Post {
 	private ArrayList<Buy_Reservation> reservationList;// 구매신청현황
 	private ArrayList<WatchList> watchList;
 
-	public User getReserUser() {
-		return getCurReservation().getUser();
+	public User takeReserUser() {
+		return takeCurReservation().getUser();
 	}
 
-	public Buy_Reservation getCurReservation() {
+	public Buy_Reservation takeCurReservation() {
 		for (Buy_Reservation br : reservationList) {
 			if (br.getState() == 1) {
 				return br;
@@ -47,7 +49,7 @@ public class Post {
 		return null;
 	}
 
-	public String getStateStr() {
+	public String takeStateStr() {
 
 		switch (sellstate) {
 		case 0:

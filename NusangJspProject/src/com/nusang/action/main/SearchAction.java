@@ -22,7 +22,7 @@ public class SearchAction implements Action {
 
 		System.out.println("서치액션 도착!!!");
 		ActionForward actionForward = new ActionForward();
-		actionForward.setNextPath(ConAsist.URL_MAIN);
+		actionForward.setNextPath(ConAsist.URL_MAIN2);
 		
 		request.setCharacterEncoding("UTF-8");
 		

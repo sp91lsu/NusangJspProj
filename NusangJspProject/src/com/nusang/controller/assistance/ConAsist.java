@@ -72,8 +72,9 @@ public class ConAsist {
 	}
 
 	public static Location getLocation(HttpServletRequest request) throws Exception {
-		double longtitude = 0;
-		double latitude = 0;
+		Double longtitude = 0.0;
+		Double latitude = 0.0;
+		request.setCharacterEncoding("utf-8");
 		Location location = (Location) request.getSession().getAttribute("location");
 		User user = (User) request.getSession().getAttribute("user");
 		if (user != null && !user.isLocationNull()) {
@@ -81,6 +82,7 @@ public class ConAsist {
 			location = user.getLocation();
 		} else if (location == null) {
 			System.out.println("sessionLocation");
+			System.out.println("-------------------"+request.getParameter("longitude"));
 			longtitude = Double.parseDouble(request.getParameter("longitude"));
 			latitude = Double.parseDouble(request.getParameter("latitude"));
 			location = KakaoBO.getInstance().reqLocation(longtitude, latitude);

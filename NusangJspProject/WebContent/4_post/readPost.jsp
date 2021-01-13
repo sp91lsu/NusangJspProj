@@ -156,8 +156,8 @@
 									%>
 
 									<c:choose>
-										<c:when test="${user.getReservation(post.postno) != null }">
-											나의 예약신청 금액 : ${user.getReservation(post.postno).reser_price}
+										<c:when test="${user.takeReservation(post.postno) != null }">
+											나의 예약신청 금액 : ${user.takeReservation(post.postno).reser_price}
 											<button id="delete_reservation" class="btn btn-danger" style="margin-top: 10px;" value="${user.getReservation(post.postno).reserno }">예약 취소</button>
 										</c:when>
 										<c:otherwise>

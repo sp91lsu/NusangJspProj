@@ -109,7 +109,7 @@ public class Buy_ReservationDao extends BasicDao<Buy_Reservation> {
 		try {
 			Post post = PostDao.getInstance().findByNo(postno);
 			result = deleteBy(session, reserno);
-			if (post.getCurReservation() != null && post.getCurReservation().getReserno() == reserno) {
+			if (post.takeCurReservation() != null && post.takeCurReservation().getReserno() == reserno) {
 				result = PostDao.getInstance().updateBy(session, postno, "sellstate", 0);
 			}
 			session.commit();

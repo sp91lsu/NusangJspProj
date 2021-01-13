@@ -8,6 +8,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,19 +47,9 @@
 			<div id="searchMid" class="input-group">
 				
 				<!-- 검색 바 -->
-				<c:choose>
-					<c:when test="${searchWord == null }">
-						<c:set var="sBarVal" value=""/>
-					</c:when>
-					<c:otherwise>
-						<c:set var="sBarVal" value="${searchWord}"/>
-					</c:otherwise>
-				</c:choose>
-				<!-- 검색 바 -->
-				<input id="searchBar" type="text" class="form-control" placeholder="검색 키워드를 입력하세요!" value="${sBarVal }">
+				<input id="searchBar" type="text" class="form-control" placeholder="검색 키워드를 입력하세요!">
 				<!-- 찾기버튼 -->
 				<button id="searchBtn" class="btn btn-dark " type="button" style="background: #10620A;">찾기</button>
-				
 				<!-- 상세검색(필터) -->
 				<c:if test="${user != null }">
 					<div id="isUser"></div>
@@ -70,8 +61,8 @@
 					
 					<!-- 폼 시작 -->
 					<form name="detailSearchForm" id="detailSearchForm" action="/search" method="post">
-					<!-- 상세검색 팝업창 -->
-					<div id="detailSearch-pop" class="detailSearch-pop">
+						<!-- 상세검색 팝업창 -->
+						<div id="detailSearch-pop" class="detailSearch-pop">
 							<!-- 헤더 -->
 							<div id="popHeader" class="d-flex">
 								<span id="popHtext" class="mr-auto">상세검색</span>
@@ -142,10 +133,10 @@
 								<hr>
 								<!-- 버튼들 -->
 								<div id="btns" class="d-flex justify-content-end">
-									<button id="submitBtn" type="submit" class="btn btn-success">검색</button>
+									<button id="submitBtn" type="button" class="btn btn-success">검색</button>
 								</div>
 						</div>
-						</form>
+					</form>
 				</c:if>
 			</div>
 			<!-- 오른쪽구역 -->
@@ -161,84 +152,24 @@
 	
 	<!-- 포스트 섹션 -->
 	<div id="postSection" class="container d-flex flex-column align-items-center">
-
+		<!-- 포스트 랩퍼 -->
 		<div id="postWrapper">
-			<div id=postSection_top class="d-flex justify-content-end">
-				
-			</div>
+			<div id=postSection_top class="d-flex justify-content-end"></div>
 	
-			<!-- 포스트 리스트 -->
+			<!-- 포스트 리스트 섹션 -->
 			<div id="postListSection"
 				class="d-flex flex-wrap align-content-start justify-content-center"
 				style="padding-top: 50px;">
-				<c:choose>
-					
-					<c:when test="${fn:length(postList)==0}"><!-- 검색결과 없을때 -->
-						<div id="whenPostZero" class="d-flex justify-content-center align-items-center">
-							<span>검색결과가 없습니다.</span>				
-						</div>
-					</c:when>
-					<c:otherwise><!-- 검색결과 있을때 -->
-						<c:forEach var="post" items="${postList}">
-							<div id="postCard" style = "margin-bottom: 30px;">
-								<c:choose>
-									<c:when test="${!empty post.post_picture.getList()[0]}">
-										<img id="card_img" alt="product image"
-											src="/upload/${post.post_picture.getList()[0]}"
-											class="rounded-bottom"
-											style="height: 150px; margin-bottom: 0px; box-shadow: 0px 0px 7px 1px #EAEAEA;">
-									</c:when>
-									<c:otherwise>
-										<img id="card_img" alt="default image" src="/img/noImg.png"
-											class="rounded-bottom"
-											style="height: 150px; margin-bottom: 0px; box-shadow: 0px 0px 7px 1px #EAEAEA">
-									</c:otherwise>
-								</c:choose>
-								<div style="box-shadow: 0px 0px 3px 1px #EAEAEA;">
-									<h6 id="card_title"
-										style="padding-top: 20px; padding-bottom: 5px; font-family: 'Noto Sans KR', sans-serif; font-size: 15px; padding-left: 7px;">
-										<c:choose>
-											<c:when test="${post.title.length() > 12 }">${fn:substring(post.title,0,12)}<span
-													style="font-weight: bold">...</span>
-											</c:when>
-											<c:otherwise>${post.title }</c:otherwise>
-										</c:choose>
-			
-									</h6>
-									<h6 id="card_price" style="padding-left: 7px;">${post.productname }
-										<br>
-										<div style = "padding-top: 10px; padding-bottom: 5px;">
-										<fmt:formatNumber value="${post.price }" pattern="#,###" />원
-										</div>
-									</h6>
-									<h6 id="card_addr" style="font-family: 'Noto Sans KR', sans-serif; font-size:12px; padding-left:7px; ">${post.location.getAddress2()}
-									
-									<c:choose>
-										<c:when test="${post.sellstate == 0 }"><input type = "button" value = "판매중" style = "float:right; margin-right:7px;height:20px; margin-top:-3px;cursor:default;border-radius:3px;border:0;outline:0;background: #D5D5D5; "></c:when>
-										<c:when test="${post.sellstate == 1 }"><input type = "button" value = "예약중" style = "float:right; margin-right:7px;height:20px; margin-top:-3px; cursor:default;border-radius:3px;border:0;outline:0;background: #FFBB00;"></c:when>
-										<c:when test="${post.sellstate == 2 }"><input type = "button" value = "판매완료" style = "float:right; margin-right:7px;height:21px; margin-top:-3px;cursor:default;border-radius:3px;border:0;outline:0;background: black;color: white;"></c:when>
-									</c:choose>
-									
-									</h6> 
-									<h8 id="post_comment" style=" padding-left:7px;font-size: 2px;">댓글
-									[${post.replyList.size()}]</h8> <h8>·</h8> <h8 id="post_interest" style = "font-size: 2px;">관심
-									[${post.watchList.size() }]</h8> <h8>·</h8> <h8 id="post_view" style = "font-size: 2px;">조회 [${post.viewcnt }] · </h8><span style = "font-size: 10px;font-weight: bold;">${post.calcTime() }</span>
-									<button id="viewBtn" class="btn btn-success"
-										style="width: 190px; margin-top: 10px; background: #23A41A; padding-left: 0px;"
-										onclick="location.href='/post/readPost?postno=${post.postno}'">
-										글보기</button>
-								</div>
-							</div>
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
-			</div><!-- 포스트 리스트 끝 -->
-		</div><!-- 포스트 랩퍼 끝 -->
-	</div>
+				<!-- 포스트 리스트 -->
+				
+		 	</div><!-- 포스트 리스트 섹션 끝 -->
+		 </div><!-- 포스트 랩퍼 끝 -->
+	</div><!-- 포스트 섹션 끝 -->
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
 	
 	
 	<script type="text/javascript" src="/1_main/js/main_detailSearch.js"></script>
+	<script type="text/javascript" src="/1_main/js/main_ajax.js"></script>
 </body>
 </html>
 
