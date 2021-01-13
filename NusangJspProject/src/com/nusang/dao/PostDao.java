@@ -96,6 +96,25 @@ public class PostDao extends BasicDao<Post> {
 		return result;
 	}
 
+	public ArrayList<Post> findPostNearBy10km(Location comLocation) {
+		SqlSession session = sqlSessionFactory.openSession();
+		List<Post> postList = new ArrayList<Post>();
+		try {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("latitude", comLocation.getLatitude());
+			map.put("longtitude", comLocation.getLongtitude());
+			postList = session.selectList(namespace + "findPostNearBy10km", map);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.rollback();
+		} finally {
+			session.close();
+		}
+
+		return (ArrayList<Post>) postList;
+	}
+	
 	public ArrayList<Post> findPostByLocation(Location userLocation, int distance) {
 		SqlSession session = sqlSessionFactory.openSession();
 		List<Post> postList = new ArrayList<Post>();
@@ -200,7 +219,7 @@ public class PostDao extends BasicDao<Post> {
 		int result = 0;
 		try {
 			Post post = findByNo(session, postno);
-			Buy_Reservation cur_Br = post.getCurReservation();
+			Buy_Reservation cur_Br = post.takeCurReservation();
 
 			// 판매자 판매목록 저장
 			Payment_User pu_bySeller = Payment_User.builder().price(cur_Br.getReser_price())

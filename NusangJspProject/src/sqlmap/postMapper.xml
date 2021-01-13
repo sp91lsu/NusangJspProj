@@ -60,6 +60,20 @@
 		FROM
 		SELLPOST
 	</select>
+	
+	<select id="findPostNearBy10km" resultMap="postResultMap" statementType="CALLABLE">
+		SELECT *
+			FROM sellpost  
+			WHERE 
+				locationno IN
+					(SELECT  loc.locationno FROM location loc 
+					WHERE 
+			 		calc_distance( #{latitude,jdbcType=DOUBLE   , mode=IN}, #{longtitude,jdbcType=DOUBLE   , mode=IN}, loc.latitude, loc.longtitude )
+					<![CDATA[<]]>
+					10  	
+				  	) 
+			ORDER BY regdate DESC
+	</select>
 
 
 	<select id="findBy" resultMap="postResultMap">
@@ -117,13 +131,14 @@
 				locationno IN
 					(SELECT  loc.locationno FROM location loc 
 					WHERE 
-			 		calc_distance( #{latitude,jdbcType=NUMERIC  , mode=IN}, #{longtitude,jdbcType=NUMERIC  , mode=IN}, loc.latitude, loc.longtitude )
+			 		calc_distance( #{latitude,jdbcType=DOUBLE   , mode=IN}, #{longtitude,jdbcType=DOUBLE   , mode=IN}, loc.latitude, loc.longtitude )
 					<![CDATA[<]]>
 					#{distance}  	
 				  	) 
 			ORDER BY regdate DESC
 	</select>
 	
+	<!-- 로그아웃 상태 & 키워드 있음 -->
 	<select id="findPostByKeyword" resultMap="postResultMap" statementType="CALLABLE">
 		SELECT *
 			FROM sellpost  
@@ -131,7 +146,7 @@
 				locationno IN
 					(SELECT  loc.locationno FROM location loc 
 						WHERE 
-		 				calc_distance( #{latitude,jdbcType=NUMERIC  , mode=IN}, #{longtitude,jdbcType=NUMERIC  , mode=IN}, loc.latitude, loc.longtitude )
+		 				calc_distance( #{latitude,jdbcType=DOUBLE   , mode=IN}, #{longtitude,jdbcType=DOUBLE   , mode=IN}, loc.latitude, loc.longtitude )
 						<![CDATA[<]]>
 						5
 						) 
@@ -147,8 +162,8 @@
 				locationno IN
 					(SELECT  loc.locationno FROM location loc 
 						WHERE 
-		 				calc_distance( #{latitude,jdbcType=NUMERIC  , mode=IN}, 
-		 					#{longtitude,jdbcType=NUMERIC  , mode=IN}, loc.latitude, loc.longtitude )
+		 				calc_distance( #{latitude,jdbcType=DOUBLE   , mode=IN}, 
+		 					#{longtitude,jdbcType=DOUBLE   , mode=IN}, loc.latitude, loc.longtitude )
 						<![CDATA[<]]>
 						#{distance}
 						) 
@@ -170,8 +185,8 @@
 				locationno IN
 					(SELECT  loc.locationno FROM location loc 
 						WHERE 
-		 				calc_distance( #{latitude,jdbcType=NUMERIC  , mode=IN}, 
-		 					#{longtitude,jdbcType=NUMERIC  , mode=IN}, loc.latitude, loc.longtitude )
+		 				calc_distance( #{latitude,jdbcType=DOUBLE   , mode=IN}, 
+		 					#{longtitude,jdbcType=DOUBLE   , mode=IN}, loc.latitude, loc.longtitude )
 						<![CDATA[<]]>
 						#{distance}
 						) 
