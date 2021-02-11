@@ -81,7 +81,7 @@ function chooseAll(){
 	}
 }
 
-//검색함수 : 검색어와 검색조건들을 서버로 보냄.
+/*//검색함수 : 검색어와 검색조건들을 서버로 보냄.
 function doSearch(isUserr){
 	var isUser = isUserr;
 	var keyword = $("#searchBar").val();
@@ -126,4 +126,4 @@ function doSearch2(isUserr){
 	}
 	
 	
-}
+}*/
