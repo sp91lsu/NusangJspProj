@@ -1,5 +1,12 @@
 //비동기 검색 함수
 function doSearch_Ajax(isUser,isStart){
+	//카테고리 유효성 체크
+	var checkedCates = $("input[name='category']:checked");
+	if(checkedCates.length == 0){
+		alert("적어도 한 개 이상의 카테고리를 선택해주세요.");
+		return false;
+	}
+		
 	var keyword = $("#searchBar").val();
 	if(keyword.trim() == '') keyword = "";
 	var params = null;
@@ -30,7 +37,7 @@ function doSearch_Ajax(isUser,isStart){
 	}
 	console.log("params: "+params);
 	
-	//Post List 받아오기
+	//PostList 받아오기
 	$.ajax({
 		url :  "list.ajax",
 		type : "POST",
@@ -52,7 +59,8 @@ function doSearch_Ajax(isUser,isStart){
 } // end doSearch_Ajax();
 
 
-//postListAjax.jsp에 Post List 보낸 뒤, 생성된 html -> main.jsp 에 끼워넣기
+//함수 parseJSON(미완성)에 대한 대안책
+//postListAjax.jsp에 PostList를 보낸 뒤, 생성된 html -> main.jsp 에 끼워넣기
 function pListAjax(jsonObj){
 	var str = JSON.stringify(jsonObj);
 	$.post(
@@ -67,7 +75,7 @@ function pListAjax(jsonObj){
 
 
 //미완성
-//자바스크립트에 html태그를 한땀한땀 건들어 만드는 기분이들어 이미 만들어져있는 jsp 페이지의 html을 이용하는 방법을 찾고자 만들다가 멈춤.
+//자바스크립트에 html태그를 한땀한땀 건들어 만드는 기분이들어 미완성으로 두고 다른 방법을 찾음. -dosearch_ajax(이미 만들어져있는 jsp 페이지의 html을 이용하는 방법)
 function parseJSON(jsonObj){
 	var pList = jsonObj.pList; //AjaxPostListJSON.java - List<Post> list
 	var listTag = "";
