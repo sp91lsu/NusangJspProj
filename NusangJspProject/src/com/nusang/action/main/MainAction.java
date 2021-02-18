@@ -35,7 +35,10 @@ public class MainAction implements Action {
 		actionForward.setNextPath(ConAsist.URL_MAIN);
 		Location location = ConAsist.getLocation(request);
 		User user = (User) request.getSession().getAttribute("user");
-		int distance = user == null ? 10 : user.getView_distance();
+		
+		int distance = user == null ? 
+				10 //기본검색반경
+				: user.getView_distance();
 
 		// 근방의 게시글 가지고 오기
 		List<Post> postList = PostDao.getInstance().findPostByLocation(location, distance);

@@ -14,7 +14,7 @@ $(function(){
 	var isUser = $("#isUser").length; //로그인 여부
 	doSearch_Ajax(isUser,isStart);
 	
-	//함수 세팅
+	//프론트 요소에 함수 세팅
 	isStart = "false";
 		//찾기버튼 -> doSearch_Ajax
 	$("#searchBtn").click(function(){
@@ -31,11 +31,11 @@ $(function(){
          return false;
 		}
      });
-		//필터창_ChkBox(모두선택) 동작
+		//필터창 ChkBox 모두선택시 동작
 	$("#chooseAll").click(function(){
 		chooseAll();
 	});
-		//필터창_X버튼 동작
+		//필터창 X버튼 클릭시 동작
 	$("#closeBtn").click(function(){
 		$("#detailSearch-pop").hide();
 		

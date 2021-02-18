@@ -26,7 +26,8 @@ public class User {
 	private int evaluation_cnt;
 	private String nickname;
 	@Builder.Default
-	private int view_distance = 5;
+//	기본검색반경
+	private int view_distance = 10;
 	private Date regdate;
 	private String picture;
 	private Location location;
