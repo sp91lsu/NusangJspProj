@@ -1,12 +1,5 @@
 //비동기 검색 함수
 function doSearch_Ajax(isUser,isStart){
-	//카테고리 유효성 체크
-	var checkedCates = $("input[name='category']:checked");
-	if(checkedCates.length == 0){
-		alert("적어도 한 개 이상의 카테고리를 선택해주세요.");
-		return false;
-	}
-		
 	var keyword = $("#searchBar").val();
 	if(keyword.trim() == '') keyword = "";
 	var params = null;
@@ -15,6 +8,13 @@ function doSearch_Ajax(isUser,isStart){
 
 	//로그인 상태 (새로고침 or 상세검색)
 	if(isUser != 0){
+		//카테고리 유효성 체크
+		var checkedCates = $("input[name='category']:checked");
+		if(checkedCates.length == 0){
+			alert("적어도 한 개 이상의 카테고리를 선택해주세요.");
+			return false;
+		}
+		
 		$("#searchWord").val(keyword);
 		params = $("#detailSearchForm").serialize();
 	//로그아웃 상태
