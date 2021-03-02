@@ -16,7 +16,7 @@ public class AjaxPostListJSON {
 	@JsonIgnore
 	String memo;  // JSON 변환시 제외할 데이터  
 	
-	@JsonProperty("pList")  // Json property 이름과 Java 클래스 이름이 다른 경우
+	@JsonProperty("pList")  // Json property 이름(브라우저 콘솔에서 확인가능)과 Java 클래스 이름이 다른 경우
 	List<Post> list;   // 글 목록 데이터 
 
 	public int getCount() {
