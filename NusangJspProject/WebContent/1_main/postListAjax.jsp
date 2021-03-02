@@ -15,7 +15,7 @@
 
 
 <%
-	String jsonString = request.getParameter("json");
+	String jsonString = request.getParameter("jsonStr");
 	List<Post> postlist = null;
 	if(jsonString != null){
 		ObjectMapper mapper = new ObjectMapper();

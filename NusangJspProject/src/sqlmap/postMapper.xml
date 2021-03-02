@@ -148,7 +148,7 @@
 						WHERE 
 		 				calc_distance( #{latitude,jdbcType=DOUBLE   , mode=IN}, #{longtitude,jdbcType=DOUBLE   , mode=IN}, loc.latitude, loc.longtitude )
 						<![CDATA[<]]>
-						5
+						10
 						) 
 			AND
 			REGEXP_LIKE(title||bodytext||productname, ${searchWord}, 'i')	

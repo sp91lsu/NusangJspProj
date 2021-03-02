@@ -54,7 +54,7 @@
 				<c:if test="${user != null }">
 					<div id="isUser"></div>
 					<!-- 상세검색 버튼 -->
-					<button id="detailSearchBtn" class="btn btn-success" onclick="doDisplay()">필터
+					<button id="detailSearchBtn" class="btn btn-success">필터
 						<i id="caretdown" class="fas fa-caret-down"></i>
 						<i id="caretup" class="fas fa-caret-up"></i>
 					</button>
@@ -168,8 +168,8 @@
 	<jsp:include page="../0_common/footer.jsp"></jsp:include>
 	
 	
-	<script type="text/javascript" src="/1_main/js/main_detailSearch.js"></script>
-	<script type="text/javascript" src="/1_main/js/main_ajax.js"></script>
+	<script type="text/javascript" src="/1_main/js/main_filter.js"></script>
+	<script type="text/javascript" src="/1_main/js/main_searchAjax.js"></script>
 </body>
 </html>
 

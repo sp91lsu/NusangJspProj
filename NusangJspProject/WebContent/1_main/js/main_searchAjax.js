@@ -6,8 +6,27 @@ function doSearch_Ajax(isUser,isStart){
 	console.log("keyword: "+keyword);
 	console.log("isStart: "+isStart);
 
+	//비로그인 상태
+	if(isUser == 0){
+		//검색바가 빈칸일때
+		if(keyword == ""){
+			//초기로딩(or새로고침)
+			if(isStart=="true"){
+				$("#searchWord").val(keyword);
+				params = "isStart=true";
+			//빈칸으로 검색시
+			}else{
+				alert("검색어를 입력해주세요.");
+				params = "searchWord=" + keyword;
+				return;
+			}
+		//키워드 검색
+		}else{
+			params = "searchWord=" + keyword;
+		}
+	
 	//로그인 상태 (새로고침 or 상세검색)
-	if(isUser != 0){
+	}else{
 		//카테고리 유효성 체크
 		var checkedCates = $("input[name='category']:checked");
 		if(checkedCates.length == 0){
@@ -17,23 +36,6 @@ function doSearch_Ajax(isUser,isStart){
 		
 		$("#searchWord").val(keyword);
 		params = $("#detailSearchForm").serialize();
-	//로그아웃 상태
-	}else{
-		//빈칸으로 검색
-		if(keyword == ""){
-			if(!isStart){
-				alert("검색어를 입력해주세요.");
-				params = "searchWord=" + keyword;
-				return;
-			//초기로딩(or새로고침)
-			}else{
-				$("#searchWord").val(keyword);
-				params = "isStart=true";
-			}
-		//키워드 검색
-		}else{
-			params = "searchWord=" + keyword;
-		}
 	}
 	console.log("params: "+params);
 	
@@ -41,8 +43,8 @@ function doSearch_Ajax(isUser,isStart){
 	$.ajax({
 		url :  "list.ajax",
 		type : "POST",
-		data : params,
-		success : function(data, status){
+		data : params,//보내는 데이터(TEXT)
+		success : function(data, status){//받은 데이터(JSON) (서버에서는 문자열화 해서 보내지만 리턴값은 json 오브젝트다.)
 			if(status == "success"){
 				console.log("list.ajax Success!")				
 				console.log(data)				
@@ -65,7 +67,7 @@ function pListAjax(jsonObj){
 	var str = JSON.stringify(jsonObj);
 	$.post(
 		"/1_main/postListAjax.jsp",
-		"json="+str,
+		"jsonStr="+str,
 		function(htmlResult){
 			console.log("pListAjax_Html_Response Success!")	
 			$('#postListSection').html(htmlResult);

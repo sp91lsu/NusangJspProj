@@ -10,48 +10,52 @@ $(function(){
 	$("#dong"+distance).attr("checked","checked");
 	
 	//초기 포스트 리스트(근방10km 최신순 모두) 불러오기
-	var isStart = "true"; //초기로딩(or새로고침) 여부
 	var isUser = $("#isUser").length; //로그인 여부
+	var isStart = "true"; //초기로딩(or새로고침) 여부
 	doSearch_Ajax(isUser,isStart);
 	
 	//프론트 요소에 함수 세팅
 	isStart = "false";
 		//찾기버튼 -> doSearch_Ajax
-	$("#searchBtn").click(function(){
-		doSearch_Ajax(isUser,isStart);
-	});
+		$("#searchBtn").click(function(){
+			doSearch_Ajax(isUser,isStart);
+		});
 		//검색버튼 -> doSearch_Ajax
-	$("#submitBtn").click(function(){
-		doSearch_Ajax(isUser,isStart);
-	});
+		$("#submitBtn").click(function(){
+			doSearch_Ajax(isUser,isStart);
+		});
 		//검색바에서 엔터 -> doSearch_Ajax
-	$('#searchBar').keypress(function(event){
-     if ( event.which == 13 ) {
-         $('#searchBtn').click();
-         return false;
-		}
-     });
+		$('#searchBar').keypress(function(event){
+	     if ( event.which == 13 ) {
+	         $('#searchBtn').click();
+	         return false;
+			}
+	     });
+		//필터창 여닫이
+		$("#detailSearchBtn").click(function(){
+			filterToggle();
+		});
 		//필터창 ChkBox 모두선택시 동작
-	$("#chooseAll").click(function(){
-		chooseAll();
-	});
+		$("#chooseAll").click(function(){
+			chooseAll();
+		});
 		//필터창 X버튼 클릭시 동작
-	$("#closeBtn").click(function(){
-		$("#detailSearch-pop").hide();
-		
-		var cd = $("#caretdown");
-		var cu = $("#caretup");
-		if(cu.css("display")=="inline-block"){
-			cd.css("display","inline-block");
-			cu.css("display","none");
-		}
-	});
+		$("#closeBtn").click(function(){
+			$("#detailSearch-pop").hide();
+			
+			var cd = $("#caretdown");
+			var cu = $("#caretup");
+			if(cu.css("display")=="inline-block"){
+				cd.css("display","inline-block");
+				cu.css("display","none");
+			}
+		});
 });
 
 
 
-//필터 버튼 클릭시 캐럿모양 변화,필터창 on/off
-function doDisplay(){
+//필터 버튼 클릭시 캐럿모양 변화,필터창 open/close
+function filterToggle(){
 	var cd = $("#caretdown");
 	var cu = $("#caretup");
 	var pop = $("#detailSearch-pop");
