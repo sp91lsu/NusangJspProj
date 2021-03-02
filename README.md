@@ -1,4 +1,4 @@
-### Commit Author : SunBi91 sp91lsu@gmail.com lsu sp91lsu@nate.com or 이성웅 dev.lsw91@gmail.com
+### Commit Author : SunBi91 sp91lsu@gmail.com or lsu sp91lsu@nate.com or 이성웅 dev.lsw91@gmail.com
 
 # 프로젝트 개요
 * 당근마켓을 벤치마킹한 중고거래 사이트
